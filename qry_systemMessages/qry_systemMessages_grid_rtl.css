@@ -1,0 +1,6 @@
+.css_id_label, .css_id_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_id_grid_line, .css_id_grid_line:hover {vertical-align: top;text-align: right;}
+.css_page_label, .css_page_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_page_grid_line, .css_page_grid_line:hover {vertical-align: top;text-align: right;}
+.css_message_label, .css_message_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_message_grid_line, .css_message_grid_line:hover {vertical-align: top;text-align: right;}

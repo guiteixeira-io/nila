@@ -1,0 +1,18 @@
+.css_curso_label, .css_curso_label:hover {text-align:;vertical-align:middle;justify-content:;font-weight:bold;}
+.css_curso_grid_line, .css_curso_grid_line:hover {text-align: center;}
+.css_modulo_label, .css_modulo_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_modulo_grid_line, .css_modulo_grid_line:hover {vertical-align: top;text-align: right;}
+.css_descricao_label, .css_descricao_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_descricao_grid_line, .css_descricao_grid_line:hover {vertical-align: top;text-align: left;}
+.css_id_label, .css_id_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_id_grid_line, .css_id_grid_line:hover {vertical-align: top;text-align: right;}
+.css_pai_label, .css_pai_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_pai_grid_line, .css_pai_grid_line:hover {vertical-align: top;text-align: right;}
+.css_icone_label, .css_icone_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_icone_grid_line, .css_icone_grid_line:hover {vertical-align: top;text-align: left;}
+.css_link_label, .css_link_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_link_grid_line, .css_link_grid_line:hover {vertical-align: top;text-align: left;}
+.css_ordenacao_label, .css_ordenacao_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_ordenacao_grid_line, .css_ordenacao_grid_line:hover {vertical-align: top;text-align: right;}
+.css_sc_field_0_label, .css_sc_field_0_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_sc_field_0_grid_line, .css_sc_field_0_grid_line:hover {vertical-align: top;text-align: left;}

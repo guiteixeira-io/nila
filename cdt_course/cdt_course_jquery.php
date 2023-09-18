@@ -1,0 +1,684 @@
+
+function scJQGeneralAdd() {
+  scLoadScInput('input:text.sc-js-input');
+  scLoadScInput('input:password.sc-js-input');
+  scLoadScInput('input:checkbox.sc-js-input');
+  scLoadScInput('input:radio.sc-js-input');
+  scLoadScInput('select.sc-js-input');
+  scLoadScInput('textarea.sc-js-input');
+
+} // scJQGeneralAdd
+
+function scFocusField(sField) {
+  var $oField = $('#id_sc_field_' + sField);
+
+  if (0 == $oField.length) {
+    $oField = $('input[name=' + sField + ']');
+  }
+
+  if (0 == $oField.length && document.F1.elements[sField]) {
+    $oField = $(document.F1.elements[sField]);
+  }
+
+  if ($("#id_ac_" + sField).length > 0) {
+    if ($oField.hasClass("select2-hidden-accessible")) {
+      if (false == scSetFocusOnField($oField)) {
+        setTimeout(function() { scSetFocusOnField($oField); }, 500);
+      }
+    }
+    else {
+      if (false == scSetFocusOnField($oField)) {
+        if (false == scSetFocusOnField($("#id_ac_" + sField))) {
+          setTimeout(function() { scSetFocusOnField($("#id_ac_" + sField)); }, 500);
+        }
+      }
+      else {
+        setTimeout(function() { scSetFocusOnField($oField); }, 500);
+      }
+    }
+  }
+  else {
+    setTimeout(function() { scSetFocusOnField($oField); }, 500);
+  }
+} // scFocusField
+
+function scSetFocusOnField($oField) {
+  if ($oField.length > 0 && $oField[0].offsetHeight > 0 && $oField[0].offsetWidth > 0 && !$oField[0].disabled) {
+    $oField[0].focus();
+    return true;
+  }
+  return false;
+} // scSetFocusOnField
+
+function scEventControl_init(iSeqRow) {
+  scEventControl_data["id" + iSeqRow] = {"blur": false, "change": false, "autocomp": false, "original": "", "calculated": ""};
+  scEventControl_data["pai" + iSeqRow] = {"blur": false, "change": false, "autocomp": false, "original": "", "calculated": ""};
+  scEventControl_data["icone" + iSeqRow] = {"blur": false, "change": false, "autocomp": false, "original": "", "calculated": ""};
+  scEventControl_data["descricao" + iSeqRow] = {"blur": false, "change": false, "autocomp": false, "original": "", "calculated": ""};
+  scEventControl_data["link" + iSeqRow] = {"blur": false, "change": false, "autocomp": false, "original": "", "calculated": ""};
+  scEventControl_data["ordenacao" + iSeqRow] = {"blur": false, "change": false, "autocomp": false, "original": "", "calculated": ""};
+  scEventControl_data["sc_field_0" + iSeqRow] = {"blur": false, "change": false, "autocomp": false, "original": "", "calculated": ""};
+  scEventControl_data["planoeconomico" + iSeqRow] = {"blur": false, "change": false, "autocomp": false, "original": "", "calculated": ""};
+  scEventControl_data["planostandart" + iSeqRow] = {"blur": false, "change": false, "autocomp": false, "original": "", "calculated": ""};
+  scEventControl_data["planopremium" + iSeqRow] = {"blur": false, "change": false, "autocomp": false, "original": "", "calculated": ""};
+  scEventControl_data["modulo" + iSeqRow] = {"blur": false, "change": false, "autocomp": false, "original": "", "calculated": ""};
+}
+
+function scEventControl_active(iSeqRow) {
+  if (scEventControl_data["id" + iSeqRow] && scEventControl_data["id" + iSeqRow]["blur"]) {
+    return true;
+  }
+  if (scEventControl_data["id" + iSeqRow] && scEventControl_data["id" + iSeqRow]["change"]) {
+    return true;
+  }
+  if (scEventControl_data["pai" + iSeqRow] && scEventControl_data["pai" + iSeqRow]["blur"]) {
+    return true;
+  }
+  if (scEventControl_data["pai" + iSeqRow] && scEventControl_data["pai" + iSeqRow]["change"]) {
+    return true;
+  }
+  if (scEventControl_data["icone" + iSeqRow] && scEventControl_data["icone" + iSeqRow]["blur"]) {
+    return true;
+  }
+  if (scEventControl_data["icone" + iSeqRow] && scEventControl_data["icone" + iSeqRow]["change"]) {
+    return true;
+  }
+  if (scEventControl_data["descricao" + iSeqRow] && scEventControl_data["descricao" + iSeqRow]["blur"]) {
+    return true;
+  }
+  if (scEventControl_data["descricao" + iSeqRow] && scEventControl_data["descricao" + iSeqRow]["change"]) {
+    return true;
+  }
+  if (scEventControl_data["link" + iSeqRow] && scEventControl_data["link" + iSeqRow]["blur"]) {
+    return true;
+  }
+  if (scEventControl_data["link" + iSeqRow] && scEventControl_data["link" + iSeqRow]["change"]) {
+    return true;
+  }
+  if (scEventControl_data["ordenacao" + iSeqRow] && scEventControl_data["ordenacao" + iSeqRow]["blur"]) {
+    return true;
+  }
+  if (scEventControl_data["ordenacao" + iSeqRow] && scEventControl_data["ordenacao" + iSeqRow]["change"]) {
+    return true;
+  }
+  if (scEventControl_data["sc_field_0" + iSeqRow] && scEventControl_data["sc_field_0" + iSeqRow]["blur"]) {
+    return true;
+  }
+  if (scEventControl_data["sc_field_0" + iSeqRow] && scEventControl_data["sc_field_0" + iSeqRow]["change"]) {
+    return true;
+  }
+  if (scEventControl_data["planoeconomico" + iSeqRow] && scEventControl_data["planoeconomico" + iSeqRow]["blur"]) {
+    return true;
+  }
+  if (scEventControl_data["planoeconomico" + iSeqRow] && scEventControl_data["planoeconomico" + iSeqRow]["change"]) {
+    return true;
+  }
+  if (scEventControl_data["planostandart" + iSeqRow] && scEventControl_data["planostandart" + iSeqRow]["blur"]) {
+    return true;
+  }
+  if (scEventControl_data["planostandart" + iSeqRow] && scEventControl_data["planostandart" + iSeqRow]["change"]) {
+    return true;
+  }
+  if (scEventControl_data["planopremium" + iSeqRow] && scEventControl_data["planopremium" + iSeqRow]["blur"]) {
+    return true;
+  }
+  if (scEventControl_data["planopremium" + iSeqRow] && scEventControl_data["planopremium" + iSeqRow]["change"]) {
+    return true;
+  }
+  if (scEventControl_data["modulo" + iSeqRow] && scEventControl_data["modulo" + iSeqRow]["blur"]) {
+    return true;
+  }
+  if (scEventControl_data["modulo" + iSeqRow] && scEventControl_data["modulo" + iSeqRow]["change"]) {
+    return true;
+  }
+  return false;
+} // scEventControl_active
+
+function scEventControl_onFocus(oField, iSeq) {
+  var fieldId, fieldName;
+  fieldId = $(oField).attr("id");
+  fieldName = fieldId.substr(12);
+  scEventControl_data[fieldName]["blur"] = true;
+  scEventControl_data[fieldName]["change"] = false;
+} // scEventControl_onFocus
+
+function scEventControl_onBlur(sFieldName) {
+  scEventControl_data[sFieldName]["blur"] = false;
+  if (scEventControl_data[sFieldName]["change"]) {
+        if (scEventControl_data[sFieldName]["original"] == $("#id_sc_field_" + sFieldName).val() || scEventControl_data[sFieldName]["calculated"] == $("#id_sc_field_" + sFieldName).val()) {
+          scEventControl_data[sFieldName]["change"] = false;
+        }
+  }
+} // scEventControl_onBlur
+
+function scEventControl_onChange(sFieldName) {
+  scEventControl_data[sFieldName]["change"] = false;
+} // scEventControl_onChange
+
+function scEventControl_onAutocomp(sFieldName) {
+  scEventControl_data[sFieldName]["autocomp"] = false;
+} // scEventControl_onChange
+
+var scEventControl_data = {};
+
+function scJQEventsAdd(iSeqRow) {
+  $('#id_sc_field_id' + iSeqRow).bind('blur', function() { sc_cdt_course_id_onblur(this, iSeqRow) })
+                                .bind('change', function() { sc_cdt_course_id_onchange(this, iSeqRow) })
+                                .bind('focus', function() { sc_cdt_course_id_onfocus(this, iSeqRow) });
+  $('#id_sc_field_pai' + iSeqRow).bind('blur', function() { sc_cdt_course_pai_onblur(this, iSeqRow) })
+                                 .bind('change', function() { sc_cdt_course_pai_onchange(this, iSeqRow) })
+                                 .bind('focus', function() { sc_cdt_course_pai_onfocus(this, iSeqRow) });
+  $('#id_sc_field_icone' + iSeqRow).bind('blur', function() { sc_cdt_course_icone_onblur(this, iSeqRow) })
+                                   .bind('change', function() { sc_cdt_course_icone_onchange(this, iSeqRow) })
+                                   .bind('focus', function() { sc_cdt_course_icone_onfocus(this, iSeqRow) });
+  $('#id_sc_field_descricao' + iSeqRow).bind('blur', function() { sc_cdt_course_descricao_onblur(this, iSeqRow) })
+                                       .bind('change', function() { sc_cdt_course_descricao_onchange(this, iSeqRow) })
+                                       .bind('focus', function() { sc_cdt_course_descricao_onfocus(this, iSeqRow) });
+  $('#id_sc_field_link' + iSeqRow).bind('blur', function() { sc_cdt_course_link_onblur(this, iSeqRow) })
+                                  .bind('change', function() { sc_cdt_course_link_onchange(this, iSeqRow) })
+                                  .bind('focus', function() { sc_cdt_course_link_onfocus(this, iSeqRow) });
+  $('#id_sc_field_ordenacao' + iSeqRow).bind('blur', function() { sc_cdt_course_ordenacao_onblur(this, iSeqRow) })
+                                       .bind('change', function() { sc_cdt_course_ordenacao_onchange(this, iSeqRow) })
+                                       .bind('focus', function() { sc_cdt_course_ordenacao_onfocus(this, iSeqRow) });
+  $('#id_sc_field_sc_field_0' + iSeqRow).bind('blur', function() { sc_cdt_course_sc_field_0_onblur(this, iSeqRow) })
+                                        .bind('change', function() { sc_cdt_course_sc_field_0_onchange(this, iSeqRow) })
+                                        .bind('focus', function() { sc_cdt_course_sc_field_0_onfocus(this, iSeqRow) });
+  $('#id_sc_field_planoeconomico' + iSeqRow).bind('blur', function() { sc_cdt_course_planoeconomico_onblur(this, iSeqRow) })
+                                            .bind('change', function() { sc_cdt_course_planoeconomico_onchange(this, iSeqRow) })
+                                            .bind('focus', function() { sc_cdt_course_planoeconomico_onfocus(this, iSeqRow) });
+  $('#id_sc_field_planostandart' + iSeqRow).bind('blur', function() { sc_cdt_course_planostandart_onblur(this, iSeqRow) })
+                                           .bind('change', function() { sc_cdt_course_planostandart_onchange(this, iSeqRow) })
+                                           .bind('focus', function() { sc_cdt_course_planostandart_onfocus(this, iSeqRow) });
+  $('#id_sc_field_planopremium' + iSeqRow).bind('blur', function() { sc_cdt_course_planopremium_onblur(this, iSeqRow) })
+                                          .bind('change', function() { sc_cdt_course_planopremium_onchange(this, iSeqRow) })
+                                          .bind('focus', function() { sc_cdt_course_planopremium_onfocus(this, iSeqRow) });
+  $('#id_sc_field_modulo' + iSeqRow).bind('blur', function() { sc_cdt_course_modulo_onblur(this, iSeqRow) })
+                                    .bind('change', function() { sc_cdt_course_modulo_onchange(this, iSeqRow) })
+                                    .bind('focus', function() { sc_cdt_course_modulo_onfocus(this, iSeqRow) });
+} // scJQEventsAdd
+
+function sc_cdt_course_id_onblur(oThis, iSeqRow) {
+  do_ajax_cdt_course_validate_id();
+  scCssBlur(oThis);
+}
+
+function sc_cdt_course_id_onchange(oThis, iSeqRow) {
+  scMarkFormAsChanged();
+}
+
+function sc_cdt_course_id_onfocus(oThis, iSeqRow) {
+  scEventControl_onFocus(oThis, iSeqRow);
+  scCssFocus(oThis);
+}
+
+function sc_cdt_course_pai_onblur(oThis, iSeqRow) {
+  do_ajax_cdt_course_validate_pai();
+  scCssBlur(oThis);
+}
+
+function sc_cdt_course_pai_onchange(oThis, iSeqRow) {
+  scMarkFormAsChanged();
+}
+
+function sc_cdt_course_pai_onfocus(oThis, iSeqRow) {
+  scEventControl_onFocus(oThis, iSeqRow);
+  scCssFocus(oThis);
+}
+
+function sc_cdt_course_icone_onblur(oThis, iSeqRow) {
+  do_ajax_cdt_course_validate_icone();
+  scCssBlur(oThis);
+}
+
+function sc_cdt_course_icone_onchange(oThis, iSeqRow) {
+  scMarkFormAsChanged();
+}
+
+function sc_cdt_course_icone_onfocus(oThis, iSeqRow) {
+  scEventControl_onFocus(oThis, iSeqRow);
+  scCssFocus(oThis);
+}
+
+function sc_cdt_course_descricao_onblur(oThis, iSeqRow) {
+  do_ajax_cdt_course_validate_descricao();
+  scCssBlur(oThis);
+}
+
+function sc_cdt_course_descricao_onchange(oThis, iSeqRow) {
+  scMarkFormAsChanged();
+}
+
+function sc_cdt_course_descricao_onfocus(oThis, iSeqRow) {
+  scEventControl_onFocus(oThis, iSeqRow);
+  scCssFocus(oThis);
+}
+
+function sc_cdt_course_link_onblur(oThis, iSeqRow) {
+  do_ajax_cdt_course_validate_link();
+  scCssBlur(oThis);
+}
+
+function sc_cdt_course_link_onchange(oThis, iSeqRow) {
+  scMarkFormAsChanged();
+}
+
+function sc_cdt_course_link_onfocus(oThis, iSeqRow) {
+  scEventControl_onFocus(oThis, iSeqRow);
+  scCssFocus(oThis);
+}
+
+function sc_cdt_course_ordenacao_onblur(oThis, iSeqRow) {
+  do_ajax_cdt_course_validate_ordenacao();
+  scCssBlur(oThis);
+}
+
+function sc_cdt_course_ordenacao_onchange(oThis, iSeqRow) {
+  scMarkFormAsChanged();
+}
+
+function sc_cdt_course_ordenacao_onfocus(oThis, iSeqRow) {
+  scEventControl_onFocus(oThis, iSeqRow);
+  scCssFocus(oThis);
+}
+
+function sc_cdt_course_sc_field_0_onblur(oThis, iSeqRow) {
+  do_ajax_cdt_course_validate_sc_field_0();
+  scCssBlur(oThis);
+}
+
+function sc_cdt_course_sc_field_0_onchange(oThis, iSeqRow) {
+  scMarkFormAsChanged();
+}
+
+function sc_cdt_course_sc_field_0_onfocus(oThis, iSeqRow) {
+  scEventControl_onFocus(oThis, iSeqRow);
+  scCssFocus(oThis);
+}
+
+function sc_cdt_course_planoeconomico_onblur(oThis, iSeqRow) {
+  do_ajax_cdt_course_validate_planoeconomico();
+  scCssBlur(oThis);
+}
+
+function sc_cdt_course_planoeconomico_onchange(oThis, iSeqRow) {
+  scMarkFormAsChanged();
+}
+
+function sc_cdt_course_planoeconomico_onfocus(oThis, iSeqRow) {
+  scEventControl_onFocus(oThis, iSeqRow);
+  scCssFocus(oThis);
+}
+
+function sc_cdt_course_planostandart_onblur(oThis, iSeqRow) {
+  do_ajax_cdt_course_validate_planostandart();
+  scCssBlur(oThis);
+}
+
+function sc_cdt_course_planostandart_onchange(oThis, iSeqRow) {
+  scMarkFormAsChanged();
+}
+
+function sc_cdt_course_planostandart_onfocus(oThis, iSeqRow) {
+  scEventControl_onFocus(oThis, iSeqRow);
+  scCssFocus(oThis);
+}
+
+function sc_cdt_course_planopremium_onblur(oThis, iSeqRow) {
+  do_ajax_cdt_course_validate_planopremium();
+  scCssBlur(oThis);
+}
+
+function sc_cdt_course_planopremium_onchange(oThis, iSeqRow) {
+  scMarkFormAsChanged();
+}
+
+function sc_cdt_course_planopremium_onfocus(oThis, iSeqRow) {
+  scEventControl_onFocus(oThis, iSeqRow);
+  scCssFocus(oThis);
+}
+
+function sc_cdt_course_modulo_onblur(oThis, iSeqRow) {
+  do_ajax_cdt_course_validate_modulo();
+  scCssBlur(oThis);
+}
+
+function sc_cdt_course_modulo_onchange(oThis, iSeqRow) {
+  scMarkFormAsChanged();
+}
+
+function sc_cdt_course_modulo_onfocus(oThis, iSeqRow) {
+  scEventControl_onFocus(oThis, iSeqRow);
+  scCssFocus(oThis);
+}
+
+function displayChange_block(block, status) {
+	if ("0" == block) {
+		displayChange_block_0(status);
+	}
+	if ("1" == block) {
+		displayChange_block_1(status);
+	}
+}
+
+function displayChange_block_0(status) {
+	displayChange_field("id", "", status);
+	displayChange_field("pai", "", status);
+	displayChange_field("icone", "", status);
+	displayChange_field("descricao", "", status);
+	displayChange_field("link", "", status);
+	displayChange_field("ordenacao", "", status);
+	displayChange_field("sc_field_0", "", status);
+	displayChange_field("planoeconomico", "", status);
+	displayChange_field("planostandart", "", status);
+	displayChange_field("planopremium", "", status);
+}
+
+function displayChange_block_1(status) {
+	displayChange_field("modulo", "", status);
+}
+
+function displayChange_row(row, status) {
+	displayChange_field_id(row, status);
+	displayChange_field_pai(row, status);
+	displayChange_field_icone(row, status);
+	displayChange_field_descricao(row, status);
+	displayChange_field_link(row, status);
+	displayChange_field_ordenacao(row, status);
+	displayChange_field_sc_field_0(row, status);
+	displayChange_field_planoeconomico(row, status);
+	displayChange_field_planostandart(row, status);
+	displayChange_field_planopremium(row, status);
+	displayChange_field_modulo(row, status);
+}
+
+function displayChange_field(field, row, status) {
+	if ("id" == field) {
+		displayChange_field_id(row, status);
+	}
+	if ("pai" == field) {
+		displayChange_field_pai(row, status);
+	}
+	if ("icone" == field) {
+		displayChange_field_icone(row, status);
+	}
+	if ("descricao" == field) {
+		displayChange_field_descricao(row, status);
+	}
+	if ("link" == field) {
+		displayChange_field_link(row, status);
+	}
+	if ("ordenacao" == field) {
+		displayChange_field_ordenacao(row, status);
+	}
+	if ("sc_field_0" == field) {
+		displayChange_field_sc_field_0(row, status);
+	}
+	if ("planoeconomico" == field) {
+		displayChange_field_planoeconomico(row, status);
+	}
+	if ("planostandart" == field) {
+		displayChange_field_planostandart(row, status);
+	}
+	if ("planopremium" == field) {
+		displayChange_field_planopremium(row, status);
+	}
+	if ("modulo" == field) {
+		displayChange_field_modulo(row, status);
+	}
+}
+
+function displayChange_field_id(row, status) {
+    var fieldId;
+}
+
+function displayChange_field_pai(row, status) {
+    var fieldId;
+}
+
+function displayChange_field_icone(row, status) {
+    var fieldId;
+}
+
+function displayChange_field_descricao(row, status) {
+    var fieldId;
+}
+
+function displayChange_field_link(row, status) {
+    var fieldId;
+}
+
+function displayChange_field_ordenacao(row, status) {
+    var fieldId;
+}
+
+function displayChange_field_sc_field_0(row, status) {
+    var fieldId;
+}
+
+function displayChange_field_planoeconomico(row, status) {
+    var fieldId;
+}
+
+function displayChange_field_planostandart(row, status) {
+    var fieldId;
+}
+
+function displayChange_field_planopremium(row, status) {
+    var fieldId;
+}
+
+function displayChange_field_modulo(row, status) {
+    var fieldId;
+	if ("on" == status && typeof $("#nmsc_iframe_liga_cdt_subject")[0].contentWindow.scRecreateSelect2 === "function") {
+		$("#nmsc_iframe_liga_cdt_subject")[0].contentWindow.scRecreateSelect2();
+	}
+}
+
+function scRecreateSelect2() {
+}
+function scResetPagesDisplay() {
+	$(".sc-form-page").show();
+}
+
+function scHidePage(pageNo) {
+	$("#id_cdt_course_form" + pageNo).hide();
+}
+
+function scCheckNoPageSelected() {
+	if (!$(".sc-form-page").filter(".scTabActive").filter(":visible").length) {
+		var inactiveTabs = $(".sc-form-page").filter(".scTabInactive").filter(":visible");
+		if (inactiveTabs.length) {
+			var tabNo = $(inactiveTabs[0]).attr("id").substr(18);
+		}
+	}
+}
+function scJQUploadAdd(iSeqRow) {
+} // scJQUploadAdd
+
+var api_cache_requests = [];
+function ajax_check_file(img_name, field  ,t, p, p_cache, iSeqRow, hasRun, img_before){
+    setTimeout(function(){
+        if(img_name == '') return;
+        iSeqRow= iSeqRow !== undefined && iSeqRow !== null ? iSeqRow : '';
+        var hasVar = p.indexOf('_@NM@_') > -1 || p_cache.indexOf('_@NM@_') > -1 ? true : false;
+
+        p = p.split('_@NM@_');
+        $.each(p, function(i,v){
+            try{
+                p[i] = $('[name='+v+iSeqRow+']').val();
+            }
+            catch(err){
+                p[i] = v;
+            }
+        });
+        p = p.join('');
+
+        p_cache = p_cache.split('_@NM@_');
+        $.each(p_cache, function(i,v){
+            try{
+                p_cache[i] = $('[name='+v+iSeqRow+']').val();
+            }
+            catch(err){
+                p_cache[i] = v;
+            }
+        });
+        p_cache = p_cache.join('');
+
+        img_before = img_before !== undefined ? img_before : $(t).attr('src');
+        var str_key_cache = '<?php echo $this->Ini->sc_page; ?>' + img_name+field+p+p_cache;
+        if(api_cache_requests[ str_key_cache ] !== undefined && api_cache_requests[ str_key_cache ] !== null){
+            if(api_cache_requests[ str_key_cache ] != false){
+                do_ajax_check_file(api_cache_requests[ str_key_cache ], field  ,t, iSeqRow);
+            }
+            return;
+        }
+        //scAjaxProcOn();
+        $(t).attr('src', '<?php echo $this->Ini->path_icones ?>/scriptcase__NM__ajax_load.gif');
+        api_cache_requests[ str_key_cache ] = false;
+        var rs =$.ajax({
+                    type: "POST",
+                    url: 'index.php?script_case_init=<?php echo $this->Ini->sc_page; ?>',
+                    async: true,
+                    data:'nmgp_opcao=ajax_check_file&AjaxCheckImg=' + encodeURI(img_name) +'&rsargs='+ field + '&p=' + p + '&p_cache=' + p_cache,
+                    success: function (rs) {
+                        if(rs.indexOf('</span>') != -1){
+                            rs = rs.substr(rs.indexOf('</span>') + 7);
+                        }
+                        if(rs.indexOf('/') != -1 && rs.indexOf('/') != 0){
+                            rs = rs.substr(rs.indexOf('/'));
+                        }
+                        rs = sc_trim(rs);
+
+                        // if(rs == 0 && hasVar && hasRun === undefined){
+                        //     delete window.api_cache_requests[ str_key_cache ];
+                        //     ajax_check_file(img_name, field  ,t, p, p_cache, iSeqRow, 1, img_before);
+                        //     return;
+                        // }
+                        window.api_cache_requests[ str_key_cache ] = rs;
+                        do_ajax_check_file(rs, field  ,t, iSeqRow)
+                        if(rs == 0){
+                            delete window.api_cache_requests[ str_key_cache ];
+
+                           // $(t).attr('src',img_before);
+                            do_ajax_check_file(img_before+'_@@NM@@_' + img_before, field  ,t, iSeqRow)
+
+                        }
+
+
+                    }
+        });
+    },100);
+}
+
+function do_ajax_check_file(rs, field  ,t, iSeqRow){
+    if (rs != 0) {
+        rs_split = rs.split('_@@NM@@_');
+        rs_orig = rs_split[0];
+        rs2 = rs_split[1];
+        try{
+            if(!$(t).is('img')){
+
+                if($('#id_read_on_'+field+iSeqRow).length > 0 ){
+                                    var usa_read_only = false;
+
+                switch(field){
+
+                }
+                     if(usa_read_only && $('a',$('#id_read_on_'+field+iSeqRow)).length == 0){
+                         $(t).html("<a href=\"javascript:nm_mostra_doc('0', '"+rs2+"', 'cdt_course')\">"+$('#id_read_on_'+field+iSeqRow).text()+"</a>");
+                     }
+                }
+                if($('#id_ajax_doc_'+field+iSeqRow+' a').length > 0){
+                    var target = $('#id_ajax_doc_'+field+iSeqRow+' a').attr('href').split(',');
+                    target[1] = "'"+rs2+"'";
+                    $('#id_ajax_doc_'+field+iSeqRow+' a').attr('href', target.join(','));
+                }else{
+                    var target = $(t).attr('href').split(',');
+                     target[1] = "'"+rs2+"'";
+                     $(t).attr('href', target.join(','));
+                }
+            }else{
+                $(t).attr('src', rs2);
+                $(t).css('display', '');
+                if($('#id_ajax_doc_'+field+iSeqRow+' a').length > 0){
+                    var target = $('#id_ajax_doc_'+field+iSeqRow+' a').attr('href').split(',');
+                    target[1] = "'"+rs2+"'";
+                    $(t).attr('href', target.join(','));
+                }else{
+                     var t_link = $(t).parent('a');
+                     var target = $(t_link).attr('href').split(',');
+                     target[0] = "javascript:nm_mostra_img('"+rs_orig+"'";
+                     $(t_link).attr('href', target.join(','));
+                }
+
+            }
+            eval("window.var_ajax_img_"+field+iSeqRow+" = '"+rs_orig+"';");
+
+        } catch(err){
+                        eval("window.var_ajax_img_"+field+iSeqRow+" = '"+rs_orig+"';");
+
+        }
+    }
+   /* hasFalseCacheRequest = false;
+    $.each(api_cache_requests, function(i,v){
+        if(v == false){
+            hasFalseCacheRequest = true;
+        }
+    });
+    if(hasFalseCacheRequest == false){
+        scAjaxProcOff();
+    }*/
+}
+
+$(document).ready(function(){
+});
+
+function scJQPasswordToggleAdd(seqRow) {
+  $(".sc-ui-pwd-toggle-icon" + seqRow).on("click", function() {
+    var fieldName = $(this).attr("id").substr(17), fieldObj = $("#id_sc_field_" + fieldName), fieldFA = $("#id_pwd_fa_" + fieldName);
+    if ("text" == fieldObj.attr("type")) {
+      fieldObj.attr("type", "password");
+      fieldFA.attr("class", "fa fa-eye sc-ui-pwd-eye");
+    } else {
+      fieldObj.attr("type", "text");
+      fieldFA.attr("class", "fa fa-eye-slash sc-ui-pwd-eye");
+    }
+  });
+} // scJQPasswordToggleAdd
+
+function scJQSelect2Add(seqRow, specificField) {
+} // scJQSelect2Add
+
+
+function scJQElementsAdd(iLine) {
+  scJQEventsAdd(iLine);
+  scEventControl_init(iLine);
+  scJQUploadAdd(iLine);
+  scJQPasswordToggleAdd(iLine);
+  scJQSelect2Add(iLine);
+} // scJQElementsAdd
+
+function scGetFileExtension(fileName)
+{
+    fileNameParts = fileName.split(".");
+
+    if (1 === fileNameParts.length || (2 === fileNameParts.length && "" == fileNameParts[0])) {
+        return "";
+    }
+
+    return fileNameParts.pop().toLowerCase();
+}
+
+function scFormatExtensionSizeErrorMsg(errorMsg)
+{
+    var msgInfo = errorMsg.split("||"), returnMsg = "";
+
+    if ("err_size" == msgInfo[0]) {
+        returnMsg = "<?php echo $this->Ini->Nm_lang['lang_errm_file_size'] ?>. <?php echo $this->Ini->Nm_lang['lang_errm_file_size_extension'] ?>".replace("{SC_EXTENSION}", msgInfo[1]).replace("{SC_LIMIT}", msgInfo[2]);
+    } else if ("err_extension" == msgInfo[0]) {
+        returnMsg = "<?php echo $this->Ini->Nm_lang['lang_errm_file_invl'] ?>";
+    }
+
+    return returnMsg;
+}
+
