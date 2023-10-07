@@ -41,8 +41,8 @@
 .scGridFieldOddFont .highlight, .scGridFieldOddVert .highlight { background-image: none; opacity: 1; filter: alpha(opacity=100); color: #313a46; font-family: Leelawadee, Ebrima, 'Bahnschrift Light', Gadugi, 'Nirmala UI', 'Segoe UI', Verdana; font-size: 13px; display: inline-block }
 .scGridFieldOddVert { background-color: #FFFFFF; background-image: none; opacity: 1; filter: alpha(opacity=100); border-color: #A8D4C7; border-style: solid; border-width: 1px; color: #1B211F; font-family: Leelawadee, Ebrima, 'Bahnschrift Light', Gadugi, 'Nirmala UI', 'Segoe UI', Verdana; font-size: 13px; padding: 10px 15px; text-decoration: none }
 .scGridFieldOddLink { color: #6082C5; text-decoration: none }
-.scGridFieldClick { background-color: #A8D4C7; box-shadow: css_grid_campo_par_box_shadow; border-color: #A8D4C7; border-style: solid; border-width: 0 0 1px 0 }
-.scGridFieldOver { background-color: #A8D4C7 }
+.scGridFieldClick { background-color: #FFFFFF; box-shadow: css_grid_campo_par_box_shadow; border-color: #A8D4C7; border-style: solid; border-width: 0 0 1px 0 }
+.scGridFieldOver { background-color: #FFFFFF }
 .scInheritBg { background-color: inherit; background-image: inherit }
 .scGridLabel { background-color: #FFFFFF; box-shadow: 0 0 35px 0 rgba(154,161,171,.15); background-image: none; opacity: 1; filter: alpha(opacity=100) }
 .scGridLabelVert { background-color: #FFFFFF; box-shadow: 0 0 35px 0 rgba(154,161,171,.15); background-image: none; opacity: 1; filter: alpha(opacity=100); border-color: #A8D4C7; border-style: solid; border-width: 1px; color: #247159; font-family: Leelawadee, Ebrima, 'Bahnschrift Light', Gadugi, 'Nirmala UI', 'Segoe UI', Verdana; font-size: 13px; font-weight: bold; padding: 10px 15px; text-decoration: none; vertical-align: middle; width: 20% }

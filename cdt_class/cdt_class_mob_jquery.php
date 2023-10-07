@@ -51,36 +51,13 @@ function scSetFocusOnField($oField) {
 } // scSetFocusOnField
 
 function scEventControl_init(iSeqRow) {
-  scEventControl_data["id" + iSeqRow] = {"blur": false, "change": false, "autocomp": false, "original": "", "calculated": ""};
-  scEventControl_data["pai" + iSeqRow] = {"blur": false, "change": false, "autocomp": false, "original": "", "calculated": ""};
-  scEventControl_data["icone" + iSeqRow] = {"blur": false, "change": false, "autocomp": false, "original": "", "calculated": ""};
   scEventControl_data["ordenacao" + iSeqRow] = {"blur": false, "change": false, "autocomp": false, "original": "", "calculated": ""};
   scEventControl_data["modulo" + iSeqRow] = {"blur": false, "change": false, "autocomp": false, "original": "", "calculated": ""};
   scEventControl_data["descricao" + iSeqRow] = {"blur": false, "change": false, "autocomp": false, "original": "", "calculated": ""};
-  scEventControl_data["link" + iSeqRow] = {"blur": false, "change": false, "autocomp": false, "original": "", "calculated": ""};
-  scEventControl_data["sc_field_0" + iSeqRow] = {"blur": false, "change": false, "autocomp": false, "original": "", "calculated": ""};
   scEventControl_data["topico" + iSeqRow] = {"blur": false, "change": false, "autocomp": false, "original": "", "calculated": ""};
 }
 
 function scEventControl_active(iSeqRow) {
-  if (scEventControl_data["id" + iSeqRow] && scEventControl_data["id" + iSeqRow]["blur"]) {
-    return true;
-  }
-  if (scEventControl_data["id" + iSeqRow] && scEventControl_data["id" + iSeqRow]["change"]) {
-    return true;
-  }
-  if (scEventControl_data["pai" + iSeqRow] && scEventControl_data["pai" + iSeqRow]["blur"]) {
-    return true;
-  }
-  if (scEventControl_data["pai" + iSeqRow] && scEventControl_data["pai" + iSeqRow]["change"]) {
-    return true;
-  }
-  if (scEventControl_data["icone" + iSeqRow] && scEventControl_data["icone" + iSeqRow]["blur"]) {
-    return true;
-  }
-  if (scEventControl_data["icone" + iSeqRow] && scEventControl_data["icone" + iSeqRow]["change"]) {
-    return true;
-  }
   if (scEventControl_data["ordenacao" + iSeqRow] && scEventControl_data["ordenacao" + iSeqRow]["blur"]) {
     return true;
   }
@@ -97,18 +74,6 @@ function scEventControl_active(iSeqRow) {
     return true;
   }
   if (scEventControl_data["descricao" + iSeqRow] && scEventControl_data["descricao" + iSeqRow]["change"]) {
-    return true;
-  }
-  if (scEventControl_data["link" + iSeqRow] && scEventControl_data["link" + iSeqRow]["blur"]) {
-    return true;
-  }
-  if (scEventControl_data["link" + iSeqRow] && scEventControl_data["link" + iSeqRow]["change"]) {
-    return true;
-  }
-  if (scEventControl_data["sc_field_0" + iSeqRow] && scEventControl_data["sc_field_0" + iSeqRow]["blur"]) {
-    return true;
-  }
-  if (scEventControl_data["sc_field_0" + iSeqRow] && scEventControl_data["sc_field_0" + iSeqRow]["change"]) {
     return true;
   }
   if (scEventControl_data["topico" + iSeqRow] && scEventControl_data["topico" + iSeqRow]["blur"]) {
@@ -151,55 +116,15 @@ function scEventControl_onAutocomp(sFieldName) {
 var scEventControl_data = {};
 
 function scJQEventsAdd(iSeqRow) {
-  $('#id_sc_field_id' + iSeqRow).bind('blur', function() { sc_cdt_class_id_onblur(this, iSeqRow) })
-                                .bind('focus', function() { sc_cdt_class_id_onfocus(this, iSeqRow) });
-  $('#id_sc_field_pai' + iSeqRow).bind('blur', function() { sc_cdt_class_pai_onblur(this, iSeqRow) })
-                                 .bind('focus', function() { sc_cdt_class_pai_onfocus(this, iSeqRow) });
-  $('#id_sc_field_icone' + iSeqRow).bind('blur', function() { sc_cdt_class_icone_onblur(this, iSeqRow) })
-                                   .bind('focus', function() { sc_cdt_class_icone_onfocus(this, iSeqRow) });
   $('#id_sc_field_descricao' + iSeqRow).bind('blur', function() { sc_cdt_class_descricao_onblur(this, iSeqRow) })
                                        .bind('focus', function() { sc_cdt_class_descricao_onfocus(this, iSeqRow) });
-  $('#id_sc_field_link' + iSeqRow).bind('blur', function() { sc_cdt_class_link_onblur(this, iSeqRow) })
-                                  .bind('focus', function() { sc_cdt_class_link_onfocus(this, iSeqRow) });
   $('#id_sc_field_ordenacao' + iSeqRow).bind('blur', function() { sc_cdt_class_ordenacao_onblur(this, iSeqRow) })
                                        .bind('focus', function() { sc_cdt_class_ordenacao_onfocus(this, iSeqRow) });
-  $('#id_sc_field_sc_field_0' + iSeqRow).bind('blur', function() { sc_cdt_class_sc_field_0_onblur(this, iSeqRow) })
-                                        .bind('focus', function() { sc_cdt_class_sc_field_0_onfocus(this, iSeqRow) });
   $('#id_sc_field_modulo' + iSeqRow).bind('blur', function() { sc_cdt_class_modulo_onblur(this, iSeqRow) })
                                     .bind('focus', function() { sc_cdt_class_modulo_onfocus(this, iSeqRow) });
   $('#id_sc_field_topico' + iSeqRow).bind('blur', function() { sc_cdt_class_topico_onblur(this, iSeqRow) })
                                     .bind('focus', function() { sc_cdt_class_topico_onfocus(this, iSeqRow) });
 } // scJQEventsAdd
-
-function sc_cdt_class_id_onblur(oThis, iSeqRow) {
-  do_ajax_cdt_class_mob_validate_id();
-  scCssBlur(oThis);
-}
-
-function sc_cdt_class_id_onfocus(oThis, iSeqRow) {
-  scEventControl_onFocus(oThis, iSeqRow);
-  scCssFocus(oThis);
-}
-
-function sc_cdt_class_pai_onblur(oThis, iSeqRow) {
-  do_ajax_cdt_class_mob_validate_pai();
-  scCssBlur(oThis);
-}
-
-function sc_cdt_class_pai_onfocus(oThis, iSeqRow) {
-  scEventControl_onFocus(oThis, iSeqRow);
-  scCssFocus(oThis);
-}
-
-function sc_cdt_class_icone_onblur(oThis, iSeqRow) {
-  do_ajax_cdt_class_mob_validate_icone();
-  scCssBlur(oThis);
-}
-
-function sc_cdt_class_icone_onfocus(oThis, iSeqRow) {
-  scEventControl_onFocus(oThis, iSeqRow);
-  scCssFocus(oThis);
-}
 
 function sc_cdt_class_descricao_onblur(oThis, iSeqRow) {
   do_ajax_cdt_class_mob_validate_descricao();
@@ -211,32 +136,12 @@ function sc_cdt_class_descricao_onfocus(oThis, iSeqRow) {
   scCssFocus(oThis);
 }
 
-function sc_cdt_class_link_onblur(oThis, iSeqRow) {
-  do_ajax_cdt_class_mob_validate_link();
-  scCssBlur(oThis);
-}
-
-function sc_cdt_class_link_onfocus(oThis, iSeqRow) {
-  scEventControl_onFocus(oThis, iSeqRow);
-  scCssFocus(oThis);
-}
-
 function sc_cdt_class_ordenacao_onblur(oThis, iSeqRow) {
   do_ajax_cdt_class_mob_validate_ordenacao();
   scCssBlur(oThis);
 }
 
 function sc_cdt_class_ordenacao_onfocus(oThis, iSeqRow) {
-  scEventControl_onFocus(oThis, iSeqRow);
-  scCssFocus(oThis);
-}
-
-function sc_cdt_class_sc_field_0_onblur(oThis, iSeqRow) {
-  do_ajax_cdt_class_mob_validate_sc_field_0();
-  scCssBlur(oThis);
-}
-
-function sc_cdt_class_sc_field_0_onfocus(oThis, iSeqRow) {
   scEventControl_onFocus(oThis, iSeqRow);
   scCssFocus(oThis);
 }
@@ -271,14 +176,9 @@ function displayChange_block(block, status) {
 }
 
 function displayChange_block_0(status) {
-	displayChange_field("id", "", status);
-	displayChange_field("pai", "", status);
-	displayChange_field("icone", "", status);
 	displayChange_field("ordenacao", "", status);
 	displayChange_field("modulo", "", status);
 	displayChange_field("descricao", "", status);
-	displayChange_field("link", "", status);
-	displayChange_field("sc_field_0", "", status);
 }
 
 function displayChange_block_1(status) {
@@ -286,27 +186,13 @@ function displayChange_block_1(status) {
 }
 
 function displayChange_row(row, status) {
-	displayChange_field_id(row, status);
-	displayChange_field_pai(row, status);
-	displayChange_field_icone(row, status);
 	displayChange_field_ordenacao(row, status);
 	displayChange_field_modulo(row, status);
 	displayChange_field_descricao(row, status);
-	displayChange_field_link(row, status);
-	displayChange_field_sc_field_0(row, status);
 	displayChange_field_topico(row, status);
 }
 
 function displayChange_field(field, row, status) {
-	if ("id" == field) {
-		displayChange_field_id(row, status);
-	}
-	if ("pai" == field) {
-		displayChange_field_pai(row, status);
-	}
-	if ("icone" == field) {
-		displayChange_field_icone(row, status);
-	}
 	if ("ordenacao" == field) {
 		displayChange_field_ordenacao(row, status);
 	}
@@ -316,27 +202,9 @@ function displayChange_field(field, row, status) {
 	if ("descricao" == field) {
 		displayChange_field_descricao(row, status);
 	}
-	if ("link" == field) {
-		displayChange_field_link(row, status);
-	}
-	if ("sc_field_0" == field) {
-		displayChange_field_sc_field_0(row, status);
-	}
 	if ("topico" == field) {
 		displayChange_field_topico(row, status);
 	}
-}
-
-function displayChange_field_id(row, status) {
-    var fieldId;
-}
-
-function displayChange_field_pai(row, status) {
-    var fieldId;
-}
-
-function displayChange_field_icone(row, status) {
-    var fieldId;
 }
 
 function displayChange_field_ordenacao(row, status) {
@@ -351,18 +219,10 @@ function displayChange_field_descricao(row, status) {
     var fieldId;
 }
 
-function displayChange_field_link(row, status) {
-    var fieldId;
-}
-
-function displayChange_field_sc_field_0(row, status) {
-    var fieldId;
-}
-
 function displayChange_field_topico(row, status) {
     var fieldId;
-	if ("on" == status && typeof $("#nmsc_iframe_liga_cdt_topic_mob")[0].contentWindow.scRecreateSelect2 === "function") {
-		$("#nmsc_iframe_liga_cdt_topic_mob")[0].contentWindow.scRecreateSelect2();
+	if ("on" == status && typeof $("#nmsc_iframe_liga_sub_topic_mob")[0].contentWindow.scRecreateSelect2 === "function") {
+		$("#nmsc_iframe_liga_sub_topic_mob")[0].contentWindow.scRecreateSelect2();
 	}
 }
 
@@ -384,6 +244,119 @@ function scCheckNoPageSelected() {
 		}
 	}
 }
+                var scJQHtmlEditorData = (function() {
+                    var data = {};
+                    function scJQHtmlEditorData(a, b) {
+                        if (a) {
+                            if (typeof(a) === typeof({})) {
+                                for (var d in a) {
+                                    if (a.hasOwnProperty(d)) {
+                                        data[d] = a[d];
+                                    }
+                                }
+                            } else if ((typeof(a) === typeof('')) || (typeof(a) === typeof(1))) {
+                                if (b) {
+                                    data[a] = b;
+                                } else {
+                                    if (typeof(a) === typeof('')) {
+                                        var v = data;
+                                        a = a.split('.');
+                                        a.forEach(function (r) {
+                                            v = v[r];
+                                        });
+                                        return v;
+                                    }
+                                    return data[a];
+                                }
+                            }
+                        }
+                        return data;
+                    }
+                    return scJQHtmlEditorData;
+                }());
+ function scJQHtmlEditorAdd(iSeqRow) {
+<?php
+$sLangTest = '';
+if(is_file('../_lib/lang/arr_langs_tinymce.php'))
+{
+    include('../_lib/lang/arr_langs_tinymce.php');
+    if(isset($Nm_arr_lang_tinymce[ $this->Ini->str_lang ]))
+    {
+        $sLangTest = $Nm_arr_lang_tinymce[ $this->Ini->str_lang ];
+    }
+}
+if(empty($sLangTest))
+{
+    $sLangTest = 'en_GB';
+}
+?>
+ var baseData = {
+  theme: "silver",
+  browser_spellcheck : true,
+  paste_data_images : true,
+<?php
+if ('novo' != $this->nmgp_opcao && isset($this->nmgp_cmp_readonly['summary']) && $this->nmgp_cmp_readonly['summary'] == 'on')
+{
+    unset($this->nmgp_cmp_readonly['summary']);
+?>
+   readonly: true,
+<?php
+}
+else 
+{
+?>
+   readonly: false,
+<?php
+}
+?>
+<?php
+if ('yyyymmdd' == $_SESSION['scriptcase']['reg_conf']['date_format']) {
+    $tinymceDateFormat = "%Y{$_SESSION['scriptcase']['reg_conf']['date_sep']}%m{$_SESSION['scriptcase']['reg_conf']['date_sep']}%d";
+}
+elseif ('mmddyyyy' == $_SESSION['scriptcase']['reg_conf']['date_format']) {
+    $tinymceDateFormat = "%m{$_SESSION['scriptcase']['reg_conf']['date_sep']}%d{$_SESSION['scriptcase']['reg_conf']['date_sep']}%Y";
+}
+elseif ('ddmmyyyy' == $_SESSION['scriptcase']['reg_conf']['date_format']) {
+    $tinymceDateFormat = "%d{$_SESSION['scriptcase']['reg_conf']['date_sep']}%m{$_SESSION['scriptcase']['reg_conf']['date_sep']}%Y";
+}
+else {
+    $tinymceDateFormat = "%D";
+}
+?>
+  insertdatetime_formats: ["%H:%M:%S", "%Y-%m-%d", "%I:%M:%S %p", "<?php echo $tinymceDateFormat ?>"],
+  relative_urls : false,
+  remove_script_host : false,
+  convert_urls  : true,
+  language : '<?php echo $sLangTest; ?>',
+  plugins : 'advlist print hr  autolink link image lists charmap preview anchor pagebreak searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking table directionality emoticons template',
+  contextmenu: 'link linkchecker image imagetools table spellchecker configurepermanentpen',
+  toolbar: "newdocument fullpage | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | styleselect formatselect fontselect fontsizeselect | cut copy paste | searchreplace | bullist numlist | outdent indent blockquote | undo redo | link unlink anchor image media code | insertdatetime preview | forecolor backcolor | table | hr removeformat | subscript superscript | charmap emoticons | print fullscreen | ltr rtl | | visualchars visualblocks nonbreaking template pagebreak restoredraft",
+  statusbar : true,
+  menubar : 'file edit insert view format table tools',
+  toolbar_items_size: 'small',
+  content_style: ".mce-container-body {text-align: center !important}",
+  selector: "#summary" + iSeqRow,
+  toolbar_mode: 'sliding',
+  block_unsupported_drop: false,
+  paste_data_images : true,
+  relative_urls : false,
+  remove_script_host : false,
+  convert_urls  : true,
+  setup: function(ed) {
+    ed.on("Change", function (e) {
+        scFormHasChanged = true;
+    }),
+    ed.on("init", function (e) {
+      if ($('textarea[name="summary' + iSeqRow + '"]').prop('disabled') == true) {
+        ed.setMode("readonly");
+      }
+    });
+  }
+ };
+ var data = 'function' === typeof Object.assign ? Object.assign({}, scJQHtmlEditorData(baseData)) : baseData;
+ tinyMCE.init(data);
+} // scJQHtmlEditorAdd
+
 function scJQUploadAdd(iSeqRow) {
 } // scJQUploadAdd
 
@@ -545,6 +518,7 @@ function scJQSelect2Add(seqRow, specificField) {
 function scJQElementsAdd(iLine) {
   scJQEventsAdd(iLine);
   scEventControl_init(iLine);
+  scJQHtmlEditorAdd(iLine);
   scJQUploadAdd(iLine);
   scJQPasswordToggleAdd(iLine);
   scJQSelect2Add(iLine);

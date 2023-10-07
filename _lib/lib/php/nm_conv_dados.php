@@ -329,7 +329,9 @@ function nm_volta_data(&$dt_in, $form_out)
              $ind_dia ++ ;
          }
    }
-   if ($dt_in * 1 == 0)
+
+   $dt_in_calc = (int)$dt_in;
+   if ($dt_in_calc * 1 == 0)
    {
        $dt_in = "" ;
    }

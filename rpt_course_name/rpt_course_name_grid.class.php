@@ -1153,7 +1153,7 @@ $nm_saida->saida("                        <link rel=\"shortcut icon\" href=\"\">
            $nm_saida->saida("     var scSweetAlertConfirmButtonFAPos = \"" . $confirmButtonFAPos . "\";\r\n");
            $nm_saida->saida("     var scSweetAlertCancelButtonFAPos = \"" . $cancelButtonFAPos . "\";\r\n");
            $nm_saida->saida("   </script>\r\n");
-           $nm_saida->saida("   <script type=\"text/javascript\" src=\"rpt_course_name_jquery_8560.js\"></script>\r\n");
+           $nm_saida->saida("   <script type=\"text/javascript\" src=\"rpt_course_name_jquery_4840.js\"></script>\r\n");
            $nm_saida->saida("   <script type=\"text/javascript\" src=\"rpt_course_name_ajax.js\"></script>\r\n");
            $nm_saida->saida("   <script type=\"text/javascript\" src=\"rpt_course_name_message.js\"></script>\r\n");
            $nm_saida->saida("   <script type=\"text/javascript\">\r\n");

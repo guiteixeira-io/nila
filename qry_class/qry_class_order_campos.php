@@ -94,30 +94,12 @@ function Ord_cmp_init()
    $tab_ger_campos = array();
    $tab_def_campos = array();
    $tab_labels     = array();
-   $tab_ger_campos['curso'] = "on";
-   if ($use_alias == "S")
-   {
-       $tab_def_campos['curso'] = "curso";
-   }
-   else
-   {
-       $tab_def_campos['curso'] = "SELECT
-    c.descricao
-FROM
-    curso c
-INNER JOIN
-  modulo m
-ON m.curso = c.id
-WHERE m.id = {modulo}";
-   }
-   $tab_labels["curso"]   = (isset($_SESSION['sc_session'][$sc_init]['qry_class']['labels']["curso"])) ? $_SESSION['sc_session'][$sc_init]['qry_class']['labels']["curso"] : "Cursada";
    $tab_ger_campos['modulo'] = "on";
    $tab_def_campos['modulo'] = "modulo";
    $tab_labels["modulo"]   = (isset($_SESSION['sc_session'][$sc_init]['qry_class']['labels']["modulo"])) ? $_SESSION['sc_session'][$sc_init]['qry_class']['labels']["modulo"] : "Modulo";
    $tab_ger_campos['descricao'] = "on";
    $tab_def_campos['descricao'] = "descricao";
    $tab_labels["descricao"]   = (isset($_SESSION['sc_session'][$sc_init]['qry_class']['labels']["descricao"])) ? $_SESSION['sc_session'][$sc_init]['qry_class']['labels']["descricao"] : "Clase";
-   $tab_ger_campos['curso'] = "none";
    if (isset($_SESSION['scriptcase']['sc_apl_conf']['qry_class']['field_display']) && !empty($_SESSION['scriptcase']['sc_apl_conf']['qry_class']['field_display']))
    {
        foreach ($_SESSION['scriptcase']['sc_apl_conf']['qry_class']['field_display'] as $NM_cada_field => $NM_cada_opc)

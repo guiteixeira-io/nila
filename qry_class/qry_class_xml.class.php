@@ -391,10 +391,6 @@ function actionBar_getStateHide($buttonName)
          $this->Lookup->lookup_modulo($this->look_modulo, $this->modulo) ; 
          $this->look_modulo = ($this->look_modulo == "&nbsp;") ? "" : $this->look_modulo; 
          $this->sc_proc_grid = true; 
-         //----- lookup - curso
-         $this->Lookup->lookup_curso($this->curso, $this->modulo, $this->array_curso); 
-         $this->curso = str_replace("<br>", " ", $this->curso); 
-         $this->curso = ($this->curso == "&nbsp;") ? "" : $this->curso; 
          foreach ($_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['field_order'] as $Cada_col)
          { 
             if (!isset($this->NM_cmp_hidden[$Cada_col]) || $this->NM_cmp_hidden[$Cada_col] != "off")
@@ -629,28 +625,6 @@ function actionBar_getStateHide($buttonName)
           unset($_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['export_sel_columns']['usr_cmp_sel']);
       }
       $rs->Close();
-   }
-   //----- curso
-   function NM_export_curso()
-   {
-         nmgp_Form_Num_Val($this->curso, $_SESSION['scriptcase']['reg_conf']['grup_num'], $_SESSION['scriptcase']['reg_conf']['dec_num'], "0", "", "1", "", "N:" . $_SESSION['scriptcase']['reg_conf']['neg_num'] , $_SESSION['scriptcase']['reg_conf']['simb_neg'], $_SESSION['scriptcase']['reg_conf']['num_group_digit']) ; 
-         if ($this->Xml_tag_label)
-         {
-             $SC_Label = (isset($this->New_label['curso'])) ? $this->New_label['curso'] : "Cursada"; 
-         }
-         else
-         {
-             $SC_Label = "curso"; 
-         }
-         $this->clear_tag($SC_Label); 
-         if ($this->New_Format)
-         {
-             $this->xml_registro .= " <" . $SC_Label . ">" . $this->trata_dados($this->curso) . "</" . $SC_Label . ">\r\n";
-         }
-         else
-         {
-             $this->xml_registro .= " " . $SC_Label . " =\"" . $this->trata_dados($this->curso) . "\"";
-         }
    }
    //----- modulo
    function NM_export_modulo()

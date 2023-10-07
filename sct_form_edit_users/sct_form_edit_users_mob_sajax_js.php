@@ -3267,6 +3267,43 @@ if (isset($_SESSION['scriptcase']['device_mobile']) && $_SESSION['scriptcase']['
     scAjaxSetMaster();
     scAjaxSetFocus();
   } // do_ajax_sct_form_edit_users_mob_validate_groups_cb
+
+  // ---------- Validate couses
+  function do_ajax_sct_form_edit_users_mob_validate_couses()
+  {
+    var nomeCampo_couses = "couses";
+    var var_couses = scAjaxGetFieldText(nomeCampo_couses);
+    var var_script_case_init = document.F1.script_case_init.value;
+    x_ajax_sct_form_edit_users_mob_validate_couses(var_couses, var_script_case_init, do_ajax_sct_form_edit_users_mob_validate_couses_cb);
+  } // do_ajax_sct_form_edit_users_mob_validate_couses
+
+  function do_ajax_sct_form_edit_users_mob_validate_couses_cb(sResp)
+  {
+    oResp = scAjaxResponse(sResp);
+    scAjaxRedir();
+    sFieldValid = "couses";
+    scEventControl_onBlur(sFieldValid);
+    scAjaxUpdateFieldErrors(sFieldValid, "valid");
+    sFieldErrors = scAjaxListFieldErrors(sFieldValid, false);
+    if ("" == sFieldErrors)
+    {
+      var sImgStatus = sc_img_status_ok;
+      scAjaxHideErrorDisplay(sFieldValid);
+    }
+    else
+    {
+      var sImgStatus = sc_img_status_err;
+      scAjaxShowErrorDisplay(sFieldValid, sFieldErrors);
+    }
+    var $oImg = $('#id_sc_status_' + sFieldValid);
+    if (0 < $oImg.length)
+    {
+      $oImg.attr('src', sImgStatus).css('display', '');
+    }
+    scAjaxShowDebug();
+    scAjaxSetMaster();
+    scAjaxSetFocus();
+  } // do_ajax_sct_form_edit_users_mob_validate_couses_cb
 function scAjaxShowErrorDisplay(sErrorId, sErrorMsg) {
 	if ("table" != sErrorId && !$("id_error_display_" + sErrorId + "_frame").hasClass('scFormToastDivFixed')) {
 		scAjaxShowErrorDisplay_default(sErrorId, sErrorMsg);
@@ -3614,6 +3651,7 @@ function scJs_sweetalert_params(params) {
       scAjaxHideErrorDisplay("email");
       scAjaxHideErrorDisplay("active");
       scAjaxHideErrorDisplay("groups");
+      scAjaxHideErrorDisplay("couses");
       scLigEditLookupCall();
 <?php
 if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users_mob']['dashboard_info']['under_dashboard']) && $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users_mob']['dashboard_info']['under_dashboard']) {
@@ -3665,6 +3703,7 @@ if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users_mob'
   } // do_ajax_sct_form_edit_users_mob_submit_form_cb_after_alert
 
   var scStatusDetail = {};
+  scStatusDetail["sub_studentCourse_mob"] = "off";
 
   function do_ajax_sct_form_edit_users_mob_navigate_form()
   {
@@ -3687,6 +3726,7 @@ if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users_mob'
     scAjaxHideErrorDisplay("email");
     scAjaxHideErrorDisplay("active");
     scAjaxHideErrorDisplay("groups");
+    scAjaxHideErrorDisplay("couses");
     var var_login = document.F2.login.value;
     var var_nm_form_submit = document.F2.nm_form_submit.value;
     var var_nmgp_opcao = document.F2.nmgp_opcao.value;
@@ -3694,6 +3734,7 @@ if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users_mob'
     var var_nmgp_arg_dyn_search = document.F2.nmgp_arg_dyn_search.value;
     var var_script_case_init = document.F2.script_case_init.value;
     scAjaxProcOn();
+    scStatusDetail["sub_studentCourse_mob"] = "on";
     x_ajax_sct_form_edit_users_mob_navigate_form(var_login, var_nm_form_submit, var_nmgp_opcao, var_nmgp_ordem, var_nmgp_arg_dyn_search, var_script_case_init, do_ajax_sct_form_edit_users_mob_navigate_form_cb);
   } // do_ajax_sct_form_edit_users_mob_navigate_form
 
@@ -3709,7 +3750,6 @@ foreach ($this->Ini->sc_lig_iframe as $tmp_i => $tmp_v)
 ?>
   function do_ajax_sct_form_edit_users_mob_navigate_form_cb(sResp)
   {
-    scAjaxProcOff();
     oResp = scAjaxResponse(sResp);
     scAjaxRedir();
     if (oResp['empty_filter'] && oResp['empty_filter'] == "ok")
@@ -3717,6 +3757,16 @@ foreach ($this->Ini->sc_lig_iframe as $tmp_i => $tmp_v)
         document.F5.nmgp_opcao.value = "inicio";
         document.F5.nmgp_parms.value = "";
         document.F5.submit();
+    }
+    if ("ERROR" == oResp.result)
+    {
+        scAjaxShowErrorDisplay("table", oResp.errList[0].msgText);
+        scAjaxProcOff();
+        return;
+    }
+    else if (oResp["navSummary"].reg_tot == 0)
+    {
+       scAjax_displayEmptyForm();
     }
     scAjaxClearErrors()
     scResetFormChanges()
@@ -3730,6 +3780,14 @@ foreach ($this->Ini->sc_lig_iframe as $tmp_i => $tmp_v)
     scAjaxSetMaster();
     scAjaxSetNavStatus("b");
     scAjaxSetDisplay(true);
+    if (scMasterDetailIframe && scMasterDetailIframe["nmsc_iframe_liga_sub_studentCourse_mob"] && "nmsc_iframe_liga_sub_studentCourse_mob" != scMasterDetailIframe["nmsc_iframe_liga_sub_studentCourse_mob"]) {
+        scMoveMasterDetail(scMasterDetailIframe["nmsc_iframe_liga_sub_studentCourse_mob"]);
+    }
+    else {
+        document.getElementById('nmsc_iframe_liga_sub_studentCourse_mob').contentWindow.nm_move('apl_detalhe', true);
+        document.getElementById('nmsc_iframe_liga_sub_studentCourse_mob').style.height = "1";
+        document.getElementById('nmsc_iframe_liga_sub_studentCourse_mob').style.display = "none";
+    }
     document.F1.picture_ul_name.value = '';
     document.F1.picture_ul_type.value = '';
     scAjaxSetBtnVars();
@@ -3762,9 +3820,45 @@ if ($this->Embutida_form)
   } // sc_hide_sct_form_edit_users_mob_form
 
 
+  function scAjaxDetailStatus(sDetailApp)
+  {
+    if (scStatusDetail[sDetailApp])
+    {
+      scStatusDetail[sDetailApp] = "off";
+      if (document.getElementById("nmsc_iframe_liga_" + sDetailApp)) {
+        document.getElementById("nmsc_iframe_liga_" + sDetailApp).style.display = "";
+      }
+    }
+    else
+    {
+      mobileSuffix = sDetailApp.slice(-4);
+      if ("_mob" != mobileSuffix && scStatusDetail[sDetailApp + "_mob"])
+      {
+        scStatusDetail[sDetailApp + "_mob"] = "off";
+        if (document.getElementById("nmsc_iframe_liga_" + sDetailApp + "_mob")) {
+          document.getElementById("nmsc_iframe_liga_" + sDetailApp + "_mob").style.display = "";
+        }
+      }
+    }
+    if (scAjaxDetailProc())
+    {
+      scAjaxProcOff();
+    }
+  } // scAjaxDetailStatus
+
+  function scAjaxDetailHeight(sDetailApp, iDetailHeight)
+  {
+    $("#nmsc_iframe_liga_" + sDetailApp).css("height", iDetailHeight + "px");
+    $("#nmsc_iframe_liga_" + sDetailApp + "_mob").css("height", iDetailHeight + "px");
+  } // scAjaxDetailHeight
+
   function scAjaxDetailProc()
   {
-    return true;
+    if ("off" == scStatusDetail["sub_studentCourse_mob"])
+    {
+      return true;
+    }
+    return false;
   } // scAjaxDetailProc
 
 
@@ -3782,9 +3876,11 @@ if ($this->Embutida_form)
   ajax_field_list[5] = "email";
   ajax_field_list[6] = "active";
   ajax_field_list[7] = "groups";
+  ajax_field_list[8] = "couses";
 
   var ajax_block_list = new Array();
   ajax_block_list[0] = "0";
+  ajax_block_list[1] = "1";
 
   var ajax_error_list = {
     "picture": {"label": "<?php echo $this->Ini->Nm_lang['lang_sec_users_fild_picture'] ?>", "valid": new Array(), "onblur": new Array(), "onchange": new Array(), "onclick": new Array(), "onfocus": new Array(), "timeout": 5},
@@ -3794,16 +3890,19 @@ if ($this->Embutida_form)
     "name": {"label": "<?php echo $this->Ini->Nm_lang['lang_sec_users_fild_name'] ?>", "valid": new Array(), "onblur": new Array(), "onchange": new Array(), "onclick": new Array(), "onfocus": new Array(), "timeout": 5},
     "email": {"label": "<?php echo $this->Ini->Nm_lang['lang_sec_users_fild_email'] ?>", "valid": new Array(), "onblur": new Array(), "onchange": new Array(), "onclick": new Array(), "onfocus": new Array(), "timeout": 5},
     "active": {"label": "<?php echo $this->Ini->Nm_lang['lang_sec_users_fild_active'] ?>", "valid": new Array(), "onblur": new Array(), "onchange": new Array(), "onclick": new Array(), "onfocus": new Array(), "timeout": 5},
-    "groups": {"label": "<?php echo $this->Ini->Nm_lang['lang_list_groups'] ?>", "valid": new Array(), "onblur": new Array(), "onchange": new Array(), "onclick": new Array(), "onfocus": new Array(), "timeout": 5}
+    "groups": {"label": "<?php echo $this->Ini->Nm_lang['lang_list_groups'] ?>", "valid": new Array(), "onblur": new Array(), "onchange": new Array(), "onclick": new Array(), "onfocus": new Array(), "timeout": 5},
+    "couses": {"label": "Cursadas", "valid": new Array(), "onblur": new Array(), "onchange": new Array(), "onclick": new Array(), "onfocus": new Array(), "timeout": 5}
   };
   var ajax_error_timeout = 5;
 
   var ajax_block_id = {
-    "0": "hidden_bloco_0"
+    "0": "hidden_bloco_0",
+    "1": "hidden_bloco_1"
   };
 
   var ajax_block_tab = {
-    "hidden_bloco_0": ""
+    "hidden_bloco_0": "",
+    "hidden_bloco_1": ""
   };
 
   var ajax_field_mult = {
@@ -3814,7 +3913,8 @@ if ($this->Embutida_form)
     "name": new Array(),
     "email": new Array(),
     "active": new Array(),
-    "groups": new Array()
+    "groups": new Array(),
+    "couses": new Array()
   };
   ajax_field_mult["picture"][1] = "picture";
   ajax_field_mult["login"][1] = "login";
@@ -3824,6 +3924,7 @@ if ($this->Embutida_form)
   ajax_field_mult["email"][1] = "email";
   ajax_field_mult["active"][1] = "active";
   ajax_field_mult["groups"][1] = "groups";
+  ajax_field_mult["couses"][1] = "couses";
 
   var ajax_field_id = {
     "picture": new Array("hidden_field_label_picture", "hidden_field_data_picture"),
@@ -3833,7 +3934,8 @@ if ($this->Embutida_form)
     "name": new Array("hidden_field_label_name", "hidden_field_data_name"),
     "email": new Array("hidden_field_label_email", "hidden_field_data_email"),
     "active": new Array("hidden_field_label_active", "hidden_field_data_active"),
-    "groups": new Array("hidden_field_label_groups", "hidden_field_data_groups")
+    "groups": new Array("hidden_field_label_groups", "hidden_field_data_groups"),
+    "couses": new Array("hidden_field_label_couses", "hidden_field_data_couses")
   };
 
   var ajax_read_only = {
@@ -3844,7 +3946,8 @@ if ($this->Embutida_form)
     "name": "off",
     "email": "off",
     "active": "off",
-    "groups": "off"
+    "groups": "off",
+    "couses": "off"
   };
   var bRefreshTable = false;
   function scRefreshTable()
@@ -3977,6 +4080,23 @@ if ($this->Embutida_form)
     if ("groups" == sIndex)
     {
       scAjaxSetFieldCheckbox(sIndex, aValue, null, 1, null, null, "", "", "", false, true);
+      updateHeaderFooter(sIndex, aValue);
+
+      if ($("#id_sc_field_" + sIndex).length) {
+          $("#id_sc_field_" + sIndex).change();
+      }
+      else if (document.F1.elements[sIndex]) {
+          $(document.F1.elements[sIndex]).change();
+      }
+      else if (document.F1.elements[sFieldName + "[]"]) {
+          $(document.F1.elements[sFieldName + "[]"]).change();
+      }
+
+      return;
+    }
+    if ("couses" == sIndex)
+    {
+      scAjaxSetFieldText(sIndex, aValue, "", "", true);
       updateHeaderFooter(sIndex, aValue);
 
       if ($("#id_sc_field_" + sIndex).length) {

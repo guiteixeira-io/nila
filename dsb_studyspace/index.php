@@ -349,8 +349,8 @@ class dsb_studyspace_ini {
         $this->nm_dt_criacao   = "20230819";
         $this->nm_hr_criacao   = "153232";
         $this->nm_autor_alt    = "admin";
-        $this->nm_dt_ult_alt   = "20230912";
-        $this->nm_hr_ult_alt   = "172137";
+        $this->nm_dt_ult_alt   = "20231007";
+        $this->nm_hr_ult_alt   = "032314";
         list($NM_usec, $NM_sec) = explode(" ", microtime());
         $this->nm_timestamp  = (float) $NM_sec;
 
@@ -1323,7 +1323,7 @@ class dsb_studyspace_control {
 
         $_SESSION['scriptcase']['dashboard_toolbar']['dsb_studyspace'] = array();
 
-        $_SESSION['scriptcase']['dashboard_toolbar']['dsb_studyspace']['rlt_usuario'] = array(
+        $_SESSION['scriptcase']['dashboard_toolbar']['dsb_studyspace']['rpt_studyspace'] = array(
             'form_update'     => true,
             'form_insert'     => true,
             'form_delete'     => true,
@@ -1381,7 +1381,7 @@ class dsb_studyspace_control {
             'sel_groupby'     => true,
             'chart_detail'    => true,
         );
-        $_SESSION['scriptcase']['dashboard_toolbar']['dsb_studyspace']['img_menu_welcome'] = array(
+        $_SESSION['scriptcase']['dashboard_toolbar']['dsb_studyspace']['img_studyspace'] = array(
             'form_update'     => true,
             'form_insert'     => true,
             'form_delete'     => true,
@@ -1439,7 +1439,7 @@ class dsb_studyspace_control {
             'sel_groupby'     => true,
             'chart_detail'    => true,
         );
-        $_SESSION['scriptcase']['dashboard_toolbar']['dsb_studyspace']['rpt_systemMessages_studyspace'] = array(
+        $_SESSION['scriptcase']['dashboard_toolbar']['dsb_studyspace']['vdo_studyspace'] = array(
             'form_update'     => true,
             'form_insert'     => true,
             'form_delete'     => true,
@@ -1672,7 +1672,7 @@ scIframeSCInit["<?php echo $sIframe; ?>"] = "<?php echo $iSCInit; ?>";
                             <h3 class="scContainerTitle">Widget1</h3>
                             <a href="#" class="remove removeModal" style="display:none">CLOSE</a>
                         </div>
-                        <div class='widget-content widget-content-title-none' id="id-div-iframe-0"><iframe id="id-iframe-0" name="dbifrm_widget1" class="sc-iframe-widget" style="height: 100%; width: 100%; border: 0px" src="<?php echo $this->Ini->path_link . SC_dir_app_name('rlt_usuario'); ?>/?script_case_init=<?php echo $_SESSION["scriptcase"]["dashboard_scinit"]["dsb_studyspace"]["dbifrm_widget1"] ?>&under_dashboard=1&dashboard_app=dsb_studyspace&own_widget=dbifrm_widget1&compact_mode=0&remove_margin=1&remove_border=1"></iframe></div>
+                        <div class='widget-content widget-content-title-none' id="id-div-iframe-0"><iframe id="id-iframe-0" name="dbifrm_widget1" class="sc-iframe-widget" style="height: 100%; width: 100%; border: 0px" src="<?php echo $this->Ini->path_link . SC_dir_app_name('rpt_studyspace'); ?>/?script_case_init=<?php echo $_SESSION["scriptcase"]["dashboard_scinit"]["dsb_studyspace"]["dbifrm_widget1"] ?>&under_dashboard=1&dashboard_app=dsb_studyspace&own_widget=dbifrm_widget1&compact_mode=0&remove_margin=1&remove_border=1"></iframe></div>
                     </div>
                 </div>
                 <div  class="grid-stack-item" data-gs-x="6" data-gs-y="0" data-gs-width="6" data-gs-height="8"  data-gs-no-resize="1" data-gs-no-move="1" id="id-father-1">
@@ -1681,7 +1681,7 @@ scIframeSCInit["<?php echo $sIframe; ?>"] = "<?php echo $iSCInit; ?>";
                             <h3 class="scContainerTitle">Widget2</h3>
                             <a href="#" class="remove removeModal" style="display:none">CLOSE</a>
                         </div>
-                        <div class='widget-content widget-content-title-none' id="id-div-iframe-1"><iframe id="id-iframe-1" name="dbifrm_widget2" class="sc-iframe-widget" style="height: 100%; width: 100%; border: 0px" src="<?php echo $this->Ini->path_link . SC_dir_app_name('img_menu_welcome'); ?>/?script_case_init=<?php echo $_SESSION["scriptcase"]["dashboard_scinit"]["dsb_studyspace"]["dbifrm_widget2"] ?>&under_dashboard=1&dashboard_app=dsb_studyspace&own_widget=dbifrm_widget2&compact_mode=1&remove_margin=1&remove_border=1"></iframe></div>
+                        <div class='widget-content widget-content-title-none' id="id-div-iframe-1"><iframe id="id-iframe-1" name="dbifrm_widget2" class="sc-iframe-widget" style="height: 100%; width: 100%; border: 0px" src="<?php echo $this->Ini->path_link . SC_dir_app_name('img_studyspace'); ?>/?script_case_init=<?php echo $_SESSION["scriptcase"]["dashboard_scinit"]["dsb_studyspace"]["dbifrm_widget2"] ?>&under_dashboard=1&dashboard_app=dsb_studyspace&own_widget=dbifrm_widget2&compact_mode=1&remove_margin=1&remove_border=1"></iframe></div>
                     </div>
                 </div>
                 <div  class="grid-stack-item" data-gs-x="0" data-gs-y="3" data-gs-width="6" data-gs-height="5"  data-gs-no-resize="1" data-gs-no-move="1" id="id-father-2">
@@ -1690,7 +1690,7 @@ scIframeSCInit["<?php echo $sIframe; ?>"] = "<?php echo $iSCInit; ?>";
                             <h3 class="scContainerTitle">message</h3>
                             <a href="#" class="remove removeModal" style="display:none">CLOSE</a>
                         </div>
-                        <div class='widget-content widget-content-title-none' id="id-div-iframe-2"><iframe id="id-iframe-2" name="dbifrm_widget3" class="sc-iframe-widget" style="height: 100%; width: 100%; border: 0px" src="<?php echo $this->Ini->path_link . SC_dir_app_name('rpt_systemMessages_studyspace'); ?>/?script_case_init=<?php echo $_SESSION["scriptcase"]["dashboard_scinit"]["dsb_studyspace"]["dbifrm_widget3"] ?>&under_dashboard=1&dashboard_app=dsb_studyspace&own_widget=dbifrm_widget3&compact_mode=0&remove_margin=1&remove_border=1"></iframe></div>
+                        <div class='widget-content widget-content-title-none' id="id-div-iframe-2"><iframe id="id-iframe-2" name="dbifrm_widget3" class="sc-iframe-widget" style="height: 100%; width: 100%; border: 0px" src="<?php echo $this->Ini->path_link . SC_dir_app_name('vdo_studyspace'); ?>/?script_case_init=<?php echo $_SESSION["scriptcase"]["dashboard_scinit"]["dsb_studyspace"]["dbifrm_widget3"] ?>&under_dashboard=1&dashboard_app=dsb_studyspace&own_widget=dbifrm_widget3&compact_mode=0&remove_margin=1&remove_border=1"></iframe></div>
                     </div>
                 </div></div>
 <div id="myModal" class="modal fade" role="dialog" style="margin:0px !important; padding:5px !important;">

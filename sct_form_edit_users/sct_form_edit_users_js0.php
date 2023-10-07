@@ -12,6 +12,18 @@
 <input type="hidden" name="nmgp_arg_dyn_search" value=""/>
 <input type="hidden" name="script_case_init" value="<?php echo $this->form_encode_input($this->Ini->sc_page); ?>"> 
 </form> 
+<form name="F3" method="post" 
+                  target="_self"> 
+  <input type="hidden" name="nmgp_chave" value=""/>
+  <input type="hidden" name="nmgp_opcao" value=""/>
+  <input type="hidden" name="nmgp_ordem" value=""/>
+  <input type="hidden" name="nmgp_chave_det" value=""/>
+  <input type="hidden" name="nmgp_quant_linhas" value=""/>
+  <input type="hidden" name="nmgp_url_saida" value=""/>
+  <input type="hidden" name="nmgp_parms" value=""/>
+  <input type="hidden" name="nmgp_outra_jan" value=""/>
+  <input type="hidden" name="script_case_init" value="<?php echo $this->form_encode_input($this->Ini->sc_page); ?>"/> 
+</form> 
 <form name="F5" method="post" 
                   action="./" 
                   target="_self"> 

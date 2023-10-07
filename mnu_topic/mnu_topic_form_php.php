@@ -375,10 +375,446 @@ if (!isset($_SESSION['scriptcase']['mnu_topic']['session_timeout']['redir']) && 
           $this->sc_Include($path_lib_php . "/nm_data.class.php", "C", "nm_data") ; 
           $this->nm_data = new nm_data("es");
       }
-      if (is_file($path_libs . "/nm_ini_lib.php"))  
-      {
-          $this->sc_Include($path_libs . "/nm_ini_lib.php", "F", "nm_dir_normaliza") ; 
-      }
+$this->sc_Include($path_libs . "/nm_sec_prod.php", "F", "nm_reg_prod") ; 
+include_once($path_adodb . "/adodb.inc.php"); 
+$this->sc_Include($path_libs . "/nm_ini_perfil.php", "F", "perfil_lib") ; 
+ if(function_exists('set_php_timezone')) set_php_timezone('mnu_topic'); 
+perfil_lib($path_libs);
+if (!isset($_SESSION['sc_session'][1]['SC_Check_Perfil']))
+{
+    if(function_exists("nm_check_perfil_exists")) nm_check_perfil_exists($path_libs, $_SESSION['scriptcase']['mnu_topic']['glo_nm_path_prod']);
+    $_SESSION['sc_session'][1]['SC_Check_Perfil'] = true;
+}
+$nm_falta_var    = ""; 
+$nm_falta_var_db = ""; 
+if (isset($_SESSION['scriptcase']['mnu_topic']['glo_nm_conexao']) && !empty($_SESSION['scriptcase']['mnu_topic']['glo_nm_conexao']))
+{
+    db_conect_devel($_SESSION['scriptcase']['mnu_topic']['glo_nm_conexao'], $str_root . $_SESSION['scriptcase']['mnu_topic']['glo_nm_path_prod'], 'nila', 2); 
+}
+if (isset($_SESSION['scriptcase']['mnu_topic']['glo_nm_perfil']) && !empty($_SESSION['scriptcase']['mnu_topic']['glo_nm_perfil']))
+{
+   $_SESSION['scriptcase']['glo_perfil'] = $_SESSION['scriptcase']['mnu_topic']['glo_nm_perfil'];
+}
+if (isset($_SESSION['scriptcase']['glo_perfil']) && !empty($_SESSION['scriptcase']['glo_perfil']))
+{
+    $_SESSION['scriptcase']['glo_senha_protect'] = "";
+    carrega_perfil($_SESSION['scriptcase']['glo_perfil'], $path_libs, "");
+    if (empty($_SESSION['scriptcase']['glo_senha_protect']))
+    {
+        $nm_falta_var .= "Perfil=" . $_SESSION['scriptcase']['glo_perfil'] . "; ";
+    }
+}
+if (isset($_SESSION['scriptcase']['glo_date_separator']) && !empty($_SESSION['scriptcase']['glo_date_separator']))
+{
+    $SC_temp = trim($_SESSION['scriptcase']['glo_date_separator']);
+    if (strlen($SC_temp) == 2)
+    {
+       $_SESSION['scriptcase']['mnu_topic']['SC_sep_date']  = substr($SC_temp, 0, 1); 
+       $_SESSION['scriptcase']['mnu_topic']['SC_sep_date1'] = substr($SC_temp, 1, 1); 
+   }
+   else
+    {
+       $_SESSION['scriptcase']['mnu_topic']['SC_sep_date']  = $SC_temp; 
+       $_SESSION['scriptcase']['mnu_topic']['SC_sep_date1'] = $SC_temp; 
+   }
+}
+if (!isset($_SESSION['scriptcase']['glo_tpbanco']))
+{
+    $nm_falta_var_db .= "glo_tpbanco; ";
+}
+else
+{
+    $nm_tpbanco = $_SESSION['scriptcase']['glo_tpbanco']; 
+}
+if (!isset($_SESSION['scriptcase']['glo_servidor']))
+{
+    $nm_falta_var_db .= "glo_servidor; ";
+}
+else
+{
+    $nm_servidor = $_SESSION['scriptcase']['glo_servidor']; 
+}
+if (!isset($_SESSION['scriptcase']['glo_banco']))
+{
+    $nm_falta_var_db .= "glo_banco; ";
+}
+else
+{
+    $nm_banco = $_SESSION['scriptcase']['glo_banco']; 
+}
+if (!isset($_SESSION['scriptcase']['glo_usuario']))
+{
+    $nm_falta_var_db .= "glo_usuario; ";
+}
+else
+{
+    $nm_usuario = $_SESSION['scriptcase']['glo_usuario']; 
+}
+if (!isset($_SESSION['scriptcase']['glo_senha']))
+{
+    $nm_falta_var_db .= "glo_senha; ";
+}
+else
+{
+    $nm_senha = $_SESSION['scriptcase']['glo_senha']; 
+}
+$nm_con_db2 = array();
+$nm_database_encoding = "";
+if (isset($_SESSION['scriptcase']['glo_database_encoding']))
+{
+    $nm_database_encoding = $_SESSION['scriptcase']['glo_database_encoding']; 
+}
+$nm_arr_db_extra_args = array();
+if (isset($_SESSION['scriptcase']['glo_use_ssl']))
+{
+    $nm_arr_db_extra_args['use_ssl'] = $_SESSION['scriptcase']['glo_use_ssl']; 
+}
+if (isset($_SESSION['scriptcase']['glo_mysql_ssl_key']))
+{
+    $nm_arr_db_extra_args['mysql_ssl_key'] = $_SESSION['scriptcase']['glo_mysql_ssl_key']; 
+}
+if (isset($_SESSION['scriptcase']['glo_mysql_ssl_cert']))
+{
+    $nm_arr_db_extra_args['mysql_ssl_cert'] = $_SESSION['scriptcase']['glo_mysql_ssl_cert']; 
+}
+if (isset($_SESSION['scriptcase']['glo_mysql_ssl_capath']))
+{
+    $nm_arr_db_extra_args['mysql_ssl_capath'] = $_SESSION['scriptcase']['glo_mysql_ssl_capath']; 
+}
+if (isset($_SESSION['scriptcase']['glo_mysql_ssl_ca']))
+{
+    $nm_arr_db_extra_args['mysql_ssl_ca'] = $_SESSION['scriptcase']['glo_mysql_ssl_ca']; 
+}
+if (isset($_SESSION['scriptcase']['glo_mysql_ssl_cipher']))
+{
+    $nm_arr_db_extra_args['mysql_ssl_cipher'] = $_SESSION['scriptcase']['glo_mysql_ssl_cipher']; 
+}
+$nm_con_persistente = "";
+$nm_con_use_schema  = "";
+if (isset($_SESSION['scriptcase']['glo_use_persistent']))
+{
+    $nm_con_persistente = $_SESSION['scriptcase']['glo_use_persistent']; 
+}
+if (isset($_SESSION['scriptcase']['glo_use_schema']))
+{
+    $nm_con_use_schema = $_SESSION['scriptcase']['glo_use_schema']; 
+}
+$str_message = "<html>
+
+<head>
+    <title>{var_str_title}</title>
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+            overflow-x: hidden;
+            min-width: 320px;
+            background: #FFFFFF;
+            font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            line-height: 1.4285em;
+            color: rgba(0, 0, 0, 0.87);
+            font-smoothing: antialiased;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+        }
+
+        user agent stylesheet body {
+            display: block;
+            margin: 8px;
+        }
+
+        html {
+            font-size: 14px;
+        }
+
+        html {
+            line-height: 1.15;
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+        }
+
+        ::selection {
+            background-color: #CCE2FF;
+            color: rgba(0, 0, 0, 0.87);
+        }
+
+        .ui.container {
+            width: 933px;
+            min-width: 992px;
+            max-width: 1199px;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+
+        .ui.container {
+            display: block;
+            max-width: 100% !important;
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+        }
+
+        .ui.message:last-child {
+            margin-bottom: 0em;
+        }
+
+        .ui.message:first-child {
+            margin-top: 0em;
+        }
+
+        .ui.message {
+            font-size: 1em;
+        }
+
+        .ui.message {
+            position: relative;
+            min-height: 1em;
+            margin: 1em 0em;
+            background: #F8F8F9;
+            padding: 1em 1.5em;
+            line-height: 1.4285em;
+            color: rgba(0, 0, 0, 0.87);
+            transition: opacity 0.1s ease, color 0.1s ease, background 0.1s ease, box-shadow 0.1s ease;
+            border-radius: 0.28571429rem;
+            box-shadow: 0px 0px 0px 1px rgba(34, 36, 38, 0.22) inset, 0px 0px 0px 0px rgba(0, 0, 0, 0);
+        }
+
+        article,
+        aside,
+        footer,
+        header,
+        nav,
+        section {
+            display: block;
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+        }
+
+        .ui.message> :last-child {
+            margin-bottom: 0em;
+        }
+
+        .ui.message> :first-child {
+            margin-top: 0em;
+        }
+
+        .ui.message .header+p {
+            margin-top: 0.25em;
+        }
+
+        .ui.message p {
+            opacity: 0.85;
+            margin: 0.75em 0em;
+        }
+
+        p {
+            margin: 0em 0em 1em;
+            line-height: 1.4285em;
+        }
+
+        .ui.message .header:not(.ui) {
+            font-size: 1.14285714em;
+        }
+
+        .ui.message .header {
+            display: block;
+            font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            margin: -0.14285714em 0em 1.2rem 0em;
+        }
+
+        .ui.button {
+            cursor: pointer;
+            display: inline-block;
+            min-height: 1em;
+            outline: 0;
+            border: none;
+            vertical-align: baseline;
+            background: #e0e1e2 none;
+            color: rgba(0, 0, 0, .6);
+            font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+            margin: 0 .25em 0 0;
+            padding: .78571429em 1.5em .78571429em;
+            text-transform: none;
+            text-shadow: none;
+            font-weight: 700;
+            line-height: 1em;
+            font-style: normal;
+            text-align: center;
+            text-decoration: none;
+            border-radius: .28571429rem;
+            box-shadow: 0 0 0 1px transparent inset, 0 0 0 0 rgba(34, 36, 38, .15) inset;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            transition: opacity .1s ease, background-color .1s ease, color .1s ease, box-shadow .1s ease, background .1s ease;
+            will-change: '';
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .ui.button,
+        .ui.buttons .button,
+        .ui.buttons .or {
+            font-size: 1rem;
+            flex-flow: row nowrap;
+            justify-content: center;
+            align-items: center;
+            column-gap: .5rem;
+            display: flex;
+        }
+        
+        .ui.primary.button,
+        .ui.primary.buttons .button {
+            background-color: #2185d0;
+            color: #fff;
+            text-shadow: none;
+            background-image: none;
+        }
+        
+        .ui.primary.button {
+            box-shadow: 0 0 0 0 rgba(34, 36, 38, .15) inset;
+        }
+
+        [type=reset], [type=submit], button, html [type=button] {
+            -webkit-appearance: button;
+        }
+
+        .icon{
+            position: relative;
+            width: 1.2rem;
+            height: 1.2rem;
+            display: block;
+            color: inherit;
+            background-repeat: no-repeat;
+        }
+
+        .icon.database{
+            background-image: url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 448 512\" fill=\"%23FFFFFF\"><path d=\"M448 80v48c0 44.2-100.3 80-224 80S0 172.2 0 128V80C0 35.8 100.3 0 224 0S448 35.8 448 80zM393.2 214.7c20.8-7.4 39.9-16.9 54.8-28.6V288c0 44.2-100.3 80-224 80S0 332.2 0 288V186.1c14.9 11.8 34 21.2 54.8 28.6C99.7 230.7 159.5 240 224 240s124.3-9.3 169.2-25.3zM0 346.1c14.9 11.8 34 21.2 54.8 28.6C99.7 390.7 159.5 400 224 400s124.3-9.3 169.2-25.3c20.8-7.4 39.9-16.9 54.8-28.6V432c0 44.2-100.3 80-224 80S0 476.2 0 432V346.1z\"/></svg>');
+        }
+    </style>
+</head>
+
+<body>
+    <div class='ui container' style='padding-top:2rem'>
+        <section class='ui message'>
+            <div class='content'>
+                <div class='header'>
+                    <h1 class='ui header'>{var_str_title}</h1>
+                </div>
+                <p>{var_str_message}</p>
+                <p>{var_str_message_conn}</p>
+                {v_str_btn_inside}
+            </div>
+        </section>
+    </div>";
+$str_message_end = "</body>
+</html>";
+$str_message = str_replace('{var_str_title}', $this->Nm_lang['lang_errm_cmlb_nfndtitle'], $str_message);
+$str_message = str_replace('{var_str_message_conn}','', $str_message);
+$str_message = str_replace('{v_str_btn_inside}', '', $str_message);
+if (!empty($nm_falta_var) || !empty($nm_falta_var_db))
+{
+    if (empty($nm_falta_var_db))
+    {
+         $str_message = str_replace('{var_str_message}', $this->Nm_lang['lang_errm_glob'], $str_message);
+    }
+    else
+    {
+         $str_message = str_replace('{var_str_message}', $this->Nm_lang['lang_errm_dbcn_data'], $str_message);
+    }
+    echo $str_message;
+    if (isset($_SESSION['scriptcase']['nm_ret_exec']) && '' != $_SESSION['scriptcase']['nm_ret_exec'])
+    { 
+        if (isset($_SESSION['sc_session'][1]['mnu_topic']['sc_outra_jan']) && $_SESSION['sc_session'][1]['mnu_topic']['sc_outra_jan'])
+        {
+            echo "<a href='javascript:window.close()'><img border='0' src='" . $path_imag_cab . "/scriptcase__NM__exit.gif' title='" . $this->Nm_lang['lang_btns_menu_rtrn_hint'] . "' align=absmiddle></a> \n" ; 
+        } 
+        else 
+        { 
+            echo "<a href='" . $_SESSION['scriptcase']['nm_ret_exec'] . "><img border='0' src='" . $path_imag_cab . "/scriptcase__NM__exit.gif' title='" . $this->Nm_lang['lang_btns_menu_rtrn_hint'] . "' align=absmiddle></a> \n" ; 
+        } 
+    } 
+    echo $str_message_end;
+    exit ;
+} 
+if (isset($_SESSION['scriptcase']['glo_db_master_usr']) && !empty($_SESSION['scriptcase']['glo_db_master_usr']))
+{
+    $nm_usuario = $_SESSION['scriptcase']['glo_db_master_usr']; 
+}
+if (isset($_SESSION['scriptcase']['glo_db_master_pass']) && !empty($_SESSION['scriptcase']['glo_db_master_pass']))
+{
+    $nm_senha = $_SESSION['scriptcase']['glo_db_master_pass']; 
+}
+if (isset($_SESSION['scriptcase']['glo_db_master_cript']) && !empty($_SESSION['scriptcase']['glo_db_master_cript']))
+{
+    $_SESSION['scriptcase']['glo_senha_protect'] = $_SESSION['scriptcase']['glo_db_master_cript']; 
+}
+$sc_tem_trans_banco = false;
+$this->nm_bases_access    = array("access", "ado_access", "ace_access");
+$this->nm_bases_ibase     = array("ibase", "firebird", "pdo_firebird", "borland_ibase");
+$this->nm_bases_mysql     = array("mysql", "mysqlt", "mysqli", "maxsql", "pdo_mysql", "azure_mysql", "azure_mysqlt", "azure_mysqli", "azure_maxsql", "azure_pdo_mysql", "googlecloud_mysql", "googlecloud_mysqlt", "googlecloud_mysqli", "googlecloud_maxsql", "googlecloud_pdo_mysql", "amazonrds_mysql", "amazonrds_mysqlt", "amazonrds_mysqli", "amazonrds_maxsql", "amazonrds_pdo_mysql");
+$this->nm_bases_postgres  = array("postgres", "postgres64", "postgres7", "pdo_pgsql", "azure_postgres", "azure_postgres64", "azure_postgres7", "azure_pdo_pgsql", "googlecloud_postgres", "googlecloud_postgres64", "googlecloud_postgres7", "googlecloud_pdo_pgsql", "amazonrds_postgres", "amazonrds_postgres64", "amazonrds_postgres7", "amazonrds_pdo_pgsql");
+$this->nm_bases_sqlite    = array("sqlite", "sqlite3", "pdosqlite");
+$this->nm_bases_sybase    = array("sybase", "pdo_sybase_odbc", "pdo_sybase_dblib");
+$this->nm_bases_vfp       = array("vfp");
+$this->nm_bases_odbc      = array("odbc");
+$this->nm_bases_progress  = array("pdo_progress_odbc", "progress");
+$_SESSION['scriptcase']['sc_num_page'] = 1;
+$_SESSION['scriptcase']['nm_bases_security']  = "enc_nm_enc_v1D9XsDQFUHAveVWBODMvOVcrsH5XCHMX7DcJUZSBqHINaZMBOHgvsZSJ3DWr/HIBqHQJKZ9F7HABYV5XGHgvOV9FeDWXCDoJsDcBwH9B/Z1rYHQJwHgveVkJqH5FGDoBqHQBiDuBqHArYHuJwDMvOV9BUDWXKVoF7HQBiZ1BiHAzGD5BOHgNKVkJ3HEXCHIrqHQJeDuFaHIrwHuFaHuNOZSrCH5FqDoXGHQJmZ1BiHANOHuFGHgNOZSJqDWr/HIFUHQXODQBqHAN7HQBqHuNODkBsHEFYHINUD9JmZSFaHABYHQX7HgBOHErCDWF/VoBiDcJUZSX7Z1BYHuFaHuzGVcFKDWFYVoJwDcBqZSFaHAN7D5FaDEBOVkJGHEXCVoB/HQJKDQJsZ1vCV5FGHuNOV9FeDWB3VoraD9BsZ1B/Z1NOZMFaDMNKZSJGH5F/DoB/D9NwDQJsDSBYV5FGHgrYDkBODWF/VoraD9XOZSB/Z1rYD5BiDErKHEFiDuJeDoBOHQXGH9FGHAveD5BOHuzGVcFeDWXCDoJsDcBwH9B/Z1rYHQJwHgrKZSJ3DuFaHIX7DcBiDQJsZ1zGVWJsDMBOVcBOH5XCDoraHQFYZkFGHArKV5FUDMrYZSXeV5FqHIJsHQNmDuBqDSN7HQXGDMzGVcXKHEF/HIF7DcFYZkFUZ1rYHQFUDMveVkJ3DWFqHMJeHQJeDQBOZ1BYHQJeHgvOVcBUDur/VoBiDcFYVIJwZ1rYHQBiHgNKVkJqHEB7ZuB/DcBiZ9JeD1BeD5rqHuvmVcBOH5B7VoBqHQXOZ1BiDSNOD5JwHgBOZSJ3DWr/HMFGHQXsDuBOZ1zGV5BqDMzGVcFeDWJeHIX7DcNmVIraZ1rYHQJeHgNODkB/DWr/HMBiHQNmDuBOZ1BYHQXGDMBOVIBsV5F/HIrqHQBsVIJwD1rwV5FGDEBeHEXeH5X/DoF7HQNwDuBqDSN7HuBOHgrwVIBsV5FYHMB/HQBiZ1FUZ1rYHuJwHgNOHEJqH5FYHIJeHQNwDQBOZ1BYHQF7DMvsV9BUH5FqHMFGHQJmVIraZ1vOZMB/HgvsHEJqDWF/HMBqDcBiDuBOD1BeD5rqHuvmVcBOH5B7VoBqD9XOH9B/D1rwD5BiDErKHEFiDWX7ZuFaD9JKDQB/Z1rwHuF7DMvsZSrCV5X7HIBiD9XOZSB/Z1BeV5BODErKVkXeDWX7VoFGDcJUDQFaHAN7D5BqHuNOVcFKDWFYVoFGHQFYH9BqZ1NOV5FaDEvsHErCV5FqDoraD9JKZSX7D1vOV5JwHuBYZSNiHEX/DoXGD9XOZ1F7HIveD5BqHgBYHErsDWFGDoB/D9NmZSFGHIrwVWXGHuzGVIBOV5X7VoraD9BiZ1FUZ1BeD5JeDMBYZSJGDWr/VoXGD9NwDQJwD1veV5FGHgvsVcFCH5FqDoraHQFYVIJwD1rwV5FGDEBeHEXeH5X/DoF7D9NwZSX7D1BeV5raHuvmVcFKV5X7VoFGD9BiZ1X7Z1BeHuBqHgBeHEJqDWF/HMBiHQNmZSFUHANKD5F7DMNODkB/DWFYHMBqHQJmZ1F7Z1vmD5rqDEBOHArCDWBmDoJeHQBiDQBqHAvmV5BqDMvOV9BUDWB3VorqHQNwH9BqHArKV5FUDMrYZSXeV5FqHIJsD9JKZSFUDSBYV5FGDMvOZSJqHEFYDoJsHQXGVIJsHArKD5BOHgBYHEBUDWr/HIJsD9XsZ9JeD1BeD5F7DMvmVcFeDWF/HMFUHQBiZSBqD1rwHQF7HgrKHArCV5XCHIF7DcJUDQB/D1veHuFGDMvmVcFKV5BmVoBqD9BsZkFGHAvsZMJeHgvCDkXKDWBmZura";
+ $glo_senha_protect = (isset($_SESSION['scriptcase']['glo_senha_protect'])) ? $_SESSION['scriptcase']['glo_senha_protect'] : "S";
+if (isset($_SESSION['scriptcase']['nm_sc_retorno']) && !empty($_SESSION['scriptcase']['nm_sc_retorno']) && isset($_SESSION['scriptcase']['mnu_topic']['glo_nm_conexao']) && !empty($_SESSION['scriptcase']['mnu_topic']['glo_nm_conexao']))
+{ 
+   $this->Db = db_conect_devel($_SESSION['scriptcase']['mnu_topic']['glo_nm_conexao'], $str_root . $_SESSION['scriptcase']['mnu_topic']['glo_nm_path_prod'], 'nila'); 
+} 
+else 
+{ 
+   $this->Db = db_conect($nm_tpbanco, $nm_servidor, $nm_usuario, $nm_senha, $nm_banco, $glo_senha_protect, "S", $nm_con_persistente, $nm_con_db2, $nm_database_encoding, $nm_arr_db_extra_args); 
+} 
+$this->nm_tpbanco = $nm_tpbanco; 
+if (in_array(strtolower($nm_tpbanco), $this->nm_bases_ibase) && function_exists('ibase_timefmt'))
+{
+    ibase_timefmt('%Y-%m-%d %H:%M:%S');
+} 
+if (in_array(strtolower($nm_tpbanco), $this->nm_bases_sybase))
+{
+   $this->Db->fetchMode = ADODB_FETCH_BOTH;
+   $this->Db->Execute("set dateformat ymd");
+} 
+//
       $this->tab_grupo[0] = "nila/";
       if ($_SESSION['scriptcase']['sc_usa_grupo'] != "S")
       {
@@ -388,23 +824,53 @@ if (!isset($_SESSION['scriptcase']['mnu_topic']['session_timeout']['redir']) && 
 if (!isset($_SESSION['topico'])) {$_SESSION['topico'] = "";}
 if (!isset($this->sc_temp_topico)) {$this->sc_temp_topico = (isset($_SESSION['topico'])) ? $_SESSION['topico'] : "";}
  $this->sc_temp_topico = $this->sc_script_name;
+$topico =  $this->sc_script_name;
 
-if($this->sc_temp_topico!=NULL){	
-	    if (!isset($_SESSION['scriptcase']['sc_ult_apl_menu']) || !in_array("rpt_summary", $_SESSION['scriptcase']['sc_ult_apl_menu']))
+ 
+      $nm_select = "SELECT tipo FROM topico WHERE id = ".$topico.""; 
+      $_SESSION['scriptcase']['sc_sql_ult_comando'] = $nm_select; 
+      $_SESSION['scriptcase']['sc_sql_ult_conexao'] = ''; 
+      $this->tipo = array();
+      if ($SCrx = $this->Db->Execute($nm_select)) 
+      { 
+          $SCy = 0; 
+          $nm_count = $SCrx->FieldCount();
+          while (!$SCrx->EOF)
+          { 
+                 for ($SCx = 0; $SCx < $nm_count; $SCx++)
+                 { 
+                        $this->tipo[$SCy] [$SCx] = $SCrx->fields[$SCx];
+                 }
+                 $SCy++; 
+                 $SCrx->MoveNext();
+          } 
+          $SCrx->Close();
+      } 
+      elseif (isset($GLOBALS["NM_ERRO_IBASE"]) && $GLOBALS["NM_ERRO_IBASE"] != 1)  
+      { 
+          $this->tipo = false;
+          $this->tipo_erro = $this->Db->ErrorMsg();
+      } 
+
+$this->tipo = $this->tipo[0][0];
+
+    if (!isset($_SESSION['scriptcase']['sc_ult_apl_menu']) || !in_array("$tipo", $_SESSION['scriptcase']['sc_ult_apl_menu']))
        {
-           $_SESSION['scriptcase']['sc_ult_apl_menu'][] = "rpt_summary";
+           $_SESSION['scriptcase']['sc_ult_apl_menu'][] = "$tipo";
             if (isset($this->sc_temp_topico)) {$_SESSION['topico'] = $this->sc_temp_topico;}
  if (!isset($Campos_Mens_erro) || empty($Campos_Mens_erro))
  {
-$this->nmgp_redireciona_form($_SESSION['scriptcase']['sc_apl_menu_link'] . $this->tab_grupo[0] . "" . SC_dir_app_name('rpt_summary') . "/", "mnu_topic_form_php.php", "","_self", 440, 630);
+$this->nmgp_redireciona_form($this->tipo, "mnu_topic_form_php.php", $_SESSION['topico'],"_self", 440, 630);
  };
        }
-
-	}
 if (isset($this->sc_temp_topico)) {$_SESSION['topico'] = $this->sc_temp_topico;}
 $_SESSION['scriptcase']['mnu_topic']['contr_erro'] = 'off';
       $_SESSION['scriptcase']['sc_ult_apl_menu'] = array();
       unset($_SESSION['scriptcase']['sc_usa_grupo']);
+if ($this->Db)
+{
+    $this->Db->Close(); 
+}
       $link_url = false;
       $parms_session = "";
 
@@ -513,10 +979,8 @@ $_SESSION['scriptcase']['mnu_topic']['contr_erro'] = 'off';
    }
    function Gera_sc_init($apl_menu)
    {
-        $_SESSION['scriptcase']['mnu_topic']['sc_init'][$apl_menu] = rand(2, 10000);
-        $_SESSION['sc_session'][$_SESSION['scriptcase']['mnu_topic']['sc_init'][$apl_menu]] = array();
-        $this->menu_sc_init = $_SESSION['scriptcase']['mnu_topic']['sc_init'][$apl_menu];
-        return  $this->menu_sc_init;
+       $this->menu_sc_init = 1;
+        return  1;
    }
    function nmgp_redireciona_form($nm_apl_dest, $nm_apl_retorno, $nm_apl_parms, $nm_target="", $alt_modal=0, $larg_modal=0)
    {

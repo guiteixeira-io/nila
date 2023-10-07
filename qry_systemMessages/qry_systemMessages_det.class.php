@@ -220,7 +220,7 @@ class qry_systemMessages_det
     $this->sc_where_filtro = $_SESSION['sc_session'][$this->Ini->sc_page]['qry_systemMessages']['where_pesq_filtro'];
     $this->nm_field_dinamico = array();
     $this->nm_order_dinamico = array();
-    $this->nm_data = new nm_data("pt_br");
+    $this->nm_data = new nm_data("pt_BR");
     $this->NM_raiz_img  = ""; 
     if ($this->Ini->sc_export_ajax_img)
     { 
@@ -308,7 +308,7 @@ class qry_systemMessages_det
        $nm_saida->saida(" <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0\" />\r\n");
    }
 
-           $nm_saida->saida("   <script type=\"text/javascript\" src=\"qry_systemMessages_jquery_3901.js\"></script>\r\n");
+           $nm_saida->saida("   <script type=\"text/javascript\" src=\"qry_systemMessages_jquery_7235.js\"></script>\r\n");
            $nm_saida->saida("   <script type=\"text/javascript\" src=\"qry_systemMessages_ajax.js\"></script>\r\n");
            $nm_saida->saida("   <script type=\"text/javascript\" src=\"qry_systemMessages_message.js\"></script>\r\n");
            $nm_saida->saida("   <script type=\"text/javascript\">\r\n");

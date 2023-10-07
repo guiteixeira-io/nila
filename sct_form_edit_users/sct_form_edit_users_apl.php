@@ -22,6 +22,7 @@ class sct_form_edit_users_apl
                                 'varList'           => array(),
                                 'focus'             => '',
                                 'navStatus'         => array(),
+                                'navSummary'        => array(),
                                 'redir'             => array(),
                                 'blockDisplay'      => array(),
                                 'fieldDisplay'      => array(),
@@ -71,6 +72,7 @@ class sct_form_edit_users_apl
    var $groups;
    var $groups_hidden;
    var $confirm_pswd;
+   var $couses;
    var $nm_data;
    var $nmgp_opcao;
    var $nmgp_opc_ant;
@@ -123,6 +125,10 @@ class sct_form_edit_users_apl
           if (isset($this->NM_ajax_info['param']['confirm_pswd']))
           {
               $this->confirm_pswd = $this->NM_ajax_info['param']['confirm_pswd'];
+          }
+          if (isset($this->NM_ajax_info['param']['couses']))
+          {
+              $this->couses = $this->NM_ajax_info['param']['couses'];
           }
           if (isset($this->NM_ajax_info['param']['csrf_token']))
           {
@@ -367,6 +373,11 @@ class sct_form_edit_users_apl
           {
               $_SESSION['sc_session'][$script_case_init]['sct_form_edit_users']['where_filter_form'] = $this->NM_where_filter_form;
               unset($_SESSION['sc_session'][$script_case_init]['sct_form_edit_users']['total']);
+          }
+          if (!isset($_SESSION['sc_session'][$script_case_init]['sct_form_edit_users']['total']))
+          {
+              $_SESSION['sc_session'][ $_SESSION['sc_session'][$script_case_init]['sct_form_edit_users']['sub_studentCourse_script_case_init'] ]['sub_studentCourse']['reg_start'] = "";
+              unset($_SESSION['sc_session'][ $_SESSION['sc_session'][$script_case_init]['sct_form_edit_users']['sub_studentCourse_script_case_init'] ]['sub_studentCourse']['total']);
           }
           if (isset($this->sc_redir_atualiz))
           {
@@ -1091,6 +1102,18 @@ class sct_form_edit_users_apl
           $this->nm_flag_saida_novo = "S";
       }
 //
+      if ($this->nmgp_opcao == "excluir")
+      {
+          $GLOBALS['script_case_init'] = $this->Ini->sc_page;
+          $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['sub_studentCourse_script_case_init'] ]['sub_studentCourse']['embutida_form'] = false;
+          $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['sub_studentCourse_script_case_init'] ]['sub_studentCourse']['embutida_proc'] = true;
+          $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['sub_studentCourse_script_case_init'] ]['sub_studentCourse']['reg_start'] = "";
+          unset($_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['sub_studentCourse_script_case_init'] ]['sub_studentCourse']['total']);
+          $detailAppObject = "sub_studentCourse_apl";
+          require_once($this->Ini->root . $this->Ini->path_link  . SC_dir_app_name('sub_studentCourse') . "/index.php");
+          require_once($this->Ini->root . $this->Ini->path_link  . SC_dir_app_name('sub_studentCourse') . "/sub_studentCourse_apl.php");
+          $this->sub_studentCourse = new $detailAppObject;
+      }
       $this->NM_case_insensitive = false;
       $this->sc_evento = $this->nmgp_opcao;
             if ('ajax_check_file' == $this->nmgp_opcao ){
@@ -1122,6 +1145,7 @@ class sct_form_edit_users_apl
       if (isset($this->name)) { $this->nm_limpa_alfa($this->name); }
       if (isset($this->email)) { $this->nm_limpa_alfa($this->email); }
       if (isset($this->active)) { $this->nm_limpa_alfa($this->active); }
+      if (isset($this->couses)) { $this->nm_limpa_alfa($this->couses); }
       $Campos_Crit       = "";
       $Campos_erro       = "";
       $Campos_Falta      = array();
@@ -1211,6 +1235,10 @@ class sct_form_edit_users_apl
           if ('validate_groups' == $this->NM_ajax_opcao)
           {
               $this->Valida_campos($Campos_Crit, $Campos_Falta, $Campos_Erros, 'groups');
+          }
+          if ('validate_couses' == $this->NM_ajax_opcao)
+          {
+              $this->Valida_campos($Campos_Crit, $Campos_Falta, $Campos_Erros, 'couses');
           }
           sct_form_edit_users_pack_ajax_response();
           exit;
@@ -1783,6 +1811,9 @@ if (isset($_SESSION['scriptcase']['device_mobile']) && $_SESSION['scriptcase']['
            case 'groups':
                return "" . $this->Ini->Nm_lang['lang_list_groups'] . "";
                break;
+           case 'couses':
+               return "Cursadas";
+               break;
            case 'activation_code':
                return "Activation Code";
                break;
@@ -1856,6 +1887,8 @@ if (isset($_SESSION['scriptcase']['device_mobile']) && $_SESSION['scriptcase']['
         $this->ValidateField_active($Campos_Crit, $Campos_Falta, $Campos_Erros);
       if ((!is_array($filtro) && ('' == $filtro || 'groups' == $filtro)) || (is_array($filtro) && in_array('groups', $filtro)))
         $this->ValidateField_groups($Campos_Crit, $Campos_Falta, $Campos_Erros);
+      if ((!is_array($filtro) && ('' == $filtro || 'couses' == $filtro)) || (is_array($filtro) && in_array('couses', $filtro)))
+        $this->ValidateField_couses($Campos_Crit, $Campos_Falta, $Campos_Erros);
       $this->upload_img_doc($Campos_Crit, $Campos_Falta, $Campos_Erros);
       if (!empty($Campos_Crit) || !empty($Campos_Falta) || !empty($this->Campos_Mens_erro))
       {
@@ -2301,6 +2334,29 @@ if (isset($_SESSION['scriptcase']['device_mobile']) && $_SESSION['scriptcase']['
             $this->NM_ajax_info['fieldsWithErrors'][] = $fieldName;
         }
     } // ValidateField_groups
+
+    function ValidateField_couses(&$Campos_Crit, &$Campos_Falta, &$Campos_Erros)
+    {
+        global $teste_validade;
+        $hasError = false;
+      if (isset($this->Field_no_validate['couses'])) {
+          return;
+      }
+      if ($this->nmgp_opcao != "excluir") 
+      { 
+          if (trim($this->couses) != "")  
+          { 
+          } 
+      } 
+        if ($hasError) {
+            global $sc_seq_vert;
+            $fieldName = 'couses';
+            if (isset($sc_seq_vert) && '' != $sc_seq_vert) {
+                $fieldName .= $sc_seq_vert;
+            }
+            $this->NM_ajax_info['fieldsWithErrors'][] = $fieldName;
+        }
+    } // ValidateField_couses
 //
 //--------------------------------------------------------------------------------------
    function upload_img_doc(&$Campos_Crit, &$Campos_Falta, &$Campos_Erros, $filtro = '') 
@@ -2426,6 +2482,7 @@ if (isset($_SESSION['scriptcase']['device_mobile']) && $_SESSION['scriptcase']['
     $this->nmgp_dados_form['email'] = $this->email;
     $this->nmgp_dados_form['active'] = $this->active;
     $this->nmgp_dados_form['groups'] = $this->groups;
+    $this->nmgp_dados_form['couses'] = $this->couses;
     $this->nmgp_dados_form['activation_code'] = $this->activation_code;
     $this->nmgp_dados_form['priv_admin'] = $this->priv_admin;
     $this->nmgp_dados_form['mfa'] = $this->mfa;
@@ -2881,12 +2938,22 @@ if (isset($_SESSION['scriptcase']['device_mobile']) && $_SESSION['scriptcase']['
           $this->ajax_return_values_email();
           $this->ajax_return_values_active();
           $this->ajax_return_values_groups();
+          $this->ajax_return_values_couses();
           if ('navigate_form' == $this->NM_ajax_opcao)
           {
               $this->NM_ajax_info['clearUpload']      = 'S';
               $this->NM_ajax_info['navStatus']['ret'] = $this->Nav_permite_ret ? 'S' : 'N';
               $this->NM_ajax_info['navStatus']['ava'] = $this->Nav_permite_ava ? 'S' : 'N';
               $this->NM_ajax_info['fldList']['login']['keyVal'] = sct_form_edit_users_pack_protect_string($this->nmgp_dados_form['login']);
+              $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['sub_studentCourse_script_case_init'] ]['sub_studentCourse']['foreign_key']['student'] = $this->nmgp_dados_form['login'];
+              $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['sub_studentCourse_script_case_init'] ]['sub_studentCourse']['where_filter'] = "student = '" . $this->nmgp_dados_form['login'] . "'";
+              $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['sub_studentCourse_script_case_init'] ]['sub_studentCourse']['where_detal']  = "student = '" . $this->nmgp_dados_form['login'] . "'";
+              if ($_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['total'] < 0)
+              {
+                  $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['sub_studentCourse_script_case_init'] ]['sub_studentCourse']['where_filter'] = "1 <> 1";
+              }
+              $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['sub_studentCourse_script_case_init'] ]['sub_studentCourse']['reg_start'] = "";
+              unset($_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['sub_studentCourse_script_case_init'] ]['sub_studentCourse']['total']);
           }
    } // ajax_return_values
 
@@ -3282,6 +3349,22 @@ else
           }
    }
 
+          //----- couses
+   function ajax_return_values_couses($bForce = false)
+   {
+          if ('navigate_form' == $this->NM_ajax_opcao || 'backup_line' == $this->NM_ajax_opcao || (isset($this->nmgp_refresh_fields) && in_array("couses", $this->nmgp_refresh_fields)) || $bForce)
+          {
+              $sTmpValue = NM_charset_to_utf8($this->couses);
+              $aLookup = array();
+          $aLookupOrig = $aLookup;
+          $this->NM_ajax_info['fldList']['couses'] = array(
+                       'row'    => '',
+               'type'    => 'text',
+               'valList' => array($sTmpValue),
+              );
+          }
+   }
+
     function fetchUniqueUploadName($originalName, $uploadDir, $fieldName)
     {
         $originalName = trim($originalName);
@@ -3661,6 +3744,7 @@ $_SESSION['scriptcase']['sct_form_edit_users']['contr_erro'] = 'off';
       $NM_val_form['email'] = $this->email;
       $NM_val_form['active'] = $this->active;
       $NM_val_form['groups'] = $this->groups;
+      $NM_val_form['couses'] = $this->couses;
       $NM_val_form['activation_code'] = $this->activation_code;
       $NM_val_form['priv_admin'] = $this->priv_admin;
       $NM_val_form['mfa'] = $this->mfa;
@@ -3784,6 +3868,17 @@ $_SESSION['scriptcase']['sct_form_edit_users']['contr_erro'] = 'off';
           { 
               $this->picture = "null"; 
               $NM_val_null[] = "picture";
+          } 
+          $this->couses_before_qstr = $this->couses;
+          $this->couses = substr($this->Db->qstr($this->couses), 1, -1); 
+          if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_mysql))
+          {
+              $this->couses = str_replace(array("\\r\\n", "\\n", "\r\n"), array("\r\n", "\n", "\n"), $this->couses);
+          }
+          if ($this->couses == "" && in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_access))  
+          { 
+              $this->couses = "null"; 
+              $NM_val_null[] = "couses";
           } 
       }
       if ($this->nmgp_opcao == "alterar") 
@@ -4020,6 +4115,7 @@ $_SESSION['scriptcase']['sct_form_edit_users']['contr_erro'] = 'off';
               $this->activation_code = $this->activation_code_before_qstr;
               $this->priv_admin = $this->priv_admin_before_qstr;
               $this->mfa = $this->mfa_before_qstr;
+              $this->couses = $this->couses_before_qstr;
               if (in_array(strtolower($this->Ini->nm_tpbanco), $nm_bases_lob_geral))
               { 
                   if ($this->picture_limpa == "S" && (!isset($this->Ini->nm_bases_oracle) || !in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_oracle)) && (!isset($this->Ini->nm_bases_informix) || !in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_informix))) 
@@ -4087,11 +4183,13 @@ $_SESSION['scriptcase']['sct_form_edit_users']['contr_erro'] = 'off';
               elseif (isset($this->email)) { $this->nm_limpa_alfa($this->email); }
               if     (isset($NM_val_form) && isset($NM_val_form['active'])) { $this->active = $NM_val_form['active']; }
               elseif (isset($this->active)) { $this->nm_limpa_alfa($this->active); }
+              if     (isset($NM_val_form) && isset($NM_val_form['couses'])) { $this->couses = $NM_val_form['couses']; }
+              elseif (isset($this->couses)) { $this->nm_limpa_alfa($this->couses); }
 
               $this->nm_formatar_campos();
 
               $aOldRefresh               = $this->nmgp_refresh_fields;
-              $this->nmgp_refresh_fields = array_diff(array('login', 'pswd', 'confirm_pswd', 'name', 'email', 'active', 'groups'), $aDoNotUpdate);
+              $this->nmgp_refresh_fields = array_diff(array('login', 'pswd', 'confirm_pswd', 'name', 'email', 'active', 'groups', 'couses'), $aDoNotUpdate);
               $this->ajax_return_values();
               $this->nmgp_refresh_fields = $aOldRefresh;
 
@@ -4372,6 +4470,7 @@ $_SESSION['scriptcase']['sct_form_edit_users']['contr_erro'] = 'off';
               $this->activation_code = $this->activation_code_before_qstr;
               $this->priv_admin = $this->priv_admin_before_qstr;
               $this->mfa = $this->mfa_before_qstr;
+              $this->couses = $this->couses_before_qstr;
               if (in_array(strtolower($this->Ini->nm_tpbanco), $nm_bases_lob_geral))
               { 
                   if (trim($this->picture ) != "") 
@@ -4408,16 +4507,14 @@ $_SESSION['scriptcase']['sct_form_edit_users']['contr_erro'] = 'off';
               $this->activation_code = $this->activation_code_before_qstr;
               $this->priv_admin = $this->priv_admin_before_qstr;
               $this->mfa = $this->mfa_before_qstr;
+              $this->couses = $this->couses_before_qstr;
               if (empty($this->sc_erro_insert)) {
                   $this->record_insert_ok = true;
               } 
               if ('refresh_insert' != $this->nmgp_opcao && (!isset($_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['sc_redir_insert']) || $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['sc_redir_insert'] != "S"))
               {
-              $this->nmgp_opcao = "novo"; 
-              if ($_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['run_iframe'] == "F" || $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['run_iframe'] == "R")
-              { 
-                   $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['return_edit'] = "new";
-              } 
+              $this->nmgp_opcao   = "igual"; 
+              $this->nmgp_opc_ant = "igual"; 
               }
               $this->nm_flag_iframe = true;
           } 
@@ -4469,6 +4566,16 @@ $_SESSION['scriptcase']['sct_form_edit_users']['contr_erro'] = 'off';
 
           $bDelecaoOk = true;
           $sMsgErro   = '';
+          if ($bDelecaoOk)
+          {
+              $sDetailWhere = "student = '" . $this->login . "'";
+              $this->sub_studentCourse->ini_controle();
+              if ($this->sub_studentCourse->temRegistros($sDetailWhere))
+              {
+                  $bDelecaoOk = false;
+                  $sMsgErro   = $this->Ini->Nm_lang['lang_errm_fkvi'];
+              }
+          }
 
           if ($bDelecaoOk)
           {
@@ -4710,6 +4817,9 @@ $_SESSION['scriptcase']['sct_form_edit_users']['contr_erro'] = 'off';
           }  
           if ($rs->EOF) 
           { 
+              $this->NM_ajax_info['navSummary']['reg_ini'] = 0; 
+              $this->NM_ajax_info['navSummary']['reg_qtd'] = 0; 
+              $this->NM_ajax_info['navSummary']['reg_tot'] = 0; 
               if (!empty($_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['where_filter']))
               {
                   $this->nmgp_form_empty        = true;
@@ -4738,6 +4848,12 @@ $_SESSION['scriptcase']['sct_form_edit_users']['contr_erro'] = 'off';
               {
                   $this->NM_ajax_info['buttonDisplay']['exit'] = $this->nmgp_botoes['exit'] = 'off';
               }
+          } 
+          else 
+          { 
+              $this->NM_ajax_info['navSummary']['reg_ini'] = 1; 
+              $this->NM_ajax_info['navSummary']['reg_qtd'] = 1; 
+              $this->NM_ajax_info['navSummary']['reg_tot'] = 1; 
           } 
           if ($rs === false && $GLOBALS["NM_ERRO_IBASE"] == 1) 
           { 
@@ -4850,6 +4966,8 @@ $_SESSION['scriptcase']['sct_form_edit_users']['contr_erro'] = 'off';
               $this->nmgp_dados_form["groups"] = $this->groups;
               $this->confirm_pswd = "";  
               $this->nmgp_dados_form["confirm_pswd"] = $this->confirm_pswd;
+              $this->couses = "";  
+              $this->nmgp_dados_form["couses"] = $this->couses;
               $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['dados_form'] = $this->nmgp_dados_form;
               $this->formatado = false;
           }
@@ -4875,6 +4993,7 @@ $_SESSION['scriptcase']['sct_form_edit_users']['contr_erro'] = 'off';
       { 
           $this->nm_proc_onload();
       }
+      $_SESSION['sc_session'][$this->Ini->sc_page]['sub_studentCourse']['embutida_parms'] = "NM_btn_insert*scinS*scoutNM_btn_update*scinS*scoutNM_btn_delete*scinS*scoutNM_btn_navega*scinN*scout";
   }
         function initializeRecordState() {
                 $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['record_state'] = array();

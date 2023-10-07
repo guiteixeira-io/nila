@@ -586,6 +586,9 @@ if (!$this->NM_ajax_flag && isset($this->NM_non_ajax_info['ajaxJavascript']) && 
   }
 
   if (show_block[block_id]) {
+    if ("hidden_bloco_1" == block_id) {
+      scAjaxDetailHeight("sub_studentCourse", $($("#nmsc_iframe_liga_sub_studentCourse")[0].contentWindow.document).innerHeight());
+    }
   }
  }
 
@@ -857,7 +860,7 @@ $this->displayAppHeader();
 <?php } else { $sc_hidden_no++; ?>
 
     <TD class="scFormLabelOdd scUiLabelWidthFix css_picture_label" id="hidden_field_label_picture" style="<?php echo $sStyleHidden_picture; ?>"><span id="id_label_picture"><?php echo $this->nm_new_label['picture']; ?></span></TD>
-    <TD class="scFormDataOdd css_picture_line" id="hidden_field_data_picture" style="<?php echo $sStyleHidden_picture; ?>"><table style="border-width: 0px; border-collapse: collapse; width: 100%"><tr><td  class="scFormDataFontOdd css_picture_line" style="vertical-align: top;padding: 0px">
+    <TD class="scFormDataOdd css_picture_line" id="hidden_field_data_picture" style="<?php echo $sStyleHidden_picture; ?>vertical-align: top;"><table style="border-width: 0px; border-collapse: collapse; width: 100%"><tr><td  class="scFormDataFontOdd css_picture_line" style="vertical-align: top;padding: 0px">
  <?php $this->NM_ajax_info['varList'][] = array("var_ajax_img_picture" => $out1_picture); ?><script>var var_ajax_img_picture = '<?php echo $out1_picture; ?>';</script><input type="hidden" name="temp_out_picture" value="<?php echo $this->form_encode_input($out_picture); ?>" /><input type="hidden" name="temp_out1_picture" value="<?php echo $this->form_encode_input($out1_picture); ?>" /><?php if (!empty($out_picture)) {  echo "<a  href=\"javascript:nm_mostra_img(var_ajax_img_picture, '" . $this->nmgp_return_img['picture'][0] . "', '" . $this->nmgp_return_img['picture'][1] . "')\"><img id=\"id_ajax_img_picture\"  border=\"0\" src=\"$out_picture\"></a>"; } else {  echo "<img id=\"id_ajax_img_picture\" border=\"0\" style=\"display: none\">"; } ?><br>
 <?php if ($bTestReadOnly && $this->nmgp_opcao != "novo" && isset($this->nmgp_cmp_readonly["picture"]) &&  $this->nmgp_cmp_readonly["picture"] == "on") { 
 
@@ -919,7 +922,7 @@ $this->displayAppHeader();
 <?php } else { $sc_hidden_no++; ?>
 
     <TD class="scFormLabelOdd scUiLabelWidthFix css_login_label" id="hidden_field_label_login" style="<?php echo $sStyleHidden_login; ?>"><span id="id_label_login"><?php echo $this->nm_new_label['login']; ?></span><?php if (!isset($_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['php_cmp_required']['login']) || $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['php_cmp_required']['login'] == "on") { ?> <span class="scFormRequiredOdd">*</span> <?php }?></TD>
-    <TD class="scFormDataOdd css_login_line" id="hidden_field_data_login" style="<?php echo $sStyleHidden_login; ?>"><table style="border-width: 0px; border-collapse: collapse; width: 100%"><tr><td  class="scFormDataFontOdd css_login_line" style="vertical-align: top;padding: 0px">
+    <TD class="scFormDataOdd css_login_line" id="hidden_field_data_login" style="<?php echo $sStyleHidden_login; ?>vertical-align: top;"><table style="border-width: 0px; border-collapse: collapse; width: 100%"><tr><td  class="scFormDataFontOdd css_login_line" style="vertical-align: top;padding: 0px">
 <?php if ($bTestReadOnly && ($this->nmgp_opcao != "novo" && $this->nmgp_opc_ant != "incluir") || (isset($this->nmgp_cmp_readonly["login"]) &&  $this->nmgp_cmp_readonly["login"] == "on")) { 
 
  ?>
@@ -973,7 +976,7 @@ $this->displayAppHeader();
 <?php } else { $sc_hidden_no++; ?>
 
     <TD class="scFormLabelOdd scUiLabelWidthFix css_pswd_label" id="hidden_field_label_pswd" style="<?php echo $sStyleHidden_pswd; ?>"><span id="id_label_pswd"><?php echo $this->nm_new_label['pswd']; ?></span><?php if (!isset($_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['php_cmp_required']['pswd']) || $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['php_cmp_required']['pswd'] == "on") { ?> <span class="scFormRequiredOdd">*</span> <?php }?></TD>
-    <TD class="scFormDataOdd css_pswd_line" id="hidden_field_data_pswd" style="<?php echo $sStyleHidden_pswd; ?>"><table style="border-width: 0px; border-collapse: collapse; width: 100%"><tr><td  class="scFormDataFontOdd css_pswd_line" style="vertical-align: top;padding: 0px">
+    <TD class="scFormDataOdd css_pswd_line" id="hidden_field_data_pswd" style="<?php echo $sStyleHidden_pswd; ?>vertical-align: top;"><table style="border-width: 0px; border-collapse: collapse; width: 100%"><tr><td  class="scFormDataFontOdd css_pswd_line" style="vertical-align: top;padding: 0px">
 <?php if ($bTestReadOnly && $this->nmgp_opcao != "novo" && isset($this->nmgp_cmp_readonly["pswd"]) &&  $this->nmgp_cmp_readonly["pswd"] == "on") { ?>
 <input type="hidden" name="pswd" value="">
 <?php } else { ?>
@@ -1024,7 +1027,7 @@ $this->displayAppHeader();
 <?php } else { $sc_hidden_no++; ?>
 
     <TD class="scFormLabelOdd scUiLabelWidthFix css_confirm_pswd_label" id="hidden_field_label_confirm_pswd" style="<?php echo $sStyleHidden_confirm_pswd; ?>"><span id="id_label_confirm_pswd"><?php echo $this->nm_new_label['confirm_pswd']; ?></span><?php if (!isset($_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['php_cmp_required']['confirm_pswd']) || $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['php_cmp_required']['confirm_pswd'] == "on") { ?> <span class="scFormRequiredOdd">*</span> <?php }?></TD>
-    <TD class="scFormDataOdd css_confirm_pswd_line" id="hidden_field_data_confirm_pswd" style="<?php echo $sStyleHidden_confirm_pswd; ?>"><table style="border-width: 0px; border-collapse: collapse; width: 100%"><tr><td  class="scFormDataFontOdd css_confirm_pswd_line" style="vertical-align: top;padding: 0px">
+    <TD class="scFormDataOdd css_confirm_pswd_line" id="hidden_field_data_confirm_pswd" style="<?php echo $sStyleHidden_confirm_pswd; ?>vertical-align: top;"><table style="border-width: 0px; border-collapse: collapse; width: 100%"><tr><td  class="scFormDataFontOdd css_confirm_pswd_line" style="vertical-align: top;padding: 0px">
 <?php if ($bTestReadOnly && $this->nmgp_opcao != "novo" && isset($this->nmgp_cmp_readonly["confirm_pswd"]) &&  $this->nmgp_cmp_readonly["confirm_pswd"] == "on") { ?>
 <input type="hidden" name="confirm_pswd" value="">
 <?php } else { ?>
@@ -1075,7 +1078,7 @@ $this->displayAppHeader();
 <?php } else { $sc_hidden_no++; ?>
 
     <TD class="scFormLabelOdd scUiLabelWidthFix css_name_label" id="hidden_field_label_name" style="<?php echo $sStyleHidden_name; ?>"><span id="id_label_name"><?php echo $this->nm_new_label['name']; ?></span></TD>
-    <TD class="scFormDataOdd css_name_line" id="hidden_field_data_name" style="<?php echo $sStyleHidden_name; ?>"><table style="border-width: 0px; border-collapse: collapse; width: 100%"><tr><td  class="scFormDataFontOdd css_name_line" style="vertical-align: top;padding: 0px">
+    <TD class="scFormDataOdd css_name_line" id="hidden_field_data_name" style="<?php echo $sStyleHidden_name; ?>vertical-align: top;"><table style="border-width: 0px; border-collapse: collapse; width: 100%"><tr><td  class="scFormDataFontOdd css_name_line" style="vertical-align: top;padding: 0px">
 <?php if ($bTestReadOnly && $this->nmgp_opcao != "novo" && isset($this->nmgp_cmp_readonly["name"]) &&  $this->nmgp_cmp_readonly["name"] == "on") { 
 
  ?>
@@ -1129,7 +1132,7 @@ $this->displayAppHeader();
 <?php } else { $sc_hidden_no++; ?>
 
     <TD class="scFormLabelOdd scUiLabelWidthFix css_email_label" id="hidden_field_label_email" style="<?php echo $sStyleHidden_email; ?>"><span id="id_label_email"><?php echo $this->nm_new_label['email']; ?></span><?php if (!isset($_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['php_cmp_required']['email']) || $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['php_cmp_required']['email'] == "on") { ?> <span class="scFormRequiredOdd">*</span> <?php }?></TD>
-    <TD class="scFormDataOdd css_email_line" id="hidden_field_data_email" style="<?php echo $sStyleHidden_email; ?>"><table style="border-width: 0px; border-collapse: collapse; width: 100%"><tr><td  class="scFormDataFontOdd css_email_line" style="vertical-align: top;padding: 0px">
+    <TD class="scFormDataOdd css_email_line" id="hidden_field_data_email" style="<?php echo $sStyleHidden_email; ?>vertical-align: top;"><table style="border-width: 0px; border-collapse: collapse; width: 100%"><tr><td  class="scFormDataFontOdd css_email_line" style="vertical-align: top;padding: 0px">
 <?php if ($bTestReadOnly && $this->nmgp_opcao != "novo" && isset($this->nmgp_cmp_readonly["email"]) &&  $this->nmgp_cmp_readonly["email"] == "on") { 
 
  ?>
@@ -1210,7 +1213,7 @@ $this->displayAppHeader();
 ?> 
 
     <TD class="scFormLabelOdd scUiLabelWidthFix css_active_label" id="hidden_field_label_active" style="<?php echo $sStyleHidden_active; ?>"><span id="id_label_active"><?php echo $this->nm_new_label['active']; ?></span></TD>
-    <TD class="scFormDataOdd css_active_line" id="hidden_field_data_active" style="<?php echo $sStyleHidden_active; ?>"><table style="border-width: 0px; border-collapse: collapse; width: 100%"><tr><td  class="scFormDataFontOdd css_active_line" style="vertical-align: top;padding: 0px">
+    <TD class="scFormDataOdd css_active_line" id="hidden_field_data_active" style="<?php echo $sStyleHidden_active; ?>vertical-align: top;"><table style="border-width: 0px; border-collapse: collapse; width: 100%"><tr><td  class="scFormDataFontOdd css_active_line" style="vertical-align: top;padding: 0px">
 <?php if ($bTestReadOnly && $this->nmgp_opcao != "novo" && isset($this->nmgp_cmp_readonly["active"]) &&  $this->nmgp_cmp_readonly["active"] == "on") { 
 
 $active_look = "";
@@ -1298,7 +1301,7 @@ $active_look = "";
 ?> 
 
     <TD class="scFormLabelOdd scUiLabelWidthFix css_groups_label" id="hidden_field_label_groups" style="<?php echo $sStyleHidden_groups; ?>"><span id="id_label_groups"><?php echo $this->nm_new_label['groups']; ?></span></TD>
-    <TD class="scFormDataOdd css_groups_line" id="hidden_field_data_groups" style="<?php echo $sStyleHidden_groups; ?>"><table style="border-width: 0px; border-collapse: collapse; width: 100%"><tr><td  class="scFormDataFontOdd css_groups_line" style="vertical-align: top;padding: 0px"> 
+    <TD class="scFormDataOdd css_groups_line" id="hidden_field_data_groups" style="<?php echo $sStyleHidden_groups; ?>vertical-align: top;"><table style="border-width: 0px; border-collapse: collapse; width: 100%"><tr><td  class="scFormDataFontOdd css_groups_line" style="vertical-align: top;padding: 0px"> 
 <?php  
 $nmgp_def_dados = "" ; 
 if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['Lookup_groups']))
@@ -1438,6 +1441,112 @@ else
 <?php  }?>
 </td></tr><tr><td style="vertical-align: top; padding: 0"><table class="scFormFieldErrorTable" style="display: none" id="id_error_display_groups_frame"><tr><td class="scFormFieldErrorMessage"><span id="id_error_display_groups_text"></span></td></tr></table></td></tr></table></TD>
    
+<?php if ($sc_hidden_yes > 0 && $sc_hidden_no > 0) { ?>
+
+
+    <TD class="scFormDataOdd" colspan="<?php echo $sc_hidden_yes * 2; ?>" >&nbsp;</TD>
+<?php } 
+?> 
+
+
+   </tr>
+<?php $sc_hidden_no = 1; ?>
+</TABLE></div><!-- bloco_f -->
+   </td>
+   </tr></table>
+   <a name="bloco_1"></a>
+   <table width="100%" height="100%" cellpadding="0" cellspacing=0><tr valign="top"><td width="100%" height="">
+<div id="div_hidden_bloco_1"><!-- bloco_c -->
+<TABLE align="center" id="hidden_bloco_1" class="scFormTable<?php echo $this->classes_100perc_fields['table'] ?>" width="100%" style="height: 100%;"><?php if ($sc_hidden_no > 0) { echo "<tr>"; }; 
+      $sc_hidden_yes = 0; $sc_hidden_no = 0; ?>
+
+
+   <?php
+    if (!isset($this->nm_new_label['couses']))
+    {
+        $this->nm_new_label['couses'] = "Cursadas";
+    }
+?>
+<?php
+   $nm_cor_fun_cel  = (isset($nm_cor_fun_cel) && $nm_cor_fun_cel  == $this->Ini->cor_grid_impar ? $this->Ini->cor_grid_par : $this->Ini->cor_grid_impar);
+   $nm_img_fun_cel  = (isset($nm_img_fun_cel) && $nm_img_fun_cel  == $this->Ini->img_fun_imp    ? $this->Ini->img_fun_par  : $this->Ini->img_fun_imp);
+   $couses = $this->couses;
+   $sStyleHidden_couses = '';
+   if (isset($this->nmgp_cmp_hidden['couses']) && $this->nmgp_cmp_hidden['couses'] == 'off')
+   {
+       unset($this->nmgp_cmp_hidden['couses']);
+       $sStyleHidden_couses = 'display: none;';
+   }
+   $bTestReadOnly = true;
+   $sStyleReadLab_couses = 'display: none;';
+   $sStyleReadInp_couses = '';
+   if (/*$this->nmgp_opcao != "novo" && */isset($this->nmgp_cmp_readonly['couses']) && $this->nmgp_cmp_readonly['couses'] == 'on')
+   {
+       $bTestReadOnly = false;
+       unset($this->nmgp_cmp_readonly['couses']);
+       $sStyleReadLab_couses = '';
+       $sStyleReadInp_couses = 'display: none;';
+   }
+?>
+<?php if (isset($this->nmgp_cmp_hidden['couses']) && $this->nmgp_cmp_hidden['couses'] == 'off') { $sc_hidden_yes++;  ?>
+<input type="hidden" name="couses" value="<?php echo $this->form_encode_input($couses) . "\">"; ?>
+<?php } else { $sc_hidden_no++; ?>
+
+    <TD class="scFormLabelOdd scUiLabelWidthFix css_couses_label" id="hidden_field_label_couses" style="<?php echo $sStyleHidden_couses; ?>"><span id="id_label_couses"><?php echo $this->nm_new_label['couses']; ?></span></TD>
+    <TD class="scFormDataOdd css_couses_line" id="hidden_field_data_couses" style="<?php echo $sStyleHidden_couses; ?>vertical-align: top;"><table style="border-width: 0px; border-collapse: collapse; width: 100%"><tr><td width="100%" class="scFormDataFontOdd css_couses_line" style="vertical-align: top;padding: 0px">
+<?php
+ if (isset($_SESSION['scriptcase']['dashboard_scinit'][ $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['dashboard_info']['dashboard_app'] ][ $this->Ini->sc_lig_target['C_@scinf_couses'] ]) && '' != $_SESSION['scriptcase']['dashboard_scinit'][ $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['dashboard_info']['dashboard_app'] ][ $this->Ini->sc_lig_target['C_@scinf_couses'] ]) {
+     $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['sub_studentCourse_script_case_init'] = $_SESSION['scriptcase']['dashboard_scinit'][ $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['dashboard_info']['dashboard_app'] ][ $this->Ini->sc_lig_target['C_@scinf_couses'] ];
+ }
+ else {
+     $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['sub_studentCourse_script_case_init'] = $this->Ini->sc_page;
+ }
+ $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['sub_studentCourse_script_case_init'] ]['sub_studentCourse']['embutida_proc']  = false;
+ $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['sub_studentCourse_script_case_init'] ]['sub_studentCourse']['embutida_form']  = true;
+ $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['sub_studentCourse_script_case_init'] ]['sub_studentCourse']['embutida_call']  = true;
+ $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['sub_studentCourse_script_case_init'] ]['sub_studentCourse']['embutida_multi'] = false;
+ $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['sub_studentCourse_script_case_init'] ]['sub_studentCourse']['embutida_liga_form_insert'] = 'on';
+ $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['sub_studentCourse_script_case_init'] ]['sub_studentCourse']['embutida_liga_form_update'] = 'on';
+ $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['sub_studentCourse_script_case_init'] ]['sub_studentCourse']['embutida_liga_form_delete'] = 'on';
+ $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['sub_studentCourse_script_case_init'] ]['sub_studentCourse']['embutida_liga_form_btn_nav'] = 'off';
+ $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['sub_studentCourse_script_case_init'] ]['sub_studentCourse']['embutida_liga_grid_edit'] = 'on';
+ $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['sub_studentCourse_script_case_init'] ]['sub_studentCourse']['embutida_liga_grid_edit_link'] = 'on';
+ $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['sub_studentCourse_script_case_init'] ]['sub_studentCourse']['embutida_liga_qtd_reg'] = '10';
+ $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['sub_studentCourse_script_case_init'] ]['sub_studentCourse']['embutida_liga_tp_pag'] = 'parcial';
+ $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['sub_studentCourse_script_case_init'] ]['sub_studentCourse']['embutida_parms'] = "NM_btn_insert*scinS*scoutNM_btn_update*scinS*scoutNM_btn_delete*scinS*scoutNM_btn_navega*scinN*scout";
+ $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['sub_studentCourse_script_case_init'] ]['sub_studentCourse']['foreign_key']['student'] = $this->nmgp_dados_form['login'];
+ $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['sub_studentCourse_script_case_init'] ]['sub_studentCourse']['where_filter'] = "student = '" . $this->nmgp_dados_form['login'] . "'";
+ $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['sub_studentCourse_script_case_init'] ]['sub_studentCourse']['where_detal']  = "student = '" . $this->nmgp_dados_form['login'] . "'";
+ if ($_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['sub_studentCourse_script_case_init'] ]['sct_form_edit_users']['total'] < 0)
+ {
+     $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['sub_studentCourse_script_case_init'] ]['sub_studentCourse']['where_filter'] = "1 <> 1";
+ }
+ $sDetailSrc = ('novo' == $this->nmgp_opcao) ? 'sct_form_edit_users_empty.htm' : $this->Ini->link_sub_studentCourse_edit . '?script_case_init=' . $this->form_encode_input($this->Ini->sc_page) . '&script_case_detail=Y';
+if (isset($this->Ini->sc_lig_target['C_@scinf_couses']) && 'nmsc_iframe_liga_sub_studentCourse' != $this->Ini->sc_lig_target['C_@scinf_couses'])
+{
+    if ('novo' != $this->nmgp_opcao)
+    {
+        $sDetailSrc .= '&under_dashboard=1&dashboard_app=' . $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['dashboard_info']['dashboard_app'] . '&own_widget=' . $this->Ini->sc_lig_target['C_@scinf_couses'] . '&parent_widget=' . $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['dashboard_info']['own_widget'];
+        $sDetailSrc  = $this->addUrlParam($sDetailSrc, 'script_case_init', $_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users']['sub_studentCourse_script_case_init']);
+    }
+?>
+<script type="text/javascript">
+$(function() {
+    scOpenMasterDetail("<?php echo $this->Ini->sc_lig_target['C_@scinf_couses'] ?>", "<?php echo $sDetailSrc; ?>");
+});
+</script>
+<?php
+}
+else
+{
+?>
+<iframe border="0" id="nmsc_iframe_liga_sub_studentCourse"  marginWidth="0" marginHeight="0" frameborder="0" valign="top" height="100" width="100%" name="nmsc_iframe_liga_sub_studentCourse"  scrolling="auto" src="<?php echo $sDetailSrc; ?>"></iframe>
+<?php
+}
+?>
+</td></tr><tr><td style="vertical-align: top; padding: 0"><table class="scFormFieldErrorTable" style="display: none" id="id_error_display_couses_frame"><tr><td class="scFormFieldErrorMessage"><span id="id_error_display_couses_text"></span></td></tr></table></td></tr></table></TD>
+   <?php }?>
+
 <?php if ($sc_hidden_yes > 0 && $sc_hidden_no > 0) { ?>
 
 
@@ -1677,13 +1786,13 @@ unset($NM_ult_sep);
 ?>
 <script> 
 <?php
-  $nm_sc_blocos_da_pag = array(0);
+  $nm_sc_blocos_da_pag = array(0,1);
 
   foreach ($this->Ini->nm_hidden_blocos as $bloco => $hidden)
   {
       if ($hidden == "off" && in_array($bloco, $nm_sc_blocos_da_pag))
       {
-          echo "document.getElementById('hidden_bloco_" . $bloco . "').style.display = 'none';";
+          echo "document.getElementById('hidden_bloco_" . $bloco . "').style.visibility = 'hidden';";
           if (isset($nm_sc_blocos_aba[$bloco]))
           {
                echo "document.getElementById('id_tabs_" . $nm_sc_blocos_aba[$bloco] . "_" . $bloco . "').style.display = 'none';";
@@ -1691,6 +1800,20 @@ unset($NM_ult_sep);
       }
   }
 ?>
+$(window).bind("load", function() {
+<?php
+  $nm_sc_blocos_da_pag = array(0,1);
+
+  foreach ($this->Ini->nm_hidden_blocos as $bloco => $hidden)
+  {
+      if ($hidden == "off" && in_array($bloco, $nm_sc_blocos_da_pag))
+      {
+          echo "document.getElementById('hidden_bloco_" . $bloco . "').style.display = 'none';";
+          echo "document.getElementById('hidden_bloco_" . $bloco . "').style.visibility = '';";
+      }
+  }
+?>
+});
 </script> 
 <script>
 <?php

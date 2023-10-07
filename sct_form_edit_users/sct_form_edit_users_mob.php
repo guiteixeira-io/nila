@@ -188,6 +188,7 @@ class sct_form_edit_users_mob_ini
    var $path_atual;
    var $Gd_missing;
    var $sc_site_ssl;
+   var $link_sub_studentCourse_mob_edit;
    var $nm_cont_lin;
    var $nm_limite_lin;
    var $nm_limite_lin_prt;
@@ -299,8 +300,8 @@ class sct_form_edit_users_mob_ini
       $this->nm_dt_criacao   = "20230829"; 
       $this->nm_hr_criacao   = "004947"; 
       $this->nm_autor_alt    = "admin"; 
-      $this->nm_dt_ult_alt   = "20230912"; 
-      $this->nm_hr_ult_alt   = "172806"; 
+      $this->nm_dt_ult_alt   = "20231007"; 
+      $this->nm_hr_ult_alt   = "032108"; 
       list($NM_usec, $NM_sec) = explode(" ", microtime()); 
       $this->nm_timestamp    = (float) $NM_sec; 
       $this->nm_app_version  = "1.0.0"; 
@@ -640,6 +641,16 @@ class sct_form_edit_users_mob_ini
           echo "</body>";
           echo "</html>";
           exit;
+      }
+      $Tmp_apl_lig = "sub_studentCourse_mob";
+      if (is_file($this->root . $this->path_link . "_lib/_app_data/sub_studentCourse_mob_ini.php"))
+      {
+          require($this->root . $this->path_link . "_lib/_app_data/sub_studentCourse_mob_ini.php");
+          $Tmp_apl_lig = $arr_data['friendly_url'];
+          if (isset($arr_data['md5']) && trim($arr_data['md5']) == "LigMd5")
+          {
+              $this->sc_lig_md5["sub_studentCourse_mob"] = 'S';
+          }
       }
       $PHP_ver = str_replace(".", "", phpversion()); 
       if (substr($PHP_ver, 0, 3) < 434)
@@ -1014,6 +1025,9 @@ class sct_form_edit_users_mob_ini
       {
           $_SESSION['sc_session'][$this->sc_page]['sct_form_edit_users_mob']['dashboard_info']['maximized'] = 1 == $_GET['maximized'];
       }
+      $this->link_sub_studentCourse_mob_edit = $this->sc_protocolo . $this->server . $this->path_link . "" . SC_dir_app_name('sub_studentCourse') . "/";
+      $this->sc_lig_target["C_@scinf_couses"] = 'nmsc_iframe_liga_sub_studentCourse_mob';
+      $this->sc_lig_iframe["nmsc_iframe_liga_sub_studentCourse_mob"] = 'nmsc_iframe_liga_sub_studentCourse_mob';
       if ($_SESSION['sc_session'][$this->sc_page]['sct_form_edit_users_mob']['dashboard_info']['under_dashboard'])
       {
           $sTmpDashboardApp = $_SESSION['sc_session'][$this->sc_page]['sct_form_edit_users_mob']['dashboard_info']['dashboard_app'];
@@ -1097,7 +1111,7 @@ class sct_form_edit_users_mob_ini
       $this->nm_bases_odbc       = array("odbc");
       $this->nm_bases_progress   = array("progress", "pdo_progress_odbc");
       $this->nm_bases_all        = array_merge($this->nm_bases_access, $this->nm_bases_ibase, $this->nm_bases_mysql, $this->nm_bases_postgres, $this->nm_bases_sqlite, $this->nm_bases_sybase, $this->nm_bases_vfp, $this->nm_bases_odbc, $this->nm_bases_progress);
-      $_SESSION['scriptcase']['nm_bases_security']  = "enc_nm_enc_v1DcJeH9BiZ1rwHQFaHgrwDkB/HEBmVErqDcFYZ1BOD1rwHQF7HgrKZSXeDWX7ZuJeHQJKDQJsZ1vCV5FGHuNOV9FeDWB3VoX7HQJmZ1F7Z1vmD5rqDEBOHArCDWF/DoraDcXGZSFUHIrwV5JwHgrKV9BUDuX7VEBiDcFYH9B/HANOD5XGDEvsHErCHEXKZuJeDcJeDuFaHAveD5NUHgNKDkBOV5FYHMBiD9XOZ1F7HArYD5BiDMBYVkJGDWr/DoB/D9XsH9FGDSN7D5JwDMvmVcFKV5BmVoBqD9BsZkFGHAvsD5FaDErKZSXeH5FYZuFaDcXOZSX7HAN7V5JwHuzGVIBOV5FYVoJwDcJUZ1B/D1rKV5JeDEvsHENiV5FaZuB/D9NwZSX7HABYV5BOHuzGDkB/V5X7DoXGD9BsH9B/HAvCV5FUDErKHEFiDuJeDoBOHQJKDQJsZ1vCV5FGHuNOV9FeDWXCHIFUHQXOZ1X7HArKD5rqHgveZSJqH5BmZuB/DcJeZSFGHANOHuBiHgvsVIBsDWFYDoX7HQJmZSBOHAN7HQJwDEBODkFeH5FYVoFGHQJKDQFaZ1zGVWFaDMBYV9FeDur/VoBiHQBiZ1BOD1zGV5X7HgBOHENiHEXCHIFUHQNmZ9XGHIvsD5F7DMBYVcXKDurGVEX7DcNmZSBOHIBOV5X7HgBOHArsDWXCHIXGHQXODQFUDSvCV5FGHuNOVcFKHEFYVoBqDcBwH9BqHINKZMJwDMveVkJ3DuFaHIX7HQFYZSBiD1vOD5F7DMvODkBsDur/HMJeHQBiZSBODSvmV5X7DMveHEJqH5X/DoJeDcXGDQFaZ1zGD5F7DMBYVcB/DWJeHIX7HQBiZ1FGHIBOD5rqDEBOHEFiHEFqDoF7DcJUZSBiDSzGVWFaHgvOVcXKDWF/HIF7HQBsH9BqHINaV5X7HgNOHENiDWX7HMFGDcBiDQFaHIvsD5F7DMBOZSJqHEX/VoFGDcNmZkFGHAvCV5X7HgNKHErCV5FqHMJsHQNmDQFUDSzGV5FGHuNOVcFKHEFYVoBqDcBwH9FaD1rwD5rqDMNKZSJGDWF/DoraD9NmDQJsHIrKV5raDMvmZSJqHEBmVoraHQXGZ1rqHAN7D5FaDMzGZSJGDWr/DoraD9XsDuBOHAveHuBiHuvmVcBODuFqDoraD9XOVIJwZ1BeHuXGDMzGHEJGH5F/HMBqDcJeDQX7DSrwD5JwDMrwDkFCDWBmVEFGHQFYZ1FaHArKV5XGDErKHErsDurmDoBqHQXGZSFGHIrwVWXGHuBYDkFCDWJeVoraD9BsH9FaD1vsD5FaDErKZSXeH5FYDoJeD9JKDQFGHAveVWJsHgvsDkBODWFaVoFGDcJUZkFUZ1BOD5rqDEBOHEFiHEFqDoF7DcJUZSFGD1BeV5FGHgrYDkBODur/VoraD9XOH9FaD1rKD5BiHgvsHErCDWX7HMJsDcXGDQFaZ1rwHQFaDMrwV9FeDuX7HMraHQXOZkFGHArKV5FUDMrYZSXeV5FqHIJsHQBiZ9XGHANKV5BODMvOZSJqDWB3VEFGHQNmZkBiHArYHQJwDEBODkFeH5FYVoFGHQJKDQB/HABYV5FGHgrKVIBsDWrmVoF7HQBsZ1FGZ1NOHQFUDEvsHENiDuJeHMB/D9JKDQJsHABYD5XGDMvmVcFKV5BmVoBqD9BsZkFGHArKHQraHgBeHArCV5XCHIFGHQNwDQFaDSBYHQBODMzGV9FiDWXCHIJsHQXOZkFGHArKV5FUDMrYZSXeV5FqHIJsHQJeDuBOZ1vCV5Je";
+      $_SESSION['scriptcase']['nm_bases_security']  = "enc_nm_enc_v1D9NmH9BiHIvsVWBODMBOVIBOHEX7HMF7HQJmH9BOD1rKHQrqHgrKVkJ3HEXCZuJeHQJKDuFaHAveD5NUHgNKDkBOV5FYHMBiHQNmZkFGZ1vOZMJwHgvsHArCDuJeDoJsHQNmDQFUD1vOD5F7DMNOVcXKHEF/HMJwHQBiVINUHINKV5X7HgvsHENiDurmZuJeDcBiH9FUHINaD5F7DMNOV9BUDWF/HMFGHQNwZ1BODSvmD5rqDEBOHEFiHEFqDoF7DcJUZSBiHIvsVWFaHgvOVIBsDuX7HMJeHQXGH9BqD1zGV5X7HgveZSJ3DuJeHIX7HQNmH9FUDSvCD5F7HgvOVcB/H5B7VoX7DcFYZ1FGZ1vOV5X7HgvsHEJqDWr/HMJeHQNmDQFaHINaV5FGHuNOVcFKHEFYVoBqDcBwH9BqDSvOZMJwDMveHENiDWXCHMBqHQXsZSBiHIBOD5F7DMBOVcXKDWFaHIXGDcNmZ1FGHINKV5X7HgNODkB/HEB7DoXGDcBiDuFaHAvmD5F7DMrYVcFeV5FYHIBiHQBiZ1BODSvOD5rqDEBOHEFiHEFqDoF7DcJUZSFGD1BeV5FGHgrYDkFCDWXCVoB/D9BiZ1F7HIveD5BiHgBeDkB/HEB3DoB/HQFYDQJwHANOV5JwHgrKDkFCDWJeVoB/D9BsZkFUHArKHQraDEBeHEXeDuFYVoB/D9NwZ9rqZ1rwHQBOHgrKVcFCH5XCHIF7DcBqZ1B/DSBeV5FaHgvCZSJGDWB3ZuXGHQXGDQFGHAveD5BOHuzGVcBUDurGVoF7HQFYH9FaHIBeZMBODEvsZSJGDWr/DoB/D9XsZSFGD1NKV5JwHuzGDkBOH5FqVoX7D9JmZ1FaHArKZMB/DMBYZSXeDWX7DoXGDcBwDuBOZ1NaV5FGHuNOVcFKHEFYVoBqDcBwH9FaD1rwD5rqDMNKZSXeDuJeDoB/D9NwZSFGD1veV5raDMBYVcFeDWFaHIBiDcFYZ1FGZ1BeHuJwHgvCHArCDuFaHIB/HQNwDuFaHAveD5NUHgNKDkBOV5FYHMBiDcNmZSB/HABYZMXGDErKHEJqDuJeHMBODcJeH9X7HANOV5FUDMvmV9FeDWXCDoJsDcBwH9B/Z1rYHQJwHgvCZSJGH5FYDoF7D9NmDQB/Z1rwD5JeHuNODkFCDWJeDoXGDcNwH9B/HArYV5B/DEBeHEJGH5F/DoFUD9NmDQFGD1BeD5JwHuzGVIFCH5FqVoJwD9BsZ1B/Z1BeD5F7HgvCVkJGDWF/VoJeD9NwDQFaHAveD5NUHgNKDkBOV5FYHMBiHQJmZ1F7Z1vmD5rqDEBOHArCDWF/HIrqDcXGZSFGHABYD5FaDMvOZSJqDur/DoNUD9BsZSBODSNOHQXGDEBOHEJqDWF/HMJeHQJKDQJsZ1vCV5FGHuNOV9FeDWXCVorqDcJUZ1BOZ1BeD5F7DErKVkXeV5FaVoBiD9FYH9X7HABYHuFaHuNOZSrCH5FqDoXGHQJmZ1BiHAvCD5BqHgveDkXKH5X/DoBqHQBiDQBqHANKVWXGDMvmVcFKV5BmVoBqD9BsZkFGHArKZMB/DMvCHErsDWX7HMJsHQJKZSFGDSN7V5FaHuNOV9BUDWBmVEF7D9JmZSFaD1NaZMFaHgBeHEFiV5B3DoF7D9XsDuFaHAveHuBiDMvmV9FeV5F/HMXGHQXOZ1FGDSrYHuXGHgrKHAFKDWF/HMBiHQNwDuFaHAveD5NUHgNKDkBOV5FYHMBiHQBqZkFUZ1vmD5Bq";
       $this->prep_conect();
       $this->conectDB();
       if (!in_array(strtolower($this->nm_tpbanco), $this->nm_bases_all))
@@ -2024,6 +2038,11 @@ ob_start();
             $groups = NM_utf8_urldecode($_POST['rsargs'][0]);
             $script_case_init = NM_utf8_urldecode($_POST['rsargs'][1]);
         }
+        if ('ajax_sct_form_edit_users_mob_validate_couses' == $_POST['rs'])
+        {
+            $couses = NM_utf8_urldecode($_POST['rsargs'][0]);
+            $script_case_init = NM_utf8_urldecode($_POST['rsargs'][1]);
+        }
         if ('ajax_sct_form_edit_users_mob_submit_form' == $_POST['rs'])
         {
             $picture = NM_utf8_urldecode($_POST['rsargs'][0]);
@@ -2666,6 +2685,7 @@ ob_start();
     sajax_export("ajax_sct_form_edit_users_mob_validate_email");
     sajax_export("ajax_sct_form_edit_users_mob_validate_active");
     sajax_export("ajax_sct_form_edit_users_mob_validate_groups");
+    sajax_export("ajax_sct_form_edit_users_mob_validate_couses");
     sajax_export("ajax_sct_form_edit_users_mob_submit_form");
     sajax_export("ajax_sct_form_edit_users_mob_navigate_form");
     sajax_handle_client_request();
@@ -2832,6 +2852,25 @@ ob_start();
         $inicial_sct_form_edit_users_mob->contr_sct_form_edit_users_mob->controle();
         exit;
     } // ajax_validate_groups
+
+    function ajax_sct_form_edit_users_mob_validate_couses($couses, $script_case_init)
+    {
+        global $inicial_sct_form_edit_users_mob;
+        //register_shutdown_function("sct_form_edit_users_mob_pack_ajax_response");
+        $inicial_sct_form_edit_users_mob->contr_sct_form_edit_users_mob->NM_ajax_flag          = true;
+        $inicial_sct_form_edit_users_mob->contr_sct_form_edit_users_mob->NM_ajax_opcao         = 'validate_couses';
+        $inicial_sct_form_edit_users_mob->contr_sct_form_edit_users_mob->NM_ajax_info['param'] = array(
+                  'couses' => NM_utf8_urldecode($couses),
+                  'script_case_init' => NM_utf8_urldecode($script_case_init),
+                  'buffer_output' => true,
+                 );
+        if ($inicial_sct_form_edit_users_mob->contr_sct_form_edit_users_mob->NM_ajax_info['param']['buffer_output'])
+        {
+            ob_start();
+        }
+        $inicial_sct_form_edit_users_mob->contr_sct_form_edit_users_mob->controle();
+        exit;
+    } // ajax_validate_couses
 
     function ajax_sct_form_edit_users_mob_submit_form($picture, $login, $pswd, $confirm_pswd, $name, $email, $active, $groups, $picture_ul_name, $picture_ul_type, $picture_limpa, $nm_form_submit, $nmgp_url_saida, $nmgp_opcao, $nmgp_ancora, $nmgp_num_form, $nmgp_parms, $script_case_init, $csrf_token)
     {

@@ -530,7 +530,7 @@ function actionBar_getStateHide($buttonName)
    $this->Tot->Lookup = $this->Lookup;
    if (empty($_SESSION['sc_session'][$this->Ini->sc_page]['sct_grid_sec_apps']['qt_lin_grid']))
    { 
-       $_SESSION['sc_session'][$this->Ini->sc_page]['sct_grid_sec_apps']['qt_lin_grid'] = 10;
+       $_SESSION['sc_session'][$this->Ini->sc_page]['sct_grid_sec_apps']['qt_lin_grid'] = 7;
    }   
    if (isset($_SESSION['scriptcase']['sc_apl_conf']['sct_grid_sec_apps']['rows']) && !empty($_SESSION['scriptcase']['sc_apl_conf']['sct_grid_sec_apps']['rows']))
    {
@@ -1097,7 +1097,7 @@ $nm_saida->saida("                        <link rel=\"shortcut icon\" href=\"\">
            $nm_saida->saida("     var scSweetAlertConfirmButtonFAPos = \"" . $confirmButtonFAPos . "\";\r\n");
            $nm_saida->saida("     var scSweetAlertCancelButtonFAPos = \"" . $cancelButtonFAPos . "\";\r\n");
            $nm_saida->saida("   </script>\r\n");
-           $nm_saida->saida("   <script type=\"text/javascript\" src=\"sct_grid_sec_apps_jquery_4531.js\"></script>\r\n");
+           $nm_saida->saida("   <script type=\"text/javascript\" src=\"sct_grid_sec_apps_jquery_4061.js\"></script>\r\n");
            $nm_saida->saida("   <script type=\"text/javascript\" src=\"sct_grid_sec_apps_ajax.js\"></script>\r\n");
            $nm_saida->saida("   <script type=\"text/javascript\" src=\"sct_grid_sec_apps_message.js\"></script>\r\n");
            $nm_saida->saida("   <script type=\"text/javascript\">\r\n");

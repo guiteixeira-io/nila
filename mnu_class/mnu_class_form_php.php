@@ -390,13 +390,13 @@ if (!isset($this->sc_temp_aula)) {$this->sc_temp_aula = (isset($_SESSION['aula']
  $this->sc_temp_aula = $this->sc_script_name;
 
 if($this->sc_temp_aula!=NULL){	
-	    if (!isset($_SESSION['scriptcase']['sc_ult_apl_menu']) || !in_array("rpt_summary", $_SESSION['scriptcase']['sc_ult_apl_menu']))
+	    if (!isset($_SESSION['scriptcase']['sc_ult_apl_menu']) || !in_array("mnu_topic", $_SESSION['scriptcase']['sc_ult_apl_menu']))
        {
-           $_SESSION['scriptcase']['sc_ult_apl_menu'][] = "rpt_summary";
+           $_SESSION['scriptcase']['sc_ult_apl_menu'][] = "mnu_topic";
             if (isset($this->sc_temp_aula)) {$_SESSION['aula'] = $this->sc_temp_aula;}
  if (!isset($Campos_Mens_erro) || empty($Campos_Mens_erro))
  {
-$this->nmgp_redireciona_form($_SESSION['scriptcase']['sc_apl_menu_link'] . $this->tab_grupo[0] . "" . SC_dir_app_name('rpt_summary') . "/", "mnu_class_form_php.php", "","_self", 440, 630);
+$this->nmgp_redireciona_form($_SESSION['scriptcase']['sc_apl_menu_link'] . $this->tab_grupo[0] . "" . SC_dir_app_name('mnu_topic') . "/", "mnu_class_form_php.php", $_SESSION['aula'],"_self", 440, 630);
  };
        }
 

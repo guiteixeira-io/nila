@@ -58,8 +58,10 @@ class cdt_class_mob_apl
    var $link;
    var $ordenacao;
    var $sc_field_0;
+   var $curso;
    var $modulo;
    var $modulo_1;
+   var $summary;
    var $topico;
    var $nm_data;
    var $nmgp_opcao;
@@ -115,17 +117,9 @@ class cdt_class_mob_apl
           {
               $this->descricao = $this->NM_ajax_info['param']['descricao'];
           }
-          if (isset($this->NM_ajax_info['param']['icone']))
-          {
-              $this->icone = $this->NM_ajax_info['param']['icone'];
-          }
           if (isset($this->NM_ajax_info['param']['id']))
           {
               $this->id = $this->NM_ajax_info['param']['id'];
-          }
-          if (isset($this->NM_ajax_info['param']['link']))
-          {
-              $this->link = $this->NM_ajax_info['param']['link'];
           }
           if (isset($this->NM_ajax_info['param']['modulo']))
           {
@@ -166,14 +160,6 @@ class cdt_class_mob_apl
           if (isset($this->NM_ajax_info['param']['ordenacao']))
           {
               $this->ordenacao = $this->NM_ajax_info['param']['ordenacao'];
-          }
-          if (isset($this->NM_ajax_info['param']['pai']))
-          {
-              $this->pai = $this->NM_ajax_info['param']['pai'];
-          }
-          if (isset($this->NM_ajax_info['param']['sc_field_0']))
-          {
-              $this->sc_field_0 = $this->NM_ajax_info['param']['sc_field_0'];
           }
           if (isset($this->NM_ajax_info['param']['script_case_init']))
           {
@@ -354,8 +340,8 @@ class cdt_class_mob_apl
           }
           if (!isset($_SESSION['sc_session'][$script_case_init]['cdt_class_mob']['total']))
           {
-              $_SESSION['sc_session'][ $_SESSION['sc_session'][$script_case_init]['cdt_class_mob']['cdt_topic_mob_script_case_init'] ]['cdt_topic_mob']['reg_start'] = "";
-              unset($_SESSION['sc_session'][ $_SESSION['sc_session'][$script_case_init]['cdt_class_mob']['cdt_topic_mob_script_case_init'] ]['cdt_topic_mob']['total']);
+              $_SESSION['sc_session'][ $_SESSION['sc_session'][$script_case_init]['cdt_class_mob']['sub_topic_mob_script_case_init'] ]['sub_topic_mob']['reg_start'] = "";
+              unset($_SESSION['sc_session'][ $_SESSION['sc_session'][$script_case_init]['cdt_class_mob']['sub_topic_mob_script_case_init'] ]['sub_topic_mob']['total']);
           }
           if (isset($this->sc_redir_atualiz))
           {
@@ -860,6 +846,13 @@ class cdt_class_mob_apl
       if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class_mob']['dados_form']))
       {
           $this->nmgp_dados_form = $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class_mob']['dados_form'];
+          if (!isset($this->id)){$this->id = $this->nmgp_dados_form['id'];} 
+          if (!isset($this->pai)){$this->pai = $this->nmgp_dados_form['pai'];} 
+          if (!isset($this->icone)){$this->icone = $this->nmgp_dados_form['icone'];} 
+          if (!isset($this->link)){$this->link = $this->nmgp_dados_form['link'];} 
+          if (!isset($this->sc_field_0)){$this->sc_field_0 = $this->nmgp_dados_form['sc_field_0'];} 
+          if (!isset($this->curso)){$this->curso = $this->nmgp_dados_form['curso'];} 
+          if (!isset($this->summary)){$this->summary = $this->nmgp_dados_form['summary'];} 
       }
       $glo_senha_protect = (isset($_SESSION['scriptcase']['glo_senha_protect'])) ? $_SESSION['scriptcase']['glo_senha_protect'] : "S";
       $this->aba_iframe = false;
@@ -1041,13 +1034,25 @@ class cdt_class_mob_apl
       if ($this->nmgp_opcao == "excluir")
       {
           $GLOBALS['script_case_init'] = $this->Ini->sc_page;
-          $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class_mob']['cdt_topic_mob_script_case_init'] ]['cdt_topic_mob']['embutida_form'] = false;
-          $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class_mob']['cdt_topic_mob_script_case_init'] ]['cdt_topic_mob']['embutida_proc'] = true;
-          $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class_mob']['cdt_topic_mob_script_case_init'] ]['cdt_topic_mob']['reg_start'] = "";
-          unset($_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class_mob']['cdt_topic_mob_script_case_init'] ]['cdt_topic_mob']['total']);
-          require_once($this->Ini->root . $this->Ini->path_link  . SC_dir_app_name('cdt_topic_mob') . "/index.php");
-          require_once($this->Ini->root . $this->Ini->path_link  . SC_dir_app_name('cdt_topic_mob') . "/cdt_topic_mob_apl.php");
-          $this->cdt_topic_mob = new cdt_topic_mob_apl;
+          $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class_mob']['sub_topic_mob_script_case_init'] ]['sub_topic_mob']['embutida_form'] = false;
+          $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class_mob']['sub_topic_mob_script_case_init'] ]['sub_topic_mob']['embutida_proc'] = true;
+          $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class_mob']['sub_topic_mob_script_case_init'] ]['sub_topic_mob']['reg_start'] = "";
+          $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class_mob']['sub_topic_mob_script_case_init'] ]['sub_topic']['embutida_form'] = false;
+          $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class_mob']['sub_topic_mob_script_case_init'] ]['sub_topic']['embutida_proc'] = true;
+          $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class_mob']['sub_topic_mob_script_case_init'] ]['sub_topic']['reg_start'] = "";
+          unset($_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class_mob']['sub_topic_mob_script_case_init'] ]['sub_topic_mob']['total']);
+          $detailAppName = 'sub_topic_mob';
+          $detailAppObject = "sub_topic_mob";
+          $detailAppFolder = $this->Ini->root . $this->Ini->path_link  . SC_dir_app_name($detailAppName);
+          if (!@is_dir($detailAppFolder)) {
+              $detailAppName = substr($detailAppName, 0, -4);
+              $detailAppObject = substr($detailAppObject, 0, -4);
+              $detailAppFolder = $this->Ini->root . $this->Ini->path_link  . SC_dir_app_name($detailAppName);
+          }
+          $detailAppObject .= '_apl';
+          require_once($detailAppFolder . "/index.php");
+          require_once($detailAppFolder . "/{$detailAppName}_apl.php");
+          $this->sub_topic_mob = new $detailAppObject;
       }
       $this->NM_case_insensitive = false;
       $this->sc_evento = $this->nmgp_opcao;
@@ -1070,17 +1075,14 @@ class cdt_class_mob_apl
             if(!empty($img_width) && !empty($img_height)){
                 $sc_obj_img->setWidth($img_width);
                 $sc_obj_img->setHeight($img_height);
-            }            $sc_obj_img->createImg($_SERVER['DOCUMENT_ROOT'].$out1_img_cache);
+            }
+                $sc_obj_img->setManterAspecto(true);
+            $sc_obj_img->createImg($_SERVER['DOCUMENT_ROOT'].$out1_img_cache);
             echo $out1_img_cache;
                exit;
             }
-      if (isset($this->id)) { $this->nm_limpa_alfa($this->id); }
-      if (isset($this->pai)) { $this->nm_limpa_alfa($this->pai); }
-      if (isset($this->icone)) { $this->nm_limpa_alfa($this->icone); }
       if (isset($this->descricao)) { $this->nm_limpa_alfa($this->descricao); }
-      if (isset($this->link)) { $this->nm_limpa_alfa($this->link); }
       if (isset($this->ordenacao)) { $this->nm_limpa_alfa($this->ordenacao); }
-      if (isset($this->sc_field_0)) { $this->nm_limpa_alfa($this->sc_field_0); }
       if (isset($this->modulo)) { $this->nm_limpa_alfa($this->modulo); }
       if (isset($this->topico)) { $this->nm_limpa_alfa($this->topico); }
       $Campos_Crit       = "";
@@ -1101,6 +1103,13 @@ class cdt_class_mob_apl
    function loadFieldConfig()
    {
       $this->field_config = array();
+      //-- ordenacao
+      $this->field_config['ordenacao']               = array();
+      $this->field_config['ordenacao']['symbol_grp'] = $_SESSION['scriptcase']['reg_conf']['grup_num'];
+      $this->field_config['ordenacao']['symbol_fmt'] = $_SESSION['scriptcase']['reg_conf']['num_group_digit'];
+      $this->field_config['ordenacao']['symbol_dec'] = '';
+      $this->field_config['ordenacao']['symbol_neg'] = $_SESSION['scriptcase']['reg_conf']['simb_neg'];
+      $this->field_config['ordenacao']['format_neg'] = $_SESSION['scriptcase']['reg_conf']['neg_num'];
       //-- id
       $this->field_config['id']               = array();
       $this->field_config['id']['symbol_grp'] = $_SESSION['scriptcase']['reg_conf']['grup_num'];
@@ -1115,13 +1124,13 @@ class cdt_class_mob_apl
       $this->field_config['pai']['symbol_dec'] = '';
       $this->field_config['pai']['symbol_neg'] = $_SESSION['scriptcase']['reg_conf']['simb_neg'];
       $this->field_config['pai']['format_neg'] = $_SESSION['scriptcase']['reg_conf']['neg_num'];
-      //-- ordenacao
-      $this->field_config['ordenacao']               = array();
-      $this->field_config['ordenacao']['symbol_grp'] = $_SESSION['scriptcase']['reg_conf']['grup_num'];
-      $this->field_config['ordenacao']['symbol_fmt'] = $_SESSION['scriptcase']['reg_conf']['num_group_digit'];
-      $this->field_config['ordenacao']['symbol_dec'] = '';
-      $this->field_config['ordenacao']['symbol_neg'] = $_SESSION['scriptcase']['reg_conf']['simb_neg'];
-      $this->field_config['ordenacao']['format_neg'] = $_SESSION['scriptcase']['reg_conf']['neg_num'];
+      //-- curso
+      $this->field_config['curso']               = array();
+      $this->field_config['curso']['symbol_grp'] = $_SESSION['scriptcase']['reg_conf']['grup_num'];
+      $this->field_config['curso']['symbol_fmt'] = $_SESSION['scriptcase']['reg_conf']['num_group_digit'];
+      $this->field_config['curso']['symbol_dec'] = '';
+      $this->field_config['curso']['symbol_neg'] = $_SESSION['scriptcase']['reg_conf']['simb_neg'];
+      $this->field_config['curso']['format_neg'] = $_SESSION['scriptcase']['reg_conf']['neg_num'];
    }
 
    function controle()
@@ -1162,18 +1171,6 @@ class cdt_class_mob_apl
 //
       if ($this->NM_ajax_flag && 'validate_' == substr($this->NM_ajax_opcao, 0, 9))
       {
-          if ('validate_id' == $this->NM_ajax_opcao)
-          {
-              $this->Valida_campos($Campos_Crit, $Campos_Falta, $Campos_Erros, 'id');
-          }
-          if ('validate_pai' == $this->NM_ajax_opcao)
-          {
-              $this->Valida_campos($Campos_Crit, $Campos_Falta, $Campos_Erros, 'pai');
-          }
-          if ('validate_icone' == $this->NM_ajax_opcao)
-          {
-              $this->Valida_campos($Campos_Crit, $Campos_Falta, $Campos_Erros, 'icone');
-          }
           if ('validate_ordenacao' == $this->NM_ajax_opcao)
           {
               $this->Valida_campos($Campos_Crit, $Campos_Falta, $Campos_Erros, 'ordenacao');
@@ -1185,14 +1182,6 @@ class cdt_class_mob_apl
           if ('validate_descricao' == $this->NM_ajax_opcao)
           {
               $this->Valida_campos($Campos_Crit, $Campos_Falta, $Campos_Erros, 'descricao');
-          }
-          if ('validate_link' == $this->NM_ajax_opcao)
-          {
-              $this->Valida_campos($Campos_Crit, $Campos_Falta, $Campos_Erros, 'link');
-          }
-          if ('validate_sc_field_0' == $this->NM_ajax_opcao)
-          {
-              $this->Valida_campos($Campos_Crit, $Campos_Falta, $Campos_Erros, 'sc_field_0');
           }
           if ('validate_topico' == $this->NM_ajax_opcao)
           {
@@ -1706,15 +1695,6 @@ if (isset($_SESSION['scriptcase']['device_mobile']) && $_SESSION['scriptcase']['
    {
        switch($campo)
        {
-           case 'id':
-               return "Id";
-               break;
-           case 'pai':
-               return "Pai";
-               break;
-           case 'icone':
-               return "Icone";
-               break;
            case 'ordenacao':
                return "Ordenacao";
                break;
@@ -1724,14 +1704,29 @@ if (isset($_SESSION['scriptcase']['device_mobile']) && $_SESSION['scriptcase']['
            case 'descricao':
                return "Descricao";
                break;
+           case 'topico':
+               return "Topico";
+               break;
+           case 'id':
+               return "Id";
+               break;
+           case 'pai':
+               return "Pai";
+               break;
+           case 'icone':
+               return "Icone";
+               break;
            case 'link':
                return "Link";
                break;
            case 'sc_field_0':
                return "Target";
                break;
-           case 'topico':
-               return "Topico";
+           case 'curso':
+               return "Curso";
+               break;
+           case 'summary':
+               return "Summary";
                break;
        }
 
@@ -1782,21 +1777,6 @@ if (isset($_SESSION['scriptcase']['device_mobile']) && $_SESSION['scriptcase']['
               $this->NM_ajax_info['errList']['geral_cdt_class_mob'][] = "CSRF: " . $this->Ini->Nm_lang['lang_errm_ajax_csrf'];
           }
      }
-      if ((!is_array($filtro) && ('' == $filtro || 'id' == $filtro)) || (is_array($filtro) && in_array('id', $filtro)))
-        $this->ValidateField_id($Campos_Crit, $Campos_Falta, $Campos_Erros);
-      if ((!isset($this->scFormFocusErrorName) || '' == $this->scFormFocusErrorName) && ( !empty($Campos_Crit) || !empty($Campos_Falta) ))
-          $this->scFormFocusErrorName = "id";
-
-      if ((!is_array($filtro) && ('' == $filtro || 'pai' == $filtro)) || (is_array($filtro) && in_array('pai', $filtro)))
-        $this->ValidateField_pai($Campos_Crit, $Campos_Falta, $Campos_Erros);
-      if ((!isset($this->scFormFocusErrorName) || '' == $this->scFormFocusErrorName) && ( !empty($Campos_Crit) || !empty($Campos_Falta) ))
-          $this->scFormFocusErrorName = "pai";
-
-      if ((!is_array($filtro) && ('' == $filtro || 'icone' == $filtro)) || (is_array($filtro) && in_array('icone', $filtro)))
-        $this->ValidateField_icone($Campos_Crit, $Campos_Falta, $Campos_Erros);
-      if ((!isset($this->scFormFocusErrorName) || '' == $this->scFormFocusErrorName) && ( !empty($Campos_Crit) || !empty($Campos_Falta) ))
-          $this->scFormFocusErrorName = "icone";
-
       if ((!is_array($filtro) && ('' == $filtro || 'ordenacao' == $filtro)) || (is_array($filtro) && in_array('ordenacao', $filtro)))
         $this->ValidateField_ordenacao($Campos_Crit, $Campos_Falta, $Campos_Erros);
       if ((!isset($this->scFormFocusErrorName) || '' == $this->scFormFocusErrorName) && ( !empty($Campos_Crit) || !empty($Campos_Falta) ))
@@ -1812,16 +1792,6 @@ if (isset($_SESSION['scriptcase']['device_mobile']) && $_SESSION['scriptcase']['
       if ((!isset($this->scFormFocusErrorName) || '' == $this->scFormFocusErrorName) && ( !empty($Campos_Crit) || !empty($Campos_Falta) ))
           $this->scFormFocusErrorName = "descricao";
 
-      if ((!is_array($filtro) && ('' == $filtro || 'link' == $filtro)) || (is_array($filtro) && in_array('link', $filtro)))
-        $this->ValidateField_link($Campos_Crit, $Campos_Falta, $Campos_Erros);
-      if ((!isset($this->scFormFocusErrorName) || '' == $this->scFormFocusErrorName) && ( !empty($Campos_Crit) || !empty($Campos_Falta) ))
-          $this->scFormFocusErrorName = "link";
-
-      if ((!is_array($filtro) && ('' == $filtro || 'sc_field_0' == $filtro)) || (is_array($filtro) && in_array('sc_field_0', $filtro)))
-        $this->ValidateField_sc_field_0($Campos_Crit, $Campos_Falta, $Campos_Erros);
-      if ((!isset($this->scFormFocusErrorName) || '' == $this->scFormFocusErrorName) && ( !empty($Campos_Crit) || !empty($Campos_Falta) ))
-          $this->scFormFocusErrorName = "sc_field_0";
-
       if ((!is_array($filtro) && ('' == $filtro || 'topico' == $filtro)) || (is_array($filtro) && in_array('topico', $filtro)))
         $this->ValidateField_topico($Campos_Crit, $Campos_Falta, $Campos_Erros);
       if ((!isset($this->scFormFocusErrorName) || '' == $this->scFormFocusErrorName) && ( !empty($Campos_Crit) || !empty($Campos_Falta) ))
@@ -1831,23 +1801,7 @@ if (isset($_SESSION['scriptcase']['device_mobile']) && $_SESSION['scriptcase']['
       if (!isset($this->NM_ajax_flag) || 'validate_' != substr($this->NM_ajax_opcao, 0, 9))
       {
       $_SESSION['scriptcase']['cdt_class_mob']['contr_erro'] = 'on';
-if (isset($this->NM_ajax_flag) && $this->NM_ajax_flag)
-{
-    $original_id = $this->id;
-    $original_link = $this->link;
-}
  $this->link =$this->id ;
-if (isset($this->NM_ajax_flag) && $this->NM_ajax_flag)
-{
-    if (($original_id != $this->id || (isset($bFlagRead_id) && $bFlagRead_id)))
-    {
-        $this->ajax_return_values_id(true);
-    }
-    if (($original_link != $this->link || (isset($bFlagRead_link) && $bFlagRead_link)))
-    {
-        $this->ajax_return_values_link(true);
-    }
-}
 $_SESSION['scriptcase']['cdt_class_mob']['contr_erro'] = 'off'; 
       }
       if (!empty($Campos_Crit) || !empty($Campos_Falta) || !empty($this->Campos_Mens_erro))
@@ -1862,162 +1816,6 @@ $_SESSION['scriptcase']['cdt_class_mob']['contr_erro'] = 'off';
           }
       }
    }
-
-    function ValidateField_id(&$Campos_Crit, &$Campos_Falta, &$Campos_Erros)
-    {
-        global $teste_validade;
-        $hasError = false;
-      if (isset($this->Field_no_validate['id'])) {
-          nm_limpa_numero($this->id, $this->field_config['id']['symbol_grp']) ; 
-          return;
-      }
-      if ($this->id === "" || is_null($this->id))  
-      { 
-          $this->id = 0;
-      } 
-      nm_limpa_numero($this->id, $this->field_config['id']['symbol_grp']) ; 
-      if ($this->nmgp_opcao == "incluir")
-      { 
-          if ($this->id != '')  
-          { 
-              $iTestSize = 11;
-              if (strlen($this->id) > $iTestSize)  
-              { 
-                  $hasError = true;
-                  $Campos_Crit .= "Id: " . $this->Ini->Nm_lang['lang_errm_size']; 
-                  if (!isset($Campos_Erros['id']))
-                  {
-                      $Campos_Erros['id'] = array();
-                  }
-                  $Campos_Erros['id'][] = $this->Ini->Nm_lang['lang_errm_size'];
-                  if (!isset($this->NM_ajax_info['errList']['id']) || !is_array($this->NM_ajax_info['errList']['id']))
-                  {
-                      $this->NM_ajax_info['errList']['id'] = array();
-                  }
-                  $this->NM_ajax_info['errList']['id'][] = $this->Ini->Nm_lang['lang_errm_size'];
-              } 
-              if ($teste_validade->Valor($this->id, 11, 0, 0, 0, "N") == false)  
-              { 
-                  $hasError = true;
-                  $Campos_Crit .= "Id; " ; 
-                  if (!isset($Campos_Erros['id']))
-                  {
-                      $Campos_Erros['id'] = array();
-                  }
-                  $Campos_Erros['id'][] = "" . $this->Ini->Nm_lang['lang_errm_ajax_data'] . "";
-                  if (!isset($this->NM_ajax_info['errList']['id']) || !is_array($this->NM_ajax_info['errList']['id']))
-                  {
-                      $this->NM_ajax_info['errList']['id'] = array();
-                  }
-                  $this->NM_ajax_info['errList']['id'][] = "" . $this->Ini->Nm_lang['lang_errm_ajax_data'] . "";
-              } 
-          } 
-      } 
-        if ($hasError) {
-            global $sc_seq_vert;
-            $fieldName = 'id';
-            if (isset($sc_seq_vert) && '' != $sc_seq_vert) {
-                $fieldName .= $sc_seq_vert;
-            }
-            $this->NM_ajax_info['fieldsWithErrors'][] = $fieldName;
-        }
-    } // ValidateField_id
-
-    function ValidateField_pai(&$Campos_Crit, &$Campos_Falta, &$Campos_Erros)
-    {
-        global $teste_validade;
-        $hasError = false;
-      if (isset($this->Field_no_validate['pai'])) {
-          nm_limpa_numero($this->pai, $this->field_config['pai']['symbol_grp']) ; 
-          return;
-      }
-      if ($this->pai === "" || is_null($this->pai))  
-      { 
-          $this->pai = 0;
-          $this->sc_force_zero[] = 'pai';
-      } 
-      nm_limpa_numero($this->pai, $this->field_config['pai']['symbol_grp']) ; 
-      if ($this->nmgp_opcao != "excluir") 
-      { 
-          if ($this->pai != '')  
-          { 
-              $iTestSize = 11;
-              if (strlen($this->pai) > $iTestSize)  
-              { 
-                  $hasError = true;
-                  $Campos_Crit .= "Pai: " . $this->Ini->Nm_lang['lang_errm_size']; 
-                  if (!isset($Campos_Erros['pai']))
-                  {
-                      $Campos_Erros['pai'] = array();
-                  }
-                  $Campos_Erros['pai'][] = $this->Ini->Nm_lang['lang_errm_size'];
-                  if (!isset($this->NM_ajax_info['errList']['pai']) || !is_array($this->NM_ajax_info['errList']['pai']))
-                  {
-                      $this->NM_ajax_info['errList']['pai'] = array();
-                  }
-                  $this->NM_ajax_info['errList']['pai'][] = $this->Ini->Nm_lang['lang_errm_size'];
-              } 
-              if ($teste_validade->Valor($this->pai, 11, 0, -0, 99999999999, "N") == false)  
-              { 
-                  $hasError = true;
-                  $Campos_Crit .= "Pai; " ; 
-                  if (!isset($Campos_Erros['pai']))
-                  {
-                      $Campos_Erros['pai'] = array();
-                  }
-                  $Campos_Erros['pai'][] = "" . $this->Ini->Nm_lang['lang_errm_ajax_data'] . "";
-                  if (!isset($this->NM_ajax_info['errList']['pai']) || !is_array($this->NM_ajax_info['errList']['pai']))
-                  {
-                      $this->NM_ajax_info['errList']['pai'] = array();
-                  }
-                  $this->NM_ajax_info['errList']['pai'][] = "" . $this->Ini->Nm_lang['lang_errm_ajax_data'] . "";
-              } 
-          } 
-      } 
-        if ($hasError) {
-            global $sc_seq_vert;
-            $fieldName = 'pai';
-            if (isset($sc_seq_vert) && '' != $sc_seq_vert) {
-                $fieldName .= $sc_seq_vert;
-            }
-            $this->NM_ajax_info['fieldsWithErrors'][] = $fieldName;
-        }
-    } // ValidateField_pai
-
-    function ValidateField_icone(&$Campos_Crit, &$Campos_Falta, &$Campos_Erros)
-    {
-        global $teste_validade;
-        $hasError = false;
-      if (isset($this->Field_no_validate['icone'])) {
-          return;
-      }
-      if ($this->nmgp_opcao != "excluir") 
-      { 
-          if (NM_utf8_strlen($this->icone) > 255) 
-          { 
-              $hasError = true;
-              $Campos_Crit .= "Icone " . $this->Ini->Nm_lang['lang_errm_mxch'] . " 255 " . $this->Ini->Nm_lang['lang_errm_nchr']; 
-              if (!isset($Campos_Erros['icone']))
-              {
-                  $Campos_Erros['icone'] = array();
-              }
-              $Campos_Erros['icone'][] = $this->Ini->Nm_lang['lang_errm_mxch'] . " 255 " . $this->Ini->Nm_lang['lang_errm_nchr'];
-              if (!isset($this->NM_ajax_info['errList']['icone']) || !is_array($this->NM_ajax_info['errList']['icone']))
-              {
-                  $this->NM_ajax_info['errList']['icone'] = array();
-              }
-              $this->NM_ajax_info['errList']['icone'][] = $this->Ini->Nm_lang['lang_errm_mxch'] . " 255 " . $this->Ini->Nm_lang['lang_errm_nchr'];
-          } 
-      } 
-        if ($hasError) {
-            global $sc_seq_vert;
-            $fieldName = 'icone';
-            if (isset($sc_seq_vert) && '' != $sc_seq_vert) {
-                $fieldName .= $sc_seq_vert;
-            }
-            $this->NM_ajax_info['fieldsWithErrors'][] = $fieldName;
-        }
-    } // ValidateField_icone
 
     function ValidateField_ordenacao(&$Campos_Crit, &$Campos_Falta, &$Campos_Erros)
     {
@@ -2147,76 +1945,6 @@ $_SESSION['scriptcase']['cdt_class_mob']['contr_erro'] = 'off';
         }
     } // ValidateField_descricao
 
-    function ValidateField_link(&$Campos_Crit, &$Campos_Falta, &$Campos_Erros)
-    {
-        global $teste_validade;
-        $hasError = false;
-      if (isset($this->Field_no_validate['link'])) {
-          return;
-      }
-      if ($this->nmgp_opcao != "excluir") 
-      { 
-          if (NM_utf8_strlen($this->link) > 255) 
-          { 
-              $hasError = true;
-              $Campos_Crit .= "Link " . $this->Ini->Nm_lang['lang_errm_mxch'] . " 255 " . $this->Ini->Nm_lang['lang_errm_nchr']; 
-              if (!isset($Campos_Erros['link']))
-              {
-                  $Campos_Erros['link'] = array();
-              }
-              $Campos_Erros['link'][] = $this->Ini->Nm_lang['lang_errm_mxch'] . " 255 " . $this->Ini->Nm_lang['lang_errm_nchr'];
-              if (!isset($this->NM_ajax_info['errList']['link']) || !is_array($this->NM_ajax_info['errList']['link']))
-              {
-                  $this->NM_ajax_info['errList']['link'] = array();
-              }
-              $this->NM_ajax_info['errList']['link'][] = $this->Ini->Nm_lang['lang_errm_mxch'] . " 255 " . $this->Ini->Nm_lang['lang_errm_nchr'];
-          } 
-      } 
-        if ($hasError) {
-            global $sc_seq_vert;
-            $fieldName = 'link';
-            if (isset($sc_seq_vert) && '' != $sc_seq_vert) {
-                $fieldName .= $sc_seq_vert;
-            }
-            $this->NM_ajax_info['fieldsWithErrors'][] = $fieldName;
-        }
-    } // ValidateField_link
-
-    function ValidateField_sc_field_0(&$Campos_Crit, &$Campos_Falta, &$Campos_Erros)
-    {
-        global $teste_validade;
-        $hasError = false;
-      if (isset($this->Field_no_validate['sc_field_0'])) {
-          return;
-      }
-      if ($this->nmgp_opcao != "excluir") 
-      { 
-          if (NM_utf8_strlen($this->sc_field_0) > 10) 
-          { 
-              $hasError = true;
-              $Campos_Crit .= "Target " . $this->Ini->Nm_lang['lang_errm_mxch'] . " 10 " . $this->Ini->Nm_lang['lang_errm_nchr']; 
-              if (!isset($Campos_Erros['sc_field_0']))
-              {
-                  $Campos_Erros['sc_field_0'] = array();
-              }
-              $Campos_Erros['sc_field_0'][] = $this->Ini->Nm_lang['lang_errm_mxch'] . " 10 " . $this->Ini->Nm_lang['lang_errm_nchr'];
-              if (!isset($this->NM_ajax_info['errList']['sc_field_0']) || !is_array($this->NM_ajax_info['errList']['sc_field_0']))
-              {
-                  $this->NM_ajax_info['errList']['sc_field_0'] = array();
-              }
-              $this->NM_ajax_info['errList']['sc_field_0'][] = $this->Ini->Nm_lang['lang_errm_mxch'] . " 10 " . $this->Ini->Nm_lang['lang_errm_nchr'];
-          } 
-      } 
-        if ($hasError) {
-            global $sc_seq_vert;
-            $fieldName = 'sc_field_0';
-            if (isset($sc_seq_vert) && '' != $sc_seq_vert) {
-                $fieldName .= $sc_seq_vert;
-            }
-            $this->NM_ajax_info['fieldsWithErrors'][] = $fieldName;
-        }
-    } // ValidateField_sc_field_0
-
     function ValidateField_topico(&$Campos_Crit, &$Campos_Falta, &$Campos_Erros)
     {
         global $teste_validade;
@@ -2263,15 +1991,17 @@ $_SESSION['scriptcase']['cdt_class_mob']['contr_erro'] = 'off';
    {
     global
            $sc_seq_vert;
-    $this->nmgp_dados_form['id'] = $this->id;
-    $this->nmgp_dados_form['pai'] = $this->pai;
-    $this->nmgp_dados_form['icone'] = $this->icone;
     $this->nmgp_dados_form['ordenacao'] = $this->ordenacao;
     $this->nmgp_dados_form['modulo'] = $this->modulo;
     $this->nmgp_dados_form['descricao'] = $this->descricao;
+    $this->nmgp_dados_form['topico'] = $this->topico;
+    $this->nmgp_dados_form['id'] = $this->id;
+    $this->nmgp_dados_form['pai'] = $this->pai;
+    $this->nmgp_dados_form['icone'] = $this->icone;
     $this->nmgp_dados_form['link'] = $this->link;
     $this->nmgp_dados_form['sc_field_0'] = $this->sc_field_0;
-    $this->nmgp_dados_form['topico'] = $this->topico;
+    $this->nmgp_dados_form['curso'] = $this->curso;
+    $this->nmgp_dados_form['summary'] = $this->summary;
     $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class_mob']['dados_form'] = $this->nmgp_dados_form;
    }
    function nm_tira_formatacao()
@@ -2279,12 +2009,14 @@ $_SESSION['scriptcase']['cdt_class_mob']['contr_erro'] = 'off';
       global $nm_form_submit;
          $this->Before_unformat = array();
          $this->formatado = false;
+      $this->Before_unformat['ordenacao'] = $this->ordenacao;
+      nm_limpa_numero($this->ordenacao, $this->field_config['ordenacao']['symbol_grp']) ; 
       $this->Before_unformat['id'] = $this->id;
       nm_limpa_numero($this->id, $this->field_config['id']['symbol_grp']) ; 
       $this->Before_unformat['pai'] = $this->pai;
       nm_limpa_numero($this->pai, $this->field_config['pai']['symbol_grp']) ; 
-      $this->Before_unformat['ordenacao'] = $this->ordenacao;
-      nm_limpa_numero($this->ordenacao, $this->field_config['ordenacao']['symbol_grp']) ; 
+      $this->Before_unformat['curso'] = $this->curso;
+      nm_limpa_numero($this->curso, $this->field_config['curso']['symbol_grp']) ; 
    }
    function sc_add_currency(&$value, $symbol, $pos)
    {
@@ -2328,6 +2060,10 @@ $_SESSION['scriptcase']['cdt_class_mob']['contr_erro'] = 'off';
    }
    function nm_clear_val($Nome_Campo)
    {
+      if ($Nome_Campo == "ordenacao")
+      {
+          nm_limpa_numero($this->ordenacao, $this->field_config['ordenacao']['symbol_grp']) ; 
+      }
       if ($Nome_Campo == "id")
       {
           nm_limpa_numero($this->id, $this->field_config['id']['symbol_grp']) ; 
@@ -2336,9 +2072,9 @@ $_SESSION['scriptcase']['cdt_class_mob']['contr_erro'] = 'off';
       {
           nm_limpa_numero($this->pai, $this->field_config['pai']['symbol_grp']) ; 
       }
-      if ($Nome_Campo == "ordenacao")
+      if ($Nome_Campo == "curso")
       {
-          nm_limpa_numero($this->ordenacao, $this->field_config['ordenacao']['symbol_grp']) ; 
+          nm_limpa_numero($this->curso, $this->field_config['curso']['symbol_grp']) ; 
       }
    }
    function nm_formatar_campos($format_fields = array())
@@ -2349,14 +2085,6 @@ $_SESSION['scriptcase']['cdt_class_mob']['contr_erro'] = 'off';
          return;
      }
      $this->formatado = true;
-      if ('' !== $this->id || (!empty($format_fields) && isset($format_fields['id'])))
-      {
-          nmgp_Form_Num_Val($this->id, $this->field_config['id']['symbol_grp'], $this->field_config['id']['symbol_dec'], "0", "S", $this->field_config['id']['format_neg'], "", "", "-", $this->field_config['id']['symbol_fmt']) ; 
-      }
-      if ('' !== $this->pai || (!empty($format_fields) && isset($format_fields['pai'])))
-      {
-          nmgp_Form_Num_Val($this->pai, $this->field_config['pai']['symbol_grp'], $this->field_config['pai']['symbol_dec'], "0", "S", $this->field_config['pai']['format_neg'], "", "", "-", $this->field_config['pai']['symbol_fmt']) ; 
-      }
       if ('' !== $this->ordenacao || (!empty($format_fields) && isset($format_fields['ordenacao'])))
       {
           nmgp_Form_Num_Val($this->ordenacao, $this->field_config['ordenacao']['symbol_grp'], $this->field_config['ordenacao']['symbol_dec'], "0", "S", $this->field_config['ordenacao']['format_neg'], "", "", "-", $this->field_config['ordenacao']['symbol_fmt']) ; 
@@ -2746,89 +2474,36 @@ $_SESSION['scriptcase']['cdt_class_mob']['contr_erro'] = 'off';
 
    function ajax_return_values()
    {
-          $this->ajax_return_values_id();
-          $this->ajax_return_values_pai();
-          $this->ajax_return_values_icone();
           $this->ajax_return_values_ordenacao();
           $this->ajax_return_values_modulo();
           $this->ajax_return_values_descricao();
-          $this->ajax_return_values_link();
-          $this->ajax_return_values_sc_field_0();
           $this->ajax_return_values_topico();
+          $this->ajax_return_values_id();
           if ('navigate_form' == $this->NM_ajax_opcao)
           {
               $this->NM_ajax_info['clearUpload']      = 'S';
               $this->NM_ajax_info['navStatus']['ret'] = $this->Nav_permite_ret ? 'S' : 'N';
               $this->NM_ajax_info['navStatus']['ava'] = $this->Nav_permite_ava ? 'S' : 'N';
               $this->NM_ajax_info['fldList']['id']['keyVal'] = cdt_class_mob_pack_protect_string($this->nmgp_dados_form['id']);
-              $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class_mob']['cdt_topic_mob_script_case_init'] ]['cdt_topic_mob']['foreign_key']['aula'] = $this->nmgp_dados_form['id'];
-              $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class_mob']['cdt_topic_mob_script_case_init'] ]['cdt_topic_mob']['where_filter'] = "aula = " . $this->nmgp_dados_form['id'] . "";
-              $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class_mob']['cdt_topic_mob_script_case_init'] ]['cdt_topic_mob']['where_detal']  = "aula = " . $this->nmgp_dados_form['id'] . "";
+              $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class_mob']['sub_topic_mob_script_case_init'] ]['sub_topic_mob']['foreign_key']['aula'] = $this->nmgp_dados_form['id'];
+              $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class_mob']['sub_topic_mob_script_case_init'] ]['sub_topic_mob']['where_filter'] = "aula = " . $this->nmgp_dados_form['id'] . "";
+              $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class_mob']['sub_topic_mob_script_case_init'] ]['sub_topic_mob']['where_detal']  = "aula = " . $this->nmgp_dados_form['id'] . "";
               if ($_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class_mob']['total'] < 0)
               {
-                  $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class_mob']['cdt_topic_mob_script_case_init'] ]['cdt_topic_mob']['where_filter'] = "1 <> 1";
+                  $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class_mob']['sub_topic_mob_script_case_init'] ]['sub_topic_mob']['where_filter'] = "1 <> 1";
               }
-              $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class_mob']['cdt_topic_mob_script_case_init'] ]['cdt_topic_mob']['reg_start'] = "";
-              unset($_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class_mob']['cdt_topic_mob_script_case_init'] ]['cdt_topic_mob']['total']);
-              foreach ($_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class_mob']['cdt_topic_mob_script_case_init'] ]['cdt_topic_mob'] as $i => $v)
+              $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class_mob']['sub_topic_mob_script_case_init'] ]['sub_topic_mob']['reg_start'] = "";
+              unset($_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class_mob']['sub_topic_mob_script_case_init'] ]['sub_topic_mob']['total']);
+              foreach ($_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class_mob']['sub_topic_mob_script_case_init'] ]['sub_topic_mob'] as $i => $v)
               {
-                  $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class_mob']['cdt_topic_mob_script_case_init'] ]['cdt_topic'][$i] = $v;
+                  $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class_mob']['sub_topic_mob_script_case_init'] ]['sub_topic'][$i] = $v;
               }
-              if (isset($_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class_mob']['cdt_topic_mob_script_case_init'] ]['cdt_topic_mob']['total']))
+              if (isset($_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class_mob']['sub_topic_mob_script_case_init'] ]['sub_topic_mob']['total']))
               {
-                  unset($_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class_mob']['cdt_topic_mob_script_case_init'] ]['cdt_topic_mob']['total']);
+                  unset($_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class_mob']['sub_topic_mob_script_case_init'] ]['sub_topic_mob']['total']);
               }
           }
    } // ajax_return_values
-
-          //----- id
-   function ajax_return_values_id($bForce = false)
-   {
-          if ('navigate_form' == $this->NM_ajax_opcao || 'backup_line' == $this->NM_ajax_opcao || (isset($this->nmgp_refresh_fields) && in_array("id", $this->nmgp_refresh_fields)) || $bForce)
-          {
-              $sTmpValue = NM_charset_to_utf8($this->id);
-              $aLookup = array();
-          $aLookupOrig = $aLookup;
-          $this->NM_ajax_info['fldList']['id'] = array(
-                       'row'    => '',
-               'type'    => 'label',
-               'valList' => array($sTmpValue),
-               'labList' => array($this->form_format_readonly("id", $this->form_encode_input($sTmpValue))),
-              );
-          }
-   }
-
-          //----- pai
-   function ajax_return_values_pai($bForce = false)
-   {
-          if ('navigate_form' == $this->NM_ajax_opcao || 'backup_line' == $this->NM_ajax_opcao || (isset($this->nmgp_refresh_fields) && in_array("pai", $this->nmgp_refresh_fields)) || $bForce)
-          {
-              $sTmpValue = NM_charset_to_utf8($this->pai);
-              $aLookup = array();
-          $aLookupOrig = $aLookup;
-          $this->NM_ajax_info['fldList']['pai'] = array(
-                       'row'    => '',
-               'type'    => 'text',
-               'valList' => array($sTmpValue),
-              );
-          }
-   }
-
-          //----- icone
-   function ajax_return_values_icone($bForce = false)
-   {
-          if ('navigate_form' == $this->NM_ajax_opcao || 'backup_line' == $this->NM_ajax_opcao || (isset($this->nmgp_refresh_fields) && in_array("icone", $this->nmgp_refresh_fields)) || $bForce)
-          {
-              $sTmpValue = NM_charset_to_utf8($this->icone);
-              $aLookup = array();
-          $aLookupOrig = $aLookup;
-          $this->NM_ajax_info['fldList']['icone'] = array(
-                       'row'    => '',
-               'type'    => 'text',
-               'valList' => array($this->form_encode_input($sTmpValue)),
-              );
-          }
-   }
 
           //----- ordenacao
    function ajax_return_values_ordenacao($bForce = false)
@@ -2872,20 +2547,14 @@ else
    $nm_nao_carga = false;
    $nmgp_def_dados = "" ; 
 
-   $old_value_id = $this->id;
-   $old_value_pai = $this->pai;
    $old_value_ordenacao = $this->ordenacao;
    $this->nm_tira_formatacao();
 
 
-   $unformatted_value_id = $this->id;
-   $unformatted_value_pai = $this->pai;
    $unformatted_value_ordenacao = $this->ordenacao;
 
    $nm_comando = "SELECT id, descricao  FROM modulo  ORDER BY descricao";
 
-   $this->id = $old_value_id;
-   $this->pai = $old_value_pai;
    $this->ordenacao = $old_value_ordenacao;
 
    $_SESSION['scriptcase']['sc_sql_ult_comando'] = $nm_comando;
@@ -2980,38 +2649,6 @@ else
           }
    }
 
-          //----- link
-   function ajax_return_values_link($bForce = false)
-   {
-          if ('navigate_form' == $this->NM_ajax_opcao || 'backup_line' == $this->NM_ajax_opcao || (isset($this->nmgp_refresh_fields) && in_array("link", $this->nmgp_refresh_fields)) || $bForce)
-          {
-              $sTmpValue = NM_charset_to_utf8($this->link);
-              $aLookup = array();
-          $aLookupOrig = $aLookup;
-          $this->NM_ajax_info['fldList']['link'] = array(
-                       'row'    => '',
-               'type'    => 'text',
-               'valList' => array($this->form_encode_input($sTmpValue)),
-              );
-          }
-   }
-
-          //----- sc_field_0
-   function ajax_return_values_sc_field_0($bForce = false)
-   {
-          if ('navigate_form' == $this->NM_ajax_opcao || 'backup_line' == $this->NM_ajax_opcao || (isset($this->nmgp_refresh_fields) && in_array("sc_field_0", $this->nmgp_refresh_fields)) || $bForce)
-          {
-              $sTmpValue = NM_charset_to_utf8($this->sc_field_0);
-              $aLookup = array();
-          $aLookupOrig = $aLookup;
-          $this->NM_ajax_info['fldList']['sc_field_0'] = array(
-                       'row'    => '',
-               'type'    => 'text',
-               'valList' => array($this->form_encode_input($sTmpValue)),
-              );
-          }
-   }
-
           //----- topico
    function ajax_return_values_topico($bForce = false)
    {
@@ -3024,6 +2661,23 @@ else
                        'row'    => '',
                'type'    => 'text',
                'valList' => array($sTmpValue),
+              );
+          }
+   }
+
+          //----- id
+   function ajax_return_values_id($bForce = false)
+   {
+          if ('navigate_form' == $this->NM_ajax_opcao || 'backup_line' == $this->NM_ajax_opcao || (isset($this->nmgp_refresh_fields) && in_array("id", $this->nmgp_refresh_fields)) || $bForce)
+          {
+              $sTmpValue = NM_charset_to_utf8($this->id);
+              $aLookup = array();
+          $aLookupOrig = $aLookup;
+          $this->NM_ajax_info['fldList']['id'] = array(
+                       'row'    => '',
+               'type'    => 'label',
+               'valList' => array($sTmpValue),
+               'labList' => array($this->form_format_readonly("id", $this->form_encode_input($sTmpValue))),
               );
           }
    }
@@ -3178,15 +2832,17 @@ else
       { 
           $this->Ini->sc_tem_trans_banco = $this->Db->BeginTrans(); 
       } 
-      $NM_val_form['id'] = $this->id;
-      $NM_val_form['pai'] = $this->pai;
-      $NM_val_form['icone'] = $this->icone;
       $NM_val_form['ordenacao'] = $this->ordenacao;
       $NM_val_form['modulo'] = $this->modulo;
       $NM_val_form['descricao'] = $this->descricao;
+      $NM_val_form['topico'] = $this->topico;
+      $NM_val_form['id'] = $this->id;
+      $NM_val_form['pai'] = $this->pai;
+      $NM_val_form['icone'] = $this->icone;
       $NM_val_form['link'] = $this->link;
       $NM_val_form['sc_field_0'] = $this->sc_field_0;
-      $NM_val_form['topico'] = $this->topico;
+      $NM_val_form['curso'] = $this->curso;
+      $NM_val_form['summary'] = $this->summary;
       if ($this->id === "" || is_null($this->id))  
       { 
           $this->id = 0;
@@ -3200,6 +2856,11 @@ else
       { 
           $this->ordenacao = 0;
           $this->sc_force_zero[] = 'ordenacao';
+      } 
+      if ($this->curso === "" || is_null($this->curso))  
+      { 
+          $this->curso = 0;
+          $this->sc_force_zero[] = 'curso';
       } 
       if ($this->modulo === "" || is_null($this->modulo))  
       { 
@@ -3252,6 +2913,17 @@ else
           { 
               $this->sc_field_0 = "null"; 
               $NM_val_null[] = "sc_field_0";
+          } 
+          $this->summary_before_qstr = $this->summary;
+          $this->summary = substr($this->Db->qstr($this->summary), 1, -1); 
+          if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_mysql))
+          {
+              $this->summary = str_replace(array("\\r\\n", "\\n", "\r\n"), array("\r\n", "\n", "\n"), $this->summary);
+          }
+          if ($this->summary == "" && in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_access))  
+          { 
+              $this->summary = "null"; 
+              $NM_val_null[] = "summary";
           } 
           $this->topico_before_qstr = $this->topico;
           $this->topico = substr($this->Db->qstr($this->topico), 1, -1); 
@@ -3316,22 +2988,46 @@ else
               if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_access))
               { 
                   $comando = "UPDATE " . $this->Ini->nm_tabela . " SET ";  
-                  $SC_fields_update[] = "pai = $this->pai, icone = '$this->icone', descricao = '$this->descricao', link = '$this->link', ordenacao = $this->ordenacao, target = '$this->sc_field_0', modulo = $this->modulo"; 
+                  $SC_fields_update[] = "descricao = '$this->descricao', ordenacao = $this->ordenacao, modulo = $this->modulo"; 
               } 
               elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_mysql))
               { 
                   $comando = "UPDATE " . $this->Ini->nm_tabela . " SET ";  
-                  $SC_fields_update[] = "pai = $this->pai, icone = '$this->icone', descricao = '$this->descricao', link = '$this->link', ordenacao = $this->ordenacao, target = '$this->sc_field_0', modulo = $this->modulo"; 
+                  $SC_fields_update[] = "descricao = '$this->descricao', ordenacao = $this->ordenacao, modulo = $this->modulo"; 
               } 
               elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_ibase))
               { 
                   $comando = "UPDATE " . $this->Ini->nm_tabela . " SET ";  
-                  $SC_fields_update[] = "pai = $this->pai, icone = '$this->icone', descricao = '$this->descricao', link = '$this->link', ordenacao = $this->ordenacao, target = '$this->sc_field_0', modulo = $this->modulo"; 
+                  $SC_fields_update[] = "descricao = '$this->descricao', ordenacao = $this->ordenacao, modulo = $this->modulo"; 
               } 
               else 
               { 
                   $comando = "UPDATE " . $this->Ini->nm_tabela . " SET ";  
-                  $SC_fields_update[] = "pai = $this->pai, icone = '$this->icone', descricao = '$this->descricao', link = '$this->link', ordenacao = $this->ordenacao, target = '$this->sc_field_0', modulo = $this->modulo"; 
+                  $SC_fields_update[] = "descricao = '$this->descricao', ordenacao = $this->ordenacao, modulo = $this->modulo"; 
+              } 
+              if (isset($NM_val_form['pai']) && $NM_val_form['pai'] != $this->nmgp_dados_select['pai']) 
+              { 
+                  $SC_fields_update[] = "pai = $this->pai"; 
+              } 
+              if (isset($NM_val_form['icone']) && $NM_val_form['icone'] != $this->nmgp_dados_select['icone']) 
+              { 
+                  $SC_fields_update[] = "icone = '$this->icone'"; 
+              } 
+              if (isset($NM_val_form['link']) && $NM_val_form['link'] != $this->nmgp_dados_select['link']) 
+              { 
+                  $SC_fields_update[] = "link = '$this->link'"; 
+              } 
+              if (isset($NM_val_form['sc_field_0']) && $NM_val_form['sc_field_0'] != $this->nmgp_dados_select['sc_field_0']) 
+              { 
+                  $SC_fields_update[] = "target = '$this->sc_field_0'"; 
+              } 
+              if (isset($NM_val_form['curso']) && $NM_val_form['curso'] != $this->nmgp_dados_select['curso']) 
+              { 
+                  $SC_fields_update[] = "curso = $this->curso"; 
+              } 
+              if (isset($NM_val_form['summary']) && $NM_val_form['summary'] != $this->nmgp_dados_select['summary']) 
+              { 
+                  $SC_fields_update[] = "summary = '$this->summary'"; 
               } 
               $comando .= implode(",", $SC_fields_update);  
               if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_access))
@@ -3376,6 +3072,7 @@ else
               $this->descricao = $this->descricao_before_qstr;
               $this->link = $this->link_before_qstr;
               $this->sc_field_0 = $this->sc_field_0_before_qstr;
+              $this->summary = $this->summary_before_qstr;
               $this->topico = $this->topico_before_qstr;
               if (in_array(strtolower($this->Ini->nm_tpbanco), $nm_bases_lob_geral))
               { 
@@ -3396,18 +3093,10 @@ else
 
               if     (isset($NM_val_form) && isset($NM_val_form['id'])) { $this->id = $NM_val_form['id']; }
               elseif (isset($this->id)) { $this->nm_limpa_alfa($this->id); }
-              if     (isset($NM_val_form) && isset($NM_val_form['pai'])) { $this->pai = $NM_val_form['pai']; }
-              elseif (isset($this->pai)) { $this->nm_limpa_alfa($this->pai); }
-              if     (isset($NM_val_form) && isset($NM_val_form['icone'])) { $this->icone = $NM_val_form['icone']; }
-              elseif (isset($this->icone)) { $this->nm_limpa_alfa($this->icone); }
               if     (isset($NM_val_form) && isset($NM_val_form['descricao'])) { $this->descricao = $NM_val_form['descricao']; }
               elseif (isset($this->descricao)) { $this->nm_limpa_alfa($this->descricao); }
-              if     (isset($NM_val_form) && isset($NM_val_form['link'])) { $this->link = $NM_val_form['link']; }
-              elseif (isset($this->link)) { $this->nm_limpa_alfa($this->link); }
               if     (isset($NM_val_form) && isset($NM_val_form['ordenacao'])) { $this->ordenacao = $NM_val_form['ordenacao']; }
               elseif (isset($this->ordenacao)) { $this->nm_limpa_alfa($this->ordenacao); }
-              if     (isset($NM_val_form) && isset($NM_val_form['sc_field_0'])) { $this->sc_field_0 = $NM_val_form['sc_field_0']; }
-              elseif (isset($this->sc_field_0)) { $this->nm_limpa_alfa($this->sc_field_0); }
               if     (isset($NM_val_form) && isset($NM_val_form['modulo'])) { $this->modulo = $NM_val_form['modulo']; }
               elseif (isset($this->modulo)) { $this->nm_limpa_alfa($this->modulo); }
               if     (isset($NM_val_form) && isset($NM_val_form['topico'])) { $this->topico = $NM_val_form['topico']; }
@@ -3416,7 +3105,7 @@ else
               $this->nm_formatar_campos();
 
               $aOldRefresh               = $this->nmgp_refresh_fields;
-              $this->nmgp_refresh_fields = array_diff(array('id', 'pai', 'icone', 'ordenacao', 'modulo', 'descricao', 'link', 'sc_field_0', 'topico'), $aDoNotUpdate);
+              $this->nmgp_refresh_fields = array_diff(array('ordenacao', 'modulo', 'descricao', 'topico'), $aDoNotUpdate);
               $this->ajax_return_values();
               $this->nmgp_refresh_fields = $aOldRefresh;
 
@@ -3464,23 +3153,23 @@ else
           { 
               if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_access))
               { 
-                  $comando = "INSERT INTO " . $this->Ini->nm_tabela . " (pai, icone, descricao, link, ordenacao, target, modulo) VALUES ($this->pai, '$this->icone', '$this->descricao', '$this->link', $this->ordenacao, '$this->sc_field_0', $this->modulo)"; 
+                  $comando = "INSERT INTO " . $this->Ini->nm_tabela . " (pai, icone, descricao, link, ordenacao, target, curso, modulo, summary) VALUES ($this->pai, '$this->icone', '$this->descricao', '$this->link', $this->ordenacao, '$this->sc_field_0', $this->curso, $this->modulo, '$this->summary')"; 
               }
               elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_sybase))
               { 
-                  $comando = "INSERT INTO " . $this->Ini->nm_tabela . " (" . $NM_cmp_auto . "pai, icone, descricao, link, ordenacao, target, modulo) VALUES (" . $NM_seq_auto . "$this->pai, '$this->icone', '$this->descricao', '$this->link', $this->ordenacao, '$this->sc_field_0', $this->modulo)"; 
+                  $comando = "INSERT INTO " . $this->Ini->nm_tabela . " (" . $NM_cmp_auto . "pai, icone, descricao, link, ordenacao, target, curso, modulo, summary) VALUES (" . $NM_seq_auto . "$this->pai, '$this->icone', '$this->descricao', '$this->link', $this->ordenacao, '$this->sc_field_0', $this->curso, $this->modulo, '$this->summary')"; 
               }
               elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_mysql))
               {
-                  $comando = "INSERT INTO " . $this->Ini->nm_tabela . " (" . $NM_cmp_auto . "pai, icone, descricao, link, ordenacao, target, modulo) VALUES (" . $NM_seq_auto . "$this->pai, '$this->icone', '$this->descricao', '$this->link', $this->ordenacao, '$this->sc_field_0', $this->modulo)"; 
+                  $comando = "INSERT INTO " . $this->Ini->nm_tabela . " (" . $NM_cmp_auto . "pai, icone, descricao, link, ordenacao, target, curso, modulo, summary) VALUES (" . $NM_seq_auto . "$this->pai, '$this->icone', '$this->descricao', '$this->link', $this->ordenacao, '$this->sc_field_0', $this->curso, $this->modulo, '$this->summary')"; 
               }
               elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_sqlite))
               {
-                  $comando = "INSERT INTO " . $this->Ini->nm_tabela . " (" . $NM_cmp_auto . "pai, icone, descricao, link, ordenacao, target, modulo) VALUES (" . $NM_seq_auto . "$this->pai, '$this->icone', '$this->descricao', '$this->link', $this->ordenacao, '$this->sc_field_0', $this->modulo)"; 
+                  $comando = "INSERT INTO " . $this->Ini->nm_tabela . " (" . $NM_cmp_auto . "pai, icone, descricao, link, ordenacao, target, curso, modulo, summary) VALUES (" . $NM_seq_auto . "$this->pai, '$this->icone', '$this->descricao', '$this->link', $this->ordenacao, '$this->sc_field_0', $this->curso, $this->modulo, '$this->summary')"; 
               }
               else
               {
-                  $comando = "INSERT INTO " . $this->Ini->nm_tabela . " (" . $NM_cmp_auto . "pai, icone, descricao, link, ordenacao, target, modulo) VALUES (" . $NM_seq_auto . "$this->pai, '$this->icone', '$this->descricao', '$this->link', $this->ordenacao, '$this->sc_field_0', $this->modulo)"; 
+                  $comando = "INSERT INTO " . $this->Ini->nm_tabela . " (" . $NM_cmp_auto . "pai, icone, descricao, link, ordenacao, target, curso, modulo, summary) VALUES (" . $NM_seq_auto . "$this->pai, '$this->icone', '$this->descricao', '$this->link', $this->ordenacao, '$this->sc_field_0', $this->curso, $this->modulo, '$this->summary')"; 
               }
               $comando = str_replace("N'null'", "null", $comando) ; 
               $comando = str_replace("'null'", "null", $comando) ; 
@@ -3580,6 +3269,7 @@ else
               $this->descricao = $this->descricao_before_qstr;
               $this->link = $this->link_before_qstr;
               $this->sc_field_0 = $this->sc_field_0_before_qstr;
+              $this->summary = $this->summary_before_qstr;
               $this->topico = $this->topico_before_qstr;
               }
 
@@ -3595,6 +3285,7 @@ else
               $this->descricao = $this->descricao_before_qstr;
               $this->link = $this->link_before_qstr;
               $this->sc_field_0 = $this->sc_field_0_before_qstr;
+              $this->summary = $this->summary_before_qstr;
               $this->topico = $this->topico_before_qstr;
               $this->sc_insert_on = true; 
               if (empty($this->sc_erro_insert)) {
@@ -3621,8 +3312,8 @@ else
           if ($bDelecaoOk)
           {
               $sDetailWhere = "aula = " . $this->id . "";
-              $this->cdt_topic_mob->ini_controle();
-              if ($this->cdt_topic_mob->temRegistros($sDetailWhere))
+              $this->sub_topic_mob->ini_controle();
+              if ($this->sub_topic_mob->temRegistros($sDetailWhere))
               {
                   $bDelecaoOk = false;
                   $sMsgErro   = $this->Ini->Nm_lang['lang_errm_fkvi'];
@@ -3784,11 +3475,11 @@ else
           } 
           if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_sybase))
           { 
-              $nmgp_select = "SELECT id, pai, icone, descricao, link, ordenacao, target as sc_field_0, modulo from " . $this->Ini->nm_tabela ; 
+              $nmgp_select = "SELECT id, pai, icone, descricao, link, ordenacao, target as sc_field_0, curso, modulo, summary from " . $this->Ini->nm_tabela ; 
           } 
           else 
           { 
-              $nmgp_select = "SELECT id, pai, icone, descricao, link, ordenacao, target as sc_field_0, modulo from " . $this->Ini->nm_tabela ; 
+              $nmgp_select = "SELECT id, pai, icone, descricao, link, ordenacao, target as sc_field_0, curso, modulo, summary from " . $this->Ini->nm_tabela ; 
           } 
           $aWhere = array();
           $aWhere[] = $sc_where_filter;
@@ -3919,12 +3610,17 @@ else
               $this->nmgp_dados_select['ordenacao'] = $this->ordenacao;
               $this->sc_field_0 = $rs->fields[6] ; 
               $this->nmgp_dados_select['sc_field_0'] = $this->sc_field_0;
-              $this->modulo = $rs->fields[7] ; 
+              $this->curso = $rs->fields[7] ; 
+              $this->nmgp_dados_select['curso'] = $this->curso;
+              $this->modulo = $rs->fields[8] ; 
               $this->nmgp_dados_select['modulo'] = $this->modulo;
+              $this->summary = $rs->fields[9] ; 
+              $this->nmgp_dados_select['summary'] = $this->summary;
           $GLOBALS["NM_ERRO_IBASE"] = 0; 
               $this->id = (string)$this->id; 
               $this->pai = (string)$this->pai; 
               $this->ordenacao = (string)$this->ordenacao; 
+              $this->curso = (string)$this->curso; 
               $this->modulo = (string)$this->modulo; 
               $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class_mob']['parms'] = "id?#?$this->id?@?";
           } 
@@ -3961,8 +3657,12 @@ else
               $this->nmgp_dados_form["ordenacao"] = $this->ordenacao;
               $this->sc_field_0 = "_parent";  
               $this->nmgp_dados_form["sc_field_0"] = $this->sc_field_0;
+              $this->curso = "";  
+              $this->nmgp_dados_form["curso"] = $this->curso;
               $this->modulo = "";  
               $this->nmgp_dados_form["modulo"] = $this->modulo;
+              $this->summary = "";  
+              $this->nmgp_dados_form["summary"] = $this->summary;
               $this->topico = "";  
               $this->nmgp_dados_form["topico"] = $this->topico;
               $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class_mob']['dados_form'] = $this->nmgp_dados_form;
@@ -3990,7 +3690,7 @@ else
       { 
           $this->nm_proc_onload();
       }
-      $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_topic_mob']['embutida_parms'] = "NM_btn_insert*scinS*scoutNM_btn_update*scinS*scoutNM_btn_delete*scinS*scoutNM_btn_navega*scinS*scoutlink_remove_margin*scinok*scoutlink_remove_border*scinok*scout";
+      $_SESSION['sc_session'][$this->Ini->sc_page]['sub_topic_mob']['embutida_parms'] = "NM_btn_insert*scinS*scoutNM_btn_update*scinS*scoutNM_btn_delete*scinS*scoutNM_btn_navega*scinS*scoutlink_remove_margin*scinok*scoutlink_remove_border*scinok*scout";
   }
         function initializeRecordState() {
                 $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class']['record_state'] = array();
@@ -4148,10 +3848,10 @@ else
     function form_highlight_search_quicksearch(&$result, $field, $value)
     {
         $searchOk = false;
-        if ('SC_all_Cmp' == $this->nmgp_fast_search && in_array($field, array("id", "pai", "icone", "ordenacao", "modulo", "descricao", "link", "sc_field_0", "topico"))) {
+        if ('SC_all_Cmp' == $this->nmgp_fast_search && in_array($field, array("ordenacao", "modulo", "descricao", "topico"))) {
             $searchOk = true;
         }
-        elseif ($field == $this->nmgp_fast_search && in_array($field, array("id", "pai", "icone", "ordenacao", "modulo", "descricao", "link", "sc_field_0", "topico"))) {
+        elseif ($field == $this->nmgp_fast_search && in_array($field, array("ordenacao", "modulo", "descricao", "topico"))) {
             $searchOk = true;
         }
 
@@ -4510,20 +4210,14 @@ else
        $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class_mob']['Lookup_modulo'] = array(); 
     }
 
-   $old_value_id = $this->id;
-   $old_value_pai = $this->pai;
    $old_value_ordenacao = $this->ordenacao;
    $this->nm_tira_formatacao();
 
 
-   $unformatted_value_id = $this->id;
-   $unformatted_value_pai = $this->pai;
    $unformatted_value_ordenacao = $this->ordenacao;
 
    $nm_comando = "SELECT id, descricao  FROM modulo  ORDER BY descricao";
 
-   $this->id = $old_value_id;
-   $this->pai = $old_value_pai;
    $this->ordenacao = $old_value_ordenacao;
 
    $_SESSION['scriptcase']['sc_sql_ult_comando'] = $nm_comando;
@@ -4582,18 +4276,6 @@ else
       }
       $sv_data = $data_search;
       foreach ($fields as $field) {
-          if ($field == "SC_all_Cmp" || $field == "id") 
-          {
-              $this->SC_monta_condicao($comando, "id", $arg_search, str_replace(",", ".", $data_search), "INT", false);
-          }
-          if ($field == "SC_all_Cmp" || $field == "pai") 
-          {
-              $this->SC_monta_condicao($comando, "pai", $arg_search, str_replace(",", ".", $data_search), "INT", false);
-          }
-          if ($field == "SC_all_Cmp" || $field == "icone") 
-          {
-              $this->SC_monta_condicao($comando, "icone", $arg_search, $data_search, "VARCHAR", false);
-          }
           if ($field == "SC_all_Cmp" || $field == "ordenacao") 
           {
               $this->SC_monta_condicao($comando, "ordenacao", $arg_search, str_replace(",", ".", $data_search), "INT", false);
@@ -4609,14 +4291,6 @@ else
           if ($field == "SC_all_Cmp" || $field == "descricao") 
           {
               $this->SC_monta_condicao($comando, "descricao", $arg_search, $data_search, "VARCHAR", false);
-          }
-          if ($field == "SC_all_Cmp" || $field == "link") 
-          {
-              $this->SC_monta_condicao($comando, "link", $arg_search, $data_search, "VARCHAR", false);
-          }
-          if ($field == "SC_all_Cmp" || $field == "sc_field_0") 
-          {
-              $this->SC_monta_condicao($comando, "target", $arg_search, $data_search, "VARCHAR", false);
           }
       }
       if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class_mob']['where_detal']) && !empty($_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class_mob']['where_detal']) && !empty($comando)) 
@@ -4679,7 +4353,7 @@ else
       if ($tp_unaccent) {
           $Nm_accent = $this->Ini->Nm_accent_yes;
       }
-      $nm_numeric[] = "id";$nm_numeric[] = "pai";$nm_numeric[] = "ordenacao";$nm_numeric[] = "modulo";
+      $nm_numeric[] = "id";$nm_numeric[] = "pai";$nm_numeric[] = "ordenacao";$nm_numeric[] = "curso";$nm_numeric[] = "modulo";
       if (in_array($campo_join, $nm_numeric))
       {
          if ($_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class_mob']['decimal_db'] == ".")
@@ -5188,11 +4862,13 @@ if (parent && parent.scAjaxDetailValue)
     function scIsFieldNumeric($fieldName)
     {
         switch ($fieldName) {
+            case "ordenacao":
+                return true;
             case "id":
                 return true;
             case "pai":
                 return true;
-            case "ordenacao":
+            case "curso":
                 return true;
             default:
                 return false;
@@ -5203,11 +4879,13 @@ if (parent && parent.scAjaxDetailValue)
     function scGetDefaultFieldOrder($fieldName)
     {
         switch ($fieldName) {
+            case "modulo":
+                return 'desc';
             case "id":
                 return 'desc';
             case "pai":
                 return 'desc';
-            case "modulo":
+            case "curso":
                 return 'desc';
             default:
                 return 'asc';

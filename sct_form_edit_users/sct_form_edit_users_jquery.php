@@ -59,6 +59,7 @@ function scEventControl_init(iSeqRow) {
   scEventControl_data["email" + iSeqRow] = {"blur": false, "change": false, "autocomp": false, "original": "", "calculated": ""};
   scEventControl_data["active" + iSeqRow] = {"blur": false, "change": false, "autocomp": false, "original": "", "calculated": ""};
   scEventControl_data["groups" + iSeqRow] = {"blur": false, "change": false, "autocomp": false, "original": "", "calculated": ""};
+  scEventControl_data["couses" + iSeqRow] = {"blur": false, "change": false, "autocomp": false, "original": "", "calculated": ""};
 }
 
 function scEventControl_active(iSeqRow) {
@@ -102,6 +103,12 @@ function scEventControl_active(iSeqRow) {
     return true;
   }
   if (scEventControl_data["groups" + iSeqRow] && scEventControl_data["groups" + iSeqRow]["change"]) {
+    return true;
+  }
+  if (scEventControl_data["couses" + iSeqRow] && scEventControl_data["couses" + iSeqRow]["blur"]) {
+    return true;
+  }
+  if (scEventControl_data["couses" + iSeqRow] && scEventControl_data["couses" + iSeqRow]["change"]) {
     return true;
   }
   return false;
@@ -162,6 +169,9 @@ function scJQEventsAdd(iSeqRow) {
   $('#id_sc_field_confirm_pswd' + iSeqRow).bind('blur', function() { sc_sct_form_edit_users_confirm_pswd_onblur(this, iSeqRow) })
                                           .bind('change', function() { sc_sct_form_edit_users_confirm_pswd_onchange(this, iSeqRow) })
                                           .bind('focus', function() { sc_sct_form_edit_users_confirm_pswd_onfocus(this, iSeqRow) });
+  $('#id_sc_field_couses' + iSeqRow).bind('blur', function() { sc_sct_form_edit_users_couses_onblur(this, iSeqRow) })
+                                    .bind('change', function() { sc_sct_form_edit_users_couses_onchange(this, iSeqRow) })
+                                    .bind('focus', function() { sc_sct_form_edit_users_couses_onfocus(this, iSeqRow) });
   $('.sc-ui-checkbox-active' + iSeqRow).on('click', function() { scMarkFormAsChanged(); });
 } // scJQEventsAdd
 
@@ -287,9 +297,26 @@ function sc_sct_form_edit_users_confirm_pswd_onfocus(oThis, iSeqRow) {
   scCssFocus(oThis);
 }
 
+function sc_sct_form_edit_users_couses_onblur(oThis, iSeqRow) {
+  do_ajax_sct_form_edit_users_validate_couses();
+  scCssBlur(oThis);
+}
+
+function sc_sct_form_edit_users_couses_onchange(oThis, iSeqRow) {
+  scMarkFormAsChanged();
+}
+
+function sc_sct_form_edit_users_couses_onfocus(oThis, iSeqRow) {
+  scEventControl_onFocus(oThis, iSeqRow);
+  scCssFocus(oThis);
+}
+
 function displayChange_block(block, status) {
 	if ("0" == block) {
 		displayChange_block_0(status);
+	}
+	if ("1" == block) {
+		displayChange_block_1(status);
 	}
 }
 
@@ -304,6 +331,10 @@ function displayChange_block_0(status) {
 	displayChange_field("groups", "", status);
 }
 
+function displayChange_block_1(status) {
+	displayChange_field("couses", "", status);
+}
+
 function displayChange_row(row, status) {
 	displayChange_field_picture(row, status);
 	displayChange_field_login(row, status);
@@ -313,6 +344,7 @@ function displayChange_row(row, status) {
 	displayChange_field_email(row, status);
 	displayChange_field_active(row, status);
 	displayChange_field_groups(row, status);
+	displayChange_field_couses(row, status);
 }
 
 function displayChange_field(field, row, status) {
@@ -339,6 +371,9 @@ function displayChange_field(field, row, status) {
 	}
 	if ("groups" == field) {
 		displayChange_field_groups(row, status);
+	}
+	if ("couses" == field) {
+		displayChange_field_couses(row, status);
 	}
 }
 
@@ -372,6 +407,13 @@ function displayChange_field_active(row, status) {
 
 function displayChange_field_groups(row, status) {
     var fieldId;
+}
+
+function displayChange_field_couses(row, status) {
+    var fieldId;
+	if ("on" == status && typeof $("#nmsc_iframe_liga_sub_studentCourse")[0].contentWindow.scRecreateSelect2 === "function") {
+		$("#nmsc_iframe_liga_sub_studentCourse")[0].contentWindow.scRecreateSelect2();
+	}
 }
 
 function scRecreateSelect2() {

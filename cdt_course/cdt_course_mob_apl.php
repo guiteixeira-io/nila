@@ -1070,10 +1070,22 @@ class cdt_course_mob_apl
           $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_course_mob']['cdt_subject_mob_script_case_init'] ]['cdt_subject_mob']['embutida_form'] = false;
           $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_course_mob']['cdt_subject_mob_script_case_init'] ]['cdt_subject_mob']['embutida_proc'] = true;
           $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_course_mob']['cdt_subject_mob_script_case_init'] ]['cdt_subject_mob']['reg_start'] = "";
+          $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_course_mob']['cdt_subject_mob_script_case_init'] ]['cdt_subject']['embutida_form'] = false;
+          $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_course_mob']['cdt_subject_mob_script_case_init'] ]['cdt_subject']['embutida_proc'] = true;
+          $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_course_mob']['cdt_subject_mob_script_case_init'] ]['cdt_subject']['reg_start'] = "";
           unset($_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_course_mob']['cdt_subject_mob_script_case_init'] ]['cdt_subject_mob']['total']);
-          require_once($this->Ini->root . $this->Ini->path_link  . SC_dir_app_name('cdt_subject_mob') . "/index.php");
-          require_once($this->Ini->root . $this->Ini->path_link  . SC_dir_app_name('cdt_subject_mob') . "/cdt_subject_mob_apl.php");
-          $this->cdt_subject_mob = new cdt_subject_mob_apl;
+          $detailAppName = 'cdt_subject_mob';
+          $detailAppObject = "cdt_subject_mob";
+          $detailAppFolder = $this->Ini->root . $this->Ini->path_link  . SC_dir_app_name($detailAppName);
+          if (!@is_dir($detailAppFolder)) {
+              $detailAppName = substr($detailAppName, 0, -4);
+              $detailAppObject = substr($detailAppObject, 0, -4);
+              $detailAppFolder = $this->Ini->root . $this->Ini->path_link  . SC_dir_app_name($detailAppName);
+          }
+          $detailAppObject .= '_apl';
+          require_once($detailAppFolder . "/index.php");
+          require_once($detailAppFolder . "/{$detailAppName}_apl.php");
+          $this->cdt_subject_mob = new $detailAppObject;
       }
       $this->NM_case_insensitive = false;
       $this->sc_evento = $this->nmgp_opcao;

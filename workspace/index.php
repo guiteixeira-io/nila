@@ -572,80 +572,6 @@ else
 {
     $_SESSION['scriptcase']['sc_saida_workspace'] = (isset($_SERVER['HTTP_REFERER']) && !empty($_SERVER['HTTP_REFERER'])) ? $_SERVER['HTTP_REFERER'] : "javascript:window.close()";
 }
-$this->str_schema_all = $STR_schema_all = (isset($_SESSION['scriptcase']['str_schema_all']) && !empty($_SESSION['scriptcase']['str_schema_all'])) ? $_SESSION['scriptcase']['str_schema_all'] : "nila/nila";
-if (isset($_SESSION['nm_session']['user']['sec']['flag']) && $_SESSION['nm_session']['user']['sec']['flag'] == "N") 
-{ 
-    $_SESSION['scriptcase']['sc_apl_seg']['workspace'] = "on";
-} 
-if (!isset($_SESSION['scriptcase']['workspace']['session_timeout']['redir']) && (!isset($_SESSION['scriptcase']['sc_apl_seg']['workspace']) || $_SESSION['scriptcase']['sc_apl_seg']['workspace'] != "on"))
-{ 
-    $NM_Mens_Erro = $this->Nm_lang['lang_errm_unth_user'];
-       header("X-XSS-Protection: 1; mode=block");
-       header("X-Frame-Options: SAMEORIGIN");
-?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
-    <HTML>
-     <HEAD>
-      <TITLE></TITLE>
-     <META http-equiv="Content-Type" content="text/html; charset=<?php echo $_SESSION['scriptcase']['charset_html'] ?>" />
-      <META http-equiv="Expires" content="Fri, Jan 01 1900 00:00:00 GMT"/>      <META http-equiv="Pragma" content="no-cache"/>
- <META http <META http <META http <META http <META http      <link rel="shortcut icon" href="../_lib/img/grp__NM__ico__NM__nila-logo.ico">
-      <link rel="stylesheet" type="text/css" href="../_lib/css/<?php echo $str_schema_all ?>_menuH.css" /> 
-      <link rel="stylesheet" type="text/css" href="../_lib/css/<?php echo $str_schema_all ?>_menuH<?php echo $_SESSION['scriptcase']['reg_conf']['css_dir'] ?>.css" /> 
-      <link rel="stylesheet" type="text/css" href="../_lib/css/<?php echo $this->str_schema_all ?>_grid.css" /> 
-      <link rel="stylesheet" type="text/css" href="../_lib/css/<?php echo $this->str_schema_all ?>_grid<?php echo $_SESSION['scriptcase']['reg_conf']['css_dir'] ?>.css" /> 
-     </HEAD>
-     <body>
-       <table align="center" class="scGridBorder"><tr><td style="padding: 0">
-       <table style="width: 100%" class="scGridTabela"><tr class="scGridFieldOdd"><td class="scGridFieldOddFont" style="padding: 15px 30px; text-align: center">
-        <?php echo $NM_Mens_Erro; ?>
-        <br />
-        <form name="Fseg" method="post" target="_self">
-         <input type="hidden" name="script_case_init" value="<?php echo NM_encode_input($script_case_init) ?>"/> 
-         <input type="button" name="sc_sai_seg" value="OK" onclick="nm_saida()"> 
-        </form> 
-       </td></tr></table>
-       </td></tr></table>
-<?php
-              if (isset($_SESSION['scriptcase']['nm_sc_retorno']) && !empty($_SESSION['scriptcase']['nm_sc_retorno']))
-              {
-?>
-<br /><br /><br />
-<table align="center" class="scGridBorder" style="width: 450px"><tr><td style="padding: 0">
- <table style="width: 100%" class="scGridTabela">
-  <tr class="scGridFieldOdd">
-   <td class="scGridFieldOddFont" style="padding: 15px 30px">
-    <?php echo $this->Nm_lang['lang_errm_unth_hwto']; ?>
-   </td>
-  </tr>
- </table>
-</td></tr></table>
-<?php
-              }
-?>
-     </body>
-     <?php
-     if ((isset($nmgp_outra_jan) && $nmgp_outra_jan == 'true') || (isset($_SESSION['scriptcase']['sc_outra_jan']) && ($_SESSION['scriptcase']['sc_outra_jan'] == 'menutree' || $_SESSION['scriptcase']['sc_outra_jan'] == 'menu')))
-     {
-       $saida_final = 'window.close();';
-     }
-     else
-     {
-       $saida_final = 'history.back();';
-     }
-     ?>
-    <script type="text/javascript">
-      function nm_saida()
-      {
-<?php 
-             echo $saida_final;
-?> 
-      }
-     </script> 
-<?php
-    exit;
-} 
 $this->sc_Include($path_libs . "/nm_ini_lib.php", "F", "nm_dir_normaliza") ; 
 /* Dados do menu em sessao */
 $_SESSION['nm_menu'] = array('prod' => $str_root . $_SESSION['scriptcase']['workspace']['glo_nm_path_prod'] . '/third/COOLjsMenu/',
@@ -664,20 +590,20 @@ if (!isset($_SESSION['scriptcase']['sc_apl_seg']))
 {
     $_SESSION['scriptcase']['sc_apl_seg'] = array();
 }
-if(is_file($path_apls . $this->tab_grupo[0] . '_lib/_app_data/dsb_studyplace_ini.php'))
+if(is_file($path_apls . $this->tab_grupo[0] . '_lib/_app_data/dsb_workspace_ini.php'))
 {
-    require($path_apls . $this->tab_grupo[0] . '_lib/_app_data/dsb_studyplace_ini.php');
+    require($path_apls . $this->tab_grupo[0] . '_lib/_app_data/dsb_workspace_ini.php');
     if ((!isset($arr_data['status']) || trim($arr_data['status']) == "NAO") || (isset($_SESSION['nm_session']['user']['sec']['flag']) && $_SESSION['nm_session']['user']['sec']['flag'] == "N")) 
     {
-      if (!isset($_SESSION['scriptcase']['sc_apl_seg']['dsb_studyplace']))
+      if (!isset($_SESSION['scriptcase']['sc_apl_seg']['dsb_workspace']))
       {
-        $_SESSION['scriptcase']['sc_apl_seg']['dsb_studyplace'] = "on";
+        $_SESSION['scriptcase']['sc_apl_seg']['dsb_workspace'] = "on";
       }
     }
 }
 if (isset($_SESSION['nm_session']['user']['sec']['flag']) && $_SESSION['nm_session']['user']['sec']['flag'] == "N") 
 { 
-    $_SESSION['scriptcase']['sc_apl_seg']['dsb_studyplace'] = "on";
+    $_SESSION['scriptcase']['sc_apl_seg']['dsb_workspace'] = "on";
 } 
 if (is_file($path_apls . $this->tab_grupo[0] .'_lib/_app_data/dsb_studyspace_ini.php'))
 {
@@ -698,119 +624,43 @@ if (isset($_SESSION['nm_session']['user']['sec']['flag']) && $_SESSION['nm_sessi
 { 
     $_SESSION['scriptcase']['sc_apl_seg']['dsb_studyspace'] = "on";
 } 
-if (is_file($path_apls . $this->tab_grupo[0] .'_lib/_app_data/qry_course_ini.php'))
+if (is_file($path_apls . $this->tab_grupo[0] .'_lib/_app_data/mnu_supplies_ini.php'))
 {
-    require($path_apls . $this->tab_grupo[0] .'_lib/_app_data/qry_course_ini.php');
+    require($path_apls . $this->tab_grupo[0] .'_lib/_app_data/mnu_supplies_ini.php');
     if ((!isset($arr_data['status']) || trim($arr_data['status']) == "NAO") || (isset($_SESSION['nm_session']['user']['sec']['flag']) && $_SESSION['nm_session']['user']['sec']['flag'] == "N")) 
     {
-        if (!isset($_SESSION['scriptcase']['sc_apl_seg']['qry_course']))
+        if (!isset($_SESSION['scriptcase']['sc_apl_seg']['mnu_supplies']))
         {
-            $_SESSION['scriptcase']['sc_apl_seg']['qry_course'] = "on";
+            $_SESSION['scriptcase']['sc_apl_seg']['mnu_supplies'] = "on";
         }
     }
     if (isset($_SESSION['nm_session']['user']['sec']['flag']) && $_SESSION['nm_session']['user']['sec']['flag'] == "N") 
     { 
-        $_SESSION['scriptcase']['sc_apl_seg']['qry_course'] = "on";
+        $_SESSION['scriptcase']['sc_apl_seg']['mnu_supplies'] = "on";
     } 
 }
 if (isset($_SESSION['nm_session']['user']['sec']['flag']) && $_SESSION['nm_session']['user']['sec']['flag'] == "N") 
 { 
-    $_SESSION['scriptcase']['sc_apl_seg']['qry_course'] = "on";
+    $_SESSION['scriptcase']['sc_apl_seg']['mnu_supplies'] = "on";
 } 
-if (is_file($path_apls . $this->tab_grupo[0] .'_lib/_app_data/qry_class_ini.php'))
+if (is_file($path_apls . $this->tab_grupo[0] .'_lib/_app_data/mnu_security_ini.php'))
 {
-    require($path_apls . $this->tab_grupo[0] .'_lib/_app_data/qry_class_ini.php');
+    require($path_apls . $this->tab_grupo[0] .'_lib/_app_data/mnu_security_ini.php');
     if ((!isset($arr_data['status']) || trim($arr_data['status']) == "NAO") || (isset($_SESSION['nm_session']['user']['sec']['flag']) && $_SESSION['nm_session']['user']['sec']['flag'] == "N")) 
     {
-        if (!isset($_SESSION['scriptcase']['sc_apl_seg']['qry_class']))
+        if (!isset($_SESSION['scriptcase']['sc_apl_seg']['mnu_security']))
         {
-            $_SESSION['scriptcase']['sc_apl_seg']['qry_class'] = "on";
+            $_SESSION['scriptcase']['sc_apl_seg']['mnu_security'] = "on";
         }
     }
     if (isset($_SESSION['nm_session']['user']['sec']['flag']) && $_SESSION['nm_session']['user']['sec']['flag'] == "N") 
     { 
-        $_SESSION['scriptcase']['sc_apl_seg']['qry_class'] = "on";
+        $_SESSION['scriptcase']['sc_apl_seg']['mnu_security'] = "on";
     } 
 }
 if (isset($_SESSION['nm_session']['user']['sec']['flag']) && $_SESSION['nm_session']['user']['sec']['flag'] == "N") 
 { 
-    $_SESSION['scriptcase']['sc_apl_seg']['qry_class'] = "on";
-} 
-if (is_file($path_apls . $this->tab_grupo[0] .'_lib/_app_data/qry_summary_ini.php'))
-{
-    require($path_apls . $this->tab_grupo[0] .'_lib/_app_data/qry_summary_ini.php');
-    if ((!isset($arr_data['status']) || trim($arr_data['status']) == "NAO") || (isset($_SESSION['nm_session']['user']['sec']['flag']) && $_SESSION['nm_session']['user']['sec']['flag'] == "N")) 
-    {
-        if (!isset($_SESSION['scriptcase']['sc_apl_seg']['qry_summary']))
-        {
-            $_SESSION['scriptcase']['sc_apl_seg']['qry_summary'] = "on";
-        }
-    }
-    if (isset($_SESSION['nm_session']['user']['sec']['flag']) && $_SESSION['nm_session']['user']['sec']['flag'] == "N") 
-    { 
-        $_SESSION['scriptcase']['sc_apl_seg']['qry_summary'] = "on";
-    } 
-}
-if (isset($_SESSION['nm_session']['user']['sec']['flag']) && $_SESSION['nm_session']['user']['sec']['flag'] == "N") 
-{ 
-    $_SESSION['scriptcase']['sc_apl_seg']['qry_summary'] = "on";
-} 
-if (is_file($path_apls . $this->tab_grupo[0] .'_lib/_app_data/qry_classExam_ini.php'))
-{
-    require($path_apls . $this->tab_grupo[0] .'_lib/_app_data/qry_classExam_ini.php');
-    if ((!isset($arr_data['status']) || trim($arr_data['status']) == "NAO") || (isset($_SESSION['nm_session']['user']['sec']['flag']) && $_SESSION['nm_session']['user']['sec']['flag'] == "N")) 
-    {
-        if (!isset($_SESSION['scriptcase']['sc_apl_seg']['qry_classExam']))
-        {
-            $_SESSION['scriptcase']['sc_apl_seg']['qry_classExam'] = "on";
-        }
-    }
-    if (isset($_SESSION['nm_session']['user']['sec']['flag']) && $_SESSION['nm_session']['user']['sec']['flag'] == "N") 
-    { 
-        $_SESSION['scriptcase']['sc_apl_seg']['qry_classExam'] = "on";
-    } 
-}
-if (isset($_SESSION['nm_session']['user']['sec']['flag']) && $_SESSION['nm_session']['user']['sec']['flag'] == "N") 
-{ 
-    $_SESSION['scriptcase']['sc_apl_seg']['qry_classExam'] = "on";
-} 
-if (is_file($path_apls . $this->tab_grupo[0] .'_lib/_app_data/seguranca_ini.php'))
-{
-    require($path_apls . $this->tab_grupo[0] .'_lib/_app_data/seguranca_ini.php');
-    if ((!isset($arr_data['status']) || trim($arr_data['status']) == "NAO") || (isset($_SESSION['nm_session']['user']['sec']['flag']) && $_SESSION['nm_session']['user']['sec']['flag'] == "N")) 
-    {
-        if (!isset($_SESSION['scriptcase']['sc_apl_seg']['seguranca']))
-        {
-            $_SESSION['scriptcase']['sc_apl_seg']['seguranca'] = "on";
-        }
-    }
-    if (isset($_SESSION['nm_session']['user']['sec']['flag']) && $_SESSION['nm_session']['user']['sec']['flag'] == "N") 
-    { 
-        $_SESSION['scriptcase']['sc_apl_seg']['seguranca'] = "on";
-    } 
-}
-if (isset($_SESSION['nm_session']['user']['sec']['flag']) && $_SESSION['nm_session']['user']['sec']['flag'] == "N") 
-{ 
-    $_SESSION['scriptcase']['sc_apl_seg']['seguranca'] = "on";
-} 
-if (is_file($path_apls . $this->tab_grupo[0] .'_lib/_app_data/qry_studyPlane_ini.php'))
-{
-    require($path_apls . $this->tab_grupo[0] .'_lib/_app_data/qry_studyPlane_ini.php');
-    if ((!isset($arr_data['status']) || trim($arr_data['status']) == "NAO") || (isset($_SESSION['nm_session']['user']['sec']['flag']) && $_SESSION['nm_session']['user']['sec']['flag'] == "N")) 
-    {
-        if (!isset($_SESSION['scriptcase']['sc_apl_seg']['qry_studyPlane']))
-        {
-            $_SESSION['scriptcase']['sc_apl_seg']['qry_studyPlane'] = "on";
-        }
-    }
-    if (isset($_SESSION['nm_session']['user']['sec']['flag']) && $_SESSION['nm_session']['user']['sec']['flag'] == "N") 
-    { 
-        $_SESSION['scriptcase']['sc_apl_seg']['qry_studyPlane'] = "on";
-    } 
-}
-if (isset($_SESSION['nm_session']['user']['sec']['flag']) && $_SESSION['nm_session']['user']['sec']['flag'] == "N") 
-{ 
-    $_SESSION['scriptcase']['sc_apl_seg']['qry_studyPlane'] = "on";
+    $_SESSION['scriptcase']['sc_apl_seg']['mnu_security'] = "on";
 } 
 if (is_file($path_apls . $this->tab_grupo[0] .'_lib/_app_data/cdt_user_loged_ini.php'))
 {
@@ -895,60 +745,20 @@ if ($_SESSION['scriptcase']['charset'] != "UTF-8" && NM_is_utf8($nm_var_lab[2]))
 {
     $nm_var_lab[2] = sc_convert_encoding($nm_var_lab[2], $_SESSION['scriptcase']['charset'], "UTF-8");
 }
- $nm_var_lab[3] = "";
-if ($_SESSION['scriptcase']['charset'] != "UTF-8" && NM_is_utf8($nm_var_lab[3]))
-{
-    $nm_var_lab[3] = sc_convert_encoding($nm_var_lab[3], $_SESSION['scriptcase']['charset'], "UTF-8");
-}
- $nm_var_lab[4] = "";
-if ($_SESSION['scriptcase']['charset'] != "UTF-8" && NM_is_utf8($nm_var_lab[4]))
-{
-    $nm_var_lab[4] = sc_convert_encoding($nm_var_lab[4], $_SESSION['scriptcase']['charset'], "UTF-8");
-}
- $nm_var_lab[5] = "";
-if ($_SESSION['scriptcase']['charset'] != "UTF-8" && NM_is_utf8($nm_var_lab[5]))
-{
-    $nm_var_lab[5] = sc_convert_encoding($nm_var_lab[5], $_SESSION['scriptcase']['charset'], "UTF-8");
-}
- $nm_var_lab[6] = "";
-if ($_SESSION['scriptcase']['charset'] != "UTF-8" && NM_is_utf8($nm_var_lab[6]))
-{
-    $nm_var_lab[6] = sc_convert_encoding($nm_var_lab[6], $_SESSION['scriptcase']['charset'], "UTF-8");
-}
  $nm_var_hint[0] = "Home";
 if ($_SESSION['scriptcase']['charset'] != "UTF-8" && NM_is_utf8($nm_var_hint[0]))
 {
     $nm_var_hint[0] = sc_convert_encoding($nm_var_hint[0], $_SESSION['scriptcase']['charset'], "UTF-8");
 }
- $nm_var_hint[1] = "Cursada";
+ $nm_var_hint[1] = "Suministros";
 if ($_SESSION['scriptcase']['charset'] != "UTF-8" && NM_is_utf8($nm_var_hint[1]))
 {
     $nm_var_hint[1] = sc_convert_encoding($nm_var_hint[1], $_SESSION['scriptcase']['charset'], "UTF-8");
 }
- $nm_var_hint[2] = "Clases";
+ $nm_var_hint[2] = "Ajustes";
 if ($_SESSION['scriptcase']['charset'] != "UTF-8" && NM_is_utf8($nm_var_hint[2]))
 {
     $nm_var_hint[2] = sc_convert_encoding($nm_var_hint[2], $_SESSION['scriptcase']['charset'], "UTF-8");
-}
- $nm_var_hint[3] = "Apuntes";
-if ($_SESSION['scriptcase']['charset'] != "UTF-8" && NM_is_utf8($nm_var_hint[3]))
-{
-    $nm_var_hint[3] = sc_convert_encoding($nm_var_hint[3], $_SESSION['scriptcase']['charset'], "UTF-8");
-}
- $nm_var_hint[4] = "Choice";
-if ($_SESSION['scriptcase']['charset'] != "UTF-8" && NM_is_utf8($nm_var_hint[4]))
-{
-    $nm_var_hint[4] = sc_convert_encoding($nm_var_hint[4], $_SESSION['scriptcase']['charset'], "UTF-8");
-}
- $nm_var_hint[5] = "Ajustes";
-if ($_SESSION['scriptcase']['charset'] != "UTF-8" && NM_is_utf8($nm_var_hint[5]))
-{
-    $nm_var_hint[5] = sc_convert_encoding($nm_var_hint[5], $_SESSION['scriptcase']['charset'], "UTF-8");
-}
- $nm_var_hint[6] = "Planes";
-if ($_SESSION['scriptcase']['charset'] != "UTF-8" && NM_is_utf8($nm_var_hint[6]))
-{
-    $nm_var_hint[6] = sc_convert_encoding($nm_var_hint[6], $_SESSION['scriptcase']['charset'], "UTF-8");
 }
 $saida_apl = $_SESSION['scriptcase']['sc_saida_workspace'];
 if (isset($_SESSION['scriptcase']['sc_apl_seg']['dsb_studyspace']) && strtolower($_SESSION['scriptcase']['sc_apl_seg']['dsb_studyspace']) == "on")
@@ -959,53 +769,21 @@ else
 {
     $workspace_menuData['data'] .= "item_7|.|" . $nm_var_lab[0] . "|||grp__NM__ico__NM__nila-logo30.png|_self|disabled\n";
 }
-if (isset($_SESSION['scriptcase']['sc_apl_seg']['qry_course']) && strtolower($_SESSION['scriptcase']['sc_apl_seg']['qry_course']) == "on")
+if (isset($_SESSION['scriptcase']['sc_apl_seg']['mnu_supplies']) && strtolower($_SESSION['scriptcase']['sc_apl_seg']['mnu_supplies']) == "on")
 {
-    $workspace_menuData['data'] .= "item_1|.|" . $nm_var_lab[1] . "|workspace_form_php.php?sc_item_menu=item_1&sc_apl_menu=qry_course&sc_apl_link=" . urlencode($workspace_menuData['url']['link']) . "&sc_usa_grupo=" . $_SESSION['scriptcase']['workspace']['glo_nm_usa_grupo'] . "|" . $nm_var_hint[1] . "||" . $this->workspace_target('_self') . "|" . "\n";
+    $workspace_menuData['data'] .= "item_1|.|" . $nm_var_lab[1] . "|workspace_form_php.php?sc_item_menu=item_1&sc_apl_menu=mnu_supplies&sc_apl_link=" . urlencode($workspace_menuData['url']['link']) . "&sc_usa_grupo=" . $_SESSION['scriptcase']['workspace']['glo_nm_usa_grupo'] . "|" . $nm_var_hint[1] . "||" . $this->workspace_target('_self') . "|" . "\n";
 }
 else
 {
     $workspace_menuData['data'] .= "item_1|.|" . $nm_var_lab[1] . "||||_self|disabled\n";
 }
-if (isset($_SESSION['scriptcase']['sc_apl_seg']['qry_class']) && strtolower($_SESSION['scriptcase']['sc_apl_seg']['qry_class']) == "on")
+if (isset($_SESSION['scriptcase']['sc_apl_seg']['mnu_security']) && strtolower($_SESSION['scriptcase']['sc_apl_seg']['mnu_security']) == "on")
 {
-    $workspace_menuData['data'] .= "item_3|.|" . $nm_var_lab[2] . "|workspace_form_php.php?sc_item_menu=item_3&sc_apl_menu=qry_class&sc_apl_link=" . urlencode($workspace_menuData['url']['link']) . "&sc_usa_grupo=" . $_SESSION['scriptcase']['workspace']['glo_nm_usa_grupo'] . "|" . $nm_var_hint[2] . "||" . $this->workspace_target('_blank') . "|" . "\n";
+    $workspace_menuData['data'] .= "item_8|.|" . $nm_var_lab[2] . "|workspace_form_php.php?sc_item_menu=item_8&sc_apl_menu=mnu_security&sc_apl_link=" . urlencode($workspace_menuData['url']['link']) . "&sc_usa_grupo=" . $_SESSION['scriptcase']['workspace']['glo_nm_usa_grupo'] . "|" . $nm_var_hint[2] . "||" . $this->workspace_target('_self') . "|" . "\n";
 }
 else
 {
-    $workspace_menuData['data'] .= "item_3|.|" . $nm_var_lab[2] . "||||_blank|disabled\n";
-}
-if (isset($_SESSION['scriptcase']['sc_apl_seg']['qry_summary']) && strtolower($_SESSION['scriptcase']['sc_apl_seg']['qry_summary']) == "on")
-{
-    $workspace_menuData['data'] .= "item_4|.|" . $nm_var_lab[3] . "|workspace_form_php.php?sc_item_menu=item_4&sc_apl_menu=qry_summary&sc_apl_link=" . urlencode($workspace_menuData['url']['link']) . "&sc_usa_grupo=" . $_SESSION['scriptcase']['workspace']['glo_nm_usa_grupo'] . "|" . $nm_var_hint[3] . "||" . $this->workspace_target('_blank') . "|" . "\n";
-}
-else
-{
-    $workspace_menuData['data'] .= "item_4|.|" . $nm_var_lab[3] . "||||_blank|disabled\n";
-}
-if (isset($_SESSION['scriptcase']['sc_apl_seg']['qry_classExam']) && strtolower($_SESSION['scriptcase']['sc_apl_seg']['qry_classExam']) == "on")
-{
-    $workspace_menuData['data'] .= "item_5|.|" . $nm_var_lab[4] . "|workspace_form_php.php?sc_item_menu=item_5&sc_apl_menu=qry_classExam&sc_apl_link=" . urlencode($workspace_menuData['url']['link']) . "&sc_usa_grupo=" . $_SESSION['scriptcase']['workspace']['glo_nm_usa_grupo'] . "|" . $nm_var_hint[4] . "||" . $this->workspace_target('_blank') . "|" . "\n";
-}
-else
-{
-    $workspace_menuData['data'] .= "item_5|.|" . $nm_var_lab[4] . "||||_blank|disabled\n";
-}
-if (isset($_SESSION['scriptcase']['sc_apl_seg']['seguranca']) && strtolower($_SESSION['scriptcase']['sc_apl_seg']['seguranca']) == "on")
-{
-    $workspace_menuData['data'] .= "item_8|.|" . $nm_var_lab[5] . "|workspace_form_php.php?sc_item_menu=item_8&sc_apl_menu=seguranca&sc_apl_link=" . urlencode($workspace_menuData['url']['link']) . "&sc_usa_grupo=" . $_SESSION['scriptcase']['workspace']['glo_nm_usa_grupo'] . "|" . $nm_var_hint[5] . "||" . $this->workspace_target('_self') . "|" . "\n";
-}
-else
-{
-    $workspace_menuData['data'] .= "item_8|.|" . $nm_var_lab[5] . "||||_self|disabled\n";
-}
-if (isset($_SESSION['scriptcase']['sc_apl_seg']['qry_studyPlane']) && strtolower($_SESSION['scriptcase']['sc_apl_seg']['qry_studyPlane']) == "on")
-{
-    $workspace_menuData['data'] .= "item_6|.|" . $nm_var_lab[6] . "|workspace_form_php.php?sc_item_menu=item_6&sc_apl_menu=qry_studyPlane&sc_apl_link=" . urlencode($workspace_menuData['url']['link']) . "&sc_usa_grupo=" . $_SESSION['scriptcase']['workspace']['glo_nm_usa_grupo'] . "|" . $nm_var_hint[6] . "||" . $this->workspace_target('_blank') . "|" . "\n";
-}
-else
-{
-    $workspace_menuData['data'] .= "item_6|.|" . $nm_var_lab[6] . "||||_blank|disabled\n";
+    $workspace_menuData['data'] .= "item_8|.|" . $nm_var_lab[2] . "||||_self|disabled\n";
 }
 if(isset($_SESSION['scriptcase']['force_menu_orientacao']) && !empty($_SESSION['scriptcase']['force_menu_orientacao']))
 {
@@ -1056,8 +834,8 @@ if (!isset($_SESSION['scriptcase']['sc_apl_seg']['dsb_studyspace']) || strtolowe
         'icon_color_disabled'     => "",
     );
 $str_disabled = "N";
-$str_link = "workspace_form_php.php?sc_item_menu=item_1&sc_apl_menu=qry_course&sc_apl_link=" . urlencode($workspace_menuData['url']['link']) . "&sc_usa_grupo=" . $_SESSION['scriptcase']['workspace']['glo_nm_usa_grupo'] . "";
-if (!isset($_SESSION['scriptcase']['sc_apl_seg']['qry_course']) || strtolower($_SESSION['scriptcase']['sc_apl_seg']['qry_course']) != "on")
+$str_link = "workspace_form_php.php?sc_item_menu=item_1&sc_apl_menu=mnu_supplies&sc_apl_link=" . urlencode($workspace_menuData['url']['link']) . "&sc_usa_grupo=" . $_SESSION['scriptcase']['workspace']['glo_nm_usa_grupo'] . "";
+if (!isset($_SESSION['scriptcase']['sc_apl_seg']['mnu_supplies']) || strtolower($_SESSION['scriptcase']['sc_apl_seg']['mnu_supplies']) != "on")
 {
     $str_link = "#";
     $str_disabled = "Y";
@@ -1065,13 +843,13 @@ if (!isset($_SESSION['scriptcase']['sc_apl_seg']['qry_course']) || strtolower($_
     $str_icon = "";
     $icon_aba = "";
     $icon_aba_inactive = "";
-    if(empty($icon_aba) && isset($arr_menuicons['cons']['active']))
+    if(empty($icon_aba) && isset($arr_menuicons['menu']['active']))
     {
-        $icon_aba = $arr_menuicons['cons']['active'];
+        $icon_aba = $arr_menuicons['menu']['active'];
     }
-    if(empty($icon_aba_inactive) && isset($arr_menuicons['cons']['inactive']))
+    if(empty($icon_aba_inactive) && isset($arr_menuicons['menu']['inactive']))
     {
-        $icon_aba_inactive = $arr_menuicons['cons']['inactive'];
+        $icon_aba_inactive = $arr_menuicons['menu']['inactive'];
     }
     $workspace_menuData['data'][] = array(
         'label'    => "" . $nm_var_lab[1] . "",
@@ -1093,119 +871,8 @@ if (!isset($_SESSION['scriptcase']['sc_apl_seg']['qry_course']) || strtolower($_
         'icon_color_disabled'     => "",
     );
 $str_disabled = "N";
-$str_link = "workspace_form_php.php?sc_item_menu=item_3&sc_apl_menu=qry_class&sc_apl_link=" . urlencode($workspace_menuData['url']['link']) . "&sc_usa_grupo=" . $_SESSION['scriptcase']['workspace']['glo_nm_usa_grupo'] . "";
-if (!isset($_SESSION['scriptcase']['sc_apl_seg']['qry_class']) || strtolower($_SESSION['scriptcase']['sc_apl_seg']['qry_class']) != "on")
-{
-    $str_link = "#";
-    $str_disabled = "Y";
-}
-    $str_icon = "";
-    $icon_aba = "";
-    $icon_aba_inactive = "";
-    if(empty($icon_aba) && isset($arr_menuicons['cons']['active']))
-    {
-        $icon_aba = $arr_menuicons['cons']['active'];
-    }
-    if(empty($icon_aba_inactive) && isset($arr_menuicons['cons']['inactive']))
-    {
-        $icon_aba_inactive = $arr_menuicons['cons']['inactive'];
-    }
-    $workspace_menuData['data'][] = array(
-        'label'    => "" . $nm_var_lab[2] . "",
-        'level'    => "0",
-        'link'     => $str_link,
-        'hint'     => "" . $nm_var_hint[2] . "",
-        'id'       => "item_3",
-        'icon'     => $str_icon,
-        'icon_aba' => $icon_aba,
-        'icon_aba_inactive' => $icon_aba_inactive,
-        'target'   => " item-target=\"" . $this->workspace_target('_blank') . "\"",
-        'sc_id'    => "item_3",
-        'disabled' => $str_disabled,
-        'display'     => "text_fontawesomeicon",
-        'display_position'=> "text_right",
-        'icon_fa'     => "fas fa-file-alt",
-        'icon_color'     => "",
-        'icon_color_hover'     => "",
-        'icon_color_disabled'     => "",
-    );
-$str_disabled = "N";
-$str_link = "workspace_form_php.php?sc_item_menu=item_4&sc_apl_menu=qry_summary&sc_apl_link=" . urlencode($workspace_menuData['url']['link']) . "&sc_usa_grupo=" . $_SESSION['scriptcase']['workspace']['glo_nm_usa_grupo'] . "";
-if (!isset($_SESSION['scriptcase']['sc_apl_seg']['qry_summary']) || strtolower($_SESSION['scriptcase']['sc_apl_seg']['qry_summary']) != "on")
-{
-    $str_link = "#";
-    $str_disabled = "Y";
-}
-    $str_icon = "";
-    $icon_aba = "";
-    $icon_aba_inactive = "";
-    if(empty($icon_aba) && isset($arr_menuicons['cons']['active']))
-    {
-        $icon_aba = $arr_menuicons['cons']['active'];
-    }
-    if(empty($icon_aba_inactive) && isset($arr_menuicons['cons']['inactive']))
-    {
-        $icon_aba_inactive = $arr_menuicons['cons']['inactive'];
-    }
-    $workspace_menuData['data'][] = array(
-        'label'    => "" . $nm_var_lab[3] . "",
-        'level'    => "0",
-        'link'     => $str_link,
-        'hint'     => "" . $nm_var_hint[3] . "",
-        'id'       => "item_4",
-        'icon'     => $str_icon,
-        'icon_aba' => $icon_aba,
-        'icon_aba_inactive' => $icon_aba_inactive,
-        'target'   => " item-target=\"" . $this->workspace_target('_blank') . "\"",
-        'sc_id'    => "item_4",
-        'disabled' => $str_disabled,
-        'display'     => "text_fontawesomeicon",
-        'display_position'=> "text_right",
-        'icon_fa'     => "fas fa-file-alt",
-        'icon_color'     => "",
-        'icon_color_hover'     => "",
-        'icon_color_disabled'     => "",
-    );
-$str_disabled = "N";
-$str_link = "workspace_form_php.php?sc_item_menu=item_5&sc_apl_menu=qry_classExam&sc_apl_link=" . urlencode($workspace_menuData['url']['link']) . "&sc_usa_grupo=" . $_SESSION['scriptcase']['workspace']['glo_nm_usa_grupo'] . "";
-if (!isset($_SESSION['scriptcase']['sc_apl_seg']['qry_classExam']) || strtolower($_SESSION['scriptcase']['sc_apl_seg']['qry_classExam']) != "on")
-{
-    $str_link = "#";
-    $str_disabled = "Y";
-}
-    $str_icon = "";
-    $icon_aba = "";
-    $icon_aba_inactive = "";
-    if(empty($icon_aba) && isset($arr_menuicons['cons']['active']))
-    {
-        $icon_aba = $arr_menuicons['cons']['active'];
-    }
-    if(empty($icon_aba_inactive) && isset($arr_menuicons['cons']['inactive']))
-    {
-        $icon_aba_inactive = $arr_menuicons['cons']['inactive'];
-    }
-    $workspace_menuData['data'][] = array(
-        'label'    => "" . $nm_var_lab[4] . "",
-        'level'    => "0",
-        'link'     => $str_link,
-        'hint'     => "" . $nm_var_hint[4] . "",
-        'id'       => "item_5",
-        'icon'     => $str_icon,
-        'icon_aba' => $icon_aba,
-        'icon_aba_inactive' => $icon_aba_inactive,
-        'target'   => " item-target=\"" . $this->workspace_target('_blank') . "\"",
-        'sc_id'    => "item_5",
-        'disabled' => $str_disabled,
-        'display'     => "text_fontawesomeicon",
-        'display_position'=> "text_right",
-        'icon_fa'     => "fas fa-check-circle",
-        'icon_color'     => "",
-        'icon_color_hover'     => "",
-        'icon_color_disabled'     => "",
-    );
-$str_disabled = "N";
-$str_link = "workspace_form_php.php?sc_item_menu=item_8&sc_apl_menu=seguranca&sc_apl_link=" . urlencode($workspace_menuData['url']['link']) . "&sc_usa_grupo=" . $_SESSION['scriptcase']['workspace']['glo_nm_usa_grupo'] . "";
-if (!isset($_SESSION['scriptcase']['sc_apl_seg']['seguranca']) || strtolower($_SESSION['scriptcase']['sc_apl_seg']['seguranca']) != "on")
+$str_link = "workspace_form_php.php?sc_item_menu=item_8&sc_apl_menu=mnu_security&sc_apl_link=" . urlencode($workspace_menuData['url']['link']) . "&sc_usa_grupo=" . $_SESSION['scriptcase']['workspace']['glo_nm_usa_grupo'] . "";
+if (!isset($_SESSION['scriptcase']['sc_apl_seg']['mnu_security']) || strtolower($_SESSION['scriptcase']['sc_apl_seg']['mnu_security']) != "on")
 {
     $str_link = "#";
     $str_disabled = "Y";
@@ -1222,10 +889,10 @@ if (!isset($_SESSION['scriptcase']['sc_apl_seg']['seguranca']) || strtolower($_S
         $icon_aba_inactive = $arr_menuicons['menu']['inactive'];
     }
     $workspace_menuData['data'][] = array(
-        'label'    => "" . $nm_var_lab[5] . "",
+        'label'    => "" . $nm_var_lab[2] . "",
         'level'    => "0",
         'link'     => $str_link,
-        'hint'     => "" . $nm_var_hint[5] . "",
+        'hint'     => "" . $nm_var_hint[2] . "",
         'id'       => "item_8",
         'icon'     => $str_icon,
         'icon_aba' => $icon_aba,
@@ -1236,43 +903,6 @@ if (!isset($_SESSION['scriptcase']['sc_apl_seg']['seguranca']) || strtolower($_S
         'display'     => "text_fontawesomeicon",
         'display_position'=> "text_right",
         'icon_fa'     => "fas fa-cog",
-        'icon_color'     => "",
-        'icon_color_hover'     => "",
-        'icon_color_disabled'     => "",
-    );
-$str_disabled = "N";
-$str_link = "workspace_form_php.php?sc_item_menu=item_6&sc_apl_menu=qry_studyPlane&sc_apl_link=" . urlencode($workspace_menuData['url']['link']) . "&sc_usa_grupo=" . $_SESSION['scriptcase']['workspace']['glo_nm_usa_grupo'] . "";
-if (!isset($_SESSION['scriptcase']['sc_apl_seg']['qry_studyPlane']) || strtolower($_SESSION['scriptcase']['sc_apl_seg']['qry_studyPlane']) != "on")
-{
-    $str_link = "#";
-    $str_disabled = "Y";
-}
-    $str_icon = "";
-    $icon_aba = "";
-    $icon_aba_inactive = "";
-    if(empty($icon_aba) && isset($arr_menuicons['cons']['active']))
-    {
-        $icon_aba = $arr_menuicons['cons']['active'];
-    }
-    if(empty($icon_aba_inactive) && isset($arr_menuicons['cons']['inactive']))
-    {
-        $icon_aba_inactive = $arr_menuicons['cons']['inactive'];
-    }
-    $workspace_menuData['data'][] = array(
-        'label'    => "" . $nm_var_lab[6] . "",
-        'level'    => "0",
-        'link'     => $str_link,
-        'hint'     => "" . $nm_var_hint[6] . "",
-        'id'       => "item_6",
-        'icon'     => $str_icon,
-        'icon_aba' => $icon_aba,
-        'icon_aba_inactive' => $icon_aba_inactive,
-        'target'   => " item-target=\"" . $this->workspace_target('_blank') . "\"",
-        'sc_id'    => "item_6",
-        'disabled' => $str_disabled,
-        'display'     => "text_fontawesomeicon",
-        'display_position'=> "text_right",
-        'icon_fa'     => "fas fa-dollar-sign",
         'icon_color'     => "",
         'icon_color_hover'     => "",
         'icon_color_disabled'     => "",
@@ -2178,10 +1808,10 @@ else
     <div id="Iframe_control" style='width:100%; height:100%; margin:0px; padding:0px;'>
 <?php
 $link_default = "";
-if (isset($_SESSION['scriptcase']['sc_apl_seg']['dsb_studyplace']) && $_SESSION['scriptcase']['sc_apl_seg']['dsb_studyplace'] == "on") 
+if (isset($_SESSION['scriptcase']['sc_apl_seg']['dsb_workspace']) && $_SESSION['scriptcase']['sc_apl_seg']['dsb_workspace'] == "on") 
 { 
     $SCR  = "";
-    $link_default = " onclick=\"openMenuItem('iframe_workspace');\" item-href=\"workspace_form_php.php?sc_item_menu=workspace&sc_apl_menu=dsb_studyplace&sc_apl_link=" . urlencode($workspace_menuData['url']['link']) . "&sc_usa_grupo=" . $_SESSION['scriptcase']['workspace']['glo_nm_usa_grupo'] . "\"  item-target=\"workspace_iframe\"";
+    $link_default = " onclick=\"openMenuItem('iframe_workspace');\" item-href=\"workspace_form_php.php?sc_item_menu=workspace&sc_apl_menu=dsb_workspace&sc_apl_link=" . urlencode($workspace_menuData['url']['link']) . "&sc_usa_grupo=" . $_SESSION['scriptcase']['workspace']['glo_nm_usa_grupo'] . "\"  item-target=\"workspace_iframe\"";
 } 
 else
 { 

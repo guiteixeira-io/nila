@@ -58,7 +58,6 @@ class qry_class_grid
    var $progress_pdf;
    var $progress_res;
    var $progress_graf;
-   var $array_curso = array();
    var $count_ger;
    var $curso;
    var $modulo;
@@ -313,7 +312,7 @@ function actionBar_getStateHide($buttonName)
    if (!isset($_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['pesq_tab_label']))
    {
        $_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['pesq_tab_label'] = "";
-       $_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['pesq_tab_label'] .= "curso?#?" . "Cursada" . "?@?";
+       $_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['pesq_tab_label'] .= "curso?#?" . "Curso" . "?@?";
    }
    if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['grid_search_add']))
    {
@@ -985,7 +984,6 @@ function actionBar_getStateHide($buttonName)
        $this->sc_field_0 = $this->rs_grid->fields[7] ;  
        $this->SC_seq_register = $this->nmgp_reg_start ; 
        $this->SC_seq_page = 0;
-       $this->Lookup->lookup_curso($this->curso, $this->modulo, $this->array_curso); 
        $_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['final'] = $this->nmgp_reg_start ; 
        if ($_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['inicio'] != 0 && $_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['opcao'] != "pdf") 
        { 
@@ -1238,7 +1236,7 @@ $nm_saida->saida("                        <link rel=\"shortcut icon\" href=\"\">
            $nm_saida->saida("     var scSweetAlertConfirmButtonFAPos = \"" . $confirmButtonFAPos . "\";\r\n");
            $nm_saida->saida("     var scSweetAlertCancelButtonFAPos = \"" . $cancelButtonFAPos . "\";\r\n");
            $nm_saida->saida("   </script>\r\n");
-           $nm_saida->saida("   <script type=\"text/javascript\" src=\"qry_class_jquery_7242.js\"></script>\r\n");
+           $nm_saida->saida("   <script type=\"text/javascript\" src=\"qry_class_jquery_9921.js\"></script>\r\n");
            $nm_saida->saida("   <script type=\"text/javascript\" src=\"qry_class_ajax.js\"></script>\r\n");
            $nm_saida->saida("   <script type=\"text/javascript\" src=\"qry_class_message.js\"></script>\r\n");
            $nm_saida->saida("   <script type=\"text/javascript\">\r\n");
@@ -2741,8 +2739,6 @@ $nm_saida->saida("}\r\n");
 
    $compl_css_emb = ($_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['embutida']) ? "qry_class_" : "";
    $this->css_sep = " ";
-   $this->css_curso_label = $compl_css_emb . "css_curso_label";
-   $this->css_curso_grid_line = $compl_css_emb . "css_curso_grid_line";
    $this->css_modulo_label = $compl_css_emb . "css_modulo_label";
    $this->css_modulo_grid_line = $compl_css_emb . "css_modulo_grid_line";
    $this->css_descricao_label = $compl_css_emb . "css_descricao_label";
@@ -3197,37 +3193,6 @@ $nm_saida->saida("}\r\n");
      } 
    } 
  }
- function NM_label_curso()
- {
-   global $nm_saida;
-   $SC_Label = (isset($this->New_label['curso'])) ? $this->New_label['curso'] : "Cursada";
-   $classColFld = "";
-   $classColTitle = "";
-   if (!$_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['embutida'] && $_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['opcao_print'] != 'print' && $_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['opcao'] != 'pdf') {
-     $classColFld = " sc-col-fld sc-col-fld-" . $this->grid_fixed_column_no;
-     $classColTitle = " sc-col-title";
-   }
-   if (!isset($this->NM_cmp_hidden['curso']) || $this->NM_cmp_hidden['curso'] != "off") { 
-   $nm_saida->saida("     <TD class=\"" . $this->css_inherit_bg . ' ' . $this->css_scGridLabelFont . $this->css_sep . $this->css_curso_label . " " . $classColFld . $classColTitle . "\"  style=\"" . $this->css_scGridLabelNowrap . "" . $this->Css_Cmp['css_curso_label'] . "\" >\r\n");
-    $label_fieldName = nl2br($SC_Label);
-    if (!$_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['embutida'] && $_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['opcao_print'] != 'print' && $_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['opcao'] != 'pdf') {
-        // label & order
-        $divLabelStyle = 'left';
-        $label_labelContent = $label_fieldName;
-        $label_divLabel = "<div style=\"flex-grow: 1\">". $label_labelContent . "</div>";
-        // controls
-        $label_chart = '';
-        $label_fixedColumn = "<span class=\"sc-op-fix-col sc-op-fix-col-" . $this->grid_fixed_column_no . " sc-op-fix-col-notfixed\" data-fixcolid=\"" . $this->grid_fixed_column_no . "\" id=\"sc-fld-fix-col-" . $this->grid_fixed_column_no . "\"><i class=\"fas fa-thumbtack\"></i></span>";
-        $label_divControl = '<div style="display: flex; flex-wrap: nowrap; align-items: baseline">' . $label_chart . $label_fixedColumn . '</div>';
-        // final label
-        $label_final = '<div style="display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: space-between; align-items: baseline">' . $label_divLabel . $label_divControl . '</div>';
-    } else {
-        $label_final = $label_fieldName;
-    }
-   $nm_saida->saida("" . $label_final . "\r\n");
-   $nm_saida->saida("</TD>\r\n");
-   } 
- }
  function NM_label_modulo()
  {
    global $nm_saida;
@@ -3668,6 +3633,8 @@ function SC_label_rightActionBar()
                 return true;
             case "ordenacao":
                 return true;
+            case "curso":
+                return true;
         }
         return false;
     }
@@ -3682,6 +3649,8 @@ function SC_label_rightActionBar()
             case "pai":
                 return 'desc';
             case "ordenacao":
+                return 'desc';
+            case "curso":
                 return 'desc';
         }
         return 'asc';
@@ -3717,8 +3686,6 @@ function SC_label_rightActionBar()
    $this->sc_where_atual   = $_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['where_pesq'];
    $this->sc_where_filtro  = $_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['where_pesq_filtro'];
 // 
-   $SC_Label = (isset($this->New_label['curso'])) ? $this->New_label['curso'] : "Cursada";
-   $_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['labels']['curso'] = $SC_Label; 
    $SC_Label = (isset($this->New_label['modulo'])) ? $this->New_label['modulo'] : "Modulo";
    $_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['labels']['modulo'] = $SC_Label; 
    $SC_Label = (isset($this->New_label['descricao'])) ? $this->New_label['descricao'] : "Clase";
@@ -4022,7 +3989,6 @@ if ($_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['proc_pdf']) {
           $this->SC_seq_register = $_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['final'] + 1; 
           $_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['rows_emb']++;
           $this->sc_proc_grid = true;
-          $this->Lookup->lookup_curso($this->curso, $this->modulo, $this->array_curso); 
           if (!$_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['proc_pdf'])
           {
               if ($nm_houve_quebra == "S" || $this->nm_inicio_pag == 0)
@@ -4242,35 +4208,6 @@ function SC_grid_rightActionBar()
 	global $nm_saida;
     $dataActionbarPos = 'right';
 }
- function NM_grid_curso()
- {
-      global $nm_saida;
-      if (!isset($this->NM_cmp_hidden['curso']) || $this->NM_cmp_hidden['curso'] != "off") { 
-          $conteudo = NM_encode_input(sc_strip_script($this->curso)); 
-          $conteudo_original = NM_encode_input(sc_strip_script($this->curso)); 
-          $conteudo = trim($this->curso); 
-          nmgp_Form_Num_Val($conteudo, $_SESSION['scriptcase']['reg_conf']['grup_num'], $_SESSION['scriptcase']['reg_conf']['dec_num'], "0", "", "1", "", "N:" . $_SESSION['scriptcase']['reg_conf']['neg_num'] , $_SESSION['scriptcase']['reg_conf']['simb_neg'], $_SESSION['scriptcase']['reg_conf']['num_group_digit']) ; 
-          $str_tem_display = $conteudo;
-          if(!empty($str_tem_display) && $str_tem_display != '&nbsp;' && !$_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['proc_pdf'] && !$_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['embutida'] && !empty($conteudo)) 
-          { 
-              $str_tem_display = $this->getFieldHighlight('quicksearch', 'curso', $str_tem_display, $conteudo_original); 
-              $str_tem_display = $this->getFieldHighlight('advanced_search', 'curso', $str_tem_display, $conteudo_original); 
-          } 
-          $classColFld = "";
-          if (!$_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['embutida'] && $_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['opcao_print'] != 'print' && $_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['opcao'] != 'pdf') {
-              $classColFld = " sc-col-fld sc-col-fld-" . $this->grid_fixed_column_no;
-          }
-          if ($_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['proc_pdf'])
-          {
-              $this->SC_nowrap = "";
-          }
-          else
-          {
-              $this->SC_nowrap = "";
-          }
-   $nm_saida->saida("     <TD rowspan=\"" . $this->Rows_span . "\" class=\"" . $this->css_inherit_bg . ' ' . $this->css_line_fonf . $this->css_sep . $this->css_curso_grid_line . " " . $classColFld . "\"  style=\"" . $this->Css_Cmp['css_curso_grid_line'] . "\" " . $this->SC_nowrap . " align=\"\" valign=\"top\"   HEIGHT=\"0px\"><span id=\"id_sc_field_curso_" . $this->SC_seq_page . "\">" . $conteudo . "</span></TD>\r\n");
-      }
- }
  function NM_grid_modulo()
  {
       global $nm_saida;
@@ -4574,7 +4511,7 @@ function SC_grid_rightActionBar()
  }
  function NM_calc_span()
  {
-   $this->NM_colspan  = 12;
+   $this->NM_colspan  = 11;
    if ($_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['opc_psq'])
    {
        $this->NM_colspan++;
@@ -6272,9 +6209,17 @@ $nm_saida->saida("    </style>\r\n");
    function grid_search_tag_ini($cmp, $def, $seq)
    {
        global $nm_saida;
+       $this->Cmps_select2_grid = array('curso');
        $lin_obj  = "";
        $lin_obj .= "<div class='scGridFilterTagListItem' id='grid_search_" . $cmp . "'>";
-       $lin_obj .= "<span class='scGridFilterTagListItemLabel' id='grid_search_label_" . $cmp . "' title='" . NM_encode_input($def['hint']) . "' style='cursor:pointer;' onclick=\"closeAllTags();$('#grid_search_" . $cmp . " .scGridFilterTagListFilter').toggle();\">" . NM_encode_input($def['descr']) . "</span>";
+       if (in_array($cmp, $this->Cmps_select2_grid))
+       {
+           $lin_obj .= "<span class='scGridFilterTagListItemLabel' id='grid_search_label_" . $cmp . "' title='" . NM_encode_input($def['hint']) . "' style='cursor:pointer;' onclick=\"closeAllTags();$('#grid_search_" . $cmp . " .scGridFilterTagListFilter').toggle(); Sc_carga_select2_grid_" . $cmp . "(" . $seq . "); \">" . NM_encode_input($def['descr']) . "</span>";
+       }
+       else
+       {
+           $lin_obj .= "<span class='scGridFilterTagListItemLabel' id='grid_search_label_" . $cmp . "' title='" . NM_encode_input($def['hint']) . "' style='cursor:pointer;' onclick=\"closeAllTags();$('#grid_search_" . $cmp . " .scGridFilterTagListFilter').toggle();\">" . NM_encode_input($def['descr']) . "</span>";
+       }
        $lin_obj .= "<span class='scGridFilterTagListItemClose' onclick=\"$(this).parent().remove();checkLastTag(false);setTimeout(function() {nm_proc_grid_search('" . $seq . "', 'del_grid_search', 'grid_search'); return false;}, 200); return false;
     \"></span>";
        return $lin_obj;
@@ -6475,6 +6420,22 @@ $nm_saida->saida("    </style>\r\n");
                $this->Ini->Arr_result['setVar'][] = array('var' => 'Tab_obj_grid_search[' . $seq . ']', 'value' => $cmp);
            }
        } 
+       $nm_saida->saida("     function Sc_carga_select2_grid_curso(SEQ)\r\n");
+       $nm_saida->saida("     {\r\n");
+       $nm_saida->saida("      $(\"#grid_search_curso_val_\" + SEQ).select2(\r\n");
+       $nm_saida->saida("        {\r\n");
+       $nm_saida->saida("          minimumResultsForSearch: Infinity,\r\n");
+       $nm_saida->saida("          language: {\r\n");
+       $nm_saida->saida("            noResults: function() {\r\n");
+       $nm_saida->saida("              return \"" . $this->Ini->Nm_lang['lang_autocomp_notfound'] . "\";\r\n");
+       $nm_saida->saida("            },\r\n");
+       $nm_saida->saida("            searching: function() {\r\n");
+       $nm_saida->saida("              return \"" . $this->Ini->Nm_lang['lang_autocomp_searching'] . "\";\r\n");
+       $nm_saida->saida("            }\r\n");
+       $nm_saida->saida("          }\r\n");
+       $nm_saida->saida("        }\r\n");
+       $nm_saida->saida("      );\r\n");
+       $nm_saida->saida("     }\r\n");
        $nm_saida->saida("     function SC_carga_evt_jquery_grid(tp_carga)\r\n");
        $nm_saida->saida("     {\r\n");
        $nm_saida->saida("         for (i = 1; i <= Tot_obj_grid_search; i++)\r\n");

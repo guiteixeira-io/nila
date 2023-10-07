@@ -12,19 +12,19 @@ _:-ms-lang(x), .ie10up, .scMenuHHeader { border-collapse: separate }
 .scMenuHFooter { background-image: none; opacity: 1; filter: alpha(opacity=100) }
 .scMenuHFooterFont { color: #999999; font-family: Leelawadee, Ebrima, 'Bahnschrift Light', Gadugi, 'Nirmala UI', 'Segoe UI', Verdana; font-size: 13px; font-weight: bold; text-decoration: none }
 .scMenuList > .scMenuItem { background-color: #247159; background-image: none; opacity: 1; filter: alpha(opacity=100); padding: 3px 10px 3px 3px; margin: 0; border-width: 0; border-color: #9fd41d }
-.scMenuList > .scMenuItem > a { color: #313a46; font-family: Leelawadee, Ebrima, 'Bahnschrift Light', Gadugi, 'Nirmala UI', 'Segoe UI', Verdana; font-size: 13px; font-weight: normal; text-decoration: none; font-style: normal }
+.scMenuList > .scMenuItem > a { color: #313a46; font-family: Leelawadee, Ebrima, 'Bahnschrift Light', Gadugi, 'Nirmala UI', 'Segoe UI', Verdana; font-size: 13px; text-decoration: none; font-style: normal }
 .scMenuList > .scMenuItem:hover { background-color: #247159; background-image: none; opacity: 0.6; filter: alpha(opacity=60); margin: 0; border-width: 0; border-color: #9fd41d }
-.scMenuList > .scMenuItem:hover > a { color: #313a46; font-family: Leelawadee, Ebrima, 'Bahnschrift Light', Gadugi, 'Nirmala UI', 'Segoe UI', Verdana; font-size: 13px; font-weight: normal; text-decoration: none; font-style: normal }
+.scMenuList > .scMenuItem:hover > a { color: #313a46; font-family: Leelawadee, Ebrima, 'Bahnschrift Light', Gadugi, 'Nirmala UI', 'Segoe UI', Verdana; font-size: 13px; text-decoration: none; font-style: normal }
 .scMenuList > .scMenuItem.disabled { background-color: #247159; background-image: none; opacity: 0.4; filter: alpha(opacity=40); margin: 0; border-width: 0; border-color: #9fd41d }
-.scMenuList > .scMenuItem.disabled > a { color: #313a46; font-family: Leelawadee, Ebrima, 'Bahnschrift Light', Gadugi, 'Nirmala UI', 'Segoe UI', Verdana; font-size: 13px; font-weight: normal; text-decoration: none; font-style: normal }
+.scMenuList > .scMenuItem.disabled > a { color: #313a46; font-family: Leelawadee, Ebrima, 'Bahnschrift Light', Gadugi, 'Nirmala UI', 'Segoe UI', Verdana; font-size: 13px; text-decoration: none; font-style: normal }
 .scMenuSubList .scMenuItem { background-color: #247159; background-image: none; opacity: 1; filter: alpha(opacity=100); padding: 3px 10px 3px 3px; margin: 0; border-color: #455c72 }
-.scMenuSubList .scMenuItem a { color: #313a46; font-family: Leelawadee, Ebrima, 'Bahnschrift Light', Gadugi, 'Nirmala UI', 'Segoe UI', Verdana; font-size: 13px; font-weight: normal; text-decoration: none; font-style: normal }
+.scMenuSubList .scMenuItem a { color: #313a46; font-family: Leelawadee, Ebrima, 'Bahnschrift Light', Gadugi, 'Nirmala UI', 'Segoe UI', Verdana; font-size: 13px; text-decoration: none; font-style: normal }
 .scMenuSubList .scMenuItem:hover { background-color: #247159; background-image: none; opacity: 0.6; filter: alpha(opacity=60); padding: 3px 10px 3px 3px; margin: 0; border-color: #455c72 }
-.scMenuSubList .scMenuItem:hover a { color: #313a46; font-family: Leelawadee, Ebrima, 'Bahnschrift Light', Gadugi, 'Nirmala UI', 'Segoe UI', Verdana; font-size: 13px; font-weight: normal; text-decoration: none; font-style: normal }
+.scMenuSubList .scMenuItem:hover a { color: #313a46; font-family: Leelawadee, Ebrima, 'Bahnschrift Light', Gadugi, 'Nirmala UI', 'Segoe UI', Verdana; font-size: 13px; text-decoration: none; font-style: normal }
 .scMenuSubList .scMenuItem.disabled { background-color: #247159; background-image: none; opacity: 0.4; filter: alpha(opacity=40); padding: 3px 10px 3px 3px; margin: 0; border-color: #455c72 }
-.scMenuSubList .scMenuItem.disabled a { color: #313a46; font-family: Leelawadee, Ebrima, 'Bahnschrift Light', Gadugi, 'Nirmala UI', 'Segoe UI', Verdana; font-size: 13px; font-weight: normal; text-decoration: none; font-style: normal }
+.scMenuSubList .scMenuItem.disabled a { color: #313a46; font-family: Leelawadee, Ebrima, 'Bahnschrift Light', Gadugi, 'Nirmala UI', 'Segoe UI', Verdana; font-size: 13px; text-decoration: none; font-style: normal }
 .scMenuBreadcrumbLine { background-color: #F5F5F5; background-image: none; opacity: 1; filter: alpha(opacity=100); border-style: none; margin: 10px 20px; padding: 8px 15px; vertical-align: middle }
-.scMenuBreadcrumbLine a { background-image: none; opacity: 1; filter: alpha(opacity=100); color: #313a46; font-family: Leelawadee, Ebrima, 'Bahnschrift Light', Gadugi, 'Nirmala UI', 'Segoe UI', Verdana; font-size: 13px; font-weight: normal; padding: 0 5px; text-decoration: none; vertical-align: text-bottom }
+.scMenuBreadcrumbLine a { background-image: none; opacity: 1; filter: alpha(opacity=100); color: #313a46; font-family: Leelawadee, Ebrima, 'Bahnschrift Light', Gadugi, 'Nirmala UI', 'Segoe UI', Verdana; font-size: 13px; padding: 0 5px; text-decoration: none; vertical-align: text-bottom }
 .scMenuBreadcrumbLine a:hover { text-decoration: underline; color: #313a46 }
 .scMenuBreadcrumbLine img { position: relative; top: 1px }
 .scMenuExpand { background-image: none; opacity: 1; filter: alpha(opacity=100); position: absolute; right: 10px; top: 10px }

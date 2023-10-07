@@ -64,12 +64,12 @@
         
         
     </head>
-    <body class="page-sidebar page-background bg-half-img" style="background-image:url('../_lib/libraries/grp/nila/login/img/nila-login.jpg');background-size:100%;">
+    <body class="page-sidebar page-background bg-half-img" style="background-image:url('../_lib/libraries/grp/nila/login/img/nila-login.png');background-size:100%;" >
         <div class="page">
             <div class="container">
                 <div class="grid">
-                    <div class="col-7">
-                        <div class="content">
+                    <div class="col-7" >
+                        <div class="content" >
                             <h1>
                                 
                             </h1>

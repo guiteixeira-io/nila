@@ -14,7 +14,6 @@ class qry_class_xls
    var $sc_proc_grid; 
    var $NM_cmp_hidden = array();
    var $NM_ctrl_style = array();
-   var $array_curso = array();
    var $Arquivo;
    var $Tit_doc;
    var $count_ger;
@@ -444,10 +443,6 @@ function actionBar_getStateHide($buttonName)
          $this->Lookup->lookup_modulo($this->look_modulo, $this->modulo) ; 
          $this->look_modulo = ($this->look_modulo == "&nbsp;") ? "" : $this->look_modulo; 
          $this->sc_proc_grid = true; 
-         //----- lookup - curso
-         $this->Lookup->lookup_curso($this->curso, $this->modulo, $this->array_curso); 
-         $this->curso = str_replace("<br>", " ", $this->curso); 
-         $this->curso = ($this->curso == "&nbsp;") ? "" : $this->curso; 
          foreach ($_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['field_order'] as $Cada_col)
          { 
             if (!isset($this->NM_cmp_hidden[$Cada_col]) || $this->NM_cmp_hidden[$Cada_col] != "off")
@@ -609,34 +604,6 @@ function actionBar_getStateHide($buttonName)
    { 
       foreach ($_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['field_order'] as $Cada_col)
       { 
-          $SC_Label = (isset($this->New_label['curso'])) ? $this->New_label['curso'] : "Cursada"; 
-          if ($Cada_col == "curso" && (!isset($this->NM_cmp_hidden[$Cada_col]) || $this->NM_cmp_hidden[$Cada_col] != "off"))
-          {
-              $this->count_span++;
-              $current_cell_ref = $this->calc_cell($this->Xls_col);
-              $SC_Label = NM_charset_to_utf8($SC_Label);
-              if ($_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['embutida'])
-              { 
-                  $this->arr_export['label'][$this->Xls_col]['data']     = $SC_Label;
-                  $this->arr_export['label'][$this->Xls_col]['align']    = "left";
-                  $this->arr_export['label'][$this->Xls_col]['autosize'] = "s";
-                  $this->arr_export['label'][$this->Xls_col]['bold']     = "s";
-              }
-              else
-              { 
-                  if ($this->Use_phpspreadsheet) {
-                      $this->Nm_ActiveSheet->getStyle($current_cell_ref . $this->Xls_row)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT);
-                      $this->Nm_ActiveSheet->setCellValueExplicit($current_cell_ref . $this->Xls_row, $SC_Label, \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
-                  }
-                  else {
-                      $this->Nm_ActiveSheet->getStyle($current_cell_ref . $this->Xls_row)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
-                      $this->Nm_ActiveSheet->setCellValueExplicit($current_cell_ref . $this->Xls_row, $SC_Label, PHPExcel_Cell_DataType::TYPE_STRING);
-                  }
-                  $this->Nm_ActiveSheet->getStyle($current_cell_ref . $this->Xls_row)->getFont()->setBold(true);
-                  $this->Nm_ActiveSheet->getColumnDimension($current_cell_ref)->setAutoSize(true);
-              }
-              $this->Xls_col++;
-          }
           $SC_Label = (isset($this->New_label['modulo'])) ? $this->New_label['modulo'] : "Modulo"; 
           if ($Cada_col == "modulo" && (!isset($this->NM_cmp_hidden[$Cada_col]) || $this->NM_cmp_hidden[$Cada_col] != "off"))
           {
@@ -865,23 +832,6 @@ function actionBar_getStateHide($buttonName)
       $this->Xls_col = 0;
       $this->Xls_row++;
    } 
-   //----- curso
-   function NM_export_curso()
-   {
-         $current_cell_ref = $this->calc_cell($this->Xls_col);
-         if (!isset($this->NM_ctrl_style[$current_cell_ref])) {
-             $this->NM_ctrl_style[$current_cell_ref]['ini'] = $this->Xls_row;
-             $this->NM_ctrl_style[$current_cell_ref]['align'] = "CENTER"; 
-         }
-         $this->NM_ctrl_style[$current_cell_ref]['end'] = $this->Xls_row;
-         $this->curso = NM_charset_to_utf8($this->curso);
-         if (is_numeric($this->curso))
-         {
-             $this->NM_ctrl_style[$current_cell_ref]['format'] = '#,##0';
-         }
-         $this->Nm_ActiveSheet->setCellValue($current_cell_ref . $this->Xls_row, $this->curso);
-         $this->Xls_col++;
-   }
    //----- modulo
    function NM_export_modulo()
    {
@@ -1028,16 +978,6 @@ function actionBar_getStateHide($buttonName)
          else {
              $this->Nm_ActiveSheet->setCellValueExplicit($current_cell_ref . $this->Xls_row, $this->sc_field_0, PHPExcel_Cell_DataType::TYPE_STRING);
          }
-         $this->Xls_col++;
-   }
-   //----- curso
-   function NM_sub_cons_curso()
-   {
-         $this->curso = NM_charset_to_utf8($this->curso);
-         $this->arr_export['lines'][$this->Xls_row][$this->Xls_col]['data']   = $this->curso;
-         $this->arr_export['lines'][$this->Xls_row][$this->Xls_col]['align']  = "center";
-         $this->arr_export['lines'][$this->Xls_row][$this->Xls_col]['type']   = "num";
-         $this->arr_export['lines'][$this->Xls_row][$this->Xls_col]['format'] = "#,##0";
          $this->Xls_col++;
    }
    //----- modulo

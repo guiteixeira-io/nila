@@ -295,14 +295,6 @@ function actionBar_getStateHide($buttonName)
           $this->csv_registro = "";
           foreach ($_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['field_order'] as $Cada_col)
           { 
-              $SC_Label = (isset($this->New_label['curso'])) ? $this->New_label['curso'] : "Cursada"; 
-              if ($Cada_col == "curso" && (!isset($this->NM_cmp_hidden[$Cada_col]) || $this->NM_cmp_hidden[$Cada_col] != "off"))
-              {
-                  $col_sep = ($this->NM_prim_col > 0) ? $this->Delim_col : "";
-                  $conteudo = str_replace($this->Delim_dados, $this->Delim_dados . $this->Delim_dados, $SC_Label);
-                  $this->csv_registro .= $col_sep . $this->Delim_dados . $conteudo . $this->Delim_dados;
-                  $this->NM_prim_col++;
-              }
               $SC_Label = (isset($this->New_label['modulo'])) ? $this->New_label['modulo'] : "Modulo"; 
               if ($Cada_col == "modulo" && (!isset($this->NM_cmp_hidden[$Cada_col]) || $this->NM_cmp_hidden[$Cada_col] != "off"))
               {
@@ -435,10 +427,6 @@ function actionBar_getStateHide($buttonName)
          $this->Lookup->lookup_modulo($this->look_modulo, $this->modulo) ; 
          $this->look_modulo = ($this->look_modulo == "&nbsp;") ? "" : $this->look_modulo; 
          $this->sc_proc_grid = true; 
-         //----- lookup - curso
-         $this->Lookup->lookup_curso($this->curso, $this->modulo, $this->array_curso); 
-         $this->curso = str_replace("<br>", " ", $this->curso); 
-         $this->curso = ($this->curso == "&nbsp;") ? "" : $this->curso; 
          foreach ($_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['field_order'] as $Cada_col)
          { 
             if (!isset($this->NM_cmp_hidden[$Cada_col]) || $this->NM_cmp_hidden[$Cada_col] != "off")
@@ -559,15 +547,6 @@ function actionBar_getStateHide($buttonName)
           unset($_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['export_sel_columns']['usr_cmp_sel']);
       }
       $rs->Close();
-   }
-   //----- curso
-   function NM_export_curso()
-   {
-         nmgp_Form_Num_Val($this->curso, $_SESSION['scriptcase']['reg_conf']['grup_num'], $_SESSION['scriptcase']['reg_conf']['dec_num'], "0", "", "1", "", "N:" . $_SESSION['scriptcase']['reg_conf']['neg_num'] , $_SESSION['scriptcase']['reg_conf']['simb_neg'], $_SESSION['scriptcase']['reg_conf']['num_group_digit']) ; 
-      $col_sep = ($this->NM_prim_col > 0) ? $this->Delim_col : "";
-      $conteudo = str_replace($this->Delim_dados, $this->Delim_dados . $this->Delim_dados, $this->curso);
-      $this->csv_registro .= $col_sep . $this->Delim_dados . $conteudo . $this->Delim_dados;
-      $this->NM_prim_col++;
    }
    //----- modulo
    function NM_export_modulo()

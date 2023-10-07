@@ -12,6 +12,18 @@
 <input type="hidden" name="nmgp_arg_dyn_search" value=""/>
 <input type="hidden" name="script_case_init" value="<?php echo $this->form_encode_input($this->Ini->sc_page); ?>"> 
 </form> 
+<form name="F3" method="post" 
+                  target="_self"> 
+  <input type="hidden" name="nmgp_chave" value=""/>
+  <input type="hidden" name="nmgp_opcao" value=""/>
+  <input type="hidden" name="nmgp_ordem" value=""/>
+  <input type="hidden" name="nmgp_chave_det" value=""/>
+  <input type="hidden" name="nmgp_quant_linhas" value=""/>
+  <input type="hidden" name="nmgp_url_saida" value=""/>
+  <input type="hidden" name="nmgp_parms" value=""/>
+  <input type="hidden" name="nmgp_outra_jan" value=""/>
+  <input type="hidden" name="script_case_init" value="<?php echo $this->form_encode_input($this->Ini->sc_page); ?>"/> 
+</form> 
 <form name="F5" method="post" 
                   action="sct_form_edit_users_mob.php" 
                   target="_self"> 
@@ -35,6 +47,62 @@
 <div id="id_fatal_error" class="scFormLabelOdd" style="display: none; position: absolute"></div>
 <script type="text/javascript"> 
  NM_tp_critica(1);
+function nm_gp_submit(apl_lig, apl_saida, parms, opc, target, modal_h, modal_w, apl_name) 
+{ 
+   if (target == 'modal') 
+   {
+       par_modal = '?script_case_init=<?php echo $this->form_encode_input($this->Ini->sc_page) ?>&script_case_session=<?php echo $this->form_encode_input(session_id()) ?>&nmgp_outra_jan=true&nmgp_url_saida=modal';
+       if (opc != null && opc != '') 
+       {
+           par_modal += '&nmgp_opcao=grid';
+       }
+       if (parms != null && parms != '') 
+       {
+           par_modal += '&nmgp_parms=' + parms;
+       }
+<?php
+  if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['sct_form_edit_users_mob']['where_detal']))
+  {
+?>  
+       parent.tb_show('', apl_lig + par_modal + '&TB_iframe=true&modal=true&height=' + modal_h + '&width=' + modal_w, '');
+<?php
+  }
+  else
+  {
+?>  
+       tb_show('', apl_lig + par_modal + '&TB_iframe=true&modal=true&height=' + modal_h + '&width=' + modal_w, '');
+<?php
+  }
+?>  
+       return;
+   }
+   document.F3.target               = "_self"; 
+   document.F3.action               = apl_lig  ;
+   document.F3.nmgp_outra_jan.value = "";
+   if (opc != null && opc != "") 
+   {
+       document.F3.nmgp_opcao.value = "grid" ;
+   }
+   else
+   {
+       document.F3.nmgp_opcao.value = "" ;
+   }
+   if (target != null && target == '_blank') 
+   {
+       document.F3.nmgp_outra_jan.value = "true" ;
+       window.open('','jan_sc','location=no,menubar=no,resizable,scrollbars,status=no,toolbar=no');
+       document.F3.target = "jan_sc";
+   }
+   if (target != null && target == 'new_tab') 
+   {
+       document.F3.nmgp_outra_jan.value = "true";
+       window.open('','jan_sc','');
+       document.F3.target = "jan_sc";
+   }
+   document.F3.nmgp_url_saida.value = apl_saida ;
+   document.F3.nmgp_parms.value     = parms ;
+   document.F3.submit() ;
+} 
 
 function scInlineFormSend()
 {

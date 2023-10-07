@@ -1067,7 +1067,7 @@ $this->nm_bases_vfp       = array("vfp");
 $this->nm_bases_odbc      = array("odbc");
 $this->nm_bases_progress  = array("pdo_progress_odbc", "progress");
 $_SESSION['scriptcase']['sc_num_page'] = 1;
-$_SESSION['scriptcase']['nm_bases_security']  = "enc_nm_enc_v1DcBwH9FGD1BeHuFUHuBOV9FeHEF/DoJsHQNwZSB/DSrYHuJsHgNOHEJGDuFaHIJsD9XsZ9JeD1BeD5F7DMvmVcBUDWJeHMraHQNmZkBiHAzGD5BODMvCHArsDWFGDoBqHQBiDuFaHIBOV5XGDMvOV9BUDWF/HINUHQXOZ1BiDSrYHQNUHgBeHEFiV5B3DoF7D9XsDuFaHAveHuF7HgrKVcBODWFaHMXGHQNwZ1BiHIBeHQFUDMNKZSJGDWXCHIrqD9XsDQB/Z1rwHuFaHuNOZSrCH5FqDoXGHQJmZ1rqHArKV5FaDMNKZSXeDWr/DoJeD9XsZSX7Z1N7VWFaHgrKV9FeDWXCDoJsDcBwH9B/Z1rYHQJwHgvCZSXeV5FqVoBiD9NmDQFUZ1rwV5FGHuNODkFCDWFYVoX7D9XOH9B/D1zGV5FUDErKHEFiDuJeDoBOHQJKDQJsZ1vCV5FGHuNOV9FeDWB3VEX7DcJUZ1rqHIBeHQBiHgNKHEXeDWFGDoJeDcBwH9BiHIrKVWJsDMBYVcFeDWXCDoJsDcBwH9B/Z1rYHQJwHgvsHArsHEXCHMBqHQNwDQB/DSN7HQXGHgrwV9FiV5FYHMJsDcNmZSBqHArYHuXGHgBYHEFKV5FqHMBODcBiDQBqHIrKV5FaHgrwZSJ3V5FYHMJwHQNwZSBODSvOZMFaDMveDkFeH5FYVoX7D9JKDQX7D1BOV5FGDMzGVcBUHEF/VoBiHQBsH9BqHAN7HuX7HgBOHAFKV5B7DoXGHQNwDQFaHANOHQBOHgvOZSrCV5FYHMFGHQXGVIJsHAN7HuFUHgvsHAFKV5FqHMBqHQFYH9BiZ1N7HQJeDMNOZSJ3H5FqDoJeD9JmZ1B/D1NaD5rqHgrKHArsHEXCHIJeDcXGH9BiZ1BYHuFUDMBYVcFiV5FYHIBiHQXGZ1BOD1rwHQXGHgrKHEFKV5FqHMFGHQJeDuBqD1BeHuBqDMvmZSrCV5X/VENUHQBiZ1BOHArKHuBODMveHAFKH5FYVoX7D9JKDQX7D1BOV5FGHuzGDkBOH5FqVoJwD9XOZ1F7HABYZMB/DEBeHENiV5FaHIFGHQJeZ9JeZ1rwHQFaHuzGVIBOV5X7DoF7D9XOZSB/HABYV5X7DMrYHErCDWXCVoXGD9XsDQJsHABYV5BqDMrwDkBsV5F/DoraD9BiZ1FGZ1rYD5NUDEBeZSXeH5FGDoB/D9NmZ9XGDSzGD5F7HuzGVcFKDur/VorqHQBqZ1BiHAzGD5FaDEvsZSJGDuFaZuBqD9NwH9X7Z1rwV5JwHuBYVcFiV5X7VoFGDcBqH9FaHAN7V5JeDErKHEBUH5F/DoF7DcJeDQFGD1BeD5JwDMrwZSJ3H5FqDoJeD9JmZ1B/D1NaD5rqDErKZSXeH5FYDoFUD9JKDQJsZ1rwV5BqHuBYVcXKV5X7HIrqHQJmZ1BOHArKHuFUHgvsZSJqDWBmVoFGHQXsZSFUHABYHuFGDMvmVcFKV5BmVoBqD9BsZkFGHAvsD5XGHgveHErsDWrGDoXGHQBiDQBqDSzGV5XGDMvOVIBsDWXCDoJsDcBwH9B/Z1rYHQJwDMBYZSXeH5FYHIF7HQNwZSFUHAveHQrqHgrKVcXKHEF/HMX7HQXOH9BOHArKHQJwDEBODkFeH5FYVoFGHQJKDQFaHAN7HuB/DMBYVIBsH5FqHMBOHQXOZkFGZ1NOHQrqDMrYHENiH5F/HIF7HQJKDQJsZ1vCV5FGHuNOV9FeDWB3VEFGHQFYVINUHAvsZMNU";
+$_SESSION['scriptcase']['nm_bases_security']  = "enc_nm_enc_v1D9JKDQB/HAN7D5rqHgvOVcB/HEFYDoFUD9BsZ1FGHArYHQraHgNKVkXeH5FYVoBiHQXGDuFaHAveD5NUHgNKDkBOV5FYHMBiHQNmZSBOD1zGD5BOHgveHArsDWX7HIB/HQBiDuBqHAvOV5XGDMBYVcBUDWXKVoF7HQNwZSBqDSNOHQF7HgBYHArCDuFaHIJsD9XsZ9JeD1BeD5F7DMvmVcFeV5X7HIX7HQXOH9FaD1rwD5XGDMBYVkJGDWF/ZuBODcBwDQFUD1BeHuJwHuNOV9FiV5FYHMFUHQJmZ1F7Z1vmD5rqDEBOHArCDWF/DoBODcBwDQFUZ1rwV5X7HuzGVIBOV5X7DoJsD9XGZSB/HArYHQJwDEBODkFeH5FYVoFGHQJKDQBOZ1rwD5F7HuNOVIFCDWFYVoJwDcBqH9B/Z1BeZMFaDErKVkJGH5FYVoB/HQXGH9FGHAveD5BOHuzGVcFeDWXCDoJsDcBwH9B/Z1rYHQJwHgNOVkJqDWB3ZuB/HQJeDuFaZ1rwV5FUDMzGVcFeDWF/VoBqDcNwH9BqZ1BeHQraHgBYHErCDWF/VoBiDcJUZSX7Z1BYHuFaDMBYV9BUHEF/HIF7HQXOZ1X7DSNOHuBODMvCHAFKV5FqHIBiDcBiH9BiHABYHQBODMvsVcFiV5FYHIrqDcNmZ1BiHIveD5JwDMvCDkBsV5FqHIFUHQXOH9FUDSzGVWJwHgvOZSrCH5FqDoJeD9JmZ1B/D1NaD5rqHgrKHErsHEXCDoJsHQXsZSBiHANOHQF7DMNOV9FiV5X/VoFGHQXOZ1FGHAN7HuXGDMveDkFeV5FqHIXGHQFYZ9F7HANOHQNUDMBYV9FiV5FYHIF7HQXGZSBqZ1NOHuBqHgBODkBsH5FYVoX7D9JKDQX7D1BOV5FGDMzGV9BUHEF/HMX7DcFYZSBqZ1rYHQNUHgvsHEFKV5FqHMJsHQFYDQFUD1BeHuBODMzGVcFiV5FYHIXGHQBqZkBiD1rwHQJeHgBeDkFeV5B7ZuFaHQNmDQFUHAveHQXGHgvOV9FiH5FqDoJeD9JmZ1B/D1NaD5rqDErKZSXeH5FYDoFUD9NwDQJsHArYVWJsHuvmVcXKV5X7HMXGHQBqVIraZ1BeHuJwDErKVkXeV5FaVoBqD9NwH9X7HArYD5F7HgNKVcFeDWF/DoFGD9BsZ1F7HArYD5JeHgvCZSJ3V5XCVoB/D9NmDQFaZ1BYV5FUHuvmDkBOH5XKVoraD9BiVINUDSvOV5X7DErKHEFiDuJeDoBOHQJeDQBqHAvOV5JwHuBYDkFCDuX7VEF7D9XOZSB/Z1BeD5FaDEvsHEFKV5FaDoXGDcJeZSFGHANOD5BqHuzGVcrsH5XCVoBqDcBqZ1FaD1rwV5FaHgvCDkBsH5FYVoX7D9JKDQX7D1BOV5FGHuzGDkBOH5FqVoJwD9JmZ1F7Z1BeD5JeDEvsHENiV5FaHMBOHQJKDQFUHAveHQNUDMBYDkB/DWB3DoXGHQBsH9BOHArYHQrqHgBeHEFiV5B3DoF7D9XsDuFaHANKV5BODMvOVcBUDWrmVoFGHQNmZkBiHAvsD5BqHgNKZSJ3DWF/VoBiDcJUZSX7Z1BYHuFaDMrYDkFCDWFYVorqDcBqH9FaD1NaZMFaHgveVkJqV5FaHMJwHQNwDQFUHANOVWJsHuvmV9FeHEF/VEraHQJmZ1F7Z1vmD5rqDEBOHArCDWF/HINUHQJKDuFaZ1N7HuF7DMzGVcFeHEFYHIX7HQXOZkFUHArKHuFUHgrKHArCDWF/VoBiDcJUZSX7Z1BYHuFaDMvsV9FiV5BmVorq";
  $glo_senha_protect = (isset($_SESSION['scriptcase']['glo_senha_protect'])) ? $_SESSION['scriptcase']['glo_senha_protect'] : "S";
 if (isset($_SESSION['scriptcase']['nm_sc_retorno']) && !empty($_SESSION['scriptcase']['nm_sc_retorno']) && isset($_SESSION['scriptcase']['mnu_course']['glo_nm_conexao']) && !empty($_SESSION['scriptcase']['mnu_course']['glo_nm_conexao']))
 { 
@@ -1107,11 +1107,15 @@ if (!isset($_SESSION['scriptcase']['sc_apl_seg']))
 }
 /* Itens do Menu */
 $_SESSION['scriptcase']['mnu_course']['contr_erro'] = 'on';
+if (!isset($_SESSION['usr_login'])) {$_SESSION['usr_login'] = "";}
+if (!isset($this->sc_temp_usr_login)) {$this->sc_temp_usr_login = (isset($_SESSION['usr_login'])) ? $_SESSION['usr_login'] : "";}
 if (!isset($_SESSION['tela'])) {$_SESSION['tela'] = "";}
 if (!isset($this->sc_temp_tela)) {$this->sc_temp_tela = (isset($_SESSION['tela'])) ? $_SESSION['tela'] : "";}
 if (!isset($_SESSION['curso'])) {$_SESSION['curso'] = "";}
 if (!isset($this->sc_temp_curso)) {$this->sc_temp_curso = (isset($_SESSION['curso'])) ? $_SESSION['curso'] : "";}
  $this->sc_temp_tela = 'nila-course';
+
+$usuario = $this->sc_temp_usr_login;
 
  unset($_SESSION['curso']);
  unset($this->sc_temp_curso);
@@ -1127,17 +1131,19 @@ if (!isset($_SESSION['scriptcase']['sc_def_menu']["mnu_course"]))
     $_SESSION['scriptcase']['sc_def_menu']["mnu_course"] = array();
 }
 $sql='SELECT
-    id,
-    pai,
-    icone,
-    descricao,
-    link,
-    ordenacao,
-    target
+   scc.id,
+   scc.pai,
+   scc.icone,
+   scc.descricao,
+   scc.link,
+   scc.ordenacao,
+   scc.target
 FROM
-    curso
+   curso scc INNER JOIN student_course ssc ON scc.id = ssc.course
+WHERE
+	ssc.student = '.$this->sc_temp_usr_login.'
 ORDER BY
-	ordenacao';
+	scc.ordenacao';
 
  
       $nm_select = $sql; 
@@ -1222,6 +1228,7 @@ $this->rs->MoveNext();
 }
 if (isset($this->sc_temp_curso)) {$_SESSION['curso'] = $this->sc_temp_curso;}
 if (isset($this->sc_temp_tela)) {$_SESSION['tela'] = $this->sc_temp_tela;}
+if (isset($this->sc_temp_usr_login)) {$_SESSION['usr_login'] = $this->sc_temp_usr_login;}
 $_SESSION['scriptcase']['mnu_course']['contr_erro'] = 'off';
 if ($this->Db)
 {
@@ -1239,7 +1246,7 @@ if(isset($_SESSION['scriptcase']['force_menu_orientacao']) && !empty($_SESSION['
 elseif($this->force_mobile || ($_SESSION['scriptcase']['device_mobile'] && $_SESSION['scriptcase']['display_mobile']))
 {
     $this->menu_orientacao = 'vertical';
-    $this->mobile_menu_toolbar = 'menu_item';
+    $this->mobile_menu_toolbar = '';
 }
 
 $mnu_course_menuData['data'] = array();

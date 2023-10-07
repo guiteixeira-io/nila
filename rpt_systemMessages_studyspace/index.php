@@ -229,13 +229,13 @@ class rpt_systemMessages_studyspace_ini
       $this->nm_dt_criacao   = "20230823"; 
       $this->nm_hr_criacao   = "203547"; 
       $this->nm_autor_alt    = "admin"; 
-      $this->nm_dt_ult_alt   = "20230912"; 
-      $this->nm_hr_ult_alt   = "172137"; 
+      $this->nm_dt_ult_alt   = "20231007"; 
+      $this->nm_hr_ult_alt   = "032108"; 
       $this->Apl_paginacao   = "PARCIAL"; 
       $temp_bug_list         = explode(" ", microtime()); 
       list($NM_usec, $NM_sec) = $temp_bug_list; 
       $this->nm_timestamp    = (float) $NM_sec; 
-      $this->nm_app_version  = "1.0";
+      $this->nm_app_version  = "1.0.0";
       $this->nm_tp_variance  = "P";
 // 
 // 
@@ -976,6 +976,7 @@ class rpt_systemMessages_studyspace_ini
       $this->Tree_img_type   = "kie";
       $str_button = (isset($_SESSION['scriptcase']['str_button_all'])) ? $_SESSION['scriptcase']['str_button_all'] : "nila";
       $_SESSION['scriptcase']['str_button_all'] = $str_button;
+      $_SESSION['scriptcase']['nmamd'] = array();
       perfil_lib($this->path_libs);
       if (!isset($_SESSION['sc_session'][$this->sc_page]['SC_Check_Perfil']))
       {
@@ -1101,7 +1102,7 @@ class rpt_systemMessages_studyspace_ini
       $this->nm_ttf_chi  = array("zh_cn", "zh_hk", "ko");
       $_SESSION['sc_session'][$this->sc_page]['rpt_systemMessages_studyspace']['seq_dir'] = 0; 
       $_SESSION['sc_session'][$this->sc_page]['rpt_systemMessages_studyspace']['sub_dir'] = array(); 
-      $_SESSION['scriptcase']['nm_bases_security']  = "enc_nm_enc_v1HQNmZ9XGDSzGV5BqDMrYDkFCH5XKVEraDcBqZkFGDSNOZMFaHgBeZSJ3H5X/VoFGHQNwDQFaHAveD5NUHgNKDkBOV5FYHMBiHQNmZSBqHArKV5FUDMrYZSXeV5FqHIJsHQNmZSFGD1BOVWXGDMvOVcFeH5XKDoXGHQJmVINUHABYHQBOHgrKHArCDWF/VoBiDcJUZSX7Z1BYHuFaHuzGVcFKDWFYVoJwDcBqZSFaHAN7D5FaDEBOVkJGHEXCVoB/HQJKDQJsZ1vCV5FGHuNOV9FeDWB3VoraD9XOZSFaHArKZMB/DMNKZSJGH5FYZuXGD9NwZSFGD1veD5JwHuNOV9FeV5FYDoraD9XOH9FaD1rwD5NUDMzGZSXeDWFqDoXGDcXOZSFGD1BeVWJsHuBYVcBOH5XCVEFGD9XOH9FaHArKD5NUDMBYZSXeH5FGVoBiD9NwDQJsHIrKV5JeDMvmVcFKV5BmVoBqD9BsZkFGHArKHuBqDErKHArsDWF/HIB/HQXOZ9XGHIrKHuF7DMvOVcBODWBmDoXGDcJUZkFGZ1NOZMBqDEBeHArCDWF/VoBiDcJUZSX7Z1BYHuFaDMBYV9BUHEF/HIF7HQXOZ1X7DSNOHuBODMvCHAFKV5FqHIBiDcBiH9BiHABYHQBODMvsVcFiV5FYHIrqDcNmZ1BiHIveD5JwDMvCDkBsV5FqHIFUHQXOH9FUDSzGVWJwHgvOZSrCH5FqDoJeD9JmZ1B/D1NaD5rqHgrKHErsHEXCDoJsHQXsZSBiHANOHQF7DMNOV9FiV5X/VoFGHQXOZ1FGHAN7HuXGDMveDkFeV5FqHIXGHQFYZ9F7HANOHQNUDMBYV9FiV5FYHIF7HQXGZSBqZ1NOHuBqHgBODkBsH5FYVoX7D9JKDQX7D1BOV5FGDMzGV9BUHEF/HMX7DcFYZSBqZ1rYHQNUHgvsHEFKV5FqHMJsHQFYDQFUD1BeHuBODMzGVcFiV5FYHIXGHQBqZkBiD1rwHQJeHgBeDkFeV5B7ZuFaHQNmDQFUHAveHQXGHgvOV9FiH5FqDoJeD9JmZ1B/D1NaD5rqDErKZSXeH5FYDoFUD9NwDQJsHArYVWJsHuvmVcXKV5X7HMXGHQBqVIraZ1BeHuJwDErKVkXeV5FaVoBqD9NwH9X7HArYD5F7HgNKVcFeDWF/DoFGD9BsZ1F7HArYD5JeHgvCZSJ3V5XCVoB/D9NmDQFaZ1BYV5FUHuvmDkBOH5XKVoraD9BiVINUDSvOV5X7DErKHEFiDuJeDoBOHQJeDQBqHAvOV5JwHuBYDkFCDuX7VEF7D9XOZSB/Z1BeD5FaDEvsHEFKV5FaDoXGDcJeZSFGHANOD5BqHuzGVcrsH5XCVoBqDcBqZ1FaD1rwV5FaHgvCDkBsH5FYVoX7D9JKDQX7D1BOV5FGHuzGDkBOH5FqVoJwD9JmZ1F7Z1BeD5JeDEvsHENiV5FaHMBOHQJKDQFUHAveHQNUDMBYDkB/DWB3DoXGHQBsH9BOHArYHQrqHgBeHEFiV5B3DoF7D9XsDuFaHANKV5BODMvOVcBUDWrmVoFGHQNmZ1BiDSvOD5BOHgveVkJ3DWF/VoBiDcJUZSX7Z1BYHuFaHgvOVIBsV5F/DoNUD9BiZ1FGHIrwD5BiHgvsHArCH5F/DorqD9NwH9X7Z1rwVWBqHgvOVcFeDWFYHMBiD9BsVIraD1rwV5X7HgBeHErCDWXCHIJwHQNmH9BiD1BeHuX7DMzGV9FeV5F/HMBqDcBwZ1X7D1rKHQrqHgBeHEFiV5B3DoF7D9XsDuFaHANKVWBqDMrwZSNiDWB3VEB/";
+      $_SESSION['scriptcase']['nm_bases_security']  = "enc_nm_enc_v1HQXsZSX7Z1rwD5JwHuNOVcXKDurGVENUHQBiZ1FGDSBeV5X7DMBYVkJ3H5F/VoFaHQJKZSBiHAveD5NUHgNKDkBOV5FYHMBiHQNmZkFGZ1vOZMJwHgvsHArCDuJeDoJsHQNmDQFUD1vOD5F7DMNOVcXKHEF/HMJwHQBiVINUHINKV5X7HgvsHENiDurmZuJeDcBiH9FUHINaD5F7DMNOV9BUDWF/HMFGHQNwZ1BODSvmD5rqDEBOHEFiHEFqDoF7DcJUZSBiHIvsVWFaHgvOVIBsDuX7HMJeHQXGH9BqD1zGV5X7HgveZSJ3DuJeHIX7HQNmH9FUDSvCD5F7HgvOVcB/H5B7VoX7DcFYZ1FGZ1vOV5X7HgvsHEJqDWr/HMJeHQNmDQFaHINaV5FGHuNOVcFKHEFYVoBqDcBwH9BqDSvOZMJwDMveHENiDWXCHMBqHQXsZSBiHIBOD5F7DMBOVcXKDWFaHIXGDcNmZ1FGHINKV5X7HgNODkB/HEB7DoXGDcBiDuFaHAvmD5F7DMrYVcFeV5FYHIBiHQBiZ1BODSvOD5rqDEBOHEFiHEFqDoF7DcJUZSFGD1BeV5FGHgrYDkFCDWXCVoB/D9BiZ1F7HIveD5BiHgBeDkB/HEB3DoB/HQFYDQJwHANOV5JwHgrKDkFCDWJeVoB/D9BsZkFUHArKHQraDEBeHEXeDuFYVoB/D9NwZ9rqZ1rwHQBOHgrKVcFCH5XCHIF7DcBqZ1B/DSBeV5FaHgvCZSJGDWB3ZuXGHQXGDQFGHAveD5BOHuzGVcBUDurGVoF7HQFYH9FaHIBeZMBODEvsZSJGDWr/DoB/D9XsZSFGD1NKV5JwHuzGDkBOH5FqVoX7D9JmZ1FaHArKZMB/DMBYZSXeDWX7DoXGDcBwDuBOZ1NaV5FGHuNOVcFKHEFYVoBqDcBwH9FaD1rwD5rqDMNKZSXeDuJeDoB/D9NwZSFGD1veV5raDMBYVcFeDWFaHIBiDcFYZ1FGZ1BeHuJwHgvCHArCDuFaHIB/HQNwDuFaHAveD5NUHgNKDkBOV5FYHMBiDcFYVINUHIBOD5BOHgrKDkXKH5X/ZuBOD9XsH9X7DSBYV5FGHuBOV9FeDWJeHIJeHQJmZ1F7Z1vmD5rqDEBOHArCDWBmDoB/D9NwH9FGHAveVWJsHgrYDkFCH5FqVEFGD9XOH9FaD1rKV5FaDEBOHArCV5FqVoB/D9NwZSFGD1BeV5FUHgrKDkBODWFYVoFGDcNwH9FaD1rwZMB/DEvsHEXeH5F/ZuXGD9NwZSFGHAveV5FUHgvsDkBOH5XKDoJsD9XOZ1F7HIveD5BqHgBeHEFiV5B3DoF7D9XsDuFaHAveHuFaHuNOZSrCH5FqDoXGHQJmZ1BiD1rwD5BiHgveZSJ3HEXCVoXGDcJeDuFaZ1BYHQFaHuzGVIBsHEX/VEF7DcJUZSBOHIBeV5XGDMzGDkFeV5FqHIJsD9XsZ9JeD1BeD5F7DMvmVcrsDWXCDoraDcNwH9B/HAN7D5XGDEBOZSXeV5XCZuJsDcBwDuFaHAveD5NUHgNKDkBOV5FYHMBiHQNmVINUHAvsD5XGHgveDkB/DWFGDoBOHQBiDQBqHIrwHuFaHuNOZSrCH5FqDoXGHQJmZ1FUZ1rYHQBqDMvCHEBUDWFqDoF7D9NwH9FUD1BeV5raDMvmVcB/HEF/HMF7HQNmZ1BiHIBeD5FaDMveVkJ3DWF/VoBiDcJUZSX7Z1BYHuFaDMNOVIBsDWFaHIX7HQJmH9BqHIveHQrqHgvsVkJ3HEB7DoNUDcXGDQFaDSBYHuFaHuNOZSrCH5FqDoXGHQJmZ1BiDSvOV5FUHgveHEBOV5JeZura";
       $this->prep_conect();
       $this->conectDB();
       if (!in_array(strtolower($this->nm_tpbanco), $this->nm_bases_all))
@@ -2137,7 +2138,6 @@ class rpt_systemMessages_studyspace_apl
    var $xml;
    var $json;
    var $csv;
-   var $rtf;
 //
 //----- 
    function prep_modulos($modulo)
@@ -2153,7 +2153,7 @@ class rpt_systemMessages_studyspace_apl
    function controle($linhas = 0)
    {
       global $nm_saida, $nm_url_saida, $script_case_init, $nmgp_parms_pdf, $nmgp_graf_pdf, $nm_apl_dependente, $nmgp_navegator_print, $nmgp_tipo_print, $nmgp_cor_print, $nmgp_cor_word, $Det_use_pass_pdf, $Det_pdf_zip, $NMSC_conf_apl, $NM_contr_var_session, $NM_run_iframe, $SC_module_export, $nmgp_password,
-             $glo_senha_protect, $nmgp_opcao, $nm_call_php, $rec, $nmgp_fast_search, $nmgp_cond_fast_search, $nmgp_arg_fast_search, $nmgp_ordem;
+             $glo_senha_protect, $nmgp_opcao, $nm_call_php, $rec, $nmgp_ordem;
 
       $Parms_form_pdf = false;
       if (isset($_SESSION['sc_session']['scriptcase']['embutida_form_pdf']['rpt_systemMessages_studyspace']))
@@ -2374,16 +2374,6 @@ class rpt_systemMessages_studyspace_apl
                   unset($_SESSION['sc_session'][$script_case_init]['rpt_systemMessages_studyspace']['pivot_order_level']);
                   unset($_SESSION['sc_session'][$script_case_init]['rpt_systemMessages_studyspace']['pivot_order_sort']);
                   unset($_SESSION['sc_session'][$script_case_init]['rpt_systemMessages_studyspace']['pivot_tabular']);
-              }
-              if ($nmgp_opcao == "fast_search")
-              {
-                  $_POST['parm'] = str_replace("__NM_PLUS__", "+", $_POST['parm']);
-                  $_POST['parm'] = str_replace("__NM_AMP__", "&", $_POST['parm']);
-                  $_POST['parm'] = str_replace("__NM_PRC__", "%", $_POST['parm']);
-                  $temp = explode("_SCQS_", $_POST['parm']);
-                  $nmgp_fast_search      = (isset($temp[0])) ? $temp[0] : "";
-                  $nmgp_cond_fast_search = (isset($temp[1])) ? $temp[1] : "";
-                  $nmgp_arg_fast_search  = (isset($temp[2])) ? $temp[2] : "";
               }
               if ($nmgp_opcao == "ordem")
               {
@@ -2646,32 +2636,6 @@ class rpt_systemMessages_studyspace_apl
       $this->Ini->Str_btn_grid    = trim($str_button) . "/" . trim($str_button) . $_SESSION['scriptcase']['reg_conf']['css_dir'] . ".php";
       $this->Ini->Str_btn_css     = trim($str_button) . "/" . trim($str_button) . ".css";
       include($this->Ini->path_btn . $this->Ini->Str_btn_grid);
-      $this->arr_buttons['group_group_4']= array(
-          'value'            => "" . $this->Ini->Nm_lang['lang_btns_expt_email_title'] . "",
-          'hint'             => "" . $this->Ini->Nm_lang['lang_btns_expt_email'] . "",
-          'type'             => "button",
-          'display'          => "text_fontawesomeicon",
-          'display_position' => "text_right",
-          'image'            => "scriptcase__NM__envelope.png",
-          'fontawesomeicon'  => "fas fa-envelope",
-          'has_fa'           => true,
-          'content_icons'    => false,
-          'style'            => "default",
-      );
-
-      $this->arr_buttons['group_group_3']= array(
-          'value'            => "" . $this->Ini->Nm_lang['lang_btns_expt'] . "",
-          'hint'             => "" . $this->Ini->Nm_lang['lang_btns_expt'] . "",
-          'type'             => "button",
-          'display'          => "text_fontawesomeicon",
-          'display_position' => "text_right",
-          'image'            => "scriptcase__NM__export.png",
-          'fontawesomeicon'  => "fas fa-download",
-          'has_fa'           => true,
-          'content_icons'    => false,
-          'style'            => "default",
-      );
-
       if (!isset($_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['embutida']) || !$_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['embutida'])
       { 
       $this->Ini->Img_sep_grid             = "/" . trim($str_toolbar_separator);
@@ -2716,7 +2680,6 @@ class rpt_systemMessages_studyspace_apl
           $_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['field_order'][] = "message";
           $_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['field_order'][] = "id";
           $_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['field_order'][] = "page";
-          $_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['field_order_orig'] = $_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['field_order'];
           if (!isset($_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['usr_cmp_sel']))
           { 
               $_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['usr_cmp_sel'] = array();
@@ -2999,23 +2962,6 @@ class rpt_systemMessages_studyspace_apl
       { 
           $this->Ini->path_img_modelo = $this->Ini->path_img_modelo;
       } 
-      if ($_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['opcao'] == "fast_search")  
-      { 
-          $this->SC_fast_search($GLOBALS["nmgp_fast_search"], $GLOBALS["nmgp_cond_fast_search"], $GLOBALS["nmgp_arg_fast_search"]);
-          if ($_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['where_pesq_ant'] == $_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['where_pesq'])
-          { 
-              $_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['opcao'] = 'igual';
-          } 
-          else 
-          { 
-              $_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['where_pesq_ant'] = $_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['where_pesq'];
-              $_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['contr_array_resumo'] = "NAO";
-              $_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['contr_total_geral']  = "NAO";
-              unset($_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['tot_geral']);
-              $_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['opcao'] = 'pesq';
-              $_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['orig_pesq'] = 'grid';
-          } 
-      } 
       if ($_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['opcao'] == 'pesq' && isset($_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['orig_pesq']) && !empty($_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['orig_pesq']))  
       { 
           if ($_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['orig_pesq'] == "res")  
@@ -3043,7 +2989,6 @@ class rpt_systemMessages_studyspace_apl
          $_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['campos_busca']      = array();
          $_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['grid_pesq']         = array();
          $_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['Grid_search']       = array();
-         $_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['where_pesq_fast']   = "";
          $_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['contr_total_geral'] = "NAO";
           unset($_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['sc_total']);
           unset($_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['tot_geral']);
@@ -3160,21 +3105,6 @@ class rpt_systemMessages_studyspace_apl
           $this->csv->monta_csv();
       }
       else   
-      if ($_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['opcao'] == "rtf")  
-      { 
-          if ($_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['embutida'])
-          { 
-              require_once($this->Ini->path_embutida . "rpt_systemMessages_studyspace/rpt_systemMessages_studyspace_rtf.class.php"); 
-          } 
-          else 
-          { 
-              require_once($this->Ini->path_aplicacao . "rpt_systemMessages_studyspace_rtf.class.php"); 
-          } 
-          $this->rtf  = new rpt_systemMessages_studyspace_rtf();
-          $this->prep_modulos("rtf");
-          $this->rtf->monta_rtf();
-      }
-      else
       if (substr($_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['opcao'], 0, 7) == "grafico")  
       { 
           if ($_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['embutida'])
@@ -3753,219 +3683,6 @@ if (window.parent && typeof window.parent.updateGeneratedPdfFile === "function")
           $this->Db->Close(); 
       }
   }
-   function SC_fast_search($in_fields, $arg_search, $data_search)
-   {
-      $fields = (strpos($in_fields, "SC_all_Cmp") !== false) ? array("SC_all_Cmp") : explode("_VLS_", $in_fields);
-      $this->NM_case_insensitive = false;
-      if (empty($data_search)) 
-      {
-          $tmp_cmd = "";
-          $_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['where_pesq_fast'] = "";
-          if (!empty($_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['where_orig'])) 
-          {
-              $tmp_cmd = $_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['where_orig']; 
-          }
-          if (!empty($_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['where_pesq_filtro'])) 
-          {
-              if (!empty($tmp_cmd)) 
-              {
-                  $tmp_cmd .= " and (" . $_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['where_pesq_filtro'] . ")"; 
-              }
-              else
-              {
-                  $tmp_cmd = " where (" . $_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['where_pesq_filtro'] . ")"; 
-              }
-          }
-          $_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['where_pesq'] = $tmp_cmd;
-          unset($_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['fast_search']);
-          return;
-      }
-      $comando = "";
-      if ($_SESSION['scriptcase']['charset'] != "UTF-8" && NM_is_utf8($data_search))
-      {
-          $data_search = NM_conv_charset($data_search, $_SESSION['scriptcase']['charset'], "UTF-8");
-      }
-      $sv_data = $data_search;
-      foreach ($fields as $field) {
-          if ($field == "SC_all_Cmp" || $field == "message") 
-          {
-              $this->SC_monta_condicao($comando, "message", $arg_search, $data_search, "TEXT", false);
-          }
-          if ($field == "SC_all_Cmp" || $field == "id") 
-          {
-              $this->SC_monta_condicao($comando, "id", $arg_search, str_replace(",", ".", $data_search));
-          }
-          if ($field == "SC_all_Cmp" || $field == "page") 
-          {
-              $this->SC_monta_condicao($comando, "page", $arg_search, $data_search, "VARCHAR", false);
-          }
-      }
-      if (empty($comando)) 
-      {
-          $comando = " 1 <> 1 "; 
-      }
-      $_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['where_pesq_fast'] = $comando;
-      $tmp_cmd = "";
-      if (!empty($_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['where_orig'])) 
-      {
-          $tmp_cmd = $_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['where_orig']; 
-      }
-      if (!empty($_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['where_pesq_filtro'])) 
-      {
-          if (!empty($tmp_cmd)) 
-          {
-              $tmp_cmd .= " and (" . $_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['where_pesq_filtro'] . ")"; 
-          }
-          else
-          {
-              $tmp_cmd = " where (" . $_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['where_pesq_filtro'] . ")"; 
-          }
-      }
-      if (!empty($tmp_cmd)) 
-      {
-          $comando = $tmp_cmd . " and (" . $comando . ")"; 
-      }
-      else
-      {
-          $comando = " where (" . $comando . ")"; 
-      }
-      $_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['where_pesq'] = $comando;
-      $_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['fast_search'][0] = $in_fields;
-      $_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['fast_search'][1] = $arg_search;
-      $_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['fast_search'][2] = $sv_data;
-   }
-   function SC_monta_condicao(&$comando, $nome, $condicao, $campo, $tp_campo="", $tp_unaccent=false)
-   {
-      $nm_aspas   = "'";
-      $nm_aspas1  = "'";
-      $nm_numeric = array();
-      $Nm_datas   = array();
-      $nm_esp_postgres = array();
-      $campo_join = strtolower(str_replace(".", "_", $nome));
-      $nm_ini_lower = "";
-      $nm_fim_lower = "";
-      $Nm_accent = $this->Ini->Nm_accent_no;
-      if ($tp_unaccent) {
-          $Nm_accent = $this->Ini->Nm_accent_yes;
-      }
-      $nm_numeric[] = "id";
-      if (in_array($campo_join, $nm_numeric))
-      {
-         if ($_SESSION['sc_session'][$this->Ini->sc_page]['rpt_systemMessages_studyspace']['decimal_db'] == ".")
-         {
-             $nm_aspas  = "";
-             $nm_aspas1 = "";
-         }
-         if (is_array($campo))
-         {
-             foreach ($campo as $Ind => $Cmp)
-             {
-                if (!is_numeric($Cmp))
-                {
-                    return;
-                }
-                if ($Cmp == "")
-                {
-                    $campo[$Ind] = 0;
-                }
-             }
-         }
-         else
-         {
-             if (!is_numeric($campo))
-             {
-                 return;
-             }
-             if ($campo == "")
-             {
-                $campo = 0;
-             }
-         }
-      }
-      if (in_array($campo_join, $nm_numeric) && in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_postgres) && (strtoupper($condicao) == "II" || strtoupper($condicao) == "QP" || strtoupper($condicao) == "NP"))
-      {
-          $nome      = "CAST ($nome AS TEXT)";
-          $nm_aspas  = "'";
-          $nm_aspas1 = "'";
-      }
-      if (in_array($campo_join, $nm_esp_postgres) && in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_postgres))
-      {
-          $nome      = "CAST ($nome AS TEXT)";
-          $nm_aspas  = "'";
-          $nm_aspas1 = "'";
-      }
-      if (in_array($campo_join, $nm_numeric) && in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_sybase) && (strtoupper($condicao) == "II" || strtoupper($condicao) == "QP" || strtoupper($condicao) == "NP"))
-      {
-          $nome      = "CAST ($nome AS VARCHAR)";
-          $nm_aspas  = "'";
-          $nm_aspas1 = "'";
-      }
-      if (in_array($campo_join, $nm_numeric) && in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_progress) && (strtoupper($condicao) == "II" || strtoupper($condicao) == "QP" || strtoupper($condicao) == "NP"))
-      {
-          $nome      = "CAST ($nome AS VARCHAR(255))";
-          $nm_aspas  = "'";
-          $nm_aspas1 = "'";
-      }
-         $comando .= (!empty($comando) ? " or " : "");
-         if (is_array($campo))
-         {
-             $prep = "";
-             foreach ($campo as $Ind => $Cmp)
-             {
-                 $prep .= (!empty($prep)) ? "," : "";
-                 $Cmp   = substr($this->Db->qstr($Cmp), 1, -1);
-                 $prep .= $nm_ini_lower . $nm_aspas . $Cmp . $nm_aspas1 . $nm_fim_lower;
-             }
-             $prep .= (empty($prep)) ? $nm_aspas . $nm_aspas1 : "";
-             $comando .= $nm_ini_lower . $nome . $nm_fim_lower . " in (" . $prep . ")";
-             return;
-         }
-         $campo  = substr($this->Db->qstr($campo), 1, -1);
-         $cond_tst = strtoupper($condicao);
-         if ($cond_tst == "II" || $cond_tst == "QP" || $cond_tst == "NP")
-         {
-             if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_postgres) && $this->NM_case_insensitive)
-             {
-                 $op_like      = " ilike ";
-                 $nm_ini_lower = "";
-                 $nm_fim_lower = "";
-             }
-             else
-             {
-                 $op_like = " like ";
-             }
-         }
-         switch ($cond_tst)
-         {
-            case "EQ":     // 
-               $comando        .= $nm_ini_lower . $nome . $nm_fim_lower . " = " . $nm_ini_lower . $nm_aspas . $campo . $nm_aspas1 . $nm_fim_lower;
-            break;
-            case "II":     // 
-               $comando        .= $nm_ini_lower . $Nm_accent['cmp_i'] . $nome . $Nm_accent['cmp_f'] . $nm_fim_lower . $Nm_accent['cmp_apos'] . $op_like . $nm_ini_lower . "'" . $Nm_accent['arg_i'] . $campo . $Nm_accent['arg_f'] . "%'" . $nm_fim_lower . $Nm_accent['arg_apos'];
-            break;
-            case "QP":     // 
-               $comando        .= $nm_ini_lower . $Nm_accent['cmp_i'] . $nome . $Nm_accent['cmp_f'] . $nm_fim_lower . $Nm_accent['cmp_apos'] . $op_like . $nm_ini_lower . "'%" . $Nm_accent['arg_i'] . $campo . $Nm_accent['arg_f'] . "%'" . $nm_fim_lower . $Nm_accent['arg_apos'];
-            break;
-            case "NP":     // 
-               $comando        .= $nm_ini_lower . $Nm_accent['cmp_i'] . $nome . $Nm_accent['cmp_f'] . $nm_fim_lower . $Nm_accent['cmp_apos'] . " not" . $op_like . $nm_ini_lower . "'%" . $Nm_accent['arg_i'] . $campo . $Nm_accent['arg_f'] . "%'" . $nm_fim_lower . $Nm_accent['arg_apos'];
-            break;
-            case "DF":     // 
-               $comando        .= $nm_ini_lower . $nome . $nm_fim_lower . " <> " . $nm_ini_lower . $nm_aspas . $campo . $nm_aspas1 . $nm_fim_lower;
-            break;
-            case "GT":     // 
-               $comando        .= $nm_ini_lower . $nome . $nm_fim_lower . " > " . $nm_ini_lower . $nm_aspas . $campo . $nm_aspas1 . $nm_fim_lower;
-            break;
-            case "GE":     // 
-               $comando        .= $nm_ini_lower . $nome . $nm_fim_lower . " >= " . $nm_ini_lower . $nm_aspas . $campo . $nm_aspas1 . $nm_fim_lower;
-            break;
-            case "LT":     // 
-               $comando        .= $nm_ini_lower . $nome . $nm_fim_lower . " < " . $nm_ini_lower . $nm_aspas . $campo . $nm_aspas1 . $nm_fim_lower;
-            break;
-            case "LE":     // 
-               $comando        .= $nm_ini_lower . $nome . $nm_fim_lower . " <= " . $nm_ini_lower . $nm_aspas . $campo . $nm_aspas1 . $nm_fim_lower;
-            break;
-         }
-   }
   function html_doc_word($nm_arquivo_doc_word, $nmgp_password)
   {
       global $nm_url_saida;

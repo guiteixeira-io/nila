@@ -2980,117 +2980,6 @@ if (isset($_SESSION['scriptcase']['device_mobile']) && $_SESSION['scriptcase']['
 
   }
 
-  // ---------- Validate id
-  function do_ajax_cdt_class_mob_validate_id()
-  {
-    var nomeCampo_id = "id";
-    var var_id = scAjaxGetFieldHidden(nomeCampo_id);
-    var var_script_case_init = document.F1.script_case_init.value;
-    x_ajax_cdt_class_mob_validate_id(var_id, var_script_case_init, do_ajax_cdt_class_mob_validate_id_cb);
-  } // do_ajax_cdt_class_mob_validate_id
-
-  function do_ajax_cdt_class_mob_validate_id_cb(sResp)
-  {
-    oResp = scAjaxResponse(sResp);
-    scAjaxRedir();
-    sFieldValid = "id";
-    scEventControl_onBlur(sFieldValid);
-    scAjaxUpdateFieldErrors(sFieldValid, "valid");
-    sFieldErrors = scAjaxListFieldErrors(sFieldValid, false);
-    if ("" == sFieldErrors)
-    {
-      var sImgStatus = sc_img_status_ok;
-      scAjaxHideErrorDisplay(sFieldValid);
-    }
-    else
-    {
-      var sImgStatus = sc_img_status_err;
-      scAjaxShowErrorDisplay(sFieldValid, sFieldErrors);
-    }
-    var $oImg = $('#id_sc_status_' + sFieldValid);
-    if (0 < $oImg.length)
-    {
-      $oImg.attr('src', sImgStatus).css('display', '');
-    }
-    scAjaxShowDebug();
-    scAjaxSetMaster();
-    scAjaxSetFocus();
-  } // do_ajax_cdt_class_mob_validate_id_cb
-
-  // ---------- Validate pai
-  function do_ajax_cdt_class_mob_validate_pai()
-  {
-    var nomeCampo_pai = "pai";
-    var var_pai = scAjaxGetFieldText(nomeCampo_pai);
-    var var_script_case_init = document.F1.script_case_init.value;
-    x_ajax_cdt_class_mob_validate_pai(var_pai, var_script_case_init, do_ajax_cdt_class_mob_validate_pai_cb);
-  } // do_ajax_cdt_class_mob_validate_pai
-
-  function do_ajax_cdt_class_mob_validate_pai_cb(sResp)
-  {
-    oResp = scAjaxResponse(sResp);
-    scAjaxRedir();
-    sFieldValid = "pai";
-    scEventControl_onBlur(sFieldValid);
-    scAjaxUpdateFieldErrors(sFieldValid, "valid");
-    sFieldErrors = scAjaxListFieldErrors(sFieldValid, false);
-    if ("" == sFieldErrors)
-    {
-      var sImgStatus = sc_img_status_ok;
-      scAjaxHideErrorDisplay(sFieldValid);
-    }
-    else
-    {
-      var sImgStatus = sc_img_status_err;
-      scAjaxShowErrorDisplay(sFieldValid, sFieldErrors);
-    }
-    var $oImg = $('#id_sc_status_' + sFieldValid);
-    if (0 < $oImg.length)
-    {
-      $oImg.attr('src', sImgStatus).css('display', '');
-    }
-    scAjaxShowDebug();
-    scAjaxSetMaster();
-    scAjaxSetFocus();
-  } // do_ajax_cdt_class_mob_validate_pai_cb
-
-  // ---------- Validate icone
-  function do_ajax_cdt_class_mob_validate_icone()
-  {
-    var nomeCampo_icone = "icone";
-    var var_icone = scAjaxGetFieldText(nomeCampo_icone);
-    var var_script_case_init = document.F1.script_case_init.value;
-    x_ajax_cdt_class_mob_validate_icone(var_icone, var_script_case_init, do_ajax_cdt_class_mob_validate_icone_cb);
-  } // do_ajax_cdt_class_mob_validate_icone
-
-  function do_ajax_cdt_class_mob_validate_icone_cb(sResp)
-  {
-    oResp = scAjaxResponse(sResp);
-    scAjaxRedir();
-    sFieldValid = "icone";
-    scEventControl_onBlur(sFieldValid);
-    scAjaxUpdateFieldErrors(sFieldValid, "valid");
-    sFieldErrors = scAjaxListFieldErrors(sFieldValid, false);
-    if ("" == sFieldErrors)
-    {
-      var sImgStatus = sc_img_status_ok;
-      scAjaxHideErrorDisplay(sFieldValid);
-    }
-    else
-    {
-      var sImgStatus = sc_img_status_err;
-      scAjaxShowErrorDisplay(sFieldValid, sFieldErrors);
-    }
-    var $oImg = $('#id_sc_status_' + sFieldValid);
-    if (0 < $oImg.length)
-    {
-      $oImg.attr('src', sImgStatus).css('display', '');
-    }
-    scAjaxShowDebug();
-    scAjaxSetMaster();
-    scAjaxSetFocus();
-  } // do_ajax_cdt_class_mob_validate_icone_cb
-
   // ---------- Validate ordenacao
   function do_ajax_cdt_class_mob_validate_ordenacao()
   {
@@ -3201,80 +3090,6 @@ if (isset($_SESSION['scriptcase']['device_mobile']) && $_SESSION['scriptcase']['
     scAjaxSetMaster();
     scAjaxSetFocus();
   } // do_ajax_cdt_class_mob_validate_descricao_cb
-
-  // ---------- Validate link
-  function do_ajax_cdt_class_mob_validate_link()
-  {
-    var nomeCampo_link = "link";
-    var var_link = scAjaxGetFieldText(nomeCampo_link);
-    var var_script_case_init = document.F1.script_case_init.value;
-    x_ajax_cdt_class_mob_validate_link(var_link, var_script_case_init, do_ajax_cdt_class_mob_validate_link_cb);
-  } // do_ajax_cdt_class_mob_validate_link
-
-  function do_ajax_cdt_class_mob_validate_link_cb(sResp)
-  {
-    oResp = scAjaxResponse(sResp);
-    scAjaxRedir();
-    sFieldValid = "link";
-    scEventControl_onBlur(sFieldValid);
-    scAjaxUpdateFieldErrors(sFieldValid, "valid");
-    sFieldErrors = scAjaxListFieldErrors(sFieldValid, false);
-    if ("" == sFieldErrors)
-    {
-      var sImgStatus = sc_img_status_ok;
-      scAjaxHideErrorDisplay(sFieldValid);
-    }
-    else
-    {
-      var sImgStatus = sc_img_status_err;
-      scAjaxShowErrorDisplay(sFieldValid, sFieldErrors);
-    }
-    var $oImg = $('#id_sc_status_' + sFieldValid);
-    if (0 < $oImg.length)
-    {
-      $oImg.attr('src', sImgStatus).css('display', '');
-    }
-    scAjaxShowDebug();
-    scAjaxSetMaster();
-    scAjaxSetFocus();
-  } // do_ajax_cdt_class_mob_validate_link_cb
-
-  // ---------- Validate sc_field_0
-  function do_ajax_cdt_class_mob_validate_sc_field_0()
-  {
-    var nomeCampo_sc_field_0 = "sc_field_0";
-    var var_sc_field_0 = scAjaxGetFieldText(nomeCampo_sc_field_0);
-    var var_script_case_init = document.F1.script_case_init.value;
-    x_ajax_cdt_class_mob_validate_sc_field_0(var_sc_field_0, var_script_case_init, do_ajax_cdt_class_mob_validate_sc_field_0_cb);
-  } // do_ajax_cdt_class_mob_validate_sc_field_0
-
-  function do_ajax_cdt_class_mob_validate_sc_field_0_cb(sResp)
-  {
-    oResp = scAjaxResponse(sResp);
-    scAjaxRedir();
-    sFieldValid = "sc_field_0";
-    scEventControl_onBlur(sFieldValid);
-    scAjaxUpdateFieldErrors(sFieldValid, "valid");
-    sFieldErrors = scAjaxListFieldErrors(sFieldValid, false);
-    if ("" == sFieldErrors)
-    {
-      var sImgStatus = sc_img_status_ok;
-      scAjaxHideErrorDisplay(sFieldValid);
-    }
-    else
-    {
-      var sImgStatus = sc_img_status_err;
-      scAjaxShowErrorDisplay(sFieldValid, sFieldErrors);
-    }
-    var $oImg = $('#id_sc_status_' + sFieldValid);
-    if (0 < $oImg.length)
-    {
-      $oImg.attr('src', sImgStatus).css('display', '');
-    }
-    scAjaxShowDebug();
-    scAjaxSetMaster();
-    scAjaxSetFocus();
-  } // do_ajax_cdt_class_mob_validate_sc_field_0_cb
 
   // ---------- Validate topico
   function do_ajax_cdt_class_mob_validate_topico()
@@ -3607,14 +3422,10 @@ function scJs_sweetalert_params(params) {
       return;
     }
     scAjaxHideMessage();
-    var var_id = scAjaxGetFieldHidden("id");
-    var var_pai = scAjaxGetFieldText("pai");
-    var var_icone = scAjaxGetFieldText("icone");
     var var_ordenacao = scAjaxGetFieldText("ordenacao");
     var var_modulo = scAjaxGetFieldSelect("modulo");
     var var_descricao = scAjaxGetFieldText("descricao");
-    var var_link = scAjaxGetFieldText("link");
-    var var_sc_field_0 = scAjaxGetFieldText("sc_field_0");
+    var var_id = scAjaxGetFieldText("id");
     var var_nm_form_submit = document.F1.nm_form_submit.value;
     var var_nmgp_url_saida = document.F1.nmgp_url_saida.value;
     var var_nmgp_opcao = document.F1.nmgp_opcao.value;
@@ -3624,7 +3435,7 @@ function scJs_sweetalert_params(params) {
     var var_script_case_init = document.F1.script_case_init.value;
     var var_csrf_token = scAjaxGetFieldText("csrf_token");
     scAjaxProcOn();
-    x_ajax_cdt_class_mob_submit_form(var_id, var_pai, var_icone, var_ordenacao, var_modulo, var_descricao, var_link, var_sc_field_0, var_nm_form_submit, var_nmgp_url_saida, var_nmgp_opcao, var_nmgp_ancora, var_nmgp_num_form, var_nmgp_parms, var_script_case_init, var_csrf_token, do_ajax_cdt_class_mob_submit_form_cb);
+    x_ajax_cdt_class_mob_submit_form(var_ordenacao, var_modulo, var_descricao, var_id, var_nm_form_submit, var_nmgp_url_saida, var_nmgp_opcao, var_nmgp_ancora, var_nmgp_num_form, var_nmgp_parms, var_script_case_init, var_csrf_token, do_ajax_cdt_class_mob_submit_form_cb);
   } // do_ajax_cdt_class_mob_submit_form
 
   function do_ajax_cdt_class_mob_submit_form_cb(sResp)
@@ -3648,14 +3459,9 @@ function scJs_sweetalert_params(params) {
       scResetFormChanges();
       scAjaxShowMessage("success");
       scAjaxHideErrorDisplay("table");
-      scAjaxHideErrorDisplay("id");
-      scAjaxHideErrorDisplay("pai");
-      scAjaxHideErrorDisplay("icone");
       scAjaxHideErrorDisplay("ordenacao");
       scAjaxHideErrorDisplay("modulo");
       scAjaxHideErrorDisplay("descricao");
-      scAjaxHideErrorDisplay("link");
-      scAjaxHideErrorDisplay("sc_field_0");
       scAjaxHideErrorDisplay("topico");
       scLigEditLookupCall();
 <?php
@@ -3701,7 +3507,7 @@ if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class_mob']['dashboa
   } // do_ajax_cdt_class_mob_submit_form_cb_after_alert
 
   var scStatusDetail = {};
-  scStatusDetail["cdt_topic_mob"] = "off";
+  scStatusDetail["sub_topic_mob"] = "off";
 
   function do_ajax_cdt_class_mob_navigate_form()
   {
@@ -3720,14 +3526,9 @@ if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class_mob']['dashboa
     }
     scAjaxHideMessage();
     scAjaxHideErrorDisplay("table");
-    scAjaxHideErrorDisplay("id");
-    scAjaxHideErrorDisplay("pai");
-    scAjaxHideErrorDisplay("icone");
     scAjaxHideErrorDisplay("ordenacao");
     scAjaxHideErrorDisplay("modulo");
     scAjaxHideErrorDisplay("descricao");
-    scAjaxHideErrorDisplay("link");
-    scAjaxHideErrorDisplay("sc_field_0");
     scAjaxHideErrorDisplay("topico");
     var var_id = document.F2.id.value;
     var var_nm_form_submit = document.F2.nm_form_submit.value;
@@ -3736,7 +3537,7 @@ if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['cdt_class_mob']['dashboa
     var var_nmgp_arg_dyn_search = document.F2.nmgp_arg_dyn_search.value;
     var var_script_case_init = document.F2.script_case_init.value;
     scAjaxProcOn();
-    scStatusDetail["cdt_topic_mob"] = "on";
+    scStatusDetail["sub_topic_mob"] = "on";
     x_ajax_cdt_class_mob_navigate_form(var_id, var_nm_form_submit, var_nmgp_opcao, var_nmgp_ordem, var_nmgp_arg_dyn_search, var_script_case_init, do_ajax_cdt_class_mob_navigate_form_cb);
   } // do_ajax_cdt_class_mob_navigate_form
 
@@ -3784,13 +3585,13 @@ foreach ($this->Ini->sc_lig_iframe as $tmp_i => $tmp_v)
     scAjaxSetNavStatus("t");
     scAjaxSetNavStatus("b");
     scAjaxSetDisplay(true);
-    if (scMasterDetailIframe && scMasterDetailIframe["nmsc_iframe_liga_cdt_topic_mob"] && "nmsc_iframe_liga_cdt_topic_mob" != scMasterDetailIframe["nmsc_iframe_liga_cdt_topic_mob"]) {
-        scMoveMasterDetail(scMasterDetailIframe["nmsc_iframe_liga_cdt_topic_mob"]);
+    if (scMasterDetailIframe && scMasterDetailIframe["nmsc_iframe_liga_sub_topic_mob"] && "nmsc_iframe_liga_sub_topic_mob" != scMasterDetailIframe["nmsc_iframe_liga_sub_topic_mob"]) {
+        scMoveMasterDetail(scMasterDetailIframe["nmsc_iframe_liga_sub_topic_mob"]);
     }
     else {
-        document.getElementById('nmsc_iframe_liga_cdt_topic_mob').contentWindow.nm_move('apl_detalhe', true);
-        document.getElementById('nmsc_iframe_liga_cdt_topic_mob').style.height = "1";
-        document.getElementById('nmsc_iframe_liga_cdt_topic_mob').style.display = "none";
+        document.getElementById('nmsc_iframe_liga_sub_topic_mob').contentWindow.nm_move('apl_detalhe', true);
+        document.getElementById('nmsc_iframe_liga_sub_topic_mob').style.height = "1";
+        document.getElementById('nmsc_iframe_liga_sub_topic_mob').style.display = "none";
     }
     scAjaxSetBtnVars();
     $('.sc-js-ui-statusimg').css('display', 'none');
@@ -3856,7 +3657,7 @@ if ($this->Embutida_form)
 
   function scAjaxDetailProc()
   {
-    if ("off" == scStatusDetail["cdt_topic_mob"])
+    if ("off" == scStatusDetail["sub_topic_mob"])
     {
       return true;
     }
@@ -3870,29 +3671,19 @@ if ($this->Embutida_form)
 
   var ajax_field_list = new Array();
   var ajax_field_Dt_Hr = new Array();
-  ajax_field_list[0] = "id";
-  ajax_field_list[1] = "pai";
-  ajax_field_list[2] = "icone";
-  ajax_field_list[3] = "ordenacao";
-  ajax_field_list[4] = "modulo";
-  ajax_field_list[5] = "descricao";
-  ajax_field_list[6] = "link";
-  ajax_field_list[7] = "sc_field_0";
-  ajax_field_list[8] = "topico";
+  ajax_field_list[0] = "ordenacao";
+  ajax_field_list[1] = "modulo";
+  ajax_field_list[2] = "descricao";
+  ajax_field_list[3] = "topico";
 
   var ajax_block_list = new Array();
   ajax_block_list[0] = "0";
   ajax_block_list[1] = "1";
 
   var ajax_error_list = {
-    "id": {"label": "Id", "valid": new Array(), "onblur": new Array(), "onchange": new Array(), "onclick": new Array(), "onfocus": new Array(), "timeout": 0},
-    "pai": {"label": "Pai", "valid": new Array(), "onblur": new Array(), "onchange": new Array(), "onclick": new Array(), "onfocus": new Array(), "timeout": 0},
-    "icone": {"label": "Icone", "valid": new Array(), "onblur": new Array(), "onchange": new Array(), "onclick": new Array(), "onfocus": new Array(), "timeout": 0},
     "ordenacao": {"label": "Ordenacao", "valid": new Array(), "onblur": new Array(), "onchange": new Array(), "onclick": new Array(), "onfocus": new Array(), "timeout": 0},
     "modulo": {"label": "Modulo", "valid": new Array(), "onblur": new Array(), "onchange": new Array(), "onclick": new Array(), "onfocus": new Array(), "timeout": 0},
     "descricao": {"label": "Descricao", "valid": new Array(), "onblur": new Array(), "onchange": new Array(), "onclick": new Array(), "onfocus": new Array(), "timeout": 0},
-    "link": {"label": "Link", "valid": new Array(), "onblur": new Array(), "onchange": new Array(), "onclick": new Array(), "onfocus": new Array(), "timeout": 0},
-    "sc_field_0": {"label": "Target", "valid": new Array(), "onblur": new Array(), "onchange": new Array(), "onclick": new Array(), "onfocus": new Array(), "timeout": 0},
     "topico": {"label": "Topico", "valid": new Array(), "onblur": new Array(), "onchange": new Array(), "onclick": new Array(), "onfocus": new Array(), "timeout": 0}
   };
   var ajax_error_timeout = 0;
@@ -3908,24 +3699,14 @@ if ($this->Embutida_form)
   };
 
   var ajax_field_mult = {
-    "id": new Array(),
-    "pai": new Array(),
-    "icone": new Array(),
     "ordenacao": new Array(),
     "modulo": new Array(),
     "descricao": new Array(),
-    "link": new Array(),
-    "sc_field_0": new Array(),
     "topico": new Array()
   };
-  ajax_field_mult["id"][1] = "id";
-  ajax_field_mult["pai"][1] = "pai";
-  ajax_field_mult["icone"][1] = "icone";
   ajax_field_mult["ordenacao"][1] = "ordenacao";
   ajax_field_mult["modulo"][1] = "modulo";
   ajax_field_mult["descricao"][1] = "descricao";
-  ajax_field_mult["link"][1] = "link";
-  ajax_field_mult["sc_field_0"][1] = "sc_field_0";
   ajax_field_mult["topico"][1] = "topico";
 
   var ajax_field_id = {
@@ -3936,14 +3717,9 @@ if ($this->Embutida_form)
   };
 
   var ajax_read_only = {
-    "id": "on",
-    "pai": "off",
-    "icone": "off",
     "ordenacao": "off",
     "modulo": "off",
     "descricao": "off",
-    "link": "off",
-    "sc_field_0": "off",
     "topico": "off"
   };
   var bRefreshTable = false;
@@ -3956,57 +3732,6 @@ if ($this->Embutida_form)
   {
     var aValue = new Array();
     aValue[0] = {"value" : sValue};
-    if ("id" == sIndex)
-    {
-      scAjaxSetFieldLabel(sIndex, aValue);
-      updateHeaderFooter(sIndex, aValue);
-
-      if ($("#id_sc_field_" + sIndex).length) {
-          $("#id_sc_field_" + sIndex).change();
-      }
-      else if (document.F1.elements[sIndex]) {
-          $(document.F1.elements[sIndex]).change();
-      }
-      else if (document.F1.elements[sFieldName + "[]"]) {
-          $(document.F1.elements[sFieldName + "[]"]).change();
-      }
-
-      return;
-    }
-    if ("pai" == sIndex)
-    {
-      scAjaxSetFieldText(sIndex, aValue, "", "", true);
-      updateHeaderFooter(sIndex, aValue);
-
-      if ($("#id_sc_field_" + sIndex).length) {
-          $("#id_sc_field_" + sIndex).change();
-      }
-      else if (document.F1.elements[sIndex]) {
-          $(document.F1.elements[sIndex]).change();
-      }
-      else if (document.F1.elements[sFieldName + "[]"]) {
-          $(document.F1.elements[sFieldName + "[]"]).change();
-      }
-
-      return;
-    }
-    if ("icone" == sIndex)
-    {
-      scAjaxSetFieldText(sIndex, aValue, "", "", true);
-      updateHeaderFooter(sIndex, aValue);
-
-      if ($("#id_sc_field_" + sIndex).length) {
-          $("#id_sc_field_" + sIndex).change();
-      }
-      else if (document.F1.elements[sIndex]) {
-          $(document.F1.elements[sIndex]).change();
-      }
-      else if (document.F1.elements[sFieldName + "[]"]) {
-          $(document.F1.elements[sFieldName + "[]"]).change();
-      }
-
-      return;
-    }
     if ("ordenacao" == sIndex)
     {
       scAjaxSetFieldText(sIndex, aValue, "", "", true);
@@ -4042,40 +3767,6 @@ if ($this->Embutida_form)
       return;
     }
     if ("descricao" == sIndex)
-    {
-      scAjaxSetFieldText(sIndex, aValue, "", "", true);
-      updateHeaderFooter(sIndex, aValue);
-
-      if ($("#id_sc_field_" + sIndex).length) {
-          $("#id_sc_field_" + sIndex).change();
-      }
-      else if (document.F1.elements[sIndex]) {
-          $(document.F1.elements[sIndex]).change();
-      }
-      else if (document.F1.elements[sFieldName + "[]"]) {
-          $(document.F1.elements[sFieldName + "[]"]).change();
-      }
-
-      return;
-    }
-    if ("link" == sIndex)
-    {
-      scAjaxSetFieldText(sIndex, aValue, "", "", true);
-      updateHeaderFooter(sIndex, aValue);
-
-      if ($("#id_sc_field_" + sIndex).length) {
-          $("#id_sc_field_" + sIndex).change();
-      }
-      else if (document.F1.elements[sIndex]) {
-          $(document.F1.elements[sIndex]).change();
-      }
-      else if (document.F1.elements[sFieldName + "[]"]) {
-          $(document.F1.elements[sFieldName + "[]"]).change();
-      }
-
-      return;
-    }
-    if ("sc_field_0" == sIndex)
     {
       scAjaxSetFieldText(sIndex, aValue, "", "", true);
       updateHeaderFooter(sIndex, aValue);

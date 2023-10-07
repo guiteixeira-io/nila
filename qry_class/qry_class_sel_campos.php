@@ -180,8 +180,6 @@ function Sel_cmp_process()
       $tab_ger_campos = array();
       $tab_blk_campos = array();
 
-      $tab_ger_campos['curso'] = "on";
-      $tab_blk_campos[] = "curso";
       $tab_ger_campos['modulo'] = "on";
       $tab_ger_campos['descricao'] = "on";
       $tab_ger_campos['id'] = "on";

@@ -176,10 +176,10 @@ $this->path_css = $str_root . $path_link . "_lib/css/";
 $_SESSION['scriptcase']['dir_temp'] = $str_root . $_SESSION['scriptcase']['mnu_topic']['glo_nm_path_imag_temp'];
 $this->url_css = "../_lib/css/";
 $path_lib_php   = $str_root . $path_link . "_lib/lib/php";
-$menu_mobile_hide          = 'N';
-$menu_mobile_inicial_state = 'escondido';
+$menu_mobile_hide          = 'S';
+$menu_mobile_inicial_state = 'aberto';
 $menu_mobile_hide_onclick  = 'S';
-$menutree_mobile_float     = 'S';
+$menutree_mobile_float     = 'N';
 $menu_mobile_hide_icon     = 'N';
 $menu_mobile_hide_icon_menu_position     = 'right';
 $mobile_menu_mobile_hide          = 'S';
@@ -303,7 +303,6 @@ if ($_SESSION['scriptcase']['mnu_topic']['glo_nm_usa_grupo'] == "S")
 $path_apls     .= "/";
 $this->str_schema_all = (isset($_SESSION['scriptcase']['str_schema_all']) && !empty($_SESSION['scriptcase']['str_schema_all'])) ? $_SESSION['scriptcase']['str_schema_all'] : "nila/nila";
 include("../_lib/lang/". $this->str_lang .".lang.php");
-include("../_lib/css/" . $this->str_schema_all . "_menutab.php");
 include("../_lib/css/" . $this->str_schema_all . "_menuH.php");
 if(isset($pagina_schemamenu) && !empty($pagina_schemamenu) && is_file("../_lib/menuicons/". $pagina_schemamenu .".php"))
 {
@@ -315,9 +314,6 @@ include("../_lib/lang/lang_config_region.php");
 $this->regionalDefault();
 $Str_btn_menu = trim($str_button) . "/" . trim($str_button) . $_SESSION['scriptcase']['reg_conf']['css_dir'] . ".php";
 $Str_btn_css  = trim($str_button) . "/" . trim($str_button) . ".css";
-$this->css_menutab_active_close_icon    = trim($css_menutab_active_close_icon);
-$this->css_menutab_inactive_close_icon  = trim($css_menutab_inactive_close_icon);
-$this->breadcrumbline_separator  = trim($breadcrumbline_separator);
 include($path_btn . $Str_btn_menu);
 if (!function_exists("nmButtonOutput"))
 {
@@ -1067,7 +1063,7 @@ $this->nm_bases_vfp       = array("vfp");
 $this->nm_bases_odbc      = array("odbc");
 $this->nm_bases_progress  = array("pdo_progress_odbc", "progress");
 $_SESSION['scriptcase']['sc_num_page'] = 1;
-$_SESSION['scriptcase']['nm_bases_security']  = "enc_nm_enc_v1HQNwZSX7Z1N7HuraDMBYZSJqDWF/DorqDcNmZ1rqD1rwHQBiDMBYHEJqH5F/HIJsD9XsZ9JeD1BeD5F7DMvmVcBUDWFaHIF7HQBqZSBqZ1rYHQF7DMveVkJ3V5FqHIB/HQXGDuFaD1veV5FaDMNOV9FeV5BmVEX7HQFYZkFGHIrwHQXGHgBYHENiHEXCHIBqHQXGDuFaD1vOVWJeHgvOV9BUDWFYVoBiDcBwH9B/HIrwV5JeDMBYDkBsH5FYHIrqHQJeH9FUDSN7HuFUDMvmVIB/H5FqHMJwHQFYZkBiD1rwHQF7HgBeVkJ3V5XCDoJsHQXGDQFUDSBYHQF7DMvOVIB/H5XCHIF7HQFYZkFGZ1rYHuFGHgvsVkJ3DuFYHIraDcJUZSX7HIBeD5BqHgvsZSJ3H5FqHMBqHQBqZSBOHIveHQBqHgvsHArCDuFaHMBOHQXGDQFUHAveHQB/DMBODkB/Dur/HMBOHQFYZ1BOD1NaZMJeHgveZSJqHEFqHIX7HQXGDuBqD1veHQXGDMBOVcFeV5FYHMFGDcBwH9B/HIrwV5JeDMBYDkBsH5FYDoXGDcJeZSFUZ1rwV5JeHgvsVcFCH5XCDoX7DcNwH9BqD1NaZMJwHgvCZSJqDWF/DoJeD9XsZSX7HIrwV5BOHgvsVcBOV5X/VoFaHQBsZSB/DSrYV5FGDMzGHEJGH5X/DoB/HQNmH9X7HABYVWJsDMBYVcBODWFaDoFUDcJUZkFUZ1BeZMBqHgBYHAFKV5FqDoBOD9JKDQJwHANKVWBODMvOV9FiV5X7VEF7D9BiH9FaHIBeD5XGDEBOZSXeV5FaZuFaHQXGZSFGD1BeV5FGHuzGVIBOHEFYVorqD9BiZ1F7D1rwD5NUDErKZSXeH5FGDoB/DcJUZSX7HIBeD5BqHgvsZSJ3H5FqVoFGDcBqH9BOZ1BeV5XGDEBOZSJGH5FYZuFaDcXOZSBiHIBeHuB/DMBOVcXKH5XCHIFGHQXGZ1FUZ1rYHQNUDMvCHArCHEFqHIJsD9XsZ9JeD1BeD5F7DMvmVcrsH5FqDorqHQNwZ1rqD1rKV5FGDMBYVkJ3DuJeDoXGD9JKDuFaD1BeHuFaHuNOZSrCH5FqDoXGHQJmZ1FUZ1BeV5X7DEBOVkJGDWFqDoFUD9NmDQJsZ1rwV5JeHuvmVcBOH5B7DoJsD9XOZ1F7HIveD5BqHgBeHEFiV5B3DoF7D9XsDuFaHAveHuJwDMvOV9BUDWXKVoF7DcFYZkBiHAzGD5BOHgveHArCDuX/DoBqHQBiDuBqHAN7HQJsDMzGVcBUHEFYHMB/HQJmZ1F7Z1vmD5rqDEBOHArCDWBmZuFaHQFYDQX7HIBeHurqHgrKVIFCH5XCHMF7D9BiZSBOD1rwV5BODMNKZSJqDWr/HIBqHQNmH9BiHAveD5NUHgNKDkBOV5FYHMBiD9XOZ1F7HArYD5BiDMBYVkJGDWr/DoB/D9XsH9FGDSN7D5JwDMvmVcFKV5BmVoBqD9BsZkFGHAvsD5XGHgveHErsDWrGDoXGHQBiDQBqDSzGV5XGDMvOVIBsDWXCDoJsDcBwH9B/Z1rYHQJwHgBeVkXeV5FaDoXGD9NmDQFaDSBYD5JsHuvmDkB/H5XCHMFaD9XGZkFGDSrYV5X7HgBeHEFiV5B3DoF7D9XsDuFaHAveHuBiDMvmV9FeV5F/HMXGHQXOZ1FGDSrYHuXGHgrKHAFKDWF/HMBiHQNwDuFaHAveD5NUHgNKDkBOV5FYHMBiHQBqZkFUZ1vmD5Bq";
+$_SESSION['scriptcase']['nm_bases_security']  = "enc_nm_enc_v1HQXsDQB/HANOD5NUDMvODkFCDWXCVErqDcJUZSBqDSrYHQFUDMzGZSXeDWXCDoBOHQJKDQJsZ1vCV5FGHuNOV9FeDWB3VoX7DcFYZkBiHAzGD5BOHgveHEJqH5FGDoBqHQBiDuBqHArYHQJeDMvOV9BUDWXKVErqHQXOZSBqHINKZMJeHgBOZSJ3DWF/VoBiDcJUZSX7Z1BYHuFaDMBYVcB/H5XCVEX7HQXOZSBOHABYD5rqDENOHEJqDWXCVoBiD9NmZ9rqZ1BYV5BODMvmVcFKV5BmVoBqD9BsZkFGHArKD5BqDMzGHEJqV5FaDorqD9NwH9X7Z1rwD5NUHuBOVIBODWFYHMBiD9BsVIraD1rwV5X7HgBeHEFKV5FaVoFGD9XsH9FGHABYV5raHuBYVcFKV5X7VorqD9JmZ1B/D1NaV5FUDErKHEFiDuJeDoBOHQJKDQJsZ1vCV5FGHuNOV9FeDWXCHIBiD9JmVIJsD1rwHQFGHgBOZSJ3V5FaDoraD9NmDQJsD1BeD5F7DMNOV9BUDur/DoF7D9XOZ1FGD1rKHQJwDEBODkFeH5FYVoFGHQJKDQFaZ1zGVWFaDMBYV9FeDur/VoBiHQBiZ1BOD1zGV5X7HgBOHENiHEXCHIFUHQNmZ9XGHIvsD5F7DMBYVcXKDurGVEX7DcNmZSBOHIBOV5X7HgBOHArsDWXCHIXGHQXODQFUDSvCV5FGHuNOVcFKHEFYVoBqDcBwH9BqHINKZMJwDMveVkJ3DuFaHIX7HQFYZSBiD1vOD5F7DMvODkBsDur/HMJeHQBiZSBODSvmV5X7DMveHEJqH5X/DoJeDcXGDQFaZ1zGD5F7DMBYVcB/DWJeHIX7HQBiZ1FGHIBOD5rqDEBOHEFiHEFqDoF7DcJUZSBiDSzGVWFaHgvOVcXKDWF/HIF7HQBsH9BqHINaV5X7HgNOHENiDWX7HMFGDcBiDQFaHIvsD5F7DMBOZSJqHEX/VoFGDcNmZkFGHAvCV5X7HgNKHErCV5FqHMJsHQNmDQFUDSzGV5FGHuNOVcFKHEFYVoBqDcBwH9FaD1rwD5rqDMNKZSJGDWF/DoraD9NmDQJsHIrKV5raDMvmZSJqHEBmVoraHQXGZ1rqHAN7D5FaDMzGZSJGDWr/DoraD9XsDuBOHAveHuBiHuvmVcBODuFqDoraD9XOVIJwZ1BeHuXGDMzGHEJGH5F/HMBqDcJeDQX7DSrwD5JwDMrwDkFCDWBmVEFGHQFYZ1FaHArKV5XGDErKHErsDurmDoBqHQXGZSFGHIrwVWXGHuBYDkFCDWJeVoraD9BsH9FaD1vsD5FaDErKZSXeH5FYDoJeD9JKDQFGHAveVWJsHgvsDkBODWFaVoFGDcJUZkFUZ1BOD5rqDEBOHEFiHEFqDoF7DcJUZSFGD1BeV5FGHgrYDkBODur/VoraD9XOH9FaD1rKD5BiHgvsHErCDWX7HMJsDcXGDQFaZ1rwHQFaDMrwV9FeDuX7HMraHQXOZkFGHArKV5FUDMrYZSXeV5FqHIJsHQBiZ9XGHANKV5BODMvOZSJqDWXKVorqHQNmZ1BiHIBeHQJwDEBODkFeH5FYVoFGHQJKDQFaHIvsVWJwDMrwVcFCH5FqHIF7DcJUZ1BOHANOD5BiHgNODkB/DWr/HIJwDcXGDQFaHArYHuFaHuNOZSrCH5FqDoXGHQJmZ1FGHANOHQJsHgvsVkJ3H5FYHIrqHQNwDuFaZ1N7HuFGHgNKVcXKH5XCHMBqHQJmZ1F7Z1vmD5rqDEBOHArCDWBmZuXGHQXGZ9XGHANKVWFU";
  $glo_senha_protect = (isset($_SESSION['scriptcase']['glo_senha_protect'])) ? $_SESSION['scriptcase']['glo_senha_protect'] : "S";
 if (isset($_SESSION['scriptcase']['nm_sc_retorno']) && !empty($_SESSION['scriptcase']['nm_sc_retorno']) && isset($_SESSION['scriptcase']['mnu_topic']['glo_nm_conexao']) && !empty($_SESSION['scriptcase']['mnu_topic']['glo_nm_conexao']))
 { 
@@ -1225,6 +1221,26 @@ $this->rs->MoveNext();
 } else {
 	echo "Não foi possível carregar os itens do menu.";
 }
+
+?>
+<head>
+<style>
+body {
+	background-image: url("../_lib/img/grp__NM__bg__NM__nila-class.png");
+  	
+	background-position: 50% 50%;
+  	background-color: black;
+  	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+ 	 background-size: cover;
+  	-o-background-size: cover;
+	 }
+
+</style>
+</head>
+<body>
+</body>
+<?php
 if (isset($this->sc_temp_curso)) {$_SESSION['curso'] = $this->sc_temp_curso;}
 if (isset($this->sc_temp_tela)) {$_SESSION['tela'] = $this->sc_temp_tela;}
 if (isset($this->sc_temp_aula)) {$_SESSION['aula'] = $this->sc_temp_aula;}
@@ -1356,6 +1372,53 @@ if (isset($_SESSION['scriptcase']['sc_menu_disable']['mnu_topic']) && !empty($_S
     }
 }
 
+$level_to_delete = false;
+foreach ($mnu_topic_menuData['data'] as $chave => $cada_menu)
+{
+        if($level_to_delete !== false && $mnu_topic_menuData['data'][$chave]['level'] > $level_to_delete)
+        {
+                unset($mnu_topic_menuData['data'][$chave]);
+        }
+        else
+        {
+                $level_to_delete = false;
+                
+                if ($mnu_topic_menuData['data'][$chave]['disabled'] == 'Y')
+                {
+                        $level_to_delete = $mnu_topic_menuData['data'][$chave]['level'];
+                        unset($mnu_topic_menuData['data'][$chave]);
+                }
+        }
+}
+$mnu_topic_menuData['data'] = array_values($mnu_topic_menuData['data']);
+$flag = 1;
+while ($flag == 1)
+{
+    $flag = 0;
+    foreach ($mnu_topic_menuData['data'] as $chave => $cada_menu)
+    {
+        if (!empty($cada_menu))
+        {
+            if (isset($mnu_topic_menuData['data'][$chave + 1]) && !empty($mnu_topic_menuData['data'][$chave + 1]))
+            {
+                if ($mnu_topic_menuData['data'][$chave]['link'] == "#")
+                {
+                    if ($mnu_topic_menuData['data'][$chave]['level'] >= $mnu_topic_menuData['data'][$chave + 1]['level'] )
+                    {
+                        unset($mnu_topic_menuData['data'][$chave]);
+                        $flag = 1;
+                    }
+                }
+            }
+            elseif ($mnu_topic_menuData['data'][$chave]['link'] == "#")
+            {
+                unset($mnu_topic_menuData['data'][$chave]);
+            }
+        }
+    }
+    $mnu_topic_menuData['data'] = array_values($mnu_topic_menuData['data']);
+}
+
 /* Cabeçalho HTML */
 if ($mnu_topic_menuData['iframe'])
 {
@@ -1392,8 +1455,6 @@ if ($mnu_topic_menuData['iframe'])
  } 
  ?> 
  <link rel="stylesheet" type="text/css" href="../_lib/css/<?php echo $this->str_schema_all ?>_btngrp.css<?php if (@is_file($this->path_css . $this->str_schema_all . '_btngrp.css')) { echo '?scp=' . md5($this->path_css . $this->str_schema_all . '_btngrp.css'); } ?>" /> 
- <link rel="stylesheet" type="text/css" href="../_lib/css/<?php echo $this->str_schema_all ?>_menutab.css" /> 
- <link rel="stylesheet" type="text/css" href="../_lib/css/<?php echo $this->str_schema_all ?>_menutab<?php echo $_SESSION['scriptcase']['reg_conf']['css_dir'] ?>.css" /> 
  <link rel="stylesheet" type="text/css" href="../_lib/css/<?php echo $this->str_schema_all ?>_menuH<?php echo $_SESSION['scriptcase']['reg_conf']['css_dir'] ?>.css" /> 
  <link rel="stylesheet" type="text/css" href="../_lib/css/<?php echo $this->str_schema_all ?>_menuH.css<?php if (@is_file($this->path_css . $this->str_schema_all . '_menuH.css')) { echo '?scp=' . md5($this->path_css . $this->str_schema_all . '_menuH.css'); } ?>" /> 
  <link rel="stylesheet" type="text/css" href="../_lib/buttons/<?php echo $Str_btn_css ?>" /> 
@@ -1501,10 +1562,6 @@ else
 ?>
 <script type="text/javascript" src="<?php echo $_SESSION['scriptcase']['mnu_topic']['glo_nm_path_prod']; ?>/third/jquery/js/jquery.js"></script>
 <script type="text/javascript" src="../_lib/lib/js/menu_structure.js"></script>
-<script  type="text/javascript" src="<?php echo $_SESSION['scriptcase']['mnu_topic']['glo_nm_path_prod']; ?>/third/jquery_plugin/contextmenu/jquery.contextmenu.js"></script>
- <link rel="stylesheet" type="text/css" href="<?php echo $_SESSION['scriptcase']['mnu_topic']['glo_nm_path_prod']; ?>/third/jquery_plugin/contextmenu/contextmenu.css" /> 
- <link rel="stylesheet" type="text/css" href="../_lib/css/<?php echo $this->str_schema_all ?>_contextmenu.css" /> 
- <link rel="stylesheet" type="text/css" href="../_lib/css/<?php echo $this->str_schema_all ?>_contextmenu.css<?php if (@is_file($this->path_css . $this->str_schema_all . '_contextmenu.css')) { echo '?scp=' . md5($this->path_css . $this->str_schema_all . '_contextmenu.css'); } ?>" /> 
 <script type="text/javascript" src="<?php echo $_SESSION['scriptcase']['mnu_topic']['glo_nm_path_prod']; ?>/third/sweetalert/sweetalert2.all.min.js"></script>
 <script type="text/javascript" src="<?php echo $_SESSION['scriptcase']['mnu_topic']['glo_nm_path_prod']; ?>/third/sweetalert/polyfill.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../_lib/css/<?php echo $this->str_schema_all ?>_sweetalert.css" />
@@ -1843,7 +1900,6 @@ if($menu_mobile_hide == 'S')
       if($menutree_mobile_float != 'S')
       {
       ?>
-  setTimeout(function(){ scToggleOverflow(); }, 600);
       <?php
       }
       ?>
@@ -1865,7 +1921,6 @@ if($menu_mobile_hide == 'S')
       if($menutree_mobile_float != 'S')
       {
       ?>
-  setTimeout(function(){ scToggleOverflow(); }, 600);
       <?php
       }
       ?>
@@ -1878,103 +1933,6 @@ echo $str_bmenu;
 <script>
 $(document).ready(function() {
 });
-        $( document ).ready(function() {
-            $.contextMenu({
-                selector:'#contrl_abas > li',
-                leftButton: true,
-                callback: function(key, options)
-                {
-                        switch(key)
-                        {
-                            case 'close':
-                                contextMenuCloseTab($(this).attr('id'));
-                            break;
-
-                            case 'closeall':
-                                contextMenuCloseAllTabs();
-                            break;
-
-                            case 'closeothers':
-                                contextMenuCloseOthersTabs($(this).attr('id'));
-                            break;
-
-                            case 'closeright':
-                                contextMenuCloseRight($(this).attr('id'));
-                            break;
-
-                            case 'closeleft':
-                                contextMenuCloseLeft($(this).attr('id'));
-                            break;
-                        }
-                    },
-                items: {
-                        "close": {name: '<?php echo str_replace("'", "\'", $this->Nm_lang['lang_othr_contextmenu_close']); ?>'},
-                        "closeall": {name: '<?php echo str_replace("'", "\'", $this->Nm_lang['lang_othr_contextmenu_closeall']); ?>'},
-                        "closeothers" : {name: '<?php echo str_replace("'", "\'", $this->Nm_lang['lang_othr_contextmenu_closeothers']); ?>'},
-                        "closeright" : {name: '<?php echo str_replace("'", "\'", $this->Nm_lang['lang_othr_contextmenu_closeright']); ?>'},
-                        "closeleft" : {name: '<?php echo str_replace("'", "\'", $this->Nm_lang['lang_othr_contextmenu_closeleft']); ?>'},
-                    }
-            });
-        });
-
-        function contextMenuCloseAllTabs()
-        {
-            $( "#contrl_abas li" ).each(function( index ) {
-                contextMenuCloseTab($( this ).attr('id'));
-            });
-        }
-
-        function contextMenuCloseTab(str_id)
-        {
-            if(str_id.indexOf('aba_td_') >= 0)
-            {
-                str_id = str_id.substr(7);
-            }
-            del_aba_td( str_id );
-        }
-
-        function contextMenuCloseRight(str_id)
-        {
-            bol_start_del = false;
-            $( "#contrl_abas li" ).each(function( index ) {
-
-                if(bol_start_del)
-                {
-                    contextMenuCloseTab($( this ).attr('id'));
-                }
-
-                if(str_id == $( this ).attr('id'))
-                {
-                    bol_start_del = true;
-                }
-            });
-        }
-
-
-        function contextMenuCloseLeft(str_id)
-        {
-            $( "#contrl_abas li" ).each(function( index ) {
-
-                if(str_id == $( this ).attr('id'))
-                {
-                     return false;
-                }
-                else
-                {
-                    contextMenuCloseTab($( this ).attr('id'));
-                }
-            });
-        }
-
-        function contextMenuCloseOthersTabs(str_id)
-        {
-            $( "#contrl_abas li" ).each(function( index ) {
-                if(str_id != $( this ).attr('id'))
-                {
-                    contextMenuCloseTab($( this ).attr('id'));
-                }
-            });
-        }
 
 function expandMenu()
 {
@@ -2002,299 +1960,6 @@ function clearFastMenu(arr_link)
 {
   return false;
 }
-Tab_iframes         = new Array();
-Tab_labels          = new Array();
-Tab_hints           = new Array();
-Tab_icons           = new Array();
-Tab_icons_inactive  = new Array();
-Tab_abas            = new Array();
-Tab_refresh         = new Array();
-Tab_icon_fa         = new Array();
-Tab_icon_fa_inactive= new Array();
-Tab_display         = new Array();
-Tab_display_position= new Array();
-Tab_links          = new Array();
-var scScrollInterval = divOverflow = false;
-Tab_ico_def        = new Array();
-Tab_ico_ina_def    = new Array();
-<?php
- foreach ($arr_menuicons as $tp => $icon)
- {
-    echo "Tab_ico_def['$tp']     = '" . $icon['active'] . "';\r\n";
-    echo "Tab_ico_ina_def['$tp'] = '" . $icon['inactive'] . "';\r\n";
- }
-?>
-Aba_atual    = "";
-<?php
- $seq = 0;
- if(isset($mnu_topic_menuData['data']) && !empty($mnu_topic_menuData['data']))
- {
-   foreach ($mnu_topic_menuData['data'] as $ind => $dados_menu)
-   {
-     if ($dados_menu['link'] != "#")
-     {
-         if(empty($dados_menu['hint']))
-         {
-             $dados_menu['hint'] = $dados_menu['label'];
-         }
-         echo "Tab_iframes[" . $seq . "] = \"" . $dados_menu['id'] . "\";\r\n";
-         echo "Tab_labels['" . $dados_menu['id'] . "'] = \"" . str_replace('"', '\"', $dados_menu['label']) . "\";\r\n";
-         echo "Tab_hints['" . $dados_menu['id'] . "'] = \"" . strip_tags(str_replace('"', '\"', $dados_menu['hint'])) . "\";\r\n";
-         echo "Tab_abas['" . $dados_menu['id'] . "']   = \"none\";\r\n";
-         echo "Tab_refresh['" . $dados_menu['id'] . "']   = \"\";\r\n";
-         echo "Tab_icons['" . $dados_menu['id'] . "'] = \"" . $dados_menu['icon_aba'] . "\";\r\n";
-         echo "Tab_icons_inactive['" . $dados_menu['id'] . "'] = \"" . $dados_menu['icon_aba_inactive'] . "\";\r\n";
-         echo "Tab_icon_fa['" . $dados_menu['id'] . "'] = \"" . $dados_menu['icon_fa'] . "\";\r\n";
-         echo "Tab_icon_fa_inactive['" . $dados_menu['id'] . "'] = \"" . $dados_menu['icon_fa'] . "\";\r\n";
-         echo "Tab_display['" . $dados_menu['id'] . "'] = \"" . $dados_menu['display'] . "\";\r\n";
-         echo "Tab_display_position['" . $dados_menu['id'] . "'] = \"" . $dados_menu['display_position'] . "\";\r\n";
-         echo "Tab_links['" . $dados_menu['id'] . "']   = \"\";\r\n";
-         $seq++;
-     }
-   }
- }
- if(isset($mnu_topic_menuData['data_vertical']) && !empty($mnu_topic_menuData['data_vertical']))
- {
-   foreach ($mnu_topic_menuData['data_vertical'] as $ind => $dados_menu)
-   {
-     if ($dados_menu['link'] != "#")
-     {
-         if(empty($dados_menu['hint']))
-         {
-             $dados_menu['hint'] = $dados_menu['label'];
-         }
-         echo "Tab_iframes[" . $seq . "] = \"" . $dados_menu['id'] . "\";\r\n";
-         echo "Tab_labels['" . $dados_menu['id'] . "'] = \"" . str_replace('"', '\"', $dados_menu['label']) . "\";\r\n";
-         echo "Tab_hints['" . $dados_menu['id'] . "'] = \"" . str_replace('"', '\"', $dados_menu['hint']) . "\";\r\n";
-         echo "Tab_abas['" . $dados_menu['id'] . "']   = \"none\";\r\n";
-         echo "Tab_refresh['" . $dados_menu['id'] . "']   = \"\";\r\n";
-         echo "Tab_icons['" . $dados_menu['id'] . "'] = \"" . $dados_menu['icon_aba'] . "\";\r\n";
-         echo "Tab_icons_inactive['" . $dados_menu['id'] . "'] = \"" . $dados_menu['icon_aba_inactive'] . "\";\r\n";
-         echo "Tab_icon_fa['" . $dados_menu['id'] . "'] = \"" . $dados_menu['icon_fa'] . "\";\r\n";
-         echo "Tab_icon_fa_inactive['" . $dados_menu['id'] . "'] = \"" . $dados_menu['icon_fa'] . "\";\r\n";
-         echo "Tab_display['" . $dados_menu['id'] . "'] = \"" . $dados_menu['display'] . "\";\r\n";
-         echo "Tab_display_position['" . $dados_menu['id'] . "'] = \"" . $dados_menu['display_position'] . "\";\r\n";
-         echo "Tab_links['" . $dados_menu['id'] . "']   = \"\";\r\n";
-         $seq++;
-     }
-   }
- }
-?>
-Qtd_apls = <?php echo $seq ?>;
-function createIframe(str_id, str_label, str_hint, str_img_on, str_img_off, str_link, tp_apl)
-{
-    apl_exist = false;
-    Tab_icons[str_id] = str_img_on;
-    Tab_icons_inactive[str_id] = str_img_off;
-    Tab_refresh[str_id] = "";
-    if (tp_apl == null || tp_apl == '')
-    {
-        tp_apl = 'others';
-    }
-    if (Tab_icons[str_id] == '')
-    {
-        Tab_icons[str_id] = Tab_ico_def[tp_apl];
-    }
-    if (Tab_icons_inactive[str_id] == '')
-    {
-        Tab_icons_inactive[str_id] = Tab_ico_ina_def[tp_apl];
-    }
-    for (i = 0; i < Qtd_apls; i++)
-    {
-        if (Tab_iframes[i] == str_id) {
-            apl_exist = true;
-        }
-    }
-    if (apl_exist)
-    {
-        if (Tab_abas[str_id] != 'show') {
-            createAba(str_id);
-        }
-        var iframe = document.getElementById('iframe_' + str_id);
-        iframe.src = str_link;
-        mudaIframe(str_id);
-        return;
-    }
-    var iframe = document.createElement('iframe');
-    iframe.style.display = 'none';
-    iframe.id = 'iframe_' + str_id;
-    iframe.name = 'mnu_topic_' + str_id + '_iframe';
-    iframe.src = str_link;
-    $('#Iframe_control').append(iframe);
-    $('#iframe_' + str_id).addClass( 'scMenuIframe');
-    Tab_iframes[Qtd_apls] = str_id;
-    Tab_labels[str_id] = str_label;
-    Tab_hints[str_id] = str_hint;
-    Tab_abas[str_id]   = 'none';
-    Tab_links[str_id]   = '';
-    Qtd_apls++;
-    createAba(str_id);
-    mudaIframe(str_id);
-}
-function createAba(str_id)
-{
-    var tmp = "";
-    var html_icon = "";
-        html_icon = "<div style='display:inline-block;'>";
-        str_icon = Tab_icons[str_id];
-        if(str_icon=='')
-        {
-            str_icon = 'scriptcase__NM__ico__NM__sc_menu_others_e.png';
-        }
-        if(str_icon != '')
-        {
-            html_icon += "<img id='aba_td_" + str_id + "_icon_active' src='<?php echo $this->path_botoes; ?>/"+ str_icon +"' align='absmiddle' class='scTabIcon'>";
-        }
-        str_icon = Tab_icons_inactive[str_id];
-        if(str_icon=='')
-        {
-            str_icon = 'scriptcase__NM__ico__NM__sc_menu_others_d.png';
-        }
-        if(str_icon != '')
-        {
-            html_icon += "<img id='aba_td_" + str_id + "_icon_inactive' src='<?php echo $this->path_botoes; ?>/"+ str_icon +"' align='absmiddle' class='scTabIcon' style='display:none;'>";
-        }
-        html_icon += "</div>";
-    if(Tab_display[ str_id ] == 'text_fontawesomeicon' || Tab_display[ str_id ] == 'only_fontawesomeicon')
-    {
-        html_icon = "<i id='aba_td_" + str_id + "_icon_active' class='"+ Tab_icon_fa[str_id] +"' style='vertical-align:middle;padding: 0px 4px; display:none;'></i>";
-        html_icon += "<i id='aba_td_" + str_id + "_icon_inactive' class='"+ Tab_icon_fa_inactive[str_id] +"' style='vertical-align:middle;padding: 0px 4px;'></i>";
-    }
-    tmp  = "<li onclick=\"mudaIframe('" + str_id + "');\" id='aba_td_" + str_id + "' style='cursor:pointer' class='lslide scTabActive' title=\"" + Tab_hints[str_id] + "\">";
-    if(Tab_display_position[ str_id ] != 'img_right')
-    {
-        tmp += html_icon;
-    }
-    var home_style="";
-    if(str_id === 'mnu_topic'){ home_style=";padding-left:4px;min-height:14px;"; }
-    tmp += "<div id='aba_td_txt_" + str_id + "' style='display:inline-block;cursor:pointer"+home_style+"' class='scTabText' >";
-    tmp += Tab_labels[str_id];
-    if(Tab_display_position[ str_id ] == 'img_right')
-    {
-        tmp += html_icon;
-    }
-    tmp += "</div>";
-    tmp += "<div id='aba_td_3_" + str_id + "' style='display:none;'>...</div>";
-    tmp += "<div style='display:inline-block;'>";
-    tmp += "    <img id='aba_td_img_" + str_id + "' src='<?php echo $this->path_botoes . "/" . $this->css_menutab_active_close_icon; ?>' onclick=\"event.stopPropagation(); del_aba_td('" + str_id + "'); \" align='absmiddle' class='scTabCloseIcon' style='cursor:pointer; z-index:9999;'>";
-    tmp += "</div>";
-    tmp += "</li>";
-    $('#contrl_abas').append(tmp);
-    Tab_abas[str_id] = 'show';
-}
-function mudaIframe(str_id)
-{
-    $('#iframe_mnu_topic').hide();
-    if (str_id == "")
-    {
-        $('#iframe_mnu_topic').show();
-        $('#iframe_' + Aba_atual).prop('src', '');
-        $('#links_abas').hide();
-        $('#id_links_abas').hide();
-    }
-    else
-    {
-        $('#aba_td_' + Aba_atual).removeClass( 'scTabActive' );
-        $('#aba_td_' + Aba_atual).addClass( 'scTabInactive' );
-        $('#aba_td_' + Aba_atual+'_icon_active').hide();
-        $('#aba_td_' + Aba_atual+'_icon_inactive').show();
-        $('#aba_td_img_' + Aba_atual).prop( 'src', '<?php echo $this->path_botoes . "/" . $this->css_menutab_inactive_close_icon; ?>' );
-    }
-    for (i = 0; i < Tab_iframes.length; i++) 
-    {
-        if (Tab_iframes[i] == str_id) 
-        {
-            if($('#iframe_' + Tab_iframes[i]).length < 1)
-            {
-                $('#Iframe_control').append('<iframe id="iframe_'+ Tab_iframes[i] +'" name="mnu_topic_'+ Tab_iframes[i] +'_iframe" frameborder="0" class="scMenuIframe" style="display: none; width: 100%; height: 100%;" src=""></iframe>');
-            }
-            $('#iframe_' + Tab_iframes[i]).show();
-            Aba_atual    = str_id;
-            $('#aba_td_' + Aba_atual).removeClass( 'scTabInactive' );
-            $('#aba_td_' + Aba_atual).addClass( 'scTabActive' );
-            $('#aba_td_' + Aba_atual+'_icon_active').show();
-            $('#aba_td_' + Aba_atual+'_icon_inactive').hide();
-            $('#aba_td_img_' + Aba_atual).prop( 'src', '<?php echo $this->path_botoes . "/" . $this->css_menutab_active_close_icon; ?>' );
-            Iframe_atual = "mnu_topic_" + Tab_iframes[i] + '_iframe';
-            $('#iframe_' + Tab_iframes[i]).contents().find('body').css('width', '');
-            $('#iframe_' + Tab_iframes[i])[0].contentWindow.focus();
-        } else {
-            $('#iframe_' + Tab_iframes[i]).hide();
-        }
-    }
-    if (Tab_refresh[str_id] == 'S' && typeof document.getElementById('iframe_' + str_id).contentWindow.nm_move === 'function')
-    {
-        Tab_refresh[str_id] = '';
-        document.getElementById('iframe_' + str_id).contentWindow.nm_move('igual');
-    }
-}
-function del_aba_td(str_id)
-{
-    $('#aba_td_' + str_id).remove();
-    Tab_abas[str_id] = 'none';
-    $('#iframe_' + str_id).prop('src', '');
-    if (Aba_atual == str_id)
-    {
-        str_id = "";
-        for (i = 0; i < Tab_iframes.length; i++) 
-        {
-            if (Tab_abas[Tab_iframes[i]] == 'show' && Tab_refresh[Tab_iframes[i]] == 'S')
-            {
-                str_id = Tab_iframes[i];
-            }
-        }
-        if (str_id == "")
-        {
-            for (i = 0; i < Tab_iframes.length; i++) 
-            {
-                if (Tab_abas[Tab_iframes[i]] == 'show')
-                {
-                    str_id = Tab_iframes[i];
-                }
-            }
-        }
-        mudaIframe(str_id);
-    }
-  scToggleOverflow();
-}
-$( document ).ready(function() { scToggleOverflow() });
-function scToggleOverflow()
-{
-    $('.scTabScroll').hide();
-    $('#div_contrl_abas').removeClass('div-overflow');
-    $('#contrl_abas').width('');
-
-    tabsWidth = 0;
-    if($('.scMenuTTable').length)
-    {
-        tabsWidth = $('#contrl_abas').outerWidth();
-        windowWidth = $('#contrl_abas').closest('.ui-layout-pane').outerWidth();
-    }
-    else
-    {
-        tabsWidth = $('#contrl_abas').outerWidth();
-        windowWidth = $( window ).outerWidth();
-    }
-
-    if(windowWidth < tabsWidth)
-    {
-        $('.scTabScroll').show();
-        $('#div_contrl_abas').addClass('div-overflow');
-        $('#contrl_abas').width((windowWidth - $('#id_links_abas').outerWidth()));
-    }
-}
-
-function scTabScroll(axis) {
-  if (axis == 'stop') {
-      clearInterval(scScrollInterval);
-      return;
-  }
-  if (axis == 'left') {
-      scScrollInterval = setInterval("$('#div_contrl_abas').scrollLeft($('#div_contrl_abas').scrollLeft() - 3)", 2);
-  } else {
-      scScrollInterval = setInterval("$('#div_contrl_abas').scrollLeft($('#div_contrl_abas').scrollLeft() + 3)", 2);
-  }
-}
         function checkSubMenuPosition(str_id)
         {
             submenu = $('#' + str_id + '.menu__link').next('ul');
@@ -2307,10 +1972,8 @@ function scTabScroll(axis) {
            }
         }function openMenuItem(str_id)
 {
-  str_target_sv = "";
   if (str_id != "iframe_mnu_topic")
   {
-      str_target_sv = str_id + "_iframe";
       str_id        = str_id.replace("mnu_topic_","");
   }
     if($('#Iframe_control').length && $('#' + str_id).parent().length < 0)
@@ -2328,21 +1991,6 @@ function scTabScroll(axis) {
   str_link   = $('#' + str_id).attr('item-href');
   str_target = $('#' + str_id).attr('item-target');
   if (typeof str_link !== typeof undefined && str_link !== false) {
-    if (str_target == "mnu_topic_iframe" && str_link != '' && str_link != '#' && str_link != 'javascript:')
-    {
-        str_target = (str_target_sv != "") ? str_target_sv : str_target;
-        mudaIframe(str_id);
-        if (str_id != "mnu_topic")
-        {
-            $('#links_abas').css('display','');
-            $('#id_links_abas').css('display','');
-        }
-        if (str_id != "mnu_topic" && Tab_abas[str_id] != 'show')
-        {
-            createAba(str_id);
-      scToggleOverflow();
-        }
-    }
     //test link type
     if (str_link != '' && str_link != '#' && str_link != 'javascript:')
     {
@@ -2372,6 +2020,16 @@ function scTabScroll(axis) {
   }
 }
 </script>
+
+    <?php
+    if(isset($expand_icon) && !empty($expand_icon) && isset($collapse_icon) && !empty($collapse_icon))
+    {
+      ?>
+        <a href='#' onclick='expandMenu();' id='id_expand' class='scMenuExpand' style=''><img src='<?php echo $path_imag_cab . '/' . $expand_icon; ?>' border=0 /></a>
+        <a href='#' onclick='collapseMenu();' id='id_collapse' class='scMenuCollapse' style=''><img src='<?php echo $path_imag_cab . '/' . $collapse_icon; ?>' border=0 /></a>
+      <?php
+    }
+    ?>
 <?php
 $fixMainMenuPosition = ($this->force_mobile || ($_SESSION['scriptcase']['device_mobile'] && $_SESSION['scriptcase']['display_mobile'])) ? '' : '; position: absolute';
 ?>
@@ -2433,26 +2091,6 @@ if($this->menu_orientacao != 'vertical')
 ?>
   </tr>
 <?php echo $this->nm_show_toolbarmenu('', $saida_apl, $mnu_topic_menuData, $path_imag_cab); ?><?php echo $this->nm_gera_degrade(1, $bg_line_degrade, $path_imag_cab); ?>  <tr>
-        <td id="links_abas" style="display: none;">
-          <script>     function isMobile() {
-        var check = false;
-        (function(a){if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a)||/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0,4))) check = true;})(navigator.userAgent||navigator.vendor||window.opera);
-        return check;
-    }
-    $(document).ready(function () {
-        if (!$('#idMenuHeader').length && $('#idMenuFLoat').length) {
-            $('#id_links_abas').css('padding-top', $('#bmenu').outerHeight() + 'px');
-        }
-    })</script>
-          <div id="id_links_abas" style="display: none; " class='scTabLine'>
-            <div class='scTabScroll left' style='float:left;display:none;' onmousedown='scTabScroll("left");' onmouseup='scTabScroll("stop");' onmouseout='scTabScroll("stop");'></div>
-            <div class='scTabScroll right' style='float:right;display:none;'onmousedown='scTabScroll("right");' onmouseup='scTabScroll("stop");' onmouseout='scTabScroll("stop");'></div>
-            <div id='div_contrl_abas' class='scTabCtrl' style='overflow:hidden;white-space: nowrap;'>
-              <ul id='contrl_abas' style='margin:0px; padding:0px; display: inline-block;'></ul>
-            </div>
-          </div>
-        </td>
-        </tr><tr>
 <?php
 }
 else
@@ -2473,26 +2111,6 @@ else
     <td id='id_iframe_td' style="border-width: 1px; width: 100%; height: 100%; padding: 0px">
       <table cellspacing=0 cellpadding=0 width='100%' height='100%'>
         <tr>
-        <td id="links_abas" style="display: none;">
-          <script>     function isMobile() {
-        var check = false;
-        (function(a){if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a)||/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0,4))) check = true;})(navigator.userAgent||navigator.vendor||window.opera);
-        return check;
-    }
-    $(document).ready(function () {
-        if (!$('#idMenuHeader').length && $('#idMenuFLoat').length) {
-            $('#id_links_abas').css('padding-top', $('#bmenu').outerHeight() + 'px');
-        }
-    })</script>
-          <div id="id_links_abas" style="display: none; " class='scTabLine'>
-            <div class='scTabScroll left' style='float:left;display:none;' onmousedown='scTabScroll("left");' onmouseup='scTabScroll("stop");' onmouseout='scTabScroll("stop");'></div>
-            <div class='scTabScroll right' style='float:right;display:none;'onmousedown='scTabScroll("right");' onmouseup='scTabScroll("stop");' onmouseout='scTabScroll("stop");'></div>
-            <div id='div_contrl_abas' class='scTabCtrl' style='overflow:hidden;white-space: nowrap;'>
-              <ul id='contrl_abas' style='margin:0px; padding:0px; display: inline-block;'></ul>
-            </div>
-          </div>
-        </td>
-        </tr><tr>
         <td width='100%' height='100%' style='vertical-align:top;text-align:center;'>
 <?php
 }
@@ -2850,9 +2468,8 @@ function nm_show_toolbarmenu($col_span, $saida_apl, $mnu_topic_menuData, $path_i
    }
    function Gera_sc_init($apl_menu)
    {
-        $_SESSION['scriptcase']['mnu_topic']['sc_init'][$apl_menu] = rand(2, 10000);
-        $_SESSION['sc_session'][$_SESSION['scriptcase']['mnu_topic']['sc_init'][$apl_menu]] = array();
-        return  $_SESSION['scriptcase']['mnu_topic']['sc_init'][$apl_menu];
+        $_SESSION['scriptcase']['mnu_topic']['sc_init'][$apl_menu] = 1;
+        return  1;
    }
    function regionalDefault()
    {

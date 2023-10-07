@@ -188,7 +188,7 @@ class cdt_class_ini
    var $path_atual;
    var $Gd_missing;
    var $sc_site_ssl;
-   var $link_cdt_topic_edit;
+   var $link_sub_topic_edit;
    var $link_cdt_class_inline;
    var $nm_cont_lin;
    var $nm_limite_lin;
@@ -301,8 +301,8 @@ class cdt_class_ini
       $this->nm_dt_criacao   = "20230816"; 
       $this->nm_hr_criacao   = "194159"; 
       $this->nm_autor_alt    = "admin"; 
-      $this->nm_dt_ult_alt   = "20230912"; 
-      $this->nm_hr_ult_alt   = "172806"; 
+      $this->nm_dt_ult_alt   = "20231007"; 
+      $this->nm_hr_ult_alt   = "034844"; 
       list($NM_usec, $NM_sec) = explode(" ", microtime()); 
       $this->nm_timestamp    = (float) $NM_sec; 
       $this->nm_app_version  = "1.0.0"; 
@@ -430,6 +430,7 @@ class cdt_class_ini
       $this->path_cep        = $this->path_prod . "/cep";
       $this->path_cor        = $this->path_prod . "/cor";
       $this->path_js         = $this->path_prod . "/lib/js";
+      $this->path_tiny_mce   = $this->path_prod . "/third/tinymce/js/tinymce/tinymce.min.js";
       $this->path_libs       = $this->root . $this->path_prod . "/lib/php";
       $this->path_third      = $this->root . $this->path_prod . "/third";
       $this->path_secure     = $this->root . $this->path_prod . "/secure";
@@ -643,14 +644,14 @@ class cdt_class_ini
           echo "</html>";
           exit;
       }
-      $Tmp_apl_lig = "cdt_topic";
-      if (is_file($this->root . $this->path_link . "_lib/_app_data/cdt_topic_ini.php"))
+      $Tmp_apl_lig = "sub_topic";
+      if (is_file($this->root . $this->path_link . "_lib/_app_data/sub_topic_ini.php"))
       {
-          require($this->root . $this->path_link . "_lib/_app_data/cdt_topic_ini.php");
+          require($this->root . $this->path_link . "_lib/_app_data/sub_topic_ini.php");
           $Tmp_apl_lig = $arr_data['friendly_url'];
           if (isset($arr_data['md5']) && trim($arr_data['md5']) == "LigMd5")
           {
-              $this->sc_lig_md5["cdt_topic"] = 'S';
+              $this->sc_lig_md5["sub_topic"] = 'S';
           }
       }
       $PHP_ver = str_replace(".", "", phpversion()); 
@@ -1026,9 +1027,9 @@ class cdt_class_ini
       {
           $_SESSION['sc_session'][$this->sc_page]['cdt_class']['dashboard_info']['maximized'] = 1 == $_GET['maximized'];
       }
-      $this->link_cdt_topic_edit = $this->sc_protocolo . $this->server . $this->path_link . "" . SC_dir_app_name('cdt_topic') . "/";
-      $this->sc_lig_target["C_@scinf_topico"] = 'nmsc_iframe_liga_cdt_topic';
-      $this->sc_lig_iframe["nmsc_iframe_liga_cdt_topic"] = 'nmsc_iframe_liga_cdt_topic';
+      $this->link_sub_topic_edit = $this->sc_protocolo . $this->server . $this->path_link . "" . SC_dir_app_name('sub_topic') . "/";
+      $this->sc_lig_target["C_@scinf_topico"] = 'nmsc_iframe_liga_sub_topic';
+      $this->sc_lig_iframe["nmsc_iframe_liga_sub_topic"] = 'nmsc_iframe_liga_sub_topic';
       $this->link_cdt_class_inline = $this->sc_protocolo . $this->server . $this->path_link . "" . SC_dir_app_name('cdt_class') . "/cdt_class_inline.php";
       if ($_SESSION['sc_session'][$this->sc_page]['cdt_class']['dashboard_info']['under_dashboard'])
       {
@@ -1113,7 +1114,7 @@ class cdt_class_ini
       $this->nm_bases_odbc       = array("odbc");
       $this->nm_bases_progress   = array("progress", "pdo_progress_odbc");
       $this->nm_bases_all        = array_merge($this->nm_bases_access, $this->nm_bases_ibase, $this->nm_bases_mysql, $this->nm_bases_postgres, $this->nm_bases_sqlite, $this->nm_bases_sybase, $this->nm_bases_vfp, $this->nm_bases_odbc, $this->nm_bases_progress);
-      $_SESSION['scriptcase']['nm_bases_security']  = "enc_nm_enc_v1HQBiDQJsZ1N7HuNUHuNOVcXKHEFYHIJeHQNmZSB/Z1BeHQF7DMveVkJ3DWF/VoBiDcJUZSX7Z1BYHuFaDMvOV9FeV5X/VEBiHQBiZkFGHIveD5JwHgvsHEJqH5FGVoFGHQXsDQB/DSN7HuraDMBYZSNiDurGDoXGHQBiZ1X7HINKZMXGDMveVkJqDuXKVoFGHQXsDuBqHAN7HuBqDMrYVcB/HEBmVoBqD9BsZ1F7DSrYD5rqDMrYZSJ3DurmZuJsDcBiH9BiHIrwHurqDMBODkBsH5XKDoXGHQNmH9BqHIveHQFGHgvsVkJqHEB3VoFGDcBiDQFUD1BOV5BOHgrwVcFeV5X/DoXGHQBiZ1BOHAN7HuXGHgvsHErCDuXKDoF7D9XsDQJsDSBYV5FGHgNKDkBsHEX/VEBiDcNmZ1X7HANOHuBOHgBOZSJ3DuX/VoFGHQFYDQB/HArYHQF7HgvOVcFeDurGDoXGHQXGVIJsDSvOD5JeDMveHArCDWrGVoFGHQXODQFaZ1BYHQFaDMBYVcB/HEX/VoBqD9BsZ1F7DSrYD5rqDMrYZSJGH5FYDoF7DcXOZSFGHAveV5FUHuBYVcFKDur/VoJwHQJmVIJsDSvmD5FaHgNOHEBUDWr/DoB/DcBwZSFGHANOV5FUHuNOV9FiDWXCHMFaD9JmZ1B/HIrwV5FaDErKDkBsV5FaHMJeDcBwDQFGD1veHQXGHgvsVcBOHEX7DoraHQFYH9FaHAvmZMJeHgvCHEJGDWF/VoJeD9NwDQBqHIvsV5XGDMrwDkFCDuX7VEF7D9BiH9FaHAN7D5FaDEBOZSJGH5BmDoB/D9NwZSX7D1BeV5BOHuvmVcFCDWXCVENUDcBqH9B/HABYD5JeDMzGHAFKV5XKDoF7D9XsDQJsDSBYV5FGHgNKDkFCH5FqVoBqDcNwH9B/HIveD5FaDErKZSJGH5F/DoFUHQNmDQFaHArYHQFaHgrwVcFeV5X7HIBiHQFYZkFGHIBeHQFaHgrKHArCDWF/VoBiDcJUZSX7Z1BYHuFaHuBYZSNiDWrmVoF7HQBsH9BOHANOD5BqHgNKHEJGDWr/HMBiDcBwDQFGD1BeHQJwDMvmVcFKV5BmVoBqD9BsZkFGHAvsD5FaDMBYZSXeH5F/ZuFaDcXOZSX7D1BeD5rqHgvsVcFCH5FqVoFGHQFYZSFaHArKV5XGDErKHErCDWF/VoBiDcJUZSX7Z1BYHuFaDMvmVcFKV5BmVoBqD9BsZkFGHAvsZMBqDEBeHErsDuJeHMJeHQXsH9FGHANOHQF7HuzGVIBOHEX7DoJeHQXOZ1FaHAN7HQJsHgveZSJ3DWF/VoBiDcJUZSX7Z1BYHuFaHuzGVcFKDWFYVoJwDcBqZSFaHAN7D5FaDEBOVkJGHEXCVoB/HQJKDQJsZ1vCV5FGHuNOV9FeDWB3VoX7HQNmZ1BiHAvCD5JeHgveHErsHEB7DoBqHQXODuFaHAveD5NUHgNKDkBOV5FYHMBiHQBsZ1BiHAzGD5BqHgNKHEJqH5F/HMFGHQJKZSBiHIBeD5JsDMrYDkBsDWXCDoJsDcBwH9B/Z1rYHQJwHgBOVkJ3DWX7HMJeHQJKZSBiHIrKHuFGDMBYVIBsHEX/VoFaDcFYZ1FGDSrYHQJwDEBODkFeH5FYVoFGHQJKDQBqDSzGD5NUDMvOVcXeV5r/VEB/";
+      $_SESSION['scriptcase']['nm_bases_security']  = "enc_nm_enc_v1D9XsDQB/HIrwHuBOHuBYZSJqH5XCDoraHQJmZ1BOD1rwD5BqHgBOZSJGDWF/HIJsD9XsZ9JeD1BeD5F7DMvmVcBUDWJeHMBiD9BsVIraD1rwV5X7HgBeHEBUDWB3DoBqDcBiDuBqHAveHuNUDMvmVcB/H5FqHIXGD9BsZ1X7HArYHuJsHgveZSXeDuJeHIJsD9XsZ9JeD1BeD5F7DMvmVcrsDWXCDoraDcNwH9B/HAN7D5XGDEBOZSXeV5XCZuJsDcBwDuFaHAveD5NUHgNKDkBOV5FYHMBiHQFYH9B/D1rwV5B/DEvsHENiV5FaDoF7D9XsDQJsHArYV5BqHuzGZSJ3V5F/VorqD9JmZ1rqHArKHQJwDEBODkFeH5FYVoFGHQJKDQBqHIrKV5FGDMvmVIFCDWF/HIFGD9BsZ1FGHABYHuX7HgNKHEFiDWXCVoBiHQNmZSBiD1vOVWJeDMvmVcFKV5BmVoBqD9BsZkFGHArKHuBOHgBYVkJ3V5FqHIrqDcBiH9BiZ1BYHuJwDMrwV9FeH5XCVoBiHQBsZkFGZ1vmZMXGHgvCHArCDuFYHIJeHQJeDQB/DSN7HuXGDMrwV9FeH5XKVErqDcNmZkBiHArYD5JwDMrYZSXeDuFYVoXGDcJeZ9rqD1BeHuX7DMvsVIB/HEF/HMB/HQJmZSBOD1rwHQBiHgvCHArsH5FYHIrqHQJKH9BiZ1N7V5FaDMrwVcB/HEFYHIXGHQNmZSBOD1rKHuBOHgvCHArCV5FqHMX7HQNmH9BiHIBeHuFUHgNKDkBODuFqDoFGDcBqVIJwD1rwHQrqHgBYVkJqDuJeHIBOHQNmDuFaHIrwHQJeDMrwVcB/DWXCHIFUHQXGH9BOHIveHQF7HgvCHEJqH5X/ZuXGHQBiZSFUDSBYHurqDMrwV9BUH5XCHIF7HQXGZ1FGZ1rYHQJeDMrYZSXeDuFYVoXGDcJeZ9rqD1BeV5BqHgvsDkB/V5X7VorqDcBqZ1FaD1rKV5XGDMNKZSJ3H5X/ZuJsHQXGZSFUHAveV5BOHuNODkBODuX7VoX7DcBqZ1B/Z1vOD5raHgBOVkXeHEFqVoX7DcBwDQFGD1BOV5JwDMBYVIBODWFYVENUHQBiZ1B/HABYV5JsDMzGHAFKV5FaZuBOHQJeDuBOZ1BYV5JeHuvmVcrsDWB3VEX7HQNmZkFUZ1BeZMBODEvsZSJGDuFaDoJeD9XsZSX7Z1rwVWJsDMrwDkFCH5FqVoBqD9XOZSB/DSrYD5BqDEvsHEFiH5FYDoraD9NwZSX7D1vOV5JwHgNKDkBODuFqDoFGDcBqVIJwD1rwD5JeDMBYZSJqV5FaVoJeD9XsZSFGD1BeVWJsHgrYDkBsDuFqHMFUHQXGZ1X7D1rKHuJeHgNOHEFKV5FqHIraDcXGDuFaDSBYHuFaHuNOZSrCH5FqDoXGHQJmZ1BiHAvCD5BqHgveDkXKH5X/DoBqHQBiDQBqHANKVWXGDMvmVcFKV5BmVoBqD9BsZkFGHArKHQJeHgBeHEXeDuFaDoraDcXGDQFGHAN7V5JeHuBOVcFeH5FqHIJsHQBqZ1FGHArKV5FUDMrYZSXeV5FqHIJsHQXsH9BiHArYHQBODMvmDkBsDur/HMBqHQBiZSBqDSvOD5raDMvCHErCHEFqHIJsD9XsZ9JeD1BeD5F7DMvmVcBUHEX/DoJsHQNmZ1XGZ1veZMNU";
       $this->prep_conect();
       $this->conectDB();
       if (!in_array(strtolower($this->nm_tpbanco), $this->nm_bases_all))
@@ -2001,21 +2002,6 @@ ob_start();
 
     if (isset($_POST['rs']) && !is_array($_POST['rs']) && 'ajax_' == substr($_POST['rs'], 0, 5) && isset($_POST['rsargs']) && !empty($_POST['rsargs']) && !isset($_SESSION['scriptcase']['cdt_class']['session_timeout']['redir']))
     {
-        if ('ajax_cdt_class_validate_id' == $_POST['rs'])
-        {
-            $id = NM_utf8_urldecode($_POST['rsargs'][0]);
-            $script_case_init = NM_utf8_urldecode($_POST['rsargs'][1]);
-        }
-        if ('ajax_cdt_class_validate_pai' == $_POST['rs'])
-        {
-            $pai = NM_utf8_urldecode($_POST['rsargs'][0]);
-            $script_case_init = NM_utf8_urldecode($_POST['rsargs'][1]);
-        }
-        if ('ajax_cdt_class_validate_icone' == $_POST['rs'])
-        {
-            $icone = NM_utf8_urldecode($_POST['rsargs'][0]);
-            $script_case_init = NM_utf8_urldecode($_POST['rsargs'][1]);
-        }
         if ('ajax_cdt_class_validate_ordenacao' == $_POST['rs'])
         {
             $ordenacao = NM_utf8_urldecode($_POST['rsargs'][0]);
@@ -2031,16 +2017,6 @@ ob_start();
             $descricao = NM_utf8_urldecode($_POST['rsargs'][0]);
             $script_case_init = NM_utf8_urldecode($_POST['rsargs'][1]);
         }
-        if ('ajax_cdt_class_validate_link' == $_POST['rs'])
-        {
-            $link = NM_utf8_urldecode($_POST['rsargs'][0]);
-            $script_case_init = NM_utf8_urldecode($_POST['rsargs'][1]);
-        }
-        if ('ajax_cdt_class_validate_sc_field_0' == $_POST['rs'])
-        {
-            $sc_field_0 = NM_utf8_urldecode($_POST['rsargs'][0]);
-            $script_case_init = NM_utf8_urldecode($_POST['rsargs'][1]);
-        }
         if ('ajax_cdt_class_validate_topico' == $_POST['rs'])
         {
             $topico = NM_utf8_urldecode($_POST['rsargs'][0]);
@@ -2048,22 +2024,17 @@ ob_start();
         }
         if ('ajax_cdt_class_submit_form' == $_POST['rs'])
         {
-            $id = NM_utf8_urldecode($_POST['rsargs'][0]);
-            $pai = NM_utf8_urldecode($_POST['rsargs'][1]);
-            $icone = NM_utf8_urldecode($_POST['rsargs'][2]);
-            $ordenacao = NM_utf8_urldecode($_POST['rsargs'][3]);
-            $modulo = NM_utf8_urldecode($_POST['rsargs'][4]);
-            $descricao = NM_utf8_urldecode($_POST['rsargs'][5]);
-            $link = NM_utf8_urldecode($_POST['rsargs'][6]);
-            $sc_field_0 = NM_utf8_urldecode($_POST['rsargs'][7]);
-            $nm_form_submit = NM_utf8_urldecode($_POST['rsargs'][8]);
-            $nmgp_url_saida = NM_utf8_urldecode($_POST['rsargs'][9]);
-            $nmgp_opcao = NM_utf8_urldecode($_POST['rsargs'][10]);
-            $nmgp_ancora = NM_utf8_urldecode($_POST['rsargs'][11]);
-            $nmgp_num_form = NM_utf8_urldecode($_POST['rsargs'][12]);
-            $nmgp_parms = NM_utf8_urldecode($_POST['rsargs'][13]);
-            $script_case_init = NM_utf8_urldecode($_POST['rsargs'][14]);
-            $csrf_token = NM_utf8_urldecode($_POST['rsargs'][15]);
+            $ordenacao = NM_utf8_urldecode($_POST['rsargs'][0]);
+            $modulo = NM_utf8_urldecode($_POST['rsargs'][1]);
+            $descricao = NM_utf8_urldecode($_POST['rsargs'][2]);
+            $nm_form_submit = NM_utf8_urldecode($_POST['rsargs'][3]);
+            $nmgp_url_saida = NM_utf8_urldecode($_POST['rsargs'][4]);
+            $nmgp_opcao = NM_utf8_urldecode($_POST['rsargs'][5]);
+            $nmgp_ancora = NM_utf8_urldecode($_POST['rsargs'][6]);
+            $nmgp_num_form = NM_utf8_urldecode($_POST['rsargs'][7]);
+            $nmgp_parms = NM_utf8_urldecode($_POST['rsargs'][8]);
+            $script_case_init = NM_utf8_urldecode($_POST['rsargs'][9]);
+            $csrf_token = NM_utf8_urldecode($_POST['rsargs'][10]);
         }
         if ('ajax_cdt_class_navigate_form' == $_POST['rs'])
         {
@@ -2665,14 +2636,9 @@ ob_start();
     $sajax_request_type = "POST";
     sajax_init();
     //$sajax_debug_mode = 1;
-    sajax_export("ajax_cdt_class_validate_id");
-    sajax_export("ajax_cdt_class_validate_pai");
-    sajax_export("ajax_cdt_class_validate_icone");
     sajax_export("ajax_cdt_class_validate_ordenacao");
     sajax_export("ajax_cdt_class_validate_modulo");
     sajax_export("ajax_cdt_class_validate_descricao");
-    sajax_export("ajax_cdt_class_validate_link");
-    sajax_export("ajax_cdt_class_validate_sc_field_0");
     sajax_export("ajax_cdt_class_validate_topico");
     sajax_export("ajax_cdt_class_submit_form");
     sajax_export("ajax_cdt_class_navigate_form");
@@ -2688,63 +2654,6 @@ ob_start();
     function nm_limpa_str_cdt_class(&$str)
     {
     }
-
-    function ajax_cdt_class_validate_id($id, $script_case_init)
-    {
-        global $inicial_cdt_class;
-        //register_shutdown_function("cdt_class_pack_ajax_response");
-        $inicial_cdt_class->contr_cdt_class->NM_ajax_flag          = true;
-        $inicial_cdt_class->contr_cdt_class->NM_ajax_opcao         = 'validate_id';
-        $inicial_cdt_class->contr_cdt_class->NM_ajax_info['param'] = array(
-                  'id' => NM_utf8_urldecode($id),
-                  'script_case_init' => NM_utf8_urldecode($script_case_init),
-                  'buffer_output' => true,
-                 );
-        if ($inicial_cdt_class->contr_cdt_class->NM_ajax_info['param']['buffer_output'])
-        {
-            ob_start();
-        }
-        $inicial_cdt_class->contr_cdt_class->controle();
-        exit;
-    } // ajax_validate_id
-
-    function ajax_cdt_class_validate_pai($pai, $script_case_init)
-    {
-        global $inicial_cdt_class;
-        //register_shutdown_function("cdt_class_pack_ajax_response");
-        $inicial_cdt_class->contr_cdt_class->NM_ajax_flag          = true;
-        $inicial_cdt_class->contr_cdt_class->NM_ajax_opcao         = 'validate_pai';
-        $inicial_cdt_class->contr_cdt_class->NM_ajax_info['param'] = array(
-                  'pai' => NM_utf8_urldecode($pai),
-                  'script_case_init' => NM_utf8_urldecode($script_case_init),
-                  'buffer_output' => true,
-                 );
-        if ($inicial_cdt_class->contr_cdt_class->NM_ajax_info['param']['buffer_output'])
-        {
-            ob_start();
-        }
-        $inicial_cdt_class->contr_cdt_class->controle();
-        exit;
-    } // ajax_validate_pai
-
-    function ajax_cdt_class_validate_icone($icone, $script_case_init)
-    {
-        global $inicial_cdt_class;
-        //register_shutdown_function("cdt_class_pack_ajax_response");
-        $inicial_cdt_class->contr_cdt_class->NM_ajax_flag          = true;
-        $inicial_cdt_class->contr_cdt_class->NM_ajax_opcao         = 'validate_icone';
-        $inicial_cdt_class->contr_cdt_class->NM_ajax_info['param'] = array(
-                  'icone' => NM_utf8_urldecode($icone),
-                  'script_case_init' => NM_utf8_urldecode($script_case_init),
-                  'buffer_output' => true,
-                 );
-        if ($inicial_cdt_class->contr_cdt_class->NM_ajax_info['param']['buffer_output'])
-        {
-            ob_start();
-        }
-        $inicial_cdt_class->contr_cdt_class->controle();
-        exit;
-    } // ajax_validate_icone
 
     function ajax_cdt_class_validate_ordenacao($ordenacao, $script_case_init)
     {
@@ -2803,44 +2712,6 @@ ob_start();
         exit;
     } // ajax_validate_descricao
 
-    function ajax_cdt_class_validate_link($link, $script_case_init)
-    {
-        global $inicial_cdt_class;
-        //register_shutdown_function("cdt_class_pack_ajax_response");
-        $inicial_cdt_class->contr_cdt_class->NM_ajax_flag          = true;
-        $inicial_cdt_class->contr_cdt_class->NM_ajax_opcao         = 'validate_link';
-        $inicial_cdt_class->contr_cdt_class->NM_ajax_info['param'] = array(
-                  'link' => NM_utf8_urldecode($link),
-                  'script_case_init' => NM_utf8_urldecode($script_case_init),
-                  'buffer_output' => true,
-                 );
-        if ($inicial_cdt_class->contr_cdt_class->NM_ajax_info['param']['buffer_output'])
-        {
-            ob_start();
-        }
-        $inicial_cdt_class->contr_cdt_class->controle();
-        exit;
-    } // ajax_validate_link
-
-    function ajax_cdt_class_validate_sc_field_0($sc_field_0, $script_case_init)
-    {
-        global $inicial_cdt_class;
-        //register_shutdown_function("cdt_class_pack_ajax_response");
-        $inicial_cdt_class->contr_cdt_class->NM_ajax_flag          = true;
-        $inicial_cdt_class->contr_cdt_class->NM_ajax_opcao         = 'validate_sc_field_0';
-        $inicial_cdt_class->contr_cdt_class->NM_ajax_info['param'] = array(
-                  'sc_field_0' => NM_utf8_urldecode($sc_field_0),
-                  'script_case_init' => NM_utf8_urldecode($script_case_init),
-                  'buffer_output' => true,
-                 );
-        if ($inicial_cdt_class->contr_cdt_class->NM_ajax_info['param']['buffer_output'])
-        {
-            ob_start();
-        }
-        $inicial_cdt_class->contr_cdt_class->controle();
-        exit;
-    } // ajax_validate_sc_field_0
-
     function ajax_cdt_class_validate_topico($topico, $script_case_init)
     {
         global $inicial_cdt_class;
@@ -2860,21 +2731,16 @@ ob_start();
         exit;
     } // ajax_validate_topico
 
-    function ajax_cdt_class_submit_form($id, $pai, $icone, $ordenacao, $modulo, $descricao, $link, $sc_field_0, $nm_form_submit, $nmgp_url_saida, $nmgp_opcao, $nmgp_ancora, $nmgp_num_form, $nmgp_parms, $script_case_init, $csrf_token)
+    function ajax_cdt_class_submit_form($ordenacao, $modulo, $descricao, $nm_form_submit, $nmgp_url_saida, $nmgp_opcao, $nmgp_ancora, $nmgp_num_form, $nmgp_parms, $script_case_init, $csrf_token)
     {
         global $inicial_cdt_class;
         //register_shutdown_function("cdt_class_pack_ajax_response");
         $inicial_cdt_class->contr_cdt_class->NM_ajax_flag          = true;
         $inicial_cdt_class->contr_cdt_class->NM_ajax_opcao         = 'submit_form';
         $inicial_cdt_class->contr_cdt_class->NM_ajax_info['param'] = array(
-                  'id' => NM_utf8_urldecode($id),
-                  'pai' => NM_utf8_urldecode($pai),
-                  'icone' => NM_utf8_urldecode($icone),
                   'ordenacao' => NM_utf8_urldecode($ordenacao),
                   'modulo' => NM_utf8_urldecode($modulo),
                   'descricao' => NM_utf8_urldecode($descricao),
-                  'link' => NM_utf8_urldecode($link),
-                  'sc_field_0' => NM_utf8_urldecode($sc_field_0),
                   'nm_form_submit' => NM_utf8_urldecode($nm_form_submit),
                   'nmgp_url_saida' => NM_utf8_urldecode($nmgp_url_saida),
                   'nmgp_opcao' => NM_utf8_urldecode($nmgp_opcao),

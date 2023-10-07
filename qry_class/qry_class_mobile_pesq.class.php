@@ -385,7 +385,7 @@ class qry_class_pesq
       if ($tp_unaccent) {
           $Nm_accent = $this->Ini->Nm_accent_yes;
       }
-      $Nm_numeric[] = "id";$Nm_numeric[] = "pai";$Nm_numeric[] = "ordenacao";$Nm_numeric[] = "modulo";$Nm_numeric[] = "";$Nm_numeric[] = "id";$Nm_numeric[] = "pai";$Nm_numeric[] = "ordenacao";$Nm_numeric[] = "modulo";$Nm_numeric[] = "";
+      $Nm_numeric[] = "id";$Nm_numeric[] = "pai";$Nm_numeric[] = "ordenacao";$Nm_numeric[] = "modulo";$Nm_numeric[] = "curso";$Nm_numeric[] = "id";$Nm_numeric[] = "pai";$Nm_numeric[] = "ordenacao";$Nm_numeric[] = "modulo";$Nm_numeric[] = "curso";
       $campo_join = strtolower(str_replace(".", "_", $nome));
       if (in_array($campo_join, $Nm_numeric))
       {
@@ -1527,6 +1527,8 @@ if ($_SESSION['scriptcase']['proc_mobile'])
  <script type="text/javascript" src="../_lib/lib/js/scInput.js"></script>
  <script type="text/javascript" src="../_lib/lib/js/jquery.scInput.js"></script>
  <script type="text/javascript" src="../_lib/lib/js/jquery.scInput2.js"></script>
+ <link rel="stylesheet" href="<?php echo $this->Ini->path_prod ?>/third/jquery_plugin/select2/css/select2.min.css" type="text/css" />
+ <SCRIPT type="text/javascript" src="<?php echo $this->Ini->path_prod; ?>/third/jquery_plugin/select2/js/select2.full.min.js"></SCRIPT>
  <link rel="stylesheet" href="<?php echo $this->Ini->path_prod ?>/third/jquery_plugin/thickbox/thickbox.css" type="text/css" media="screen" />
  <link rel="stylesheet" type="text/css" href="../_lib/css/<?php echo $this->Ini->str_schema_filter ?>_error.css" /> 
  <link rel="stylesheet" type="text/css" href="../_lib/css/<?php echo $this->Ini->str_schema_filter ?>_error<?php echo $_SESSION['scriptcase']['reg_conf']['css_dir'] ?>.css" /> 
@@ -1798,6 +1800,7 @@ var nmdg_Form = "F1";
 
    SC_carga_evt_jquery();
    scLoadScInput('input:text.sc-js-input');
+   Sc_carga_select2('all');
  });
  function nm_campos_between(nm_campo, nm_cond, nm_nome_obj)
  {
@@ -2129,7 +2132,7 @@ function nm_open_popup(parms)
       <INPUT type="hidden" id="SC_curso_cond" name="curso_cond" value="eq">
 
     <TD nowrap class="scFilterLabelOdd" style="vertical-align: top" > <?php
- $SC_Label = (isset($this->New_label['curso'])) ? $this->New_label['curso'] : "Cursada";
+ $SC_Label = (isset($this->New_label['curso'])) ? $this->New_label['curso'] : "Curso";
  $nmgp_tab_label .= "curso?#?" . $SC_Label . "?@?";
  $date_sep_bw = " " . $this->Ini->Nm_lang['lang_srch_between_values'] . " ";
  if ($_SESSION['scriptcase']['charset'] != "UTF-8" && NM_is_utf8($date_sep_bw))
@@ -2740,6 +2743,29 @@ function nm_open_popup(parms)
    document.F1.curso_cond.value = 'eq';
    nm_campos_between(document.getElementById('id_vis_curso'), document.F1.curso_cond, 'curso');
    document.F1.curso.value = "";
+   Sc_carga_select2('all');
+ }
+ function Sc_carga_select2(Field)
+ {
+    if (Field == 'all' || Field == 'curso') {
+       Sc_carga_select2_curso();
+    }
+ }
+ function Sc_carga_select2_curso()
+ {
+  $("#SC_curso").select2(
+    {
+      minimumResultsForSearch: Infinity,
+      language: {
+        noResults: function() {
+          return "<?php echo $this->Ini->Nm_lang['lang_autocomp_notfound'] ?>";
+        },
+        searching: function() {
+          return "<?php echo $this->Ini->Nm_lang['lang_autocomp_searching'] ?>";
+        }
+      }
+    }
+  );
  }
  function SC_carga_evt_jquery()
  {
@@ -3078,10 +3104,6 @@ function nm_open_popup(parms)
       {
           $curso_input_2 = $curso;
       }
-      if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['campos_busca']))
-      {
-          $_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['campos_busca_ant'] = $_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['campos_busca'];
-      }
       $tmp_pos = (is_string($curso)) ? strpos($curso, "##@@") : false;
       if ($tmp_pos === false) {
           $L_lookup = $curso;
@@ -3090,7 +3112,7 @@ function nm_open_popup(parms)
           $L_lookup = substr($curso, 0, $tmp_pos);
       }
       if ($this->NM_ajax_opcao != "ajax_grid_search_change_fil" && !empty($L_lookup) && !in_array($L_lookup, $_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['psq_check_ret']['curso'])) {
-          if (!empty($this->Campos_Mens_erro)) {$this->Campos_Mens_erro .= "<br>";}$this->Campos_Mens_erro .= "Cursada : " . $this->Ini->Nm_lang['lang_errm_ajax_data'];
+          if (!empty($this->Campos_Mens_erro)) {$this->Campos_Mens_erro .= "<br>";}$this->Campos_Mens_erro .= "Curso : " . $this->Ini->Nm_lang['lang_errm_ajax_data'];
       }
       $_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['campos_busca']  = array(); 
       $_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['Grid_search']  = array(); 
@@ -3131,15 +3153,12 @@ function nm_open_popup(parms)
           $Conteudo = substr($Conteudo, strpos($Conteudo, "##@@") + 4);
       }
       $this->cmp_formatado['curso'] = $Conteudo;
-      if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['grid_pesq']['curso']))
+
+      //----- $curso
+      $this->Date_part = false;
+      if (isset($curso))
       {
-          $_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['grid_pesq']['curso']['label'] = $nmgp_tab_label['curso'];
-          $_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['grid_pesq']['curso']['descr'] = $nmgp_tab_label['curso'] . ": " . $this->cmp_formatado['curso'];
-          $_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['grid_pesq']['curso']['hint'] = $nmgp_tab_label['curso'] . ": " . $this->cmp_formatado['curso'];
-      }
-      if (!isset($_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['campos_busca_ant']))
-      {
-          $_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['campos_busca_ant'] = $_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['campos_busca'];
+         $this->monta_condicao("curso", $curso_cond, $curso, "", "curso", "INT", false);
       }
    }
 
@@ -3207,7 +3226,7 @@ function nm_open_popup(parms)
       {
          $_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['where_pesq_filtro'] = " (" . $this->comando_filtro . ")";
       }
-      if ($_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['where_pesq'] != $_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['where_pesq_ant'] || $_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['campos_busca_ant'] != $_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['campos_busca'])
+      if ($_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['where_pesq'] != $_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['where_pesq_ant'])
       {
          $_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['cond_pesq'] .= $this->NM_operador;
          $_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['contr_array_resumo'] = "NAO";

@@ -20,7 +20,7 @@
 .scAppCalendarPage .fc-col-header-cell { background-color: #FFFFFF; color: #247159; border-color: #A8D4C7; border-width: 1px; border-style: solid; height: 40px; line-height: 40px }
 .fc-timegrid-axis, .fc-timegrid-slot-label { background-color: #FFFFFF; color: #247159; border-color: #A8D4C7; border-width: 1px; border-style: solid; font-family: Leelawadee, Ebrima, 'Bahnschrift Light', Gadugi, 'Nirmala UI', 'Segoe UI', Verdana; font-size: 13px }
 .fc-header-title, .fc-daygrid-day-number, .fc-toolbar-title { color: #313a46; font-family: Leelawadee, Ebrima, 'Bahnschrift Light', Gadugi, 'Nirmala UI', 'Segoe UI', Verdana }
-.fc-sun, .fc-mon, .fc-tue, .fc-wed, .fc-thu, .fc-fri, .fc-sat, .fc-agenda-axis, .fc-agenda-gutter { background-image: none; opacity: 1; filter: alpha(opacity=100); color: #313a46; font-family: Leelawadee, Ebrima, 'Bahnschrift Light', Gadugi, 'Nirmala UI', 'Segoe UI', Verdana; font-size: 13px; font-style: normal; font-weight: normal; text-decoration: none }
+.fc-sun, .fc-mon, .fc-tue, .fc-wed, .fc-thu, .fc-fri, .fc-sat, .fc-agenda-axis, .fc-agenda-gutter { background-image: none; opacity: 1; filter: alpha(opacity=100); color: #313a46; font-family: Leelawadee, Ebrima, 'Bahnschrift Light', Gadugi, 'Nirmala UI', 'Segoe UI', Verdana; font-size: 13px; font-style: normal; text-decoration: none }
 .fc-not-today { color: #000; font-family: Leelawadee, Ebrima, 'Bahnschrift Light', Gadugi, 'Nirmala UI', 'Segoe UI', Verdana; font-size: 13px }
 .scCalendarEventPast { background-color: #FFE8E8; background-image: none; opacity: 1; filter: alpha(opacity=100); color: #313a46; border-color: #CB4949; border-style: solid; border-width: 1px; padding: 3px !important }
 .scCalendarEventPastFont { color: #313a46 }
@@ -34,17 +34,17 @@
 .scCalendarEventFutureFont { color: #313a46 }
 .scCalendarEventFutureFont:hover { color: #313a46 }
 .scCalendarEventFuture.fc-daygrid-dot-event:hover { background-color: #9EBFEB }
-.scCalendarPrintDate { font-family: Leelawadee, Ebrima, 'Bahnschrift Light', Gadugi, 'Nirmala UI', 'Segoe UI', Verdana; font-size: 13px; font-style: normal; font-weight: normal; text-decoration: none }
-.scCalendarPrintTime { font-family: Leelawadee, Ebrima, 'Bahnschrift Light', Gadugi, 'Nirmala UI', 'Segoe UI', Verdana; font-size: 13px; font-style: normal; font-weight: normal; text-decoration: none }
-.scCalendarPrintEvent { font-family: Leelawadee, Ebrima, 'Bahnschrift Light', Gadugi, 'Nirmala UI', 'Segoe UI', Verdana; font-size: 13px; font-style: normal; font-weight: normal; text-decoration: none }
+.scCalendarPrintDate { font-family: Leelawadee, Ebrima, 'Bahnschrift Light', Gadugi, 'Nirmala UI', 'Segoe UI', Verdana; font-size: 13px; font-style: normal; text-decoration: none }
+.scCalendarPrintTime { font-family: Leelawadee, Ebrima, 'Bahnschrift Light', Gadugi, 'Nirmala UI', 'Segoe UI', Verdana; font-size: 13px; font-style: normal; text-decoration: none }
+.scCalendarPrintEvent { font-family: Leelawadee, Ebrima, 'Bahnschrift Light', Gadugi, 'Nirmala UI', 'Segoe UI', Verdana; font-size: 13px; font-style: normal; text-decoration: none }
 #calendar_mini { margin: 0 0 20px 0 }
 #calendar_mini .fc-toolbar.fc-header-toolbar { margin-bottom: 20px !important }
 #calendar_mini .fc-toolbar-title { font-size: 1.1em; margin: 13px 0 0 0; display: inline-block !important }
 #calendar_mini .fc-day-today { background-color: #FCFCEE }
-#calendar_mini .fc-col-header-cell { background-image: none; color: #313a46; font-family: Leelawadee, Ebrima, 'Bahnschrift Light', Gadugi, 'Nirmala UI', 'Segoe UI', Verdana; font-size: 13px; font-style: normal; font-weight: normal; text-decoration: none; height: 25px; line-height: 25px }
-#calendar_mini .fc-daygrid-day-frame { background-color: #F6FFFC; background-image: none; color: #313a46; font-family: Leelawadee, Ebrima, 'Bahnschrift Light', Gadugi, 'Nirmala UI', 'Segoe UI', Verdana; font-size: 13px; font-style: normal; font-weight: normal; text-decoration: none; cursor: pointer }
-#calendar_mini .fc-day-number { color: #313a46; font-family: Leelawadee, Ebrima, 'Bahnschrift Light', Gadugi, 'Nirmala UI', 'Segoe UI', Verdana; font-size: 13px; font-style: normal; font-weight: normal; text-decoration: none }
-#calendar_mini .fc-state-highlight { background-color: #FCFCEE; background-image: none; border-color: #A8D4C7; border-style: solid; border-width: 1px; color: #313a46; font-family: Leelawadee, Ebrima, 'Bahnschrift Light', Gadugi, 'Nirmala UI', 'Segoe UI', Verdana; font-size: 13px; font-style: normal; font-weight: normal; text-decoration: none }
+#calendar_mini .fc-col-header-cell { background-image: none; color: #313a46; font-family: Leelawadee, Ebrima, 'Bahnschrift Light', Gadugi, 'Nirmala UI', 'Segoe UI', Verdana; font-size: 13px; font-style: normal; text-decoration: none; height: 25px; line-height: 25px }
+#calendar_mini .fc-daygrid-day-frame { background-color: #F6FFFC; background-image: none; color: #313a46; font-family: Leelawadee, Ebrima, 'Bahnschrift Light', Gadugi, 'Nirmala UI', 'Segoe UI', Verdana; font-size: 13px; font-style: normal; text-decoration: none; cursor: pointer }
+#calendar_mini .fc-day-number { color: #313a46; font-family: Leelawadee, Ebrima, 'Bahnschrift Light', Gadugi, 'Nirmala UI', 'Segoe UI', Verdana; font-size: 13px; font-style: normal; text-decoration: none }
+#calendar_mini .fc-state-highlight { background-color: #FCFCEE; background-image: none; border-color: #A8D4C7; border-style: solid; border-width: 1px; color: #313a46; font-family: Leelawadee, Ebrima, 'Bahnschrift Light', Gadugi, 'Nirmala UI', 'Segoe UI', Verdana; font-size: 13px; font-style: normal; text-decoration: none }
 #calendar_mini .fc-basic-view .fc-body .fc-row { min-height: 0px }
 #calendar_mini .fc-button { font-size: 13px !important; background-image: none !important; text-shadow: 0px 0px !important; border-style: none !important; padding: 2px 18px !important; height: 32px !important; line-height: 28px !important }
 #calendar_mini .fc-content-skeleton tbody { display: none }
@@ -56,7 +56,7 @@ div.fc button.fc-button-primary:focus,div.fc button.fc-button-primary:not(:disab
 .fc .fc-view-container .fc-listMonth-view .fc-scroller { overflow: inherit !important }
 .scCalendarCategory { background-image: none; border-style: solid; border-width: 0; border-collapse: collapse; margin: 0; padding: 5px 0 0 0 }
 .scCalendarCategoryItemsMoldura { background-image: none; border-style: solid; border-width: 0; border-collapse: collapse; margin: 0; padding: 10px 0 0 10px; cursor: pointer }
-.scCalendarCategoryTitle { background-image: none; border-width: 0; color: #313a46; font-family: Leelawadee, Ebrima, 'Bahnschrift Light', Gadugi, 'Nirmala UI', 'Segoe UI', Verdana; font-size: 13px; font-style: normal; font-weight: normal; text-decoration: none }
-.scCalendarCategoryItem { background-image: none; border-style: solid; border-width: 0; color: #313a46; font-family: Leelawadee, Ebrima, 'Bahnschrift Light', Gadugi, 'Nirmala UI', 'Segoe UI', Verdana; font-size: 13px; font-weight: normal; padding: 2px; text-decoration: none }
+.scCalendarCategoryTitle { background-image: none; border-width: 0; color: #313a46; font-family: Leelawadee, Ebrima, 'Bahnschrift Light', Gadugi, 'Nirmala UI', 'Segoe UI', Verdana; font-size: 13px; font-style: normal; text-decoration: none }
+.scCalendarCategoryItem { background-image: none; border-style: solid; border-width: 0; color: #313a46; font-family: Leelawadee, Ebrima, 'Bahnschrift Light', Gadugi, 'Nirmala UI', 'Segoe UI', Verdana; font-size: 13px; padding: 2px; text-decoration: none }
 .scCalendarCategoryItemActive { border-style: solid; border-width: 0; color: #313a46 }
 .scCalendarCategoryItemActive div { background-image: url(../../img/scriptcase__NM__ico__NM__check_checkbox.png); background-repeat: no-repeat }

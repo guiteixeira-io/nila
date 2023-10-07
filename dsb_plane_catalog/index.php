@@ -349,8 +349,8 @@ class dsb_plane_catalog_ini {
         $this->nm_dt_criacao   = "20230819";
         $this->nm_hr_criacao   = "153232";
         $this->nm_autor_alt    = "admin";
-        $this->nm_dt_ult_alt   = "20230912";
-        $this->nm_hr_ult_alt   = "172137";
+        $this->nm_dt_ult_alt   = "20231007";
+        $this->nm_hr_ult_alt   = "032108";
         list($NM_usec, $NM_sec) = explode(" ", microtime());
         $this->nm_timestamp  = (float) $NM_sec;
 

@@ -188,7 +188,7 @@ class cdt_class_mob_ini
    var $path_atual;
    var $Gd_missing;
    var $sc_site_ssl;
-   var $link_cdt_topic_mob_edit;
+   var $link_sub_topic_mob_edit;
    var $nm_cont_lin;
    var $nm_limite_lin;
    var $nm_limite_lin_prt;
@@ -300,8 +300,8 @@ class cdt_class_mob_ini
       $this->nm_dt_criacao   = "20230816"; 
       $this->nm_hr_criacao   = "194159"; 
       $this->nm_autor_alt    = "admin"; 
-      $this->nm_dt_ult_alt   = "20230912"; 
-      $this->nm_hr_ult_alt   = "172806"; 
+      $this->nm_dt_ult_alt   = "20231007"; 
+      $this->nm_hr_ult_alt   = "034844"; 
       list($NM_usec, $NM_sec) = explode(" ", microtime()); 
       $this->nm_timestamp    = (float) $NM_sec; 
       $this->nm_app_version  = "1.0.0"; 
@@ -429,6 +429,7 @@ class cdt_class_mob_ini
       $this->path_cep        = $this->path_prod . "/cep";
       $this->path_cor        = $this->path_prod . "/cor";
       $this->path_js         = $this->path_prod . "/lib/js";
+      $this->path_tiny_mce   = $this->path_prod . "/third/tinymce/js/tinymce/tinymce.min.js";
       $this->path_libs       = $this->root . $this->path_prod . "/lib/php";
       $this->path_third      = $this->root . $this->path_prod . "/third";
       $this->path_secure     = $this->root . $this->path_prod . "/secure";
@@ -642,14 +643,14 @@ class cdt_class_mob_ini
           echo "</html>";
           exit;
       }
-      $Tmp_apl_lig = "cdt_topic_mob";
-      if (is_file($this->root . $this->path_link . "_lib/_app_data/cdt_topic_mob_ini.php"))
+      $Tmp_apl_lig = "sub_topic_mob";
+      if (is_file($this->root . $this->path_link . "_lib/_app_data/sub_topic_mob_ini.php"))
       {
-          require($this->root . $this->path_link . "_lib/_app_data/cdt_topic_mob_ini.php");
+          require($this->root . $this->path_link . "_lib/_app_data/sub_topic_mob_ini.php");
           $Tmp_apl_lig = $arr_data['friendly_url'];
           if (isset($arr_data['md5']) && trim($arr_data['md5']) == "LigMd5")
           {
-              $this->sc_lig_md5["cdt_topic_mob"] = 'S';
+              $this->sc_lig_md5["sub_topic_mob"] = 'S';
           }
       }
       $PHP_ver = str_replace(".", "", phpversion()); 
@@ -1025,9 +1026,9 @@ class cdt_class_mob_ini
       {
           $_SESSION['sc_session'][$this->sc_page]['cdt_class_mob']['dashboard_info']['maximized'] = 1 == $_GET['maximized'];
       }
-      $this->link_cdt_topic_mob_edit = $this->sc_protocolo . $this->server . $this->path_link . "" . SC_dir_app_name('cdt_topic') . "/";
-      $this->sc_lig_target["C_@scinf_topico"] = 'nmsc_iframe_liga_cdt_topic_mob';
-      $this->sc_lig_iframe["nmsc_iframe_liga_cdt_topic_mob"] = 'nmsc_iframe_liga_cdt_topic_mob';
+      $this->link_sub_topic_mob_edit = $this->sc_protocolo . $this->server . $this->path_link . "" . SC_dir_app_name('sub_topic') . "/";
+      $this->sc_lig_target["C_@scinf_topico"] = 'nmsc_iframe_liga_sub_topic_mob';
+      $this->sc_lig_iframe["nmsc_iframe_liga_sub_topic_mob"] = 'nmsc_iframe_liga_sub_topic_mob';
       if ($_SESSION['sc_session'][$this->sc_page]['cdt_class_mob']['dashboard_info']['under_dashboard'])
       {
           $sTmpDashboardApp = $_SESSION['sc_session'][$this->sc_page]['cdt_class_mob']['dashboard_info']['dashboard_app'];
@@ -1111,7 +1112,7 @@ class cdt_class_mob_ini
       $this->nm_bases_odbc       = array("odbc");
       $this->nm_bases_progress   = array("progress", "pdo_progress_odbc");
       $this->nm_bases_all        = array_merge($this->nm_bases_access, $this->nm_bases_ibase, $this->nm_bases_mysql, $this->nm_bases_postgres, $this->nm_bases_sqlite, $this->nm_bases_sybase, $this->nm_bases_vfp, $this->nm_bases_odbc, $this->nm_bases_progress);
-      $_SESSION['scriptcase']['nm_bases_security']  = "enc_nm_enc_v1DcBwDQB/HAN7HuBODMzGVcFeV5X7VoFGD9BsZkFGHAN7D5rqHgBeHEFiV5B3DoF7D9XsDuFaHANKV5XGDMBYV9BUHEF/HIF7HQXOZ1X7DSNOHuBODMvCHAFKV5FqHIBiDcBiH9BiHABYHQBODMvsVcFiV5FYHIrqDcNmZ1BiHIveD5JwDMvCDkBsV5FqHIFUHQXOH9FUDSzGVWJwHgvOZSrCH5FqDoJeD9JmZ1B/D1NaD5rqHgrKHErsHEXCDoJsHQXsZSBiHANOHQF7DMNOV9FiV5X/VoFGHQXOZ1FGHAN7HuXGDMveDkFeV5FqHIXGHQFYZ9F7HANOHQNUDMBYV9FiV5FYHIF7HQXGZSBqZ1NOHuBqHgBODkBsH5FYVoX7D9JKDQX7D1BOV5FGDMzGV9BUHEF/HMX7DcFYZSBqZ1rYHQNUHgvsHEFKV5FqHMJsHQFYDQFUD1BeHuBODMzGVcFiV5FYHIXGHQBqZkBiD1rwHQJeHgBeDkFeV5B7ZuFaHQNmDQFUHAveHQXGHgvOV9FiH5FqDoJeD9JmZ1B/D1NaD5rqDErKZSXeH5FYDoFUD9NwDQJsHArYVWJsHuvmVcXKV5X7HMXGHQBqVIraZ1BeHuJwDErKVkXeV5FaVoBqD9NwH9X7HArYD5F7HgNKVcFeDWF/DoFGD9BsZ1F7HArYD5JeHgvCZSJ3V5XCVoB/D9NmDQFaZ1BYV5FUHuvmDkBOH5XKVoraD9BiVINUDSvOV5X7DErKHEFiDuJeDoBOHQJeDQBqHAvOV5JwHuBYDkFCDuX7VEF7D9XOZSB/Z1BeD5FaDEvsHEFKV5FaDoXGDcJeZSFGHANOD5BqHuzGVcrsH5XCVoBqDcBqZ1FaD1rwV5FaHgvCDkBsH5FYVoX7D9JKDQX7D1BOV5FGHuzGDkBOH5FqVoJwD9JmZ1F7Z1BeD5JeDEvsHENiV5FaHMBOHQJKDQFUHAveHQNUDMBYDkB/DWB3DoXGHQBsH9BOHArYHQrqHgBeHEFiV5B3DoF7D9XsDuFaHANKV5BqHuBOV9FeDWJeHIF7DcJUZ1X7DSrYHQNUDEBeVkXeH5FYZuFaD9NwH9X7DSrwV5FGDMNOVcBUDuX7HMBiD9BsVIraD1rwV5X7HgBeHEFKV5FaDoF7DcBwDQJwD1veV5raHgvsDkBODuFqVoB/D9XOH9FaD1rwD5BiDEBOHEXeV5FaDorqHQXGH9FGHAveD5BOHuzGVcFeDWXCDoJsDcBwH9B/Z1rYHQJwHgBeHEFiV5B3DoF7D9XsDuFaHAveV5X7HuvmVcFeDWBmVoFGHQJmH9BqHAN7D5BqDEBeVkJqH5FYZuXGHQJKDQJsZ1vCV5FGHuNOV9FeDWXCVorqDcJUZ1BOZ1BeD5F7DErKVkXeV5FaVoBiD9FYH9X7HABYHuFaHuNOZSrCH5FqDoXGHQJmZ1BiHAvCD5BqHgveDkXKH5X/DoBOHQJeDuBqHAvOVWJwDMvmVcFKV5BmVoBqD9BsZkFGHArKZMBqHgBOHArCHEXCVoB/D9XsDuBqHANKVWBqDMvOZSNiDWXCHIBiHQNwH9B/Z1BeHuJeHgBeHEFiV5B3DoF7D9XsDuFaHAveHuBiDMvmV9FeV5F/HMXGHQXOZ1FGDSrYHuXGHgrKHAFKDWF/HMBiHQNwDuFaHAveD5NUHgNKDkBOV5FYHMBiHQBqZkFUZ1vmD5Bq";
+      $_SESSION['scriptcase']['nm_bases_security']  = "enc_nm_enc_v1D9NwDQX7Z1vCV5XGHuNOVIB/HEFYVErqD9XOZSB/Z1rYHuJsHgvsVkJ3DWF/VoBiDcJUZSX7Z1BYHuFaDMvOVIBsDWXCDoJsDcBwH9B/Z1rYHQJwDMveHENiDWr/DoJeD9NmDuFaHABYHuXGHgrKZSNiDWJeHIFGHQJmZ1F7Z1vmD5rqDEBOHArCDWF/DoBODcBwDQFUZ1rwV5X7HuzGVIBOV5X7DoJsD9XGZSB/HArYHQJwDEBODkFeH5FYVoFGHQJKDQBOZ1rwV5FGHgrKVcrsH5XCVoJwDcBqH9B/HIrwD5NUDErKZSJGH5FYDoFUD9XsDQX7Z1rwV5X7DMrwVIFCDWXCDoX7D9XOZ1FGHArKV5FUDMrYZSXeV5FqHIJsD9FYDQX7DSrwHuFUDMvsVcrsH5XCVoFGHQBsZSBOHArYD5rqHgBYHENiHEB3DoJeHQJKDQJsZ1vCV5FGHuNOV9FeDWXCHIF7HQBqZSBqZ1rYHQF7DMveVkJ3V5FqHIB/HQXGDuFaD1veV5FaDMNOV9FeV5BmVEX7HQFYZkFGHIrwHQXGHgBYHENiHEXCHIBqHQXGDuFaD1vOVWJeHgvOV9BUDWFYVoBiDcBwH9B/HIrwV5JeDMBYDkBsH5FYHIrqHQJeH9FUDSN7HuFUDMvmVIB/H5FqHMJwHQFYZkBiD1rwHQF7HgBeVkJ3V5XCDoJsHQXGDQFUDSBYHQF7DMvOVIB/H5XCHIF7HQFYZkFGZ1rYHuFGHgvsVkJ3DuFYHIraDcJUZSX7HIBeD5BqHgvsZSJ3H5FqHMBqHQBqZSBOHIveHQBqHgvsHArCDuFaHMBOHQXGDQFUHAveHQB/DMBODkB/Dur/HMBOHQFYZ1BOD1NaZMJeHgveZSJqHEFqHIX7HQXGDuBqD1veHQXGDMBOVcFeV5FYHMFGDcBwH9B/HIrwV5JeDMBYDkBsH5FYDoXGDcJeZSFUZ1rwV5JeHgvsVcFCH5XCDoX7DcNwH9BqD1NaZMJwHgvCZSJqDWF/DoJeD9XsZSX7HIrwV5BOHgvsVcBOV5X/VoFaHQBsZSB/DSrYV5FGDMzGHEJGH5X/DoB/HQNmH9X7HABYVWJsDMBYVcBODWFaDoFUDcJUZkFUZ1BeZMBqHgBYHAFKV5FqDoBOD9JKDQJwHANKVWBODMvOV9FiV5X7VEF7D9BiH9FaHIBeD5XGDEBOZSXeV5FaZuFaHQXGZSFGD1BeV5FGHuzGVIBOHEFYVorqD9BiZ1F7D1rwD5NUDErKZSXeH5FGDoB/DcJUZSX7HIBeD5BqHgvsZSJ3H5FqVoFGDcBqH9BOZ1BeV5XGDEBOZSJGH5FYZuFaDcXOZSBiHIBeHuB/DMBOVcXKH5XCHIFGHQXGZ1FUZ1rYHQNUDMvCHArCHEFqHIJsD9XsZ9JeD1BeD5F7DMvmVcBUDWrmVorqHQNmVINUD1NaD5BOHgveHErsDWBmZuBqHQJKDQJsZ1vCV5FGHuNOV9FeDWXCHMX7D9JmZ1FaD1rKHQBiDMvCHENiHEXCVoJwHQNwZSFGHAveHuBqHuBYVcBUH5FqHMBiD9BsVIraD1rwV5X7HgBeHErCDWXCHIJwHQNmH9BiD1BeHuX7DMzGV9FeV5F/HMBqDcBwZ1X7D1rKHQrqHgBeHEFiV5B3DoF7D9XsDuFaHANKVWBqDMrwZSNiDWB3VEB/";
       $this->prep_conect();
       $this->conectDB();
       if (!in_array(strtolower($this->nm_tpbanco), $this->nm_bases_all))
@@ -1999,21 +2000,6 @@ ob_start();
 
     if (isset($_POST['rs']) && !is_array($_POST['rs']) && 'ajax_' == substr($_POST['rs'], 0, 5) && isset($_POST['rsargs']) && !empty($_POST['rsargs']) && !isset($_SESSION['scriptcase']['cdt_class_mob']['session_timeout']['redir']))
     {
-        if ('ajax_cdt_class_mob_validate_id' == $_POST['rs'])
-        {
-            $id = NM_utf8_urldecode($_POST['rsargs'][0]);
-            $script_case_init = NM_utf8_urldecode($_POST['rsargs'][1]);
-        }
-        if ('ajax_cdt_class_mob_validate_pai' == $_POST['rs'])
-        {
-            $pai = NM_utf8_urldecode($_POST['rsargs'][0]);
-            $script_case_init = NM_utf8_urldecode($_POST['rsargs'][1]);
-        }
-        if ('ajax_cdt_class_mob_validate_icone' == $_POST['rs'])
-        {
-            $icone = NM_utf8_urldecode($_POST['rsargs'][0]);
-            $script_case_init = NM_utf8_urldecode($_POST['rsargs'][1]);
-        }
         if ('ajax_cdt_class_mob_validate_ordenacao' == $_POST['rs'])
         {
             $ordenacao = NM_utf8_urldecode($_POST['rsargs'][0]);
@@ -2029,16 +2015,6 @@ ob_start();
             $descricao = NM_utf8_urldecode($_POST['rsargs'][0]);
             $script_case_init = NM_utf8_urldecode($_POST['rsargs'][1]);
         }
-        if ('ajax_cdt_class_mob_validate_link' == $_POST['rs'])
-        {
-            $link = NM_utf8_urldecode($_POST['rsargs'][0]);
-            $script_case_init = NM_utf8_urldecode($_POST['rsargs'][1]);
-        }
-        if ('ajax_cdt_class_mob_validate_sc_field_0' == $_POST['rs'])
-        {
-            $sc_field_0 = NM_utf8_urldecode($_POST['rsargs'][0]);
-            $script_case_init = NM_utf8_urldecode($_POST['rsargs'][1]);
-        }
         if ('ajax_cdt_class_mob_validate_topico' == $_POST['rs'])
         {
             $topico = NM_utf8_urldecode($_POST['rsargs'][0]);
@@ -2046,22 +2022,18 @@ ob_start();
         }
         if ('ajax_cdt_class_mob_submit_form' == $_POST['rs'])
         {
-            $id = NM_utf8_urldecode($_POST['rsargs'][0]);
-            $pai = NM_utf8_urldecode($_POST['rsargs'][1]);
-            $icone = NM_utf8_urldecode($_POST['rsargs'][2]);
-            $ordenacao = NM_utf8_urldecode($_POST['rsargs'][3]);
-            $modulo = NM_utf8_urldecode($_POST['rsargs'][4]);
-            $descricao = NM_utf8_urldecode($_POST['rsargs'][5]);
-            $link = NM_utf8_urldecode($_POST['rsargs'][6]);
-            $sc_field_0 = NM_utf8_urldecode($_POST['rsargs'][7]);
-            $nm_form_submit = NM_utf8_urldecode($_POST['rsargs'][8]);
-            $nmgp_url_saida = NM_utf8_urldecode($_POST['rsargs'][9]);
-            $nmgp_opcao = NM_utf8_urldecode($_POST['rsargs'][10]);
-            $nmgp_ancora = NM_utf8_urldecode($_POST['rsargs'][11]);
-            $nmgp_num_form = NM_utf8_urldecode($_POST['rsargs'][12]);
-            $nmgp_parms = NM_utf8_urldecode($_POST['rsargs'][13]);
-            $script_case_init = NM_utf8_urldecode($_POST['rsargs'][14]);
-            $csrf_token = NM_utf8_urldecode($_POST['rsargs'][15]);
+            $ordenacao = NM_utf8_urldecode($_POST['rsargs'][0]);
+            $modulo = NM_utf8_urldecode($_POST['rsargs'][1]);
+            $descricao = NM_utf8_urldecode($_POST['rsargs'][2]);
+            $id = NM_utf8_urldecode($_POST['rsargs'][3]);
+            $nm_form_submit = NM_utf8_urldecode($_POST['rsargs'][4]);
+            $nmgp_url_saida = NM_utf8_urldecode($_POST['rsargs'][5]);
+            $nmgp_opcao = NM_utf8_urldecode($_POST['rsargs'][6]);
+            $nmgp_ancora = NM_utf8_urldecode($_POST['rsargs'][7]);
+            $nmgp_num_form = NM_utf8_urldecode($_POST['rsargs'][8]);
+            $nmgp_parms = NM_utf8_urldecode($_POST['rsargs'][9]);
+            $script_case_init = NM_utf8_urldecode($_POST['rsargs'][10]);
+            $csrf_token = NM_utf8_urldecode($_POST['rsargs'][11]);
         }
         if ('ajax_cdt_class_mob_navigate_form' == $_POST['rs'])
         {
@@ -2663,14 +2635,9 @@ ob_start();
     $sajax_request_type = "POST";
     sajax_init();
     //$sajax_debug_mode = 1;
-    sajax_export("ajax_cdt_class_mob_validate_id");
-    sajax_export("ajax_cdt_class_mob_validate_pai");
-    sajax_export("ajax_cdt_class_mob_validate_icone");
     sajax_export("ajax_cdt_class_mob_validate_ordenacao");
     sajax_export("ajax_cdt_class_mob_validate_modulo");
     sajax_export("ajax_cdt_class_mob_validate_descricao");
-    sajax_export("ajax_cdt_class_mob_validate_link");
-    sajax_export("ajax_cdt_class_mob_validate_sc_field_0");
     sajax_export("ajax_cdt_class_mob_validate_topico");
     sajax_export("ajax_cdt_class_mob_submit_form");
     sajax_export("ajax_cdt_class_mob_navigate_form");
@@ -2686,63 +2653,6 @@ ob_start();
     function nm_limpa_str_cdt_class_mob(&$str)
     {
     }
-
-    function ajax_cdt_class_mob_validate_id($id, $script_case_init)
-    {
-        global $inicial_cdt_class_mob;
-        //register_shutdown_function("cdt_class_mob_pack_ajax_response");
-        $inicial_cdt_class_mob->contr_cdt_class_mob->NM_ajax_flag          = true;
-        $inicial_cdt_class_mob->contr_cdt_class_mob->NM_ajax_opcao         = 'validate_id';
-        $inicial_cdt_class_mob->contr_cdt_class_mob->NM_ajax_info['param'] = array(
-                  'id' => NM_utf8_urldecode($id),
-                  'script_case_init' => NM_utf8_urldecode($script_case_init),
-                  'buffer_output' => true,
-                 );
-        if ($inicial_cdt_class_mob->contr_cdt_class_mob->NM_ajax_info['param']['buffer_output'])
-        {
-            ob_start();
-        }
-        $inicial_cdt_class_mob->contr_cdt_class_mob->controle();
-        exit;
-    } // ajax_validate_id
-
-    function ajax_cdt_class_mob_validate_pai($pai, $script_case_init)
-    {
-        global $inicial_cdt_class_mob;
-        //register_shutdown_function("cdt_class_mob_pack_ajax_response");
-        $inicial_cdt_class_mob->contr_cdt_class_mob->NM_ajax_flag          = true;
-        $inicial_cdt_class_mob->contr_cdt_class_mob->NM_ajax_opcao         = 'validate_pai';
-        $inicial_cdt_class_mob->contr_cdt_class_mob->NM_ajax_info['param'] = array(
-                  'pai' => NM_utf8_urldecode($pai),
-                  'script_case_init' => NM_utf8_urldecode($script_case_init),
-                  'buffer_output' => true,
-                 );
-        if ($inicial_cdt_class_mob->contr_cdt_class_mob->NM_ajax_info['param']['buffer_output'])
-        {
-            ob_start();
-        }
-        $inicial_cdt_class_mob->contr_cdt_class_mob->controle();
-        exit;
-    } // ajax_validate_pai
-
-    function ajax_cdt_class_mob_validate_icone($icone, $script_case_init)
-    {
-        global $inicial_cdt_class_mob;
-        //register_shutdown_function("cdt_class_mob_pack_ajax_response");
-        $inicial_cdt_class_mob->contr_cdt_class_mob->NM_ajax_flag          = true;
-        $inicial_cdt_class_mob->contr_cdt_class_mob->NM_ajax_opcao         = 'validate_icone';
-        $inicial_cdt_class_mob->contr_cdt_class_mob->NM_ajax_info['param'] = array(
-                  'icone' => NM_utf8_urldecode($icone),
-                  'script_case_init' => NM_utf8_urldecode($script_case_init),
-                  'buffer_output' => true,
-                 );
-        if ($inicial_cdt_class_mob->contr_cdt_class_mob->NM_ajax_info['param']['buffer_output'])
-        {
-            ob_start();
-        }
-        $inicial_cdt_class_mob->contr_cdt_class_mob->controle();
-        exit;
-    } // ajax_validate_icone
 
     function ajax_cdt_class_mob_validate_ordenacao($ordenacao, $script_case_init)
     {
@@ -2801,44 +2711,6 @@ ob_start();
         exit;
     } // ajax_validate_descricao
 
-    function ajax_cdt_class_mob_validate_link($link, $script_case_init)
-    {
-        global $inicial_cdt_class_mob;
-        //register_shutdown_function("cdt_class_mob_pack_ajax_response");
-        $inicial_cdt_class_mob->contr_cdt_class_mob->NM_ajax_flag          = true;
-        $inicial_cdt_class_mob->contr_cdt_class_mob->NM_ajax_opcao         = 'validate_link';
-        $inicial_cdt_class_mob->contr_cdt_class_mob->NM_ajax_info['param'] = array(
-                  'link' => NM_utf8_urldecode($link),
-                  'script_case_init' => NM_utf8_urldecode($script_case_init),
-                  'buffer_output' => true,
-                 );
-        if ($inicial_cdt_class_mob->contr_cdt_class_mob->NM_ajax_info['param']['buffer_output'])
-        {
-            ob_start();
-        }
-        $inicial_cdt_class_mob->contr_cdt_class_mob->controle();
-        exit;
-    } // ajax_validate_link
-
-    function ajax_cdt_class_mob_validate_sc_field_0($sc_field_0, $script_case_init)
-    {
-        global $inicial_cdt_class_mob;
-        //register_shutdown_function("cdt_class_mob_pack_ajax_response");
-        $inicial_cdt_class_mob->contr_cdt_class_mob->NM_ajax_flag          = true;
-        $inicial_cdt_class_mob->contr_cdt_class_mob->NM_ajax_opcao         = 'validate_sc_field_0';
-        $inicial_cdt_class_mob->contr_cdt_class_mob->NM_ajax_info['param'] = array(
-                  'sc_field_0' => NM_utf8_urldecode($sc_field_0),
-                  'script_case_init' => NM_utf8_urldecode($script_case_init),
-                  'buffer_output' => true,
-                 );
-        if ($inicial_cdt_class_mob->contr_cdt_class_mob->NM_ajax_info['param']['buffer_output'])
-        {
-            ob_start();
-        }
-        $inicial_cdt_class_mob->contr_cdt_class_mob->controle();
-        exit;
-    } // ajax_validate_sc_field_0
-
     function ajax_cdt_class_mob_validate_topico($topico, $script_case_init)
     {
         global $inicial_cdt_class_mob;
@@ -2858,21 +2730,17 @@ ob_start();
         exit;
     } // ajax_validate_topico
 
-    function ajax_cdt_class_mob_submit_form($id, $pai, $icone, $ordenacao, $modulo, $descricao, $link, $sc_field_0, $nm_form_submit, $nmgp_url_saida, $nmgp_opcao, $nmgp_ancora, $nmgp_num_form, $nmgp_parms, $script_case_init, $csrf_token)
+    function ajax_cdt_class_mob_submit_form($ordenacao, $modulo, $descricao, $id, $nm_form_submit, $nmgp_url_saida, $nmgp_opcao, $nmgp_ancora, $nmgp_num_form, $nmgp_parms, $script_case_init, $csrf_token)
     {
         global $inicial_cdt_class_mob;
         //register_shutdown_function("cdt_class_mob_pack_ajax_response");
         $inicial_cdt_class_mob->contr_cdt_class_mob->NM_ajax_flag          = true;
         $inicial_cdt_class_mob->contr_cdt_class_mob->NM_ajax_opcao         = 'submit_form';
         $inicial_cdt_class_mob->contr_cdt_class_mob->NM_ajax_info['param'] = array(
-                  'id' => NM_utf8_urldecode($id),
-                  'pai' => NM_utf8_urldecode($pai),
-                  'icone' => NM_utf8_urldecode($icone),
                   'ordenacao' => NM_utf8_urldecode($ordenacao),
                   'modulo' => NM_utf8_urldecode($modulo),
                   'descricao' => NM_utf8_urldecode($descricao),
-                  'link' => NM_utf8_urldecode($link),
-                  'sc_field_0' => NM_utf8_urldecode($sc_field_0),
+                  'id' => NM_utf8_urldecode($id),
                   'nm_form_submit' => NM_utf8_urldecode($nm_form_submit),
                   'nmgp_url_saida' => NM_utf8_urldecode($nmgp_url_saida),
                   'nmgp_opcao' => NM_utf8_urldecode($nmgp_opcao),

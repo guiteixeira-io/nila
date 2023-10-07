@@ -199,7 +199,7 @@ if (isset($_SESSION['scriptcase']['device_mobile']) && $_SESSION['scriptcase']['
  <link rel="stylesheet" type="text/css" href="<?php echo $this->Ini->path_link ?>cdt_studyPlane/cdt_studyPlane_mob_<?php echo strtolower($_SESSION['scriptcase']['reg_conf']['css_dir']) ?>.css" />
  <SCRIPT type="text/javascript" src="<?php echo $this->Ini->path_tiny_mce; ?>"></SCRIPT>
  <STYLE>
-  .mce-toolbar-grp .mce-container-body {text-align: left !important}
+.tox-toolbar, .tox-toolbar__primary {justify-content: left !important}
  </STYLE>
 
 <script>

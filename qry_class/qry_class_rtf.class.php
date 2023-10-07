@@ -233,14 +233,6 @@ function actionBar_getStateHide($buttonName)
       $this->Texto_tag .= "<tr>\r\n";
       foreach ($_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['field_order'] as $Cada_col)
       { 
-          $SC_Label = (isset($this->New_label['curso'])) ? $this->New_label['curso'] : "Cursada"; 
-          if ($Cada_col == "curso" && (!isset($this->NM_cmp_hidden[$Cada_col]) || $this->NM_cmp_hidden[$Cada_col] != "off"))
-          {
-              $SC_Label = NM_charset_to_utf8($SC_Label);
-              $SC_Label = str_replace('<', '&lt;', $SC_Label);
-              $SC_Label = str_replace('>', '&gt;', $SC_Label);
-              $this->Texto_tag .= "<td>" . $SC_Label . "</td>\r\n";
-          }
           $SC_Label = (isset($this->New_label['modulo'])) ? $this->New_label['modulo'] : "Modulo"; 
           if ($Cada_col == "modulo" && (!isset($this->NM_cmp_hidden[$Cada_col]) || $this->NM_cmp_hidden[$Cada_col] != "off"))
           {
@@ -370,10 +362,6 @@ function actionBar_getStateHide($buttonName)
          $this->Lookup->lookup_modulo($this->look_modulo, $this->modulo) ; 
          $this->look_modulo = ($this->look_modulo == "&nbsp;") ? "" : $this->look_modulo; 
          $this->sc_proc_grid = true; 
-         //----- lookup - curso
-         $this->Lookup->lookup_curso($this->curso, $this->modulo, $this->array_curso); 
-         $this->curso = str_replace("<br>", " ", $this->curso); 
-         $this->curso = ($this->curso == "&nbsp;") ? "" : $this->curso; 
          foreach ($_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['field_order'] as $Cada_col)
          { 
             if (!isset($this->NM_cmp_hidden[$Cada_col]) || $this->NM_cmp_hidden[$Cada_col] != "off")
@@ -397,15 +385,6 @@ function actionBar_getStateHide($buttonName)
           unset($_SESSION['sc_session'][$this->Ini->sc_page]['qry_class']['export_sel_columns']['usr_cmp_sel']);
       }
       $rs->Close();
-   }
-   //----- curso
-   function NM_export_curso()
-   {
-         nmgp_Form_Num_Val($this->curso, $_SESSION['scriptcase']['reg_conf']['grup_num'], $_SESSION['scriptcase']['reg_conf']['dec_num'], "0", "", "1", "", "N:" . $_SESSION['scriptcase']['reg_conf']['neg_num'] , $_SESSION['scriptcase']['reg_conf']['simb_neg'], $_SESSION['scriptcase']['reg_conf']['num_group_digit']) ; 
-         $this->curso = NM_charset_to_utf8($this->curso);
-         $this->curso = str_replace('<', '&lt;', $this->curso);
-         $this->curso = str_replace('>', '&gt;', $this->curso);
-         $this->Texto_tag .= "<td>" . $this->curso . "</td>\r\n";
    }
    //----- modulo
    function NM_export_modulo()

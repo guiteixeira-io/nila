@@ -1060,9 +1060,10 @@ class cdt_course_apl
           $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_course']['cdt_subject_script_case_init'] ]['cdt_subject']['embutida_proc'] = true;
           $_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_course']['cdt_subject_script_case_init'] ]['cdt_subject']['reg_start'] = "";
           unset($_SESSION['sc_session'][ $_SESSION['sc_session'][$this->Ini->sc_page]['cdt_course']['cdt_subject_script_case_init'] ]['cdt_subject']['total']);
+          $detailAppObject = "cdt_subject_apl";
           require_once($this->Ini->root . $this->Ini->path_link  . SC_dir_app_name('cdt_subject') . "/index.php");
           require_once($this->Ini->root . $this->Ini->path_link  . SC_dir_app_name('cdt_subject') . "/cdt_subject_apl.php");
-          $this->cdt_subject = new cdt_subject_apl;
+          $this->cdt_subject = new $detailAppObject;
       }
       $this->NM_case_insensitive = false;
       $this->sc_evento = $this->nmgp_opcao;
